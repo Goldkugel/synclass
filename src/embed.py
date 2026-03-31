@@ -4,106 +4,160 @@ import sys
 import time
 import torch
 import math
-import torch.nn.functional as F
 from transformers import AutoTokenizer, AutoModel
 
-# Prevent Python from generating .pyc files
+# Prevent Python from generating .pyc files.
 sys.dont_write_bytecode = True
 
-# Project-specific configuration and utility functions
+# Project-specific configuration and utility functions.
 from config import *
 from utils  import *
 
+# ------------------------------------------------------------------------------
+# Initialization
+# ------------------------------------------------------------------------------
+
+# Printing header.
 printHeader("Embedding HPO Terms")
 
 # To track time.
-start_time = time.time()
+startTime = time.time()
 
 
 
 
+
+
+
+# ------------------------------------------------------------------------------
+# Load and Filter Human Phenotype Ontology (HPO) from transformed data file.
+# ------------------------------------------------------------------------------
+
+# Ensure the input file exists before proceeding.
+exitIfFileNotExist(inputFileTask)
 
 data = readCSV(inputFileTask)
 
+# Retrieving HPO IDs.
+log("Retrieving IDs...")
 hpoIDs = getHPOIDs(data)
+log("IDs retrieved.")
 
-labels      = data[(data[classColumn] == labelClass) & (data[hpoidColumn].isin(hpoIDs))][contentColumn].tolist()
-labelIDs    = data[(data[classColumn] == labelClass) & (data[hpoidColumn].isin(hpoIDs))][hpoidColumn].tolist()
+# Preparing Labels.
+log("Filtering Labels of HPO Concepts...")
+labels      = data[(
+        data[classColumn] == labelClass
+            ) & (
+        data[hpoidColumn].isin(hpoIDs)
+    )][contentColumn].tolist()
+labelIDs    = data[(
+        data[classColumn] == labelClass
+            ) & (
+        data[hpoidColumn].isin(hpoIDs)
+    )][hpoidColumn].tolist()
+log("Filtering Labels completed.")
 
-synonyms    = data[(data[classColumn].isin(synonymClasses)) & (data[hpoidColumn].isin(hpoIDs))][contentColumn].tolist()
-synonymIDs  = data[(data[classColumn].isin(synonymClasses)) & (data[hpoidColumn].isin(hpoIDs))][hpoidColumn].tolist()
+# Preparing Synonyms.
+log(f"Filtering Synonyms ({', '.join(synonymClasses)})...")
+synonyms    = data[(
+        data[classColumn].isin(synonymClasses)
+            ) & (
+        data[hpoidColumn].isin(hpoIDs)
+    )][contentColumn].tolist()
+synonymIDs  = data[(
+        data[classColumn].isin(synonymClasses)
+            ) & (
+        data[hpoidColumn].isin(hpoIDs)
+    )][hpoidColumn].tolist()
+log(f"Filtering Synonyms completed.")
+# Data retrieval completed.
 
-for model in embeddingModels:
 
-    log(f"Set up model {model}...")
-    tokenizer = AutoTokenizer.from_pretrained(model,   model_max_length = 64)
-    model = AutoModel.from_pretrained(model)
+
+
+
+
+# ------------------------------------------------------------------------------
+# Embed and calculate the similarity of labels with their respective synonyms.
+# ------------------------------------------------------------------------------
+
+log("Start to Embed Synonyms and Labels with all Embedding Models.")
+for modelName in embeddingModels.keys():
+
+    index = embeddingModels.keys()[modelName]
+
+    # Set up the embedding model.
+    log(f"Set up ({index}/{len(list(embeddingModels.keys()))}) " \
+        f"model and tokenizer {quote(modelName)}...")
+    tokenizer = AutoTokenizer.from_pretrained(embeddingModels[modelName], 
+        model_max_length = 64)
+    model = AutoModel.from_pretrained(embeddingModels[modelName])
+
     # Put model in evaluation mode
     model.eval()
     log("Model set up.")
 
-
+    # Tokenize input.
     log("Tokenize Labels...")
-    # Tokenize input
-    inputs = tokenizer(
-        labels,
-        padding=True,
-        truncation=True,
-        return_tensors="pt"
-    )
-    log("Labels tokenized.")
-    
+    inputs = tokenizer(labels, padding = True, truncation = True, 
+        return_tensors = "pt")
+    log("Labels tokenized.")    
 
+    # Generate Embeddings of Labels.
     log("Embedding Labels...")
-    # Generate embeddings
     with torch.no_grad():
         outputs = model(**inputs)
     log("Labels embedded.")
 
+    # Extract Embeddings.
     log("Finalizing embeddings of Labels...")
-    token_embeddings = outputs.last_hidden_state
-    mask = inputs["attention_mask"].unsqueeze(-1).expand(token_embeddings.size()).float()
-    embeddings = torch.sum(token_embeddings * mask, dim=1) / torch.clamp(mask.sum(dim=1), min=1e-9)
-
-    # Normalize embeddings (optional but common)
-    embeddings = torch.nn.functional.normalize(embeddings, p=2, dim=1)
+    tokenEmbeddings = outputs.last_hidden_state
+    mask = inputs["attention_mask"].unsqueeze(-1).expand(
+        tokenEmbeddings.size()).float()
+    embeddings = torch.sum(tokenEmbeddings * mask, dim = 1) / torch.clamp(
+        mask.sum(dim = 1), min = 1e-9)
 
     resultLabels = {}
-    # Print results
-    for i, l, e in zip(ids, labels, embeddings):
+    for i, l, e in zip(labelIDs, labels, embeddings):
+        # Since there is just one label per concept there is no need to take
+        # into account the label's text.
         resultLabels[i] = e
     log("Finalized Label embeddings.")
 
-
+    # Tokenize input.
     log("Tokenize Synonyms...")
-    # Tokenize input
-    inputs = tokenizer(
-        synonyms,
-        padding=True,
-        truncation=True,
-        return_tensors="pt"
-    )
+    inputs = tokenizer(synonyms, padding = True, truncation = True,
+        return_tensors="pt")
     log("Synonyms tokenized.")
 
+    # Generate Embeddings of Synonyms.
     log("Embedding Synonyms...")
-    # Generate embeddings
     with torch.no_grad():
         outputs = model(**inputs)
     log("Synonyms embedded.")
 
+    # Extract Embeddings.
     log("Finalizing embeddings of Synoyms...")
-    token_embeddings = outputs.last_hidden_state
-    mask = inputs["attention_mask"].unsqueeze(-1).expand(token_embeddings.size()).float()
-    embeddings = torch.sum(token_embeddings * mask, dim=1) / torch.clamp(mask.sum(dim=1), min=1e-9)
+    tokenEmbeddings = outputs.last_hidden_state
+    mask = inputs["attention_mask"].unsqueeze(-1).expand(
+        tokenEmbeddings.size()).float()
+    embeddings = torch.sum(tokenEmbeddings * mask, dim=1) / torch.clamp(
+        mask.sum(dim=1), min=1e-9)
 
     resultSynonyms = {}
-    # Print results
-    for i, s, e in zip(ids, synonyms, embeddings):
+    for i, s, e in zip(synonymIDs, synonyms, embeddings):
+        # Since there is the possibility, that two different concepts can have
+        # the same synonym, it is worth to take into account the synonym text
+        # and the concept ID. 
         resultSynonyms[str(i) + " " + str(s)] = e
     log("Finalized Synonym embeddings.")
 
+    # Each similarity metric and model will get an own column in which the
+    # similarity will be saved.
     for similarityMetric in similarityMetrics:
-        similarityColumn = similarityColumnPrefix + similarityMetric
+        similarityColumn = similarityColumnPrefix.format(modelName, 
+            similarityMetric)
+        # Standard value for no similarity is np.nan.
         data[similarityColumn] = [np.nan] * len(data.index)
 
     with newProgress() as progress:
@@ -111,63 +165,81 @@ for model in embeddingModels:
         task = newTask(progress, len(data.index), "Calculating Similarity")
 
         for index, row in data.iterrows():
-            if row[classColumn] in synonymClasses and row[hpoidColumn] in hpoIDs:
-                emb1 = resultSynonyms[str(row[hpoidColumn]) + " " + str(row[contentColumn])].unsqueeze(0)
+            # The similarity will be placed in the row with the synonyms only
+            # in the respective column. 
+            if (row[classColumn] in synonymClasses and 
+                row[hpoidColumn] in hpoIDs):
+                emb1 = resultSynonyms[str(row[hpoidColumn]) + " " + 
+                    str(row[contentColumn])].unsqueeze(0)
                 emb2 = resultLabels[row[hpoidColumn]].unsqueeze(0)
 
                 emb1 = emb1[0]
                 emb2 = emb2[0]
 
+                # Calculate the Similary Metric.
                 for similarityMetric in similarityMetrics:
-                    similarityColumn = similarityColumnPrefix + similarityMetric
+                    similarityColumn = similarityColumnPrefix.format(modelName, 
+                        similarityMetric)
 
                     if similarityMetric == cosineSimilarity:
                         data.loc[index, similarityColumn] = cosSim(emb1, emb2)
-
-                    if similarityMetric == euclideanSimilarity:
+                    elif similarityMetric == euclideanSimilarity:
                         data.loc[index, similarityColumn] = eucSim(emb1, emb2)
-
-                    if similarityMetric == manhattanSimilarity:
+                    elif similarityMetric == manhattanSimilarity:
                         data.loc[index, similarityColumn] = manSim(emb1, emb2)
-
-                    if similarityMetric == angularSimilarity:
+                    elif similarityMetric == angularSimilarity:
                         data.loc[index, similarityColumn] = angSim(emb1, emb2)
-
-                    if similarityMetric == mahalanobisSimilarity:
-                    data.loc[index, similarityColumn] = mahSim(emb1, emb2)
+                    elif similarityMetric == mahalanobisSimilarity:
+                        data.loc[index, similarityColumn] = mahSim(emb1, emb2)
+                    else:
+                        log(f"No Similarity function found for metric {quote(
+                            similarityMetric)}")
 
             progress.update(task, advance = 1)
 
         progress.refresh()
 
-    for similarityMetric in similarityMetrics:
-        similarityColumn = similarityColumnPrefix + similarityMetric
-        data[similarityColumn] = (data[similarityColumn] - data[similarityColumn].mean()) / data[similarityColumn].std()
-
     m = "mean"
     s = "std"
 
+    # Normalization of the similarity metrics: since every metric has it's own
+    # range of values, for every model and metric the values are subtracted by
+    # the mean and divided by the standard deviation. With this approach
+    # the similarity metrics are comparable. 
     for similarityMetric in similarityMetrics:
-        similarityColumn = similarityColumnPrefix + similarityMetric
+        similarityColumn = similarityColumnPrefix.format(modelName, 
+            similarityMetric)
+        data[similarityColumn] = (
+                # Subtraction of the mean.
+                data[similarityColumn] - data[similarityColumn].mean()
+            ) / data[similarityColumn].std()    # Division by the standard 
+                                                # deviation.
 
+        # Some values are being calculated for a first, quick evaluation of 
+        # the similarity scores. 
         grouped = data.groupby(classColumn)[similarityColumn].agg([m, s])
 
         means = pd.Series(grouped[m].tolist()).dropna().tolist()
-        stds = pd.Series(grouped[s].tolist()).dropna().tolist()
+        stds  = pd.Series(grouped[s].tolist()).dropna().tolist()
 
-        log(similarityMetric + " Difference: [" + exactSynonymClass + " - " + 
-            relatedSynonymClass + "]")
-        log("Means: "               + str(means[0] - means[1]))
-        log("Standard Deviation: " + str(stds[0] - stds[1]))
-        log(similarityMetric + " Values: [" + exactSynonymClass + ", " + 
-            relatedSynonymClass + "]")
-        log("Means: "               + str(means))
-        log("Standard Deviation: "  + str(stds))
+        log(f"{similarityColumn} Difference: [{exactSynonymClass} - " \
+            f"{relatedSynonymClass}]")
+        log(f"Mean's Differnece:               {means[0] - means[1]}")
+        log(f"Standard Deviation's Difference: {stds[0] - stds[1]}")
+        log(f"{similarityColumn} Values:     [{exactSynonymClass},  " \
+            f"{relatedSynonymClass}]")
+        log(f"Means:                           {str(means)}")
+        log(f"Standard Deviation:              {str(stds)}")
 
-
-        ssmd = math.fabs(means[0] - means[1]) / math.sqrt(math.fabs(math.pow(stds[0], 2) - math.pow(stds[1], 2)))
+        ssmd = math.fabs(means[0] - means[1]) / math.sqrt(math.fabs(
+            math.pow(stds[0], 2) - math.pow(stds[1], 2)))
 
         log("Strictly standardized mean difference: " + str(ssmd))
+
+
+# ------------------------------------------------------------------------------
+# Persist data to disk.
+# ------------------------------------------------------------------------------
 
 writeCSV(data, inputFileTask)
 
@@ -176,6 +248,8 @@ writeCSV(data, inputFileTask)
 
 
 
-minutes         = int((time.time() - start_time) // 60)
+# For time tracking.
+minutes         = int((time.time() - startTime) // 60)
 
+# Printing Footer with minutes needed for the job.
 printHeader(f"Embedding of HPO Terms completed [Minutes: {minutes}]")

@@ -4,24 +4,24 @@ import pandas as pd
 import sys
 import time
 
-# Prevent Python from generating .pyc files
+# Prevent Python from generating .pyc files.
 sys.dont_write_bytecode = True
 
-# Project-specific configuration and utility functions
+# Project-specific configuration and utility functions.
 from config import *
 from utils  import *
 
 # ------------------------------------------------------------------------------
-# Initialization
+# Initialization.
 # ------------------------------------------------------------------------------
 
 printHeader("Transforming the Raw HPO Data")
 
 # To track time.
-start_time = time.time()
+startTime = time.time()
 
 # ------------------------------------------------------------------------------
-# Load Human Phenotype Ontology (HPO) from OWL file
+# Load Human Phenotype Ontology (HPO) from OWL file.
 # ------------------------------------------------------------------------------
 
 # Ensure the input file exists before proceeding.
@@ -32,17 +32,17 @@ exitIfFileNotExist(inputFileTransformed)
 
 
 
-# Load the ontology from the OWL file
+# Load the ontology from the OWL file.
 printRead(inputFileTransformed)
 hpo = get_ontology(inputFileTransformed).load()
 printReadDone(inputFileTransformed)
 
 # ------------------------------------------------------------------------------
-# Extract ontology content into tabular structures
+# Extract ontology content into tabular structures.
 # ------------------------------------------------------------------------------
 
 # This list will store multiple DataFrames, each representing a different
-# type of extracted ontology information
+# type of extracted ontology information.
 data = []
 
 # --- Synonyms and their types ---
@@ -76,12 +76,12 @@ data.append(getReferences(hpo))
 log(f"{len(data[-1].index)} References retrieved.")
 
 # ------------------------------------------------------------------------------
-# Merge all extracted information into a single DataFrame
+# Merge all extracted information into a single DataFrame.
 # ------------------------------------------------------------------------------
 
 log("Merging Data...")
 
-# Combine all DataFrames, remove duplicates, and reset the index
+# Combine all DataFrames, remove duplicates, and reset the index.
 data = (
     pd.concat(data)
       .drop_duplicates(inplace = False, ignore_index = True)
@@ -91,13 +91,13 @@ data = (
 log(f"Merging resulted in {len(data.index)} Lines of Data.")
 
 # ------------------------------------------------------------------------------
-# Clean data: remove rows with empty or missing content
+# Clean data: remove rows with empty or missing content.
 # ------------------------------------------------------------------------------
 
 rowCount = len(data.index)
 log("Removing Empty Content Rows...")
 
-# Remove rows where the content column is empty or NaN
+# Remove rows where the content column is empty or NaN.
 data = (
     data[data[contentColumn] != ""]
     .dropna(subset = [contentColumn, hpoidColumn])
@@ -131,7 +131,8 @@ data = data[
     (~data[classColumn].isin(synonymClasses)) |
     (~data["tmp"].isin(labeldata))
 ].reset_index(drop = True).drop('tmp', axis = 1).copy()
-log(f"Removed {rowCount - len(data.index)} synonyms due to having a match with their label.")
+log(f"Removed {rowCount - len(data.index)} synonyms due to having a " \
+    "match with their label.")
 
 printRowCount(data)
 printDataSummary(data)
@@ -141,7 +142,7 @@ writeCSV(data, outputFileTransformedFull)
 log("Full transformed Data written.")
 
 # ------------------------------------------------------------------------------
-# Filter data to keep only selected HPO concepts
+# Filter data to keep only selected HPO concepts.
 # ------------------------------------------------------------------------------
 
 if len(testIDs) > 0:
@@ -168,23 +169,24 @@ if len(testIDs) > 0:
 
         hpoIDs = list(set(testIDs + childIDs + parentIDs))
 
-    # ------------------------------------------------------------------------------
-    # Reduce content to only the selected HPO concepts
-    # ------------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
+    # Reduce content to only the selected HPO concepts.
+    # --------------------------------------------------------------------------
 
-    result = data[data[hpoidColumn].isin(hpoIDs)].copy().reset_index(drop = True)
+    result = data[data[hpoidColumn].isin(hpoIDs)].copy().reset_index(
+        drop = True)
     log(f"Content Reduced by {rowCount - len(result.index)} Rows.")
 
-    # ------------------------------------------------------------------------------
-    # Output summary statistics
-    # ------------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
+    # Output summary statistics.
+    # --------------------------------------------------------------------------
 
     printRowCount(result)
     printDataSummary(result)
 
-    # ------------------------------------------------------------------------------
-    # Persist transformed data to disk
-    # ------------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
+    # Persist transformed data to disk.
+    # --------------------------------------------------------------------------
 
     log("Write reduced transformated Data...")
     writeCSV(result, outputFileTransformed)
@@ -195,6 +197,8 @@ if len(testIDs) > 0:
 
 
 
-minutes         = int((time.time() - start_time) // 60)
+# For time tracking.
+minutes         = int((time.time() - startTime) // 60)
 
+# Printing Footer with minutes needed for the job.
 printHeader(f"Transforming completed [Minutes: {minutes}]")

@@ -8,14 +8,22 @@ sys.dont_write_bytecode = True
 from config     import *
 from utils      import *
 
-printHeader(f"Fomratting Classification of Synonyms")
-start_time = time.time()
+# ------------------------------------------------------------------------------
+# Initialization.
+# ------------------------------------------------------------------------------
+
+printHeader(f"Fomratting Answers of Synonym's Classification")
+startTime = time.time()
+
+# ------------------------------------------------------------------------------
+# Load Human Phenotype Ontology (HPO) data.
+# ------------------------------------------------------------------------------
 
 # Only proceed if formatted input data exists
-exitIfFileNotExist(inputFileClassificationFormatted)
+exitIfFileNotExist(inputFileClassFormatted)
 
 # Load the dataset from a pickle file
-classified    = readCSV(inputFileClassificationFormatted)
+classified    = readCSV(inputFileClassFormatted)
 
 
 
@@ -38,9 +46,12 @@ with newProgress() as progress:
 
 log("Logging incorrect classified Synonyms...")
 
-gold        = readCSV(inputFileClassification)
-labels      = gold[gold[classColumn] == labelClass].copy().reset_index(drop = True)
-count       = 0
+# For logging purposes the gold standard is read and wrong classifications
+# are placed in the logging file. This is useful when it comes to prompt 
+# optimization.
+gold   = readCSV(inputFileClass)
+labels = gold[gold[classColumn] == labelClass].copy().reset_index(drop = True)
+count  = 0
 
 for index, row in classified.iterrows():
     # It should log, when:
@@ -52,20 +63,30 @@ for index, row in classified.iterrows():
     #
     if (str(row[answerColumn]).lower() == undefinedSynonymType.lower() or
         (str(row[answerColumn]).lower() != str(row[classColumn]).lower()) and
-            (str(row[answerColumn]).lower() in [exactSynonymClass, relatedSynonymClass] or
-             str(row[classColumn]).lower() in [exactSynonymClass, relatedSynonymClass])):
-        log(f"Label: \"{', '.join(getElements(labels, row[hpoidColumn], labelClass))}\", Synonym: \"{row[contentColumn]}\", Correct: \"{row[classColumn]}\", Classified: \"{row[answerColumn]}\"", cmdline = False)
+        (str(row[answerColumn]).lower() in synonymClasses or
+        str(row[classColumn]).lower() in synonymClasses)):
+        log(f"Label: {applyFormat(getElements(labels, row[hpoidColumn], 
+            labelClass))}, Synonym: {quote(row[contentColumn])}, " \
+            f"Correct: {quote(row[classColumn])}, Classified: " \
+            f"{quote(row[answerColumn])}", cmdline = False)
         count = count + 1
 
+log(f"Incorrect Classifications: {count}")
+log(f"Correct Classifications:   {len(classified.index) - count}")
+log("Logging competed.")
 
 
 
 
 
+# ------------------------------------------------------------------------------
+# Persist transformed data to disk.
+# ------------------------------------------------------------------------------
 
+writeCSV(classified, outputFileClassFormatted)
 
-writeCSV(classified, outputFileClassificationFormatted)
+# For time tracking.
+minutes         = int((time.time() - startTime) // 60)
 
-minutes         = int((time.time() - start_time) // 60)
-
-printHeader(f"Formatting completed")
+# Printing Footer with minutes needed for the job.
+printHeader(f"Formatting completed [Minutes: {minutes}]")

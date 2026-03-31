@@ -1,11 +1,9 @@
-rm ../data/logs/*
-rm ../data/output/format/*
-rm ../data/output/generation/*
-rm ../data/output/gold/*
-rm ../data/output/evaluate/*
-rm ../data/output/merge/*
-rm ../data/output/transform/*
-rm ../data/output/classification/*
-rm ../data/output/type/*
+rm ../data/logs/*.log
+rm ../data/output/format/*.csv
+rm ../data/output/evaluate/*.png
+rm ../data/output/merge/*.csv
+rm ../data/output/transform/*.csv
+rm ../data/output/class/*.csv
+rm ../data/output/type/*.csv
 
 exit 0

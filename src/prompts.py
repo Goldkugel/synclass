@@ -5,6 +5,7 @@ sys.dont_write_bytecode = True
 
 # Import necessary modules and configuration settings
 from config import *
+from utils import *
 
 def semanticClassificationPrompt1(
         label : str, 
@@ -267,28 +268,7 @@ def semanticClassificationPrompt(
 
 
 
-def createExampleString(examples : list, exStr : str = "Example") -> str:
-    ret = "None"
-    if len(examples) > 0:
-        ret = ""
-        for index, example in enumerate(examples):
-            ret += f"{exStr} {index+1}: " + applyFormat(example) + "\n"
-        ret = ret[0:len(ret) - 1]
 
-    return ret
-
-def quote(string : str) -> str:
-    return quotationCharacter + string + quotationCharacter
-
-def applyFormat(l : list[str] = []) -> str:
-    string = "None"
-    if len(l) > 0:
-        if isinstance(l, str):
-            string = quote(l)
-        else:
-            string = quote((quotationCharacter + ", " + 
-                quotationCharacter).join(l))
-    return string
 
 def getPreTaskSystem() -> str:
     return f"You are a biomedical ontology expert with expertise in " \
