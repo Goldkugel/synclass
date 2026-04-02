@@ -73,23 +73,60 @@ similarityColumnPrefix      = f"{similarityColumnPrePrefix}" + "{}_{}_"
 # All listed similarity metrics are checked to be below the threshold such that 
 # the synonym is classified as related.
 embeddingThresholdsRelated  = {
-    similarityColumnPrefix.format(bioClinicalBERT, angularSimilarity)   : -2.12,
-    similarityColumnPrefix.format(bioClinicalBERT, cosineSimilarity)    : -2.4 ,
-    similarityColumnPrefix.format(bioBERT,         cosineSimilarity)    : -1.52,
-    similarityColumnPrefix.format(sciBERT,         angularSimilarity)   : -2.03,
-    similarityColumnPrefix.format(sciBERT,         cosineSimilarity)    : -2.31,
-    similarityColumnPrefix.format(umlsBERT,        euclideanSimilarity) : -2.16
+    similarityColumnPrefix.format(bioClinicalBERT, angularSimilarity)   : -2.12451,
+    similarityColumnPrefix.format(bioClinicalBERT, cosineSimilarity)    : -2.41074,
+    similarityColumnPrefix.format(bioClinicalBERT, euclideanSimilarity) : -1.42544,
+    similarityColumnPrefix.format(bioClinicalBERT, manhattanSimilarity) : -1.31803,
+    similarityColumnPrefix.format(clinicalBERT,    angularSimilarity)   : -2.14611,
+    similarityColumnPrefix.format(clinicalBERT,    cosineSimilarity)    : -2.47794,
+    similarityColumnPrefix.format(clinicalBERT,    euclideanSimilarity) : -1.44164,
+    similarityColumnPrefix.format(clinicalBERT,    manhattanSimilarity) : -1.24362,
+    similarityColumnPrefix.format(bioBERT,         cosineSimilarity)    : -1.52145,
+    similarityColumnPrefix.format(bioBERT,         angularSimilarity)   : -2.83918,
+    similarityColumnPrefix.format(sciBERT,         angularSimilarity)   : -2.03630,
+    similarityColumnPrefix.format(sciBERT,         cosineSimilarity)    : -2.31773,
+    similarityColumnPrefix.format(sciBERT,         euclideanSimilarity) : -1.16801,
+    similarityColumnPrefix.format(sciBERT,         manhattanSimilarity) : -1.02460,
+    similarityColumnPrefix.format(umlsBERT,        euclideanSimilarity) : -1.19021,
+    similarityColumnPrefix.format(umlsBERT,        manhattanSimilarity) : -1.04200,
+    similarityColumnPrefix.format(umlsBERT,        angularSimilarity)   : -2.09690,
+    similarityColumnPrefix.format(umlsBERT,        cosineSimilarity)    : -2.37593,
+    similarityColumnPrefix.format(bioLinkBERT,     angularSimilarity)   : -1.53405,
+    similarityColumnPrefix.format(bioLinkBERT,     euclideanSimilarity) : -0.83918,
+    similarityColumnPrefix.format(medCPT,          angularSimilarity)   : -2.33573,
+    similarityColumnPrefix.format(medCPT,          euclideanSimilarity) : -1.14401,
+    similarityColumnPrefix.format(pubmedBERT,      angularSimilarity)   : -1.79747,
+    similarityColumnPrefix.format(pubmedBERT,      cosineSimilarity)    : -1.96189,
+    similarityColumnPrefix.format(pubmedBERT,      euclideanSimilarity) : -1.36783,
+    similarityColumnPrefix.format(pubmedBERT,      manhattanSimilarity) : -1.06480,
+    similarityColumnPrefix.format(sapBERT,         angularSimilarity)   : -2.11611,
+    similarityColumnPrefix.format(sapBERT,         cosineSimilarity)    : -2.60276,
+    similarityColumnPrefix.format(sapBERT,         euclideanSimilarity) : -0.96639,
+    similarityColumnPrefix.format(sapBERT,         manhattanSimilarity) : -0.84458,
+    similarityColumnPrefix.format(sapUMLSBERT,     angularSimilarity)   : -2.44854,
+    similarityColumnPrefix.format(sapUMLSBERT,     euclideanSimilarity) : -1.30003,
+    similarityColumnPrefix.format(sapUMLSBERT,     manhattanSimilarity) : -1.11761
 }
 
 # All listed similarity metrics are checked to be above the threshold such that 
 # the synonym is classified as exact.
 embeddingThresholdsExact  = {
-    similarityColumnPrefix.format(bioBERT,         angularSimilarity)   : 0.73,
-    similarityColumnPrefix.format(bioBERT,         cosineSimilarity)    : 0.7 ,
-    similarityColumnPrefix.format(sapBERT,         angularSimilarity)   : 2.06,
-    similarityColumnPrefix.format(sapBERT,         cosineSimilarity)    : 1.52,
-    similarityColumnPrefix.format(umlsBERT,        angularSimilarity)   : 0.73,
-    similarityColumnPrefix.format(umlsBERT,        cosineSimilarity)    : 0.72
+    similarityColumnPrefix.format(medCPT,          angularSimilarity)   : 1.05581,
+    similarityColumnPrefix.format(medCPT,          cosineSimilarity)    : 0.95920,
+    similarityColumnPrefix.format(medCPT,          cosineSimilarity)    : 0.76298,
+    similarityColumnPrefix.format(medCPT,          manhattanSimilarity) : 0.43835,
+    similarityColumnPrefix.format(sapBERT,         angularSimilarity)   : 1.91270,
+    similarityColumnPrefix.format(sapBERT,         cosineSimilarity)    : 1.43265,
+    similarityColumnPrefix.format(sapBERT,         euclideanSimilarity) : 2.92980,
+    similarityColumnPrefix.format(sapBERT,         manhattanSimilarity) : 2.97180,
+    similarityColumnPrefix.format(sapUMLSBERT,     angularSimilarity)   : 1.87969,
+    similarityColumnPrefix.format(sapUMLSBERT,     cosineSimilarity)    : 1.30364,
+    similarityColumnPrefix.format(sapUMLSBERT,     euclideanSimilarity) : 2.41615,
+    similarityColumnPrefix.format(sapUMLSBERT,     manhattanSimilarity) : 2.06931,
+    similarityColumnPrefix.format(umlsBERT,        angularSimilarity)   : 0.76238,
+    similarityColumnPrefix.format(umlsBERT,        cosineSimilarity)    : 0.74258,
+    similarityColumnPrefix.format(umlsBERT,        euclideanSimilarity) : 0.33694,
+    similarityColumnPrefix.format(umlsBERT,        manhattanSimilarity) : 0.26493
 }
 
 similarityEvaluationLowerBound = -3
