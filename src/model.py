@@ -41,7 +41,7 @@ class Model:
     sampling_params = None
     model = None
 
-    def __init__(self, model : str = model_id):
+    def __init__(self, model : str = modelID):
         """
         Initialize the LLM and sampling parameters.
         """
@@ -55,7 +55,7 @@ class Model:
             max_model_len=max_model_len,
             # Enable expert parallelism only for specific models
             enable_expert_parallel=(
-                model_id == "Qwen/Qwen3-30B-A3B-Instruct-2507-FP8"
+                modelID == "Qwen/Qwen3-30B-A3B-Instruct-2507-FP8"
             )
         )
 

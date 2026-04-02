@@ -82,12 +82,14 @@ log(f"Filtering Synonyms completed.")
 # ------------------------------------------------------------------------------
 
 log("Start to Embed Synonyms and Labels with all Embedding Models.")
-for modelName in embeddingModels.keys():
+embeddingModelsList = list(embeddingModels.keys())
+embeddingModelsList.sort()
+for modelName in embeddingModelsList:
 
-    index = embeddingModels.keys()[modelName]
+    index = embeddingModelsList.index(modelName)
 
     # Set up the embedding model.
-    log(f"Set up ({index}/{len(list(embeddingModels.keys()))}) " \
+    log(f"Set up ({index + 1}/{len(list(embeddingModelsList))}) " \
         f"model and tokenizer {quote(modelName)}...")
     tokenizer = AutoTokenizer.from_pretrained(embeddingModels[modelName], 
         model_max_length = 64)
@@ -192,8 +194,8 @@ for modelName in embeddingModels.keys():
                     elif similarityMetric == mahalanobisSimilarity:
                         data.loc[index, similarityColumn] = mahSim(emb1, emb2)
                     else:
-                        log(f"No Similarity function found for metric {quote(
-                            similarityMetric)}")
+                        log("No Similarity function found for metric " \
+                            f"{quote(similarityMetric)}")
 
             progress.update(task, advance = 1)
 
@@ -222,12 +224,12 @@ for modelName in embeddingModels.keys():
         means = pd.Series(grouped[m].tolist()).dropna().tolist()
         stds  = pd.Series(grouped[s].tolist()).dropna().tolist()
 
-        log(f"{similarityColumn} Difference: [{exactSynonymClass} - " \
-            f"{relatedSynonymClass}]")
+        log(f"{modelName} with {similarityMetric} Difference: " \
+            f"[{exactSynonymClass} - {relatedSynonymClass}]")
         log(f"Mean's Differnece:               {means[0] - means[1]}")
         log(f"Standard Deviation's Difference: {stds[0] - stds[1]}")
-        log(f"{similarityColumn} Values:     [{exactSynonymClass},  " \
-            f"{relatedSynonymClass}]")
+        log(f"{modelName} with {similarityMetric} Values:     " \
+            f"[{exactSynonymClass},  {relatedSynonymClass}]")
         log(f"Means:                           {str(means)}")
         log(f"Standard Deviation:              {str(stds)}")
 

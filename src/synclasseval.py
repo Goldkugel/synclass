@@ -57,11 +57,11 @@ colors = plt.cm.tab10(range(len(systems) + 1))
 
 
 
-
+classified = classifiedComplete[classifiedComplete[systemColumn] == systems[0]].copy().reset_index(drop = True)
 for embeddingModel in embeddingModels.keys():
     for similarityMetric in similarityMetrics:
         column = similarityColumnPrefix.format(embeddingModel, similarityMetric)
-        if column in classifiedComplete.columns:
+        if column in classified.columns:
             log(f"Plotting {similarityMetric} for Model {embeddingModel}...")
 
             x1 = []
@@ -75,14 +75,14 @@ for embeddingModel in embeddingModels.keys():
                 x2.append(i)
 
                 TP = sum((
-                    classifiedComplete[column] < i
+                    classified[column] <= i
                         ) & (
-                    classifiedComplete[classColumn] == relatedSynonymClass
+                    classified[classColumn] == relatedSynonymClass
                 ))
                 FP = sum((
-                    classifiedComplete[column] < i
+                    classified[column] <= i
                         ) & (
-                    classifiedComplete[classColumn] != relatedSynonymClass
+                    classified[classColumn] != relatedSynonymClass
                 ))
 
                 if TP + FP > 0:
@@ -91,14 +91,14 @@ for embeddingModel in embeddingModels.keys():
                     y1.append(np.nan)
 
                 TP = sum((
-                    classifiedComplete[column] >= i
+                    classified[column] >= i
                         ) & (
-                    classifiedComplete[classColumn] == exactSynonymClass
+                    classified[classColumn] == exactSynonymClass
                 ))
                 FP = sum((
-                    classifiedComplete[column] >= i
+                    classified[column] >= i
                         ) & (
-                    classifiedComplete[classColumn] != exactSynonymClass
+                    classified[classColumn] != exactSynonymClass
                 ))
 
                 if TP + FP > 0:
@@ -131,8 +131,8 @@ for embeddingModel in embeddingModels.keys():
                 max_x = math.ceil(roundFactor * x1[max_index]) / roundFactor
                 max_y = math.ceil(roundFactor * y1[max_index]) / roundFactor
 
-                c = sum(classifiedComplete[column] < max_x)
-                p = int(math.floor(roundFactor * c / len(classifiedComplete.index)))
+                c = sum(classified[column] <= max_x)
+                p = int(math.floor(roundFactor * c / len(classified.index)))
 
                 plt.scatter(max_x, max_y, s = 200, marker = 'x', color = "red", zorder = 100, label = "(" + str(max_x) + ", " + str(max_y) + ") (Count: " + str(c) + ", " + str(p) + "%)")
                 log(f"Suggested Threshold for Class {quote(relatedSynonymClass)}, Metric {quote(similarityMetric)}, and Model {quote(embeddingModel)}: {str(max_x)}" )
@@ -142,8 +142,8 @@ for embeddingModel in embeddingModels.keys():
                 max_x = math.ceil(roundFactor * x2[max_index]) / roundFactor
                 max_y = math.ceil(roundFactor * y2[max_index]) / roundFactor
 
-                c = sum(classifiedComplete[column] >= max_x)
-                p = int(math.floor(roundFactor * c / len(classifiedComplete.index)))
+                c = sum(classified[column] >= max_x)
+                p = int(math.floor(roundFactor * c / len(classified.index)))
 
                 plt.scatter(max_x, max_y, s = 200, marker = 'x', color = "blue", zorder = 100, label = "(" + str(max_x) + ", " + str(max_y) + ") (Count: " + str(c) + ", " + str(p) + "%)")
                 log(f"Suggested Threshold for Class {quote(exactSynonymClass)}, Metric {quote(similarityMetric)}, and Model {quote(embeddingModel)}: {str(max_x)}" )
@@ -232,11 +232,13 @@ plt.savefig(outputFileClassAnswerCounts, dpi = 300, bbox_inches = "tight")
 
 
 # TODO: insert related class as well.
-def ontologySubplot(data : pd.DataFame = None, startString : str = "", outputFile : str = "", title : str = "") -> None:
+def ontologySubplot(data : pd.DataFrame = None, startString : str = "", outputFile : str = "", title : str = "") -> None:
     classified = data[data[hpoidColumn].str.startswith(startString, na=False)].reset_index(drop = True).copy()
 
     result = {}
 
+
+    systems = list(set(data[systemColumn].tolist()))
     for system in systems:
         systemData = classified[classified[systemColumn] == system]
 
@@ -359,8 +361,66 @@ def ontologySubplot(data : pd.DataFame = None, startString : str = "", outputFil
     plt.tight_layout(rect = [0, 0.05, 1, 1])
     plt.savefig(outputFile, dpi = 300, bbox_inches = "tight")
 
-ontologySubplot(classifiedComplete, "",        outputFileClassRecallPrecisionF1,     "Per-Class and Per-Metric Comparison Across Systems for Full HPO Concepts")
-ontologySubplot(classifiedComplete, "HP:",     outputFileClassEvaluationExactHPO,    "Exact Synonym Class Comparison Across Systems for HPO Only Concepts")
-ontologySubplot(classifiedComplete, "UBERON:", outputFileClassEvaluationExactUBERON, "Exact Synonym Class Comparison Across Systems for UBERON Only Concepts")
-ontologySubplot(classifiedComplete, "GO:",     outputFileClassEvaluationExactGO,     "Exact Synonym Class Comparison Across Systems for GO Only Concepts")
-ontologySubplot(classifiedComplete, "CHEBI:",  outputFileClassEvaluationExactCHEBI,  "Exact Synonym Class Comparison Across Systems for CHEBI Only Concepts")
+ontologySubplot(classifiedComplete, "",        outputFileClassRecallPrecisionF1,     "Semantic Class Classification Performance of LLM Systems")
+ontologySubplot(classifiedComplete, "HP:",     outputFileClassEvaluationExactHPO,    "Semantic Class Classification Performance of LLM Systems (HPO only)")
+ontologySubplot(classifiedComplete, "UBERON:", outputFileClassEvaluationExactUBERON, "Semantic Class Classification Performance of LLM Systems (UBERON only)")
+ontologySubplot(classifiedComplete, "GO:",     outputFileClassEvaluationExactGO,     "Semantic Class Classification Performance of LLM Systems (GO only)")
+ontologySubplot(classifiedComplete, "CHEBI:",  outputFileClassEvaluationExactCHEBI,  "Semantic Class Classification Performance of LLM Systems (CHEBI only)")
+
+combinedEvaluationData = classifiedComplete.copy()
+
+combinedEvaluationData["embeddingRelated"] = [0] * len(combinedEvaluationData.index)
+for relatedThresholds in embeddingThresholdsRelated.keys():
+    if relatedThresholds in combinedEvaluationData.columns:
+        combinedEvaluationData.loc[combinedEvaluationData[relatedThresholds] <= embeddingThresholdsRelated[relatedThresholds], "embeddingRelated"] += 1
+    else:
+        log(f"{relatedThresholds} not found in Columns of Data.")
+
+combinedEvaluationData["embeddingExact"] = [0] * len(combinedEvaluationData.index)
+for exactThresholds in embeddingThresholdsExact.keys():
+    if exactThresholds in combinedEvaluationData.columns:
+        combinedEvaluationData.loc[combinedEvaluationData[exactThresholds] >= embeddingThresholdsExact[exactThresholds], "embeddingExact"] += 1
+    else:
+        log(f"{relatedThresholds} not found in Columns of Data.")
+
+for index, row in combinedEvaluationData.iterrows():
+    if row["embeddingRelated"] > row["embeddingExact"]:
+        combinedEvaluationData.loc[index, answerColumn] = relatedSynonymClass
+    elif row["embeddingRelated"] < row["embeddingExact"]:
+        combinedEvaluationData.loc[index, answerColumn] = exactSynonymClass
+    
+ontologySubplot(combinedEvaluationData, "",        outputFileCombinedEvaluationRelaxed,     "Semantic Class Classification Performance of combined Approach")
+
+
+combinedEvaluationData = classifiedComplete.copy()
+
+combinedEvaluationData["embeddingRelated"] = [0] * len(combinedEvaluationData.index)
+for relatedThresholds in embeddingThresholdsRelated.keys():
+    if relatedThresholds in combinedEvaluationData.columns:
+        combinedEvaluationData.loc[combinedEvaluationData[relatedThresholds] <= embeddingThresholdsRelated[relatedThresholds], "embeddingRelated"] += 1
+    else:
+        log(f"{relatedThresholds} not found in Columns of Data.")
+
+combinedEvaluationData["embeddingExact"] = [0] * len(combinedEvaluationData.index)
+for exactThresholds in embeddingThresholdsExact.keys():
+    if exactThresholds in combinedEvaluationData.columns:
+        combinedEvaluationData.loc[combinedEvaluationData[exactThresholds] >= embeddingThresholdsExact[exactThresholds], "embeddingExact"] += 1
+    else:
+        log(f"{relatedThresholds} not found in Columns of Data.")
+
+unsureCount = 0
+for index, row in combinedEvaluationData.iterrows():
+    if row[classColumn] in synonymClasses:
+        if row["embeddingRelated"] > 0 and row["embeddingExact"] == 0:
+            combinedEvaluationData.loc[index, answerColumn] = relatedSynonymClass
+        elif row["embeddingRelated"] == 0 and row["embeddingExact"] > 0:
+            combinedEvaluationData.loc[index, answerColumn] = exactSynonymClass
+        elif row["embeddingExact"] > 0 and row[answerColumn] == exactSynonymClass:
+            combinedEvaluationData.loc[index, answerColumn] = exactSynonymClass
+        elif row["embeddingRelated"] > 0 and row[answerColumn] == relatedSynonymClass:
+            combinedEvaluationData.loc[index, answerColumn] = relatedSynonymClass
+        else:
+            unsureCount += 1
+    
+log(f"Unsure Count: {unsureCount}")
+ontologySubplot(combinedEvaluationData, "",        outputFileCombinedEvaluationAbsolute,     "Semantic Class Classification Performance of combined Approach")

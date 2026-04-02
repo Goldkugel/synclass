@@ -61,10 +61,10 @@ else:
     # --------------------------------------------------------------------------
 
     # Write merged CSV
-    writeCSV(merged_df, outputFileClassificationMerged)
+    writeCSV(merged_df, outputFileClassMerged)
 
-    log(f"Merged {len(inputFileClassificationMerged)} files into " + 
-        f"'{os.path.basename(outputFileClassificationMerged)}'")
+    log(f"Merged {len(inputFileClassMerged)} files into " + 
+        f"'{os.path.basename(outputFileClassMerged)}'")
 
 
 

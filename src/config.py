@@ -6,7 +6,7 @@ sys.dont_write_bytecode = True
 
 reduceToTestIDs         = True
 
-fewShot                 = False
+fewShot                 = True
 chainOfThoughts         = True
 
 fewShotStr              = "FewShot" if fewShot else "NoFewShot"
@@ -16,8 +16,8 @@ chainOfThoughtsStr      = "ChainOfThoughts" if chainOfThoughts else "NoChainOfTh
 # Model Configuration
 # =============================================================================
 
-modelID = "google/medgemma-4b-it"
-modelName = "medgemma-4b-it"
+modelID = ""
+modelName = ""
 if len(sys.argv) > 1 and len(sys.argv[1]) > 0 and sys.argv[1][0] != "-":
     modelID = sys.argv[1]
     modelName = modelID[modelID.index("/") + 1:]
@@ -48,15 +48,23 @@ clinicalBERT    = "ClinicalBERT"
 sapBERT         = "SapBERT"
 sciBERT         = "SciBERT"
 umlsBERT        = "UMLSBERT"
+sapUMLSBERT     = "SapUMLSBERT"
+medCPT          = "medCPT"
+pubmedBERT      = "PubMedBERT"
+bioLinkBERT     = "BioLinkBERT"
 
 # The model IDs for the embeddings.
 embeddingModels = {
     bioClinicalBERT : "emilyalsentzer/Bio_ClinicalBERT",
-    sapBERT         : "bigwiz83/sapbert-from-pubmedbert-squad2",
+    sapBERT         : "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
     clinicalBERT    : "medicalai/ClinicalBERT",
     bioBERT         : "dmis-lab/biobert-v1.1",
     umlsBERT        : "GanjinZero/UMLSBert_ENG",
-    sciBERT         : "allenai/scibert_scivocab_cased"
+    sciBERT         : "allenai/scibert_scivocab_cased",
+    sapUMLSBERT     : "cambridgeltl/SapBERT-UMLS-2020AB-all-lang-from-XLMR",
+    medCPT          : "ncbi/MedCPT-Query-Encoder",
+    pubmedBERT      : "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext",
+    bioLinkBERT     : "michiyasunaga/BioLinkBERT-large"
 }
 
 similarityColumnPrePrefix   = "similarity_"
@@ -433,6 +441,22 @@ outputFileClassClassAccuracy           = os.path.join(
     outputFolderName,
     outputFolderNameEvaluation,
     outputFileNameClassClassAccuracy
+)
+
+outputFileNameCombinedEvaluationAbsolute       = f"{outputFolderNameClass}_combined_evaluation_absolute.{plotFileFormat}"
+outputFileCombinedEvaluationAbsolute           = os.path.join(
+    dataDir,
+    outputFolderName,
+    outputFolderNameEvaluation,
+    outputFileNameCombinedEvaluationAbsolute
+)
+
+outputFileNameCombinedEvaluationRelaxed       = f"{outputFolderNameClass}_combined_evaluation_relaxed.{plotFileFormat}"
+outputFileCombinedEvaluationRelaxed           = os.path.join(
+    dataDir,
+    outputFolderName,
+    outputFolderNameEvaluation,
+    outputFileNameCombinedEvaluationRelaxed
 )
 
 outputFolderNameClassEmbedding = outputFolderNameEvaluation

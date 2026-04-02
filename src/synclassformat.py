@@ -65,8 +65,9 @@ for index, row in classified.iterrows():
         (str(row[answerColumn]).lower() != str(row[classColumn]).lower()) and
         (str(row[answerColumn]).lower() in synonymClasses or
         str(row[classColumn]).lower() in synonymClasses)):
-        log(f"Label: {applyFormat(getElements(labels, row[hpoidColumn], 
-            labelClass))}, Synonym: {quote(row[contentColumn])}, " \
+        log("Label: " \
+            f"{applyFormat(getElements(labels, row[hpoidColumn], labelClass))}" \
+            f", Synonym: {quote(row[contentColumn])}, " \
             f"Correct: {quote(row[classColumn])}, Classified: " \
             f"{quote(row[answerColumn])}", cmdline = False)
         count = count + 1
