@@ -4,11 +4,20 @@ import sys
 # Prevent Python from generating .pyc files (compiled bytecode files)
 sys.dont_write_bytecode = True
 
-reduceToTestIDs         = True
+reduceToTestIDs         = False
+if "test" in sys.argv:
+    reduceToTestIDs = True
 
-fewShot                 = True
-chainOfThoughts         = True
+fewShot                 = False
+chainOfThoughts         = False
 
+if "few-shot" in sys.argv:
+    fewShot = True
+
+if "chain-of-thoughts" in sys.argv:
+    chainOfThoughts = True
+
+testStr                 = "Test" if reduceToTestIDs else "NoTest"
 fewShotStr              = "FewShot" if fewShot else "NoFewShot"
 chainOfThoughtsStr      = "ChainOfThoughts" if chainOfThoughts else "NoChainOfThoughts"
 
@@ -68,7 +77,7 @@ embeddingModels = {
 }
 
 similarityColumnPrePrefix   = "similarity_"
-similarityColumnPrefix      = f"{similarityColumnPrePrefix}" + "{}_{}_"
+similarityColumnPrefix      = f"{similarityColumnPrePrefix}" + "{}_{}"
 
 # All listed similarity metrics are checked to be below the threshold such that 
 # the synonym is classified as related.
@@ -129,9 +138,9 @@ embeddingThresholdsExact  = {
     similarityColumnPrefix.format(umlsBERT,        manhattanSimilarity) : 0.26493
 }
 
-similarityEvaluationLowerBound = -3
-similarityEvaluationUperBound = 3
-similarityEvaluationParts = 10000
+similarityEvaluationLowerBound = -4
+similarityEvaluationUperBound = 4
+similarityEvaluationParts = (similarityEvaluationUperBound - similarityEvaluationLowerBound) * 1000
 
 gpu_id = "5,6"
 # gpu_id = "0,1,2,3"
@@ -303,9 +312,11 @@ outputFolderNameGold                = "gold"
 # Fifth step.
 outputFolderNameEvaluation          = "evaluate"
 
-logFileName                         = f"synclass_{chainOfThoughtsStr}_{fewShotStr}_{modelName}.{logFileFormat}"
-if modelName == "":
-    logFileName                     = f"synclass.{logFileFormat}"
+logFileName                         = f"synclass_{testStr}"
+if modelName != "":
+    logFileName                     += f"_{chainOfThoughtsStr}_{fewShotStr}_{modelName}"
+logFileName                         += f".{logFileFormat}"
+
 logFilePromptsName                  = f"prompts_{chainOfThoughtsStr}_{fewShotStr}_{modelName}.{logFileFormat}"
 
 logFile                     = os.path.join(
@@ -358,13 +369,15 @@ inputFileTask = outputFileTransformed if reduceToTestIDs else outputFileTransfor
 # Files for Synonym Classification
 # =============================================================================
 
-outputFolderNameClass                  = "class"
+outputFolderNameClass    = "class"
+filesPrefixClass         = f"{outputFolderNameClass}_{testStr}"
+filesPrefixApproachClass = f"{filesPrefixClass}_{chainOfThoughtsStr}_{fewShotStr}"
 
 
 
 inputFileClass                         = inputFileTask
 
-outputFileNameClass                    = f"{outputFolderNameClass}_{chainOfThoughtsStr}_{fewShotStr}_{modelName}.{csvFileFormat}"
+outputFileNameClass                    = f"{filesPrefixApproachClass}_raw_{modelName}.{csvFileFormat}"
 outputFileClass                        = os.path.join(
     dataDir,
     outputFolderName,
@@ -372,9 +385,9 @@ outputFileClass                        = os.path.join(
     outputFileNameClass
 )
 
-# Contains the formatted Generated Synonyms of the Model. 
+# Contains the formatted classified Synonyms of the Model. 
 inputFileClassFormatted                = outputFileClass
-outputFileNameClassFormattedPrefix     = f"{outputFolderNameClass}_{chainOfThoughtsStr}_{fewShotStr}_formatted"
+outputFileNameClassFormattedPrefix     = f"{filesPrefixApproachClass}_formatted"
 outputFileNameClassFormatted           = f"{outputFileNameClassFormattedPrefix}_{modelName}.{csvFileFormat}"
 outputFileClassFormatted               = os.path.join(
     dataDir,
@@ -392,7 +405,7 @@ inputFileClassMerged                   = [
     os.path.join(dataDir, outputFolderName, outputFolderNameFormatted, filename) for filename in inputFileNameClassMerged
 ]
 
-outputFileNameClassMerged              = f"{outputFolderNameClass}_merged_classes.{csvFileFormat}"
+outputFileNameClassMerged              = f"{filesPrefixApproachClass}_merged_classes.{csvFileFormat}"
 outputFileClassMerged                  = os.path.join(
     dataDir,
     outputFolderName,
@@ -402,7 +415,7 @@ outputFileClassMerged                  = os.path.join(
 
 inputFileClassEvaluation               = outputFileClassMerged
 
-outputFileNameClassGoldCounts   = f"{outputFolderNameClass}_gold_counts.{plotFileFormat}"
+outputFileNameClassGoldCounts   = f"{filesPrefixApproachClass}_gold_counts.{plotFileFormat}"
 outputFileClassGoldCounts       = os.path.join(
     dataDir,
     outputFolderName,
@@ -410,7 +423,7 @@ outputFileClassGoldCounts       = os.path.join(
     outputFileNameClassGoldCounts
 )
 
-outputFileNameClassRecallPrecisionF1   = f"{outputFolderNameClass}_base_evaluation.{plotFileFormat}"
+outputFileNameClassRecallPrecisionF1   = f"{filesPrefixApproachClass}_base_evaluation.{plotFileFormat}"
 outputFileClassRecallPrecisionF1 = os.path.join(
     dataDir,
     outputFolderName,
@@ -418,7 +431,7 @@ outputFileClassRecallPrecisionF1 = os.path.join(
     outputFileNameClassRecallPrecisionF1
 )
 
-outputFileNameClassAnswerCounts   = f"{outputFolderNameClass}_answer_counts.{plotFileFormat}"
+outputFileNameClassAnswerCounts   = f"{filesPrefixApproachClass}_answer_counts.{plotFileFormat}"
 outputFileClassAnswerCounts = os.path.join(
     dataDir,
     outputFolderName,
@@ -426,7 +439,7 @@ outputFileClassAnswerCounts = os.path.join(
     outputFileNameClassAnswerCounts
 )
 
-outputFileNameClassEvaluationExact     = f"{outputFolderNameClass}_exact_evaluation.{plotFileFormat}"
+outputFileNameClassEvaluationExact     = f"{filesPrefixApproachClass}_exact_evaluation.{plotFileFormat}"
 outputFileClassEvaluationExact         = os.path.join(
     dataDir,
     outputFolderName,
@@ -434,7 +447,7 @@ outputFileClassEvaluationExact         = os.path.join(
     outputFileNameClassEvaluationExact
 )
 
-outputFileNameClassEvaluationExactHPO     = f"{outputFolderNameClass}_exact_HPO_evaluation.{plotFileFormat}"
+outputFileNameClassEvaluationExactHPO     = f"{filesPrefixApproachClass}_exact_HPO_evaluation.{plotFileFormat}"
 outputFileClassEvaluationExactHPO         = os.path.join(
     dataDir,
     outputFolderName,
@@ -442,21 +455,21 @@ outputFileClassEvaluationExactHPO         = os.path.join(
     outputFileNameClassEvaluationExactHPO
 )
 
-outputFileNameClassEvaluationExactUBERON     = f"{outputFolderNameClass}_exact_UBERON_evaluation.{plotFileFormat}"
+outputFileNameClassEvaluationExactUBERON     = f"{filesPrefixApproachClass}_exact_UBERON_evaluation.{plotFileFormat}"
 outputFileClassEvaluationExactUBERON         = os.path.join(
     dataDir,
     outputFolderName,
     outputFolderNameEvaluation,
     outputFileNameClassEvaluationExactUBERON
 )
-outputFileNameClassEvaluationExactGO     = f"{outputFolderNameClass}_exact_GO_evaluation.{plotFileFormat}"
+outputFileNameClassEvaluationExactGO     = f"{filesPrefixApproachClass}_exact_GO_evaluation.{plotFileFormat}"
 outputFileClassEvaluationExactGO         = os.path.join(
     dataDir,
     outputFolderName,
     outputFolderNameEvaluation,
     outputFileNameClassEvaluationExactGO
 )
-outputFileNameClassEvaluationExactCHEBI     = f"{outputFolderNameClass}_exact_CHEBI_evaluation.{plotFileFormat}"
+outputFileNameClassEvaluationExactCHEBI     = f"{filesPrefixApproachClass}_exact_CHEBI_evaluation.{plotFileFormat}"
 outputFileClassEvaluationExactCHEBI         = os.path.join(
     dataDir,
     outputFolderName,
@@ -464,7 +477,7 @@ outputFileClassEvaluationExactCHEBI         = os.path.join(
     outputFileNameClassEvaluationExactCHEBI
 )
 
-outputFileNameClassAccuracyMacroMicro  = f"{outputFolderNameClass}_accuracy_threshold.{plotFileFormat}"
+outputFileNameClassAccuracyMacroMicro  = f"{filesPrefixApproachClass}_accuracy_threshold.{plotFileFormat}"
 outputFileClassAccuracyMacroMicro      = os.path.join(
     dataDir,
     outputFolderName,
@@ -472,7 +485,7 @@ outputFileClassAccuracyMacroMicro      = os.path.join(
     outputFileNameClassAccuracyMacroMicro
 )
 
-outputFileNameClassClassAccuracy       = f"{outputFolderNameClass}_class_accuracy.{plotFileFormat}"
+outputFileNameClassClassAccuracy       = f"{filesPrefixApproachClass}_class_accuracy.{plotFileFormat}"
 outputFileClassClassAccuracy           = os.path.join(
     dataDir,
     outputFolderName,
@@ -480,7 +493,7 @@ outputFileClassClassAccuracy           = os.path.join(
     outputFileNameClassClassAccuracy
 )
 
-outputFileNameCombinedEvaluationAbsolute       = f"{outputFolderNameClass}_combined_evaluation_absolute.{plotFileFormat}"
+outputFileNameCombinedEvaluationAbsolute       = f"{filesPrefixApproachClass}_combined_evaluation_absolute.{plotFileFormat}"
 outputFileCombinedEvaluationAbsolute           = os.path.join(
     dataDir,
     outputFolderName,
@@ -488,7 +501,7 @@ outputFileCombinedEvaluationAbsolute           = os.path.join(
     outputFileNameCombinedEvaluationAbsolute
 )
 
-outputFileNameCombinedEvaluationRelaxed       = f"{outputFolderNameClass}_combined_evaluation_relaxed.{plotFileFormat}"
+outputFileNameCombinedEvaluationRelaxed       = f"{filesPrefixApproachClass}_combined_evaluation_relaxed.{plotFileFormat}"
 outputFileCombinedEvaluationRelaxed           = os.path.join(
     dataDir,
     outputFolderName,
@@ -498,9 +511,9 @@ outputFileCombinedEvaluationRelaxed           = os.path.join(
 
 outputFolderNameClassEmbedding = outputFolderNameEvaluation
 
-outputFileNameClassEmbeddingEvaluation    = f"{outputFolderNameClass}_embedding_evaluation_" + "{}" + f".{plotFileFormat}"
+outputFileNameClassEmbeddingEvaluation    = f"{filesPrefixApproachClass}_embedding_evaluation_" + "{}" + f".{plotFileFormat}"
 
-outputFileNameClassEmbeddingSSMD          = f"embedding_ssmd.{plotFileFormat}"
+outputFileNameClassEmbeddingSSMD          = f"{filesPrefixApproachClass}_embedding_ssmd.{plotFileFormat}"
 outputFileClassEmbeddingSSMD              = os.path.join(
     dataDir,        
     outputFolderName,
@@ -515,13 +528,14 @@ outputFileClassEmbeddingSSMD              = os.path.join(
 # Files for Synonym Type Classification
 # =============================================================================
 
-outputFolderNameClassificationType                  = "type"
-
+outputFolderNameClassificationType = "type"
+filesPrefixType                    = f"{outputFolderNameClass}_{testStr}"
+filesPrefixApproachType            = f"{filesPrefixType}_{chainOfThoughtsStr}_{fewShotStr}"
 
 
 inputFileClassificationType                         = inputFileTask
 
-outputFileNameClassificationType                    = f"{outputFolderNameClassificationType}_{chainOfThoughtsStr}_{fewShotStr}_{modelName}.{csvFileFormat}"
+outputFileNameClassificationType                    = f"{filesPrefixApproachType}_raw_{modelName}.{csvFileFormat}"
 outputFileClassificationType                            = os.path.join(
     dataDir,
     outputFolderName,
@@ -531,7 +545,7 @@ outputFileClassificationType                            = os.path.join(
 
 inputFileClassificationTypeFormatted                = outputFileClassificationType
 
-outputFileNameClassificationTypeFormattedPrefix     = f"{outputFolderNameClassificationType}_{chainOfThoughtsStr}_{fewShotStr}_formatted"
+outputFileNameClassificationTypeFormattedPrefix     = f"{filesPrefixApproachType}_formatted"
 outputFileNameClassificationTypeFormatted           = f"{outputFileNameClassificationTypeFormattedPrefix}_{modelName}.{csvFileFormat}"
 outputFileClassificationTypeFormatted               = os.path.join(
     dataDir,
@@ -549,7 +563,7 @@ inputFileClassificationTypeMerged                   = [
     os.path.join(dataDir, outputFolderName, outputFolderNameFormatted, filename) for filename in inputFileNameClassificationTypeMerged
 ]
 
-outputFileNameClassificationTypeMerged              = f"{outputFolderNameClassificationType}_merged_classes.{csvFileFormat}"
+outputFileNameClassificationTypeMerged              = f"{filesPrefixApproachType}_merged_classes.{csvFileFormat}"
 outputFileClassificationTypeMerged                  = os.path.join(
     dataDir,
     outputFolderName,
@@ -559,7 +573,7 @@ outputFileClassificationTypeMerged                  = os.path.join(
 
 inputFileClassificationTypeEvaluation               = outputFileClassificationTypeMerged
 
-outputFileNameClassificationTypeGoldCounts   = f"{outputFolderNameClassificationType}_gold_counts.{plotFileFormat}"
+outputFileNameClassificationTypeGoldCounts   = f"{filesPrefixApproachType}_gold_counts.{plotFileFormat}"
 outputFileClassificationTypeGoldCounts       = os.path.join(
     dataDir,
     outputFolderName,
@@ -567,7 +581,7 @@ outputFileClassificationTypeGoldCounts       = os.path.join(
     outputFileNameClassificationTypeGoldCounts
 )
 
-outputFileNameClassificationTypeAnswerCounts   = f"{outputFolderNameClassificationType}_answer_counts.{plotFileFormat}"
+outputFileNameClassificationTypeAnswerCounts   = f"{filesPrefixApproachType}_answer_counts.{plotFileFormat}"
 outputFileClassificationTypeAnswerCounts = os.path.join(
     dataDir,
     outputFolderName,
@@ -575,7 +589,7 @@ outputFileClassificationTypeAnswerCounts = os.path.join(
     outputFileNameClassificationTypeAnswerCounts
 )
 
-outputFileNameClassificationTypeRecallPrecisionF1   = f"{outputFolderNameClassificationType}_base_evaluation.{plotFileFormat}"
+outputFileNameClassificationTypeRecallPrecisionF1   = f"{filesPrefixApproachType}_base_evaluation.{plotFileFormat}"
 outputFileClassificationTypeRecallPrecisionF1       = os.path.join(
     dataDir,
     outputFolderName,
@@ -583,7 +597,7 @@ outputFileClassificationTypeRecallPrecisionF1       = os.path.join(
     outputFileNameClassificationTypeRecallPrecisionF1
 )
 
-outputFileNameClassificationTYpeAccuracyMacroMicro  = f"{outputFolderNameClassificationType}_accuracy_threshold.{plotFileFormat}"
+outputFileNameClassificationTYpeAccuracyMacroMicro  = f"{filesPrefixApproachType}_accuracy_threshold.{plotFileFormat}"
 outputFileClassificationTYpeAccuracyMacroMicro      = os.path.join(
     dataDir,
     outputFolderName,
@@ -591,7 +605,7 @@ outputFileClassificationTYpeAccuracyMacroMicro      = os.path.join(
     outputFileNameClassificationTYpeAccuracyMacroMicro
 )
 
-outputFileNameClassificationTypeClassAccuracy       = f"{outputFolderNameClassificationType}_class_accuracy.{plotFileFormat}"
+outputFileNameClassificationTypeClassAccuracy       = f"{filesPrefixApproachType}_class_accuracy.{plotFileFormat}"
 outputFileClassificationTypeClassAccuracy           = os.path.join(
     dataDir,
     outputFolderName,
@@ -599,7 +613,7 @@ outputFileClassificationTypeClassAccuracy           = os.path.join(
     outputFileNameClassificationTypeClassAccuracy
 )
 
-outputFileNameClassificationTypeEvaluationExactHPO  = f"{outputFolderNameClassificationType}_exact_HPO_evaluation.{plotFileFormat}"
+outputFileNameClassificationTypeEvaluationExactHPO  = f"{filesPrefixApproachType}_exact_HPO_evaluation.{plotFileFormat}"
 outputFileClassificationTypeEvaluationExactHPO      = os.path.join(
     dataDir,
     outputFolderName,
@@ -607,7 +621,7 @@ outputFileClassificationTypeEvaluationExactHPO      = os.path.join(
     outputFileNameClassificationTypeEvaluationExactHPO
 )
 
-outputFileNameClassificationTypeEvaluationExactUBERON  = f"{outputFolderNameClassificationType}_exact_UBERON_evaluation.{plotFileFormat}"
+outputFileNameClassificationTypeEvaluationExactUBERON  = f"{filesPrefixApproachType}_exact_UBERON_evaluation.{plotFileFormat}"
 outputFileClassificationTypeEvaluationExactUBERON      = os.path.join(
     dataDir,
     outputFolderName,
@@ -615,7 +629,7 @@ outputFileClassificationTypeEvaluationExactUBERON      = os.path.join(
     outputFileNameClassificationTypeEvaluationExactUBERON
 )
 
-outputFileNameClassificationTypeEvaluationExactGO  = f"{outputFolderNameClassificationType}_exact_GO_evaluation.{plotFileFormat}"
+outputFileNameClassificationTypeEvaluationExactGO  = f"{filesPrefixApproachType}_exact_GO_evaluation.{plotFileFormat}"
 outputFileClassificationTypeEvaluationExactGO      = os.path.join(
     dataDir,
     outputFolderName,
@@ -623,7 +637,7 @@ outputFileClassificationTypeEvaluationExactGO      = os.path.join(
     outputFileNameClassificationTypeEvaluationExactGO
 )
 
-outputFileNameClassificationTypeEvaluationExactCHEBI  = f"{outputFolderNameClassificationType}_exact_CHEBI_evaluation.{plotFileFormat}"
+outputFileNameClassificationTypeEvaluationExactCHEBI  = f"{filesPrefixApproachType}_exact_CHEBI_evaluation.{plotFileFormat}"
 outputFileClassificationTypeEvaluationExactCHEBI      = os.path.join(
     dataDir,
     outputFolderName,
@@ -631,7 +645,7 @@ outputFileClassificationTypeEvaluationExactCHEBI      = os.path.join(
     outputFileNameClassificationTypeEvaluationExactCHEBI
 )
 
-outputFileNameClassificationTypeEvaluationMajority  = f"{outputFolderNameClassificationType}_majority_voting.{plotFileFormat}"
+outputFileNameClassificationTypeEvaluationMajority  = f"{filesPrefixApproachType}_majority_voting.{plotFileFormat}"
 outputFileClassificationTypeEvaluationMajority      = os.path.join(
     dataDir,
     outputFolderName,
@@ -731,7 +745,7 @@ testIDs_old = list(set([
     'HP:0004331', 'HP:0011153', 'HP:0003155', 'HP:0000437'
 ]))
 
-testIDs = [         'CHEBI:4167',       'UBERON:0006440',   'CHEBI:23449',
+testIDs = list(set(['CHEBI:4167',       'UBERON:0006440',   'CHEBI:23449',
  'UBERON:0005010',  'CHEBI:3892',       'CHEBI:50112',      'CHEBI:17883',
  'HP:0100171',      'CHEBI:32612',      'CHEBI:18258',      'HP:0008067',
  'UBERON:0004938',  'CHEBI:76871',      'UBERON:0000933',   'GO:1905155',
@@ -745,9 +759,7 @@ testIDs = [         'CHEBI:4167',       'UBERON:0006440',   'CHEBI:23449',
  'UBERON:0005969',  'CHEBI:37848',      'CHEBI:16134',      'CHEBI:35219',
  'GO:1904746',      'CHEBI:16113',      'UBERON:0006858',   'HP:0006505',
  'UBERON:0009472',  'CHEBI:17933',      'HP:0000327',       'CHEBI:48376',
- 'CHEBI:133608']
-
-testIDs2 = [         'HP:0020059',       'UBERON:0002318',   'HP:0012490',
+ 'CHEBI:133608',    'HP:0020059',       'UBERON:0002318',   'HP:0012490',
  'CHEBI:28044',     'CHEBI:59549',      'UBERON:0007779',   'GO:1901731', 
  'HP:0004401',      'UBERON:0006274',   'HP:0000723',       'CHEBI:134251', 
  'UBERON:0001183',  'HP:6000451',       'HP:0002813',       'UBERON:0006652', 
@@ -830,4 +842,4 @@ testIDs2 = [         'HP:0020059',       'UBERON:0002318',   'HP:0012490',
  'HP:0034079',      'CHEBI:3424',       'HP:0006155',       'HP:0033842',
  'HP:0005550',      'UBERON:0002416',   'UBERON:0004445',   'CHEBI:35191',
  'UBERON:0001562',  'GO:1903771',       'CHEBI:138675',     'CHEBI:28789',
- 'GO:1901657',      'PR:000001004',     'UBERON:0002400']
+ 'GO:1901657',      'PR:000001004',     'UBERON:0002400']))

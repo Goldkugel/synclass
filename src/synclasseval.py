@@ -68,43 +68,52 @@ for embeddingModel in embeddingModels.keys():
             y1 = []
             x2 = []
             y2 = []
-            for i in np.linspace(similarityEvaluationLowerBound, 
-                                 similarityEvaluationUperBound, 
-                                 similarityEvaluationParts):
-                x1.append(i)
-                x2.append(i)
+            
+            with newProgress() as progress:
+                
+                task = newTask(progress, similarityEvaluationParts, "Evaluating")
 
-                TP = sum((
-                    classified[column] <= i
-                        ) & (
-                    classified[classColumn] == relatedSynonymClass
-                ))
-                FP = sum((
-                    classified[column] <= i
-                        ) & (
-                    classified[classColumn] != relatedSynonymClass
-                ))
+                for i in np.linspace(similarityEvaluationLowerBound, 
+                                    similarityEvaluationUperBound, 
+                                    similarityEvaluationParts):
+                    x1.append(i)
+                    x2.append(i)
 
-                if TP + FP > 0:
-                    y1.append((2 * TP) / (2 * TP + FP))
-                else:
-                    y1.append(np.nan)
+                    TP = sum((
+                        classified[column] <= i
+                            ) & (
+                        classified[classColumn] == relatedSynonymClass
+                    ))
+                    FP = sum((
+                        classified[column] <= i
+                            ) & (
+                        classified[classColumn] != relatedSynonymClass
+                    ))
 
-                TP = sum((
-                    classified[column] >= i
-                        ) & (
-                    classified[classColumn] == exactSynonymClass
-                ))
-                FP = sum((
-                    classified[column] >= i
-                        ) & (
-                    classified[classColumn] != exactSynonymClass
-                ))
+                    if TP + FP > 0:
+                        y1.append((2 * TP) / (2 * TP + FP))
+                    else:
+                        y1.append(np.nan)
 
-                if TP + FP > 0:
-                    y2.append((2 * TP) / (2 * TP + FP))
-                else:
-                    y2.append(np.nan)
+                    TP = sum((
+                        classified[column] >= i
+                            ) & (
+                        classified[classColumn] == exactSynonymClass
+                    ))
+                    FP = sum((
+                        classified[column] >= i
+                            ) & (
+                        classified[classColumn] != exactSynonymClass
+                    ))
+
+                    if TP + FP > 0:
+                        y2.append((2 * TP) / (2 * TP + FP))
+                    else:
+                        y2.append(np.nan)
+
+                    progress.update(task, advance = 1)
+    
+                progress.refresh()
 
             # Create the bar plot
             plt.figure()
@@ -124,7 +133,7 @@ for embeddingModel in embeddingModels.keys():
             x2 = x2[y2 < 1]
             y2 = y2[y2 < 1]
 
-            roundFactor = float(math.pow(10, len(str(similarityEvaluationParts))))
+            roundFactor = float(math.pow(10, len(str(similarityEvaluationParts)) - 1))
 
             if not np.all(np.isnan(y1)):
                 max_index = np.nanargmax(y1)
@@ -132,7 +141,7 @@ for embeddingModel in embeddingModels.keys():
                 max_y = math.ceil(roundFactor * y1[max_index]) / roundFactor
 
                 c = sum(classified[column] <= max_x)
-                p = int(math.floor(roundFactor * c / len(classified.index)))
+                p = int(math.floor(100 * roundFactor * c / len(classified.index)) / roundFactor)
 
                 plt.scatter(max_x, max_y, s = 200, marker = 'x', color = "red", zorder = 100, label = "(" + str(max_x) + ", " + str(max_y) + ") (Count: " + str(c) + ", " + str(p) + "%)")
                 log(f"Suggested Threshold for Class {quote(relatedSynonymClass)}, Metric {quote(similarityMetric)}, and Model {quote(embeddingModel)}: {str(max_x)}" )
@@ -172,8 +181,7 @@ for embeddingModel in embeddingModels.keys():
 
 
 
-
-classified = classifiedComplete.copy().drop([answerColumn, systemColumn], axis = 1).drop_duplicates().reset_index(drop = True)
+classified = classifiedComplete[classifiedComplete[systemColumn] == systems[0]].copy().drop([answerColumn, systemColumn], axis = 1).drop_duplicates().reset_index(drop = True)
 classes = Counter(classified[classColumn])
 
 # Prepare data for plotting
@@ -231,7 +239,7 @@ plt.savefig(outputFileClassAnswerCounts, dpi = 300, bbox_inches = "tight")
 
 
 
-# TODO: insert related class as well.
+
 def ontologySubplot(data : pd.DataFrame = None, startString : str = "", outputFile : str = "", title : str = "") -> None:
     classified = data[data[hpoidColumn].str.startswith(startString, na=False)].reset_index(drop = True).copy()
 
@@ -318,7 +326,7 @@ def ontologySubplot(data : pd.DataFrame = None, startString : str = "", outputFi
         handles,
         systems,
         loc = "lower center",
-        ncol = len(systems),
+        ncol = int(len(systems) / 2),
         frameon = False
     )
 

@@ -1,5 +1,10 @@
 GPUS="6,7"
 
+MODE="test" # =""
+
+CoT="" # "chain-of-thoughts" #=""
+FS="few-shot" #=""
+
 # python3 ./synclass.py "google/medgemma-27b-text-it" "0,1"
 
 MODELS=(
@@ -16,12 +21,12 @@ clear
 ./prepare.sh
 
 for MODEL in "${MODELS[@]}"; do
-  python3 ./synclass.py "$MODEL" "$GPUS"
+  python3 ./synclass.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS"
 done
 
 for MODEL in "${MODELS[@]}"; do
-  python3 ./synclassformat.py "$MODEL" "$GPUS"
+  python3 ./synclassformat.py "$MODEL" "" "$MODE" "$CoT" "$FS"
 done
 
-python3 "./synclassmerge.py"
-python3 "./synclasseval.py"
+python3 "./synclassmerge.py" "$MODE" "$CoT" "$FS"
+python3 "./synclasseval.py" "$MODE" "$CoT" "$FS"
