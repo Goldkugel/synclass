@@ -81,61 +81,60 @@ similarityColumnPrefix      = f"{similarityColumnPrePrefix}" + "{}_{}"
 
 # All listed similarity metrics are checked to be below the threshold such that 
 # the synonym is classified as related.
+# F1 Score > 0.9 for Related
 embeddingThresholdsRelated  = {
-    similarityColumnPrefix.format(bioClinicalBERT, angularSimilarity)   : -2.12451,
-    similarityColumnPrefix.format(bioClinicalBERT, cosineSimilarity)    : -2.41074,
-    similarityColumnPrefix.format(bioClinicalBERT, euclideanSimilarity) : -1.42544,
-    similarityColumnPrefix.format(bioClinicalBERT, manhattanSimilarity) : -1.31803,
-    similarityColumnPrefix.format(clinicalBERT,    angularSimilarity)   : -2.14611,
-    similarityColumnPrefix.format(clinicalBERT,    cosineSimilarity)    : -2.47794,
-    similarityColumnPrefix.format(clinicalBERT,    euclideanSimilarity) : -1.44164,
-    similarityColumnPrefix.format(clinicalBERT,    manhattanSimilarity) : -1.24362,
-    similarityColumnPrefix.format(bioBERT,         cosineSimilarity)    : -1.52145,
-    similarityColumnPrefix.format(bioBERT,         angularSimilarity)   : -2.83918,
-    similarityColumnPrefix.format(sciBERT,         angularSimilarity)   : -2.03630,
-    similarityColumnPrefix.format(sciBERT,         cosineSimilarity)    : -2.31773,
-    similarityColumnPrefix.format(sciBERT,         euclideanSimilarity) : -1.16801,
-    similarityColumnPrefix.format(sciBERT,         manhattanSimilarity) : -1.02460,
-    similarityColumnPrefix.format(umlsBERT,        euclideanSimilarity) : -1.19021,
-    similarityColumnPrefix.format(umlsBERT,        manhattanSimilarity) : -1.04200,
-    similarityColumnPrefix.format(umlsBERT,        angularSimilarity)   : -2.09690,
-    similarityColumnPrefix.format(umlsBERT,        cosineSimilarity)    : -2.37593,
-    similarityColumnPrefix.format(bioLinkBERT,     angularSimilarity)   : -1.53405,
-    similarityColumnPrefix.format(bioLinkBERT,     euclideanSimilarity) : -0.83918,
-    similarityColumnPrefix.format(medCPT,          angularSimilarity)   : -2.33573,
-    similarityColumnPrefix.format(medCPT,          euclideanSimilarity) : -1.14401,
-    similarityColumnPrefix.format(pubmedBERT,      angularSimilarity)   : -1.79747,
-    similarityColumnPrefix.format(pubmedBERT,      cosineSimilarity)    : -1.96189,
-    similarityColumnPrefix.format(pubmedBERT,      euclideanSimilarity) : -1.36783,
-    similarityColumnPrefix.format(pubmedBERT,      manhattanSimilarity) : -1.06480,
-    similarityColumnPrefix.format(sapBERT,         angularSimilarity)   : -2.11611,
-    similarityColumnPrefix.format(sapBERT,         cosineSimilarity)    : -2.60276,
-    similarityColumnPrefix.format(sapBERT,         euclideanSimilarity) : -0.96639,
-    similarityColumnPrefix.format(sapBERT,         manhattanSimilarity) : -0.84458,
-    similarityColumnPrefix.format(sapUMLSBERT,     angularSimilarity)   : -2.44854,
-    similarityColumnPrefix.format(sapUMLSBERT,     euclideanSimilarity) : -1.30003,
-    similarityColumnPrefix.format(sapUMLSBERT,     manhattanSimilarity) : -1.11761
+    similarityColumnPrefix.format(bioClinicalBERT, angularSimilarity)   : -2.157, # 
+    similarityColumnPrefix.format(bioClinicalBERT, cosineSimilarity)    : -2.536, # 
+    similarityColumnPrefix.format(bioClinicalBERT, euclideanSimilarity) : -1.54,  #
+    similarityColumnPrefix.format(bioClinicalBERT, manhattanSimilarity) : -1.172, #
+    similarityColumnPrefix.format(clinicalBERT,    angularSimilarity)   : -2.043, #
+    similarityColumnPrefix.format(clinicalBERT,    cosineSimilarity)    : -2.421, #
+    similarityColumnPrefix.format(clinicalBERT,    euclideanSimilarity) : -1.415, # 
+    similarityColumnPrefix.format(clinicalBERT,    manhattanSimilarity) : -1.148, #
+    similarityColumnPrefix.format(bioBERT,         cosineSimilarity)    : -3.396, #
+    similarityColumnPrefix.format(bioBERT,         angularSimilarity)   : -2.691, #
+    similarityColumnPrefix.format(bioBERT,         manhattanSimilarity) : -1.071, # 
+    similarityColumnPrefix.format(bioBERT,         euclideanSimilarity) : -1.414, # 
+    similarityColumnPrefix.format(sciBERT,         angularSimilarity)   : -2.526, #
+    similarityColumnPrefix.format(sciBERT,         cosineSimilarity)    : -3.138, #
+    similarityColumnPrefix.format(sciBERT,         euclideanSimilarity) : -1.127, # 
+    similarityColumnPrefix.format(umlsBERT,        euclideanSimilarity) : -1.198, # 
+    similarityColumnPrefix.format(umlsBERT,        manhattanSimilarity) : -1.089, # 
+    similarityColumnPrefix.format(umlsBERT,        angularSimilarity)   : -2.297, #
+    similarityColumnPrefix.format(umlsBERT,        cosineSimilarity)    : -2.793, #
+    similarityColumnPrefix.format(bioLinkBERT,     cosineSimilarity)    : -2.55,  #
+    similarityColumnPrefix.format(bioLinkBERT,     manhattanSimilarity) : -0.131, # 
+    similarityColumnPrefix.format(bioLinkBERT,     euclideanSimilarity) : -1.161, #
+    similarityColumnPrefix.format(medCPT,          angularSimilarity)   : -2.151, #
+    similarityColumnPrefix.format(medCPT,          cosineSimilarity)    : -2.703, #
+    similarityColumnPrefix.format(medCPT,          euclideanSimilarity) : -1.128, #
+    similarityColumnPrefix.format(medCPT,          manhattanSimilarity) : -0.768, # 
+    similarityColumnPrefix.format(pubmedBERT,      angularSimilarity)   : -2.745, #
+    similarityColumnPrefix.format(pubmedBERT,      cosineSimilarity)    : -3.635, #
+    similarityColumnPrefix.format(pubmedBERT,      euclideanSimilarity) : -1.452, #
+    similarityColumnPrefix.format(pubmedBERT,      manhattanSimilarity) : -0.903, # 
+    similarityColumnPrefix.format(sapBERT,         angularSimilarity)   : -2.162, #
+    similarityColumnPrefix.format(sapBERT,         cosineSimilarity)    : -2.646, #
+    similarityColumnPrefix.format(sapBERT,         euclideanSimilarity) : -1.012, # 
+    similarityColumnPrefix.format(sapBERT,         manhattanSimilarity) : -0.852, #  
+    similarityColumnPrefix.format(sapUMLSBERT,     cosineSimilarity)    : -2.744, #
+    similarityColumnPrefix.format(sapUMLSBERT,     angularSimilarity)   : -2.26,  #
+    similarityColumnPrefix.format(sapUMLSBERT,     euclideanSimilarity) : -1.131, # 
+    similarityColumnPrefix.format(sapUMLSBERT,     manhattanSimilarity) : -0.947  #  
 }
 
 # All listed similarity metrics are checked to be above the threshold such that 
 # the synonym is classified as exact.
+# F1 SCore > 0.85
 embeddingThresholdsExact  = {
-    similarityColumnPrefix.format(medCPT,          angularSimilarity)   : 1.05581,
-    similarityColumnPrefix.format(medCPT,          cosineSimilarity)    : 0.95920,
-    similarityColumnPrefix.format(medCPT,          cosineSimilarity)    : 0.76298,
-    similarityColumnPrefix.format(medCPT,          manhattanSimilarity) : 0.43835,
-    similarityColumnPrefix.format(sapBERT,         angularSimilarity)   : 1.91270,
-    similarityColumnPrefix.format(sapBERT,         cosineSimilarity)    : 1.43265,
-    similarityColumnPrefix.format(sapBERT,         euclideanSimilarity) : 2.92980,
-    similarityColumnPrefix.format(sapBERT,         manhattanSimilarity) : 2.97180,
-    similarityColumnPrefix.format(sapUMLSBERT,     angularSimilarity)   : 1.87969,
-    similarityColumnPrefix.format(sapUMLSBERT,     cosineSimilarity)    : 1.30364,
-    similarityColumnPrefix.format(sapUMLSBERT,     euclideanSimilarity) : 2.41615,
-    similarityColumnPrefix.format(sapUMLSBERT,     manhattanSimilarity) : 2.06931,
-    similarityColumnPrefix.format(umlsBERT,        angularSimilarity)   : 0.76238,
-    similarityColumnPrefix.format(umlsBERT,        cosineSimilarity)    : 0.74258,
-    similarityColumnPrefix.format(umlsBERT,        euclideanSimilarity) : 0.33694,
-    similarityColumnPrefix.format(umlsBERT,        manhattanSimilarity) : 0.26493
+    similarityColumnPrefix.format(sapBERT,         angularSimilarity)   : 1.656, #
+    similarityColumnPrefix.format(sapBERT,         cosineSimilarity)    : 1.244, # 
+    similarityColumnPrefix.format(sapBERT,         euclideanSimilarity) : 2.426, #
+    similarityColumnPrefix.format(sapBERT,         manhattanSimilarity) : 2.396, #
+    similarityColumnPrefix.format(sapUMLSBERT,     angularSimilarity)   : 1.748, #
+    similarityColumnPrefix.format(sapUMLSBERT,     cosineSimilarity)    : 1.274, #
+    similarityColumnPrefix.format(sapUMLSBERT,     euclideanSimilarity) : 2.972, #
+    similarityColumnPrefix.format(sapUMLSBERT,     manhattanSimilarity) : 2.957  #
 }
 
 similarityEvaluationLowerBound = -4
@@ -501,6 +500,14 @@ outputFileCombinedEvaluationAbsolute           = os.path.join(
     outputFileNameCombinedEvaluationAbsolute
 )
 
+outputFileNameCombinedEvaluationAbsolute2      = f"{filesPrefixApproachClass}_combined_evaluation_absolute2.{plotFileFormat}"
+outputFileCombinedEvaluationAbsolute2          = os.path.join(
+    dataDir,
+    outputFolderName,
+    outputFolderNameEvaluation,
+    outputFileNameCombinedEvaluationAbsolute2
+)
+
 outputFileNameCombinedEvaluationRelaxed       = f"{filesPrefixApproachClass}_combined_evaluation_relaxed.{plotFileFormat}"
 outputFileCombinedEvaluationRelaxed           = os.path.join(
     dataDir,
@@ -511,14 +518,70 @@ outputFileCombinedEvaluationRelaxed           = os.path.join(
 
 outputFolderNameClassEmbedding = outputFolderNameEvaluation
 
-outputFileNameClassEmbeddingEvaluation    = f"{filesPrefixApproachClass}_embedding_evaluation_" + "{}" + f".{plotFileFormat}"
+outputFileNameClassEmbeddingEvaluation    = f"{filesPrefixClass}_embedding_evaluation_" + "{}" + f".{plotFileFormat}"
 
-outputFileNameClassEmbeddingSSMD          = f"{filesPrefixApproachClass}_embedding_ssmd.{plotFileFormat}"
+outputFileNameClassEmbeddingSSMD          = f"{filesPrefixClass}_embedding_ssmd.{plotFileFormat}"
 outputFileClassEmbeddingSSMD              = os.path.join(
     dataDir,        
     outputFolderName,
     outputFolderNameClassEmbedding,
     outputFileNameClassEmbeddingSSMD
+)
+
+outputFileNameClassEmbeddingOutcomeCounts = f"{filesPrefixClass}_embedding_outcome_counts.{plotFileFormat}"
+outputFileClassEmbeddingOutcomeCounts     = os.path.join(
+    dataDir,        
+    outputFolderName,
+    outputFolderNameClassEmbedding,
+    outputFileNameClassEmbeddingOutcomeCounts
+)
+
+outputFileNameClassEmbeddingDifference    = f"{filesPrefixClass}_embedding_diff_votes.{plotFileFormat}"
+outputFileClassEmbeddingDifference        = os.path.join(
+    dataDir,        
+    outputFolderName,
+    outputFolderNameClassEmbedding,
+    outputFileNameClassEmbeddingDifference
+)
+
+outputFileNameClassEmbeddingExactRelaxed    = f"{filesPrefixClass}_embedding_exact_votes_relaxed.{plotFileFormat}"
+outputFileClassEmbeddingExactRelaxed        = os.path.join(
+    dataDir,        
+    outputFolderName,
+    outputFolderNameClassEmbedding,
+    outputFileNameClassEmbeddingExactRelaxed
+)
+
+outputFileNameClassEmbeddingRelatedAbsolute    = f"{filesPrefixClass}_embedding_related_votes_absolute.{plotFileFormat}"
+outputFileClassEmbeddingRelatedAbsolute        = os.path.join(
+    dataDir,        
+    outputFolderName,
+    outputFolderNameClassEmbedding,
+    outputFileNameClassEmbeddingRelatedAbsolute
+)
+
+outputFileNameClassEmbeddingExactAbsolute    = f"{filesPrefixClass}_embedding_exact_votes_absolute.{plotFileFormat}"
+outputFileClassEmbeddingExactAbsolute        = os.path.join(
+    dataDir,        
+    outputFolderName,
+    outputFolderNameClassEmbedding,
+    outputFileNameClassEmbeddingExactAbsolute
+)
+
+outputFileNameClassEmbeddingRelatedRelaxed    = f"{filesPrefixClass}_embedding_related_votes_relaxed.{plotFileFormat}"
+outputFileClassEmbeddingRelatedRelaxed        = os.path.join(
+    dataDir,        
+    outputFolderName,
+    outputFolderNameClassEmbedding,
+    outputFileNameClassEmbeddingRelatedRelaxed
+)
+
+outputFileNameClassEmbeddingPerformance   = f"{filesPrefixClass}_embedding_performance.{plotFileFormat}"
+outputFileClassEmbeddingPerformance       = os.path.join(
+    dataDir,        
+    outputFolderName,
+    outputFolderNameClassEmbedding,
+    outputFileNameClassEmbeddingPerformance
 )
 
 

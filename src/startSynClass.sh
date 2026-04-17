@@ -18,15 +18,15 @@ MODELS=(
 
 clear
 
-./prepare.sh
+./prepare.sh "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS"
 
 for MODEL in "${MODELS[@]}"; do
   python3 ./synclass.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS"
 done
 
 for MODEL in "${MODELS[@]}"; do
-  python3 ./synclassformat.py "$MODEL" "" "$MODE" "$CoT" "$FS"
+  python3 ./synclassformat.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS"
 done
 
-python3 "./synclassmerge.py" "$MODE" "$CoT" "$FS"
-python3 "./synclasseval.py" "$MODE" "$CoT" "$FS"
+python3 "./synclassmerge.py" "" "" "$MODE" "$CoT" "$FS"
+python3 "./synclasseval.py" "" "" "$MODE" "$CoT" "$FS"
