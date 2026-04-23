@@ -43,8 +43,9 @@ with newProgress() as progress:
     task = newTask(progress, len(hpoIDs), "Get Parents and Children")
 
     for hpoID in hpoIDs:
-        children[hpoID] = getChildLabels(gold, hpoID)
+        children[hpoID] = getChildLabels (gold, hpoID)
         parents[hpoID]  = getParentLabels(gold, hpoID)
+        
         progress.update(task, advance = 1)
     
     progress.refresh()

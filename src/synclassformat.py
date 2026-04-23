@@ -13,6 +13,8 @@ from utils      import *
 # ------------------------------------------------------------------------------
 
 printHeader(f"Fomratting Answers of Synonym's Classification")
+
+# To track time.
 startTime = time.time()
 
 # ------------------------------------------------------------------------------
@@ -40,9 +42,15 @@ with newProgress() as progress:
         classified.loc[index, answerColumn], \
             classified.loc[index, confidenceColumn] = \
             formatAnswerClassification(str(classified[answerColumn][index]))
-        progress.advance(task)
+        progress.advance(task, advance = 1)
 
     progress.refresh()
+
+# ------------------------------------------------------------------------------
+# Persist transformed data to disk.
+# ------------------------------------------------------------------------------
+
+writeCSV(classified, outputFileClassFormatted)
 
 log("Logging incorrect classified Synonyms...")
 
@@ -80,11 +88,7 @@ log("Logging competed.")
 
 
 
-# ------------------------------------------------------------------------------
-# Persist transformed data to disk.
-# ------------------------------------------------------------------------------
 
-writeCSV(classified, outputFileClassFormatted)
 
 # For time tracking.
 minutes         = int((time.time() - startTime) // 60)

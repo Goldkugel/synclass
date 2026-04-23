@@ -38,8 +38,7 @@ for key in counts.keys():
 systems = list(set(classifiedComplete[systemColumn].tolist()))
 systems = sorted(systems)
 
-string = "', '".join(systems)
-log(f"Found Systems: {quote(string)}")
+log(f"Found Systems: {applyFormat(systems)}")
 log(f"Classified Synonyms: {len(classifiedComplete.index)} " \
     f"(~{int(len(classifiedComplete.index) / len(systems))} per system)")
 classifiedComplete = classifiedComplete[classifiedComplete[systemColumn] != ""]

@@ -255,7 +255,10 @@ ukSpellingSynonymType           = "uk"
 allelicRequirementSynonymType   = "allelic"
 # In OWL Class Section, rather than in Axiom Section.
 directSynonymType               = "direct"
+
 undefinedSynonymType            = "undefined"
+
+synonymTypes = [expertSynonymType, laypersonSynonymType, directSynonymType]
 
 childrenClass                   = "child"
 

@@ -8,8 +8,19 @@ sys.dont_write_bytecode = True
 from config     import *
 from utils      import *
 
+# ------------------------------------------------------------------------------
+# Initialization.
+# ------------------------------------------------------------------------------
+
+
 printHeader(f"Fomratting Classification of Synonyms")
+
+# To track time.
 start_time = time.time()
+
+# ------------------------------------------------------------------------------
+# Load Human Phenotype Ontology (HPO) data.
+# ------------------------------------------------------------------------------
 
 # Only proceed if formatted input data exists
 exitIfFileNotExist(inputFileClassificationTypeFormatted)
@@ -22,21 +33,31 @@ classified    = readCSV(inputFileClassificationTypeFormatted)
 
 
 
+classified[confidenceColumn] = [-1] * len(classified.index)
+
 with newProgress() as progress:
 
     task = newTask(progress, len(classified.index), "Formatting Answers")
 
     for index in range(0, len(classified.index)):
-        classified.loc[index, answerColumn] = \
+        classified.loc[index, answerColumn], \
+            classified.loc[index, confidenceColumn] = \
             formatAnswerClassificationType(str(classified[answerColumn][index]))
         progress.advance(task, advance = 1)
 
     progress.refresh()
 
+# ------------------------------------------------------------------------------
+# Persist transformed data to disk.
+# ------------------------------------------------------------------------------
+
 writeCSV(classified, outputFileClassificationTypeFormatted)
 
 log("Logging incorrect classified Synonyms...")
 
+# For logging purposes the gold standard is read and wrong classifications
+# are placed in the logging file. This is useful when it comes to prompt 
+# optimization.
 gold        = readCSV(inputFileClassificationType)
 labels      = gold[gold[classColumn] == labelClass].copy().reset_index(drop = True)
 count       = 0
@@ -56,19 +77,31 @@ for index, row in classified.iterrows():
     # being logged.
     #
     if (str(row[answerColumn]).lower() == undefinedSynonymType.lower() or
-        (str(row[answerColumn]).lower() != expertSynonymType and row[typeColumn] == "") or
-        (str(row[answerColumn]).lower() != expertSynonymType and row[typeColumn] == directSynonymType) or
-        ((str(row[answerColumn]).lower() != row[typeColumn] and row[typeColumn] == laypersonSynonymType) and (str(row[answerColumn]).lower() == laypersonSynonymType or row[typeColumn] == laypersonSynonymType))):
-        log(f"Label: \"{', '.join(getElements(labels, row[hpoidColumn], labelClass))}\", Synonym: \"{row[contentColumn]}\", Correct: \"{row[typeColumn]}\", Classified: \"{row[answerColumn]}\"", cmdline = False)
+        (str(row[answerColumn]).lower() != expertSynonymType and 
+            row[typeColumn] == "") or
+        (str(row[answerColumn]).lower() != expertSynonymType and 
+            row[typeColumn] == directSynonymType) or
+        ((str(row[answerColumn]).lower() != row[typeColumn] and 
+            row[typeColumn] == laypersonSynonymType) and 
+            (str(row[answerColumn]).lower() == laypersonSynonymType or 
+                row[typeColumn] == laypersonSynonymType))):
+        log(f"Label: " \
+            f"{applyFormat(getElements(labels, row[hpoidColumn], labelClass))}" \
+            f", Synonym: {quote(row[contentColumn])}, Correct: " \
+            f"{quote(row[classColumn])}, Classified: {quote(row[answerColumn])}", 
+            cmdline = False)
         count = count + 1
 
-log(f"{count} incorrect classified Synonyms logged.")
+log(f"Incorrect Classifications: {count}")
+log(f"Correct Classifications:   {len(classified.index) - count}")
+log("Logging competed.")
 
 
 
 
 
 
+# For time tracking.
 minutes         = int((time.time() - start_time) // 60)
 
 # Print a formatted header indicating the end of this processing stage

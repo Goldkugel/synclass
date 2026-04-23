@@ -10,8 +10,14 @@ sys.dont_write_bytecode = True
 from config     import *
 from utils      import *
 
+# ------------------------------------------------------------------------------
+# Initialization.
+# ------------------------------------------------------------------------------
+
 # Print a formatted header indicating the start of this processing stage
 printHeader(f"Merging Generated Type Classifications")
+
+# To track time.
 start_time = time.time()
 
 
@@ -19,13 +25,17 @@ start_time = time.time()
 
 
 
-# Merging Generated Classes
+# ------------------------------------------------------------------------------
+# Load Data.
+# ------------------------------------------------------------------------------
+
+# Merging Generated Classes.
 if len(inputFileClassificationTypeMerged) == 0:
     log(f"No '{csvFileFormat}' files with prefix " + 
         f"'{outputFileNameClassificationTypeFormattedPrefix}' found in " + 
         f"'{outputFolderNameFormatted}'")
 else:
-    # Read and merge CSV files
+    # Read and merge CSV files.
     dataframes = []
     log(f"Reading {len(inputFileClassificationTypeMerged)} files...")
     with newProgress() as progress:
@@ -38,13 +48,17 @@ else:
 
         progress.refresh()
 
-    # Read and merge CSV files
+    # Read and merge CSV files.
     log("Files read.")
 
     log("Merging Data...")
     merged_df = pd.concat(dataframes, ignore_index = True)
     merged_df = merged_df.reset_index(drop = True)
     log("Data merged.")
+
+    # --------------------------------------------------------------------------
+    # Persist transformed data to disk.
+    # --------------------------------------------------------------------------
 
     # Write merged CSV
     writeCSV(merged_df, outputFileClassificationTypeMerged)
@@ -57,6 +71,7 @@ else:
 
 
 
+# For time tracking.
 minutes         = int((time.time() - start_time) // 60)
 
 # Print a formatted header indicating the end of this processing stage

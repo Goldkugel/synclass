@@ -973,22 +973,30 @@ def formatAnswerClassification(txt : str) -> tuple[str, int]:
 
     return ret, confidence
 
-def formatAnswerClassificationType(txt : str) -> str:
+def formatAnswerClassificationType(txt : str) -> tuple[str, int]:
     ret = undefinedSynonymType
+    confidence = -1
 
     if txt is not None:
-        ret = txt.lower()
-        if unusedTokens in ret:
-            ret = ret[ret.index(unusedTokens) + len(unusedTokens):]
+        start   = txt.rfind("{")
+        end     = txt.rfind("}")
+        if start < end:
+            try:
+                plain = txt[start:end+1]
+                while "\"\"" in plain:
+                    plain = plain.replace("\"\"", "\"")
+                jsonAnswer = json.loads(plain)
+                if isinstance(jsonAnswer, dict):
+                    j = dict(jsonAnswer)
+                    if synonymClass in j.keys() and confidenceColumn in j.keys():
+                        a = str(j[synonymClass]).lower()
+                        if a in synonymTypes:
+                            confidence = int(j[confidenceColumn])
+                            ret = a
+            except:
+                confidence = -1
 
-        if laypersonSynonymType in ret and expertSynonymType not in ret:
-            ret = laypersonSynonymType
-        else:
-            if laypersonSynonymType not in ret and expertSynonymType in ret:
-                ret = expertSynonymType
-            else:
-                ret = undefinedSynonymType
-    return ret
+    return ret, confidence
 
 def getHPOIDs(data : pd.DataFrame) -> list:
     ret = []

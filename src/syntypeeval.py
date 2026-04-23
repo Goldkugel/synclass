@@ -1,7 +1,10 @@
 import numpy                as np
 import matplotlib.pyplot    as plt
+import seaborn              as sns
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 import sys
 import time
+import math
 
 # Prevent Python from generating .pyc files (compiled bytecode files)
 sys.dont_write_bytecode = True
@@ -19,58 +22,85 @@ start_time = time.time()
 # Only proceed if formatted input data exists
 exitIfFileNotExist(inputFileClassificationTypeEvaluation)
 
-classified_complete = readCSV(inputFileClassificationTypeEvaluation)
+classifiedComplete = readCSV(inputFileClassificationTypeEvaluation)
 
+ontologies = [
+    str(s).split(":", 1)[0] for s in classifiedComplete[hpoidColumn].to_list()
+]
 
+counts = Counter(ontologies)
 
+log(f"{len(counts.keys())} ontologies found.")
 
+for key in counts.keys():
+    log(f"Found {counts[key]} entries in HPO for ontology '{key}'.")
 
+systems = list(set(classifiedComplete[systemColumn].tolist()))
+systems = sorted(systems)
+
+string = "', '".join(systems)
+log(f"Found Systems: {quote(string)}")
+log(f"Classified Synonyms: {len(classifiedComplete.index)} " \
+    f"(~{int(len(classifiedComplete.index) / len(systems))} per system)")
+classifiedComplete = classifiedComplete[classifiedComplete[systemColumn] != ""]
 
 # Change Datatype to String. 
-classified_complete[classColumn]    = classified_complete[classColumn ].str.lower()
-classified_complete[answerColumn]   = classified_complete[answerColumn].str.lower()
-classified_complete[typeColumn]     = classified_complete[typeColumn  ].str.lower()
+classifiedComplete[classColumn]  = classifiedComplete[classColumn ].str.lower()
+classifiedComplete[answerColumn] = classifiedComplete[answerColumn].str.lower()
+classifiedComplete[typeColumn]   = classifiedComplete[typeColumn  ].str.lower()
 
-classified_complete[typeColumn]     = classified_complete[typeColumn].replace(np.nan, expertSynonymType)
-classificationClasses               = [expertSynonymType, laypersonSynonymType]
-classified_complete                 = classified_complete[(classified_complete[typeColumn].isin(classificationClasses)) & (classified_complete[systemColumn] != "")].copy().reset_index(drop = True)
+classifiedComplete[typeColumn]   = classifiedComplete[typeColumn].replace(
+    np.nan, expertSynonymType)
+classifiedComplete[typeColumn]   = classifiedComplete[typeColumn].replace(
+    directSynonymType, expertSynonymType)
 
-systemsName  = list(set(classified_complete[systemColumn].tolist()))
-systemsName.sort()
+classifiedComplete               = classifiedComplete[(classifiedComplete[typeColumn].isin(synonymTypes)) & (classifiedComplete[systemColumn] != "")].copy().reset_index(drop = True)
 
-string       = "', '".join(systemsName)
-log(f"Found Systems: '{string}'")
-
-
-types  = classified_complete[typeColumn].to_list()
-counts      = Counter(types)
-
-log("Logging the Source Types of the data.")
-for key in counts.keys():
-    log(f"Found {counts[key]} synonyms having the type '{key}' in the data (~{int(counts[key] / len(systemsName))} per system).")
+colors = plt.cm.tab10(range(len(systems) + 1))
+color_map = {
+    system: plt.cm.tab10(i % 10)
+    for i, system in enumerate(systems)
+}
 
 
-classes = classified_complete[classColumn].tolist()
-counts      = Counter(classes)
-
-log("Logging the Semantic Classes of the data.")
-for key in counts.keys():
-    log(f"Found {counts[key]} synonyms having the class '{key}' in the data (~{int(counts[key] / len(systemsName))} per system).")
 
 
-ontologies  = [str(s).split(":", 1)[0] for s in classified_complete[hpoidColumn].to_list()]
-counts      = Counter(ontologies)
-
-log("Logging the Ontologies of the data.")
-for key in counts.keys():
-    if (counts[key] > 1000):
-        log(f"Found {counts[key]} entries in HPO for ontology '{key}'.")
 
 
-classified   = classified_complete.copy()
+classified = classifiedComplete[classifiedComplete[systemColumn] == systems[0]].copy().drop([answerColumn, systemColumn], axis = 1).drop_duplicates().reset_index(drop = True)
+classes = Counter(classified[typeColumn])
 
-log(f"Classified Synonyms: {len(classified.index)} " \
-    f"(~{int(len(classified.index) / len(systemsName))} per system)")
+# Prepare data for plotting
+labels = list(classes.keys())
+values = list(classes.values())
+
+# Create the bar plot
+plt.figure()
+bars = plt.bar(labels, values, color = colors)
+
+# Add counts on top of each bar
+for bar in bars:
+    height = bar.get_height()
+    plt.text(
+        bar.get_x() + bar.get_width() / 2,
+        height,
+        str(height),
+        ha = 'center',
+        va = 'bottom'
+    )
+
+plt.xlabel("Source Type")
+plt.ylabel("Count")
+plt.title("Count of Source Type")
+plt.grid(axis = "y")
+plt.show()
+# plt.savefig(outputFileClassGoldCounts, dpi = 300, bbox_inches = "tight")
+
+
+
+
+
+
 
 systems                  = list(set(classified[systemColumn].tolist()))
 classificationClassTypes = list(set(classified[typeColumn]))

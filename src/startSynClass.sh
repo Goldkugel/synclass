@@ -1,9 +1,12 @@
-GPUS="6,7"
+GPUS="3,4"
 
-MODE="test" # =""
+MODE="test" 
+#MODE=""
 
-CoT="" # "chain-of-thoughts" #=""
-FS="few-shot" #=""
+#CoT="chain-of-thoughts" 
+CoT=""
+FS="" 
+#FS="few-shot"
 
 # python3 ./synclass.py "google/medgemma-27b-text-it" "0,1"
 
