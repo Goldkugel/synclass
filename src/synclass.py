@@ -128,11 +128,6 @@ if chainOfThoughts:
     log(f"{addedPrompts} prompts added. Start generating responses...")
     model.generate()
 
-    addedPrompts = model.addPrompt(userRole, [semanticClassificationPrompt4(
-        fewShot)])
-    log(f"{addedPrompts} prompts added. Start generating responses...")
-    model.generate()
-
 log("Logging Prompts of Model...")
 model.logPrompts()
 log("Prompts of Model have been logged.")

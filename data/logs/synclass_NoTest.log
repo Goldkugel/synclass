@@ -1,0 +1,477 @@
+[2026-05-03 08:19:01] ============================================================
+[2026-05-03 08:19:01] =              Transforming the Raw HPO Data               =
+[2026-05-03 08:19:01] ============================================================
+[2026-05-03 08:19:01] Reading file 'hp.owl'.
+[2026-05-03 08:19:05] Reading file 'hp.owl' completed.
+[2026-05-03 08:19:05] Retrieving Synonyms...
+[2026-05-03 08:20:46] 98863 Synonyms retrieved.
+[2026-05-03 08:20:46] Retrieving Comments...
+[2026-05-03 08:20:48] 5606 Comments retrieved.
+[2026-05-03 08:20:48] Retrieving Definitions...
+[2026-05-03 08:20:55] 28266 Definitions retrieved.
+[2026-05-03 08:20:55] Retrieving Labels...
+[2026-05-03 08:20:57] 32750 Labels retrieved.
+[2026-05-03 08:20:57] Retrieving Children...
+[2026-05-03 08:21:00] 55989 Children retrieved.
+[2026-05-03 08:21:00] Retrieving References...
+[2026-05-03 08:21:15] 151012 References retrieved.
+[2026-05-03 08:21:15] Merging Data...
+[2026-05-03 08:21:16] Merging resulted in 315740 Lines of Data.
+[2026-05-03 08:21:16] Removing Empty Content Rows...
+[2026-05-03 08:21:16] Removed 3 Rows due to Empty Content.
+[2026-05-03 08:21:16] Converting terms to lower case...
+[2026-05-03 08:21:47] Terms were converted to lower case.
+[2026-05-03 08:21:47] Removing synonyms having a match with labels...
+[2026-05-03 08:21:47] Removed 4196 synonyms due to having a match with their label.
+[2026-05-03 08:21:47] Row count: 311541
+[2026-05-03 08:21:47] Write full transformated Data...
+[2026-05-03 08:21:47] Writing file 'transform.csv'.
+[2026-05-03 08:21:48] Writing file 'transform.csv' completed.
+[2026-05-03 08:21:48] Full transformed Data written.
+[2026-05-03 08:21:48] Creating a reduced set of HPO Concepts...
+[2026-05-03 08:21:48] Content Reduced by 266025 Rows.
+[2026-05-03 08:21:48] Row count: 45516
+[2026-05-03 08:21:48] Write reduced transformated Data...
+[2026-05-03 08:21:48] Writing file 'transform.reduced.csv'.
+[2026-05-03 08:21:48] Writing file 'transform.reduced.csv' completed.
+[2026-05-03 08:21:48] Reduced transformed Data written.
+[2026-05-03 08:21:48] ============================================================
+[2026-05-03 08:21:48] =           Transforming completed [Minutes: 2]            =
+[2026-05-03 08:21:48] ============================================================
+[2026-05-03 08:42:43] ============================================================
+[2026-05-03 08:42:43] =                   Embedding HPO Terms                    =
+[2026-05-03 08:42:43] ============================================================
+[2026-05-03 08:42:43] Reading file 'transform.csv'.
+[2026-05-03 08:42:43] Reading file 'transform.csv' completed.
+[2026-05-03 08:42:43] Retrieving IDs...
+[2026-05-03 08:42:43] IDs retrieved.
+[2026-05-03 08:42:43] Filtering Labels of HPO Concepts...
+[2026-05-03 08:42:43] Filtering Labels completed.
+[2026-05-03 08:42:43] Filtering Synonyms (exact, related)...
+[2026-05-03 08:42:43] Filtering Synonyms completed.
+[2026-05-03 08:42:43] Start to Embed Synonyms and Labels with all Embedding Models.
+[2026-05-03 08:42:43] Set up (1/10) model and tokenizer "BioBERT"...
+[2026-05-03 08:42:45] Model set up.
+[2026-05-03 08:42:45] Tokenize Labels...
+[2026-05-03 08:42:49] Labels tokenized.
+[2026-05-03 08:42:49] Embedding Labels...
+[2026-05-03 08:50:48] Labels embedded.
+[2026-05-03 08:50:48] Finalizing embeddings of Labels...
+[2026-05-03 08:50:49] Finalized Label embeddings.
+[2026-05-03 08:50:49] Tokenize Synonyms...
+[2026-05-03 08:50:59] Synonyms tokenized.
+[2026-05-03 08:50:59] Embedding Synonyms...
+[2026-05-03 09:13:00] Synonyms embedded.
+[2026-05-03 09:13:00] Finalizing embeddings of Synoyms...
+[2026-05-03 09:13:06] Finalized Synonym embeddings.
+[2026-05-03 09:14:44] BioBERT with cosine Difference: [exact - related]
+[2026-05-03 09:14:44] Mean's Differnece:               0.39680917925811
+[2026-05-03 09:14:44] Standard Deviation's Difference: -0.28486439629525795
+[2026-05-03 09:14:44] BioBERT with cosine Values:     [exact,  related]
+[2026-05-03 09:14:44] Means:                           [0.11198438210041603, -0.28482479715769393]
+[2026-05-03 09:14:44] Standard Deviation:              [0.895148430892535, 1.180012827187793]
+[2026-05-03 09:14:44] Strictly standardized mean difference: 0.5161033741217427
+[2026-05-03 09:14:44] BioBERT with euclidean Difference: [exact - related]
+[2026-05-03 09:14:44] Mean's Differnece:               0.22141613438181365
+[2026-05-03 09:14:44] Standard Deviation's Difference: -0.11843100993566746
+[2026-05-03 09:14:44] BioBERT with euclidean Values:     [exact,  related]
+[2026-05-03 09:14:44] Means:                           [0.062486329177586064, -0.1589298052042276]
+[2026-05-03 09:14:44] Standard Deviation:              [0.9601768735004473, 1.0786078834361148]
+[2026-05-03 09:14:44] Strictly standardized mean difference: 0.45059965924846374
+[2026-05-03 09:14:44] BioBERT with manhattan Difference: [exact - related]
+[2026-05-03 09:14:44] Mean's Differnece:               0.16086332194035702
+[2026-05-03 09:14:44] Standard Deviation's Difference: -0.10086627891774769
+[2026-05-03 09:14:44] BioBERT with manhattan Values:     [exact,  related]
+[2026-05-03 09:14:44] Means:                           [0.04539758819035172, -0.1154657337500053]
+[2026-05-03 09:14:44] Standard Deviation:              [0.9678823069755387, 1.0687485858932864]
+[2026-05-03 09:14:44] Strictly standardized mean difference: 0.3549178725870437
+[2026-05-03 09:14:44] BioBERT with angular Difference: [exact - related]
+[2026-05-03 09:14:44] Mean's Differnece:               0.349831321287554
+[2026-05-03 09:14:44] Standard Deviation's Difference: -0.20275450811850715
+[2026-05-03 09:14:44] BioBERT with angular Values:     [exact,  related]
+[2026-05-03 09:14:44] Means:                           [0.09872665855916689, -0.2511046627283871]
+[2026-05-03 09:14:44] Standard Deviation:              [0.9260881660596081, 1.1288426741781152]
+[2026-05-03 09:14:44] Strictly standardized mean difference: 0.5419694737300084
+[2026-05-03 09:14:44] Set up (2/10) model and tokenizer "BioClinicalBERT"...
+[2026-05-03 09:14:46] Model set up.
+[2026-05-03 09:14:46] Tokenize Labels...
+[2026-05-03 09:14:50] Labels tokenized.
+[2026-05-03 09:14:50] Embedding Labels...
+[2026-05-03 09:22:19] Labels embedded.
+[2026-05-03 09:22:19] Finalizing embeddings of Labels...
+[2026-05-03 09:22:25] Finalized Label embeddings.
+[2026-05-03 09:22:25] Tokenize Synonyms...
+[2026-05-03 09:22:34] Synonyms tokenized.
+[2026-05-03 09:22:34] Embedding Synonyms...
+[2026-05-03 09:44:32] Synonyms embedded.
+[2026-05-03 09:44:32] Finalizing embeddings of Synoyms...
+[2026-05-03 09:44:38] Finalized Synonym embeddings.
+[2026-05-03 09:46:17] BioClinicalBERT with cosine Difference: [exact - related]
+[2026-05-03 09:46:17] Mean's Differnece:               0.32593278402704123
+[2026-05-03 09:46:17] Standard Deviation's Difference: -0.23408088767140056
+[2026-05-03 09:46:17] BioClinicalBERT with cosine Values:     [exact,  related]
+[2026-05-03 09:46:17] Means:                           [0.09198220034570963, -0.2339505836813316]
+[2026-05-03 09:46:17] Standard Deviation:              [0.917501588411843, 1.1515824760832436]
+[2026-05-03 09:46:17] Strictly standardized mean difference: 0.4683343372530415
+[2026-05-03 09:46:17] BioClinicalBERT with euclidean Difference: [exact - related]
+[2026-05-03 09:46:17] Mean's Differnece:               0.15934867826540577
+[2026-05-03 09:46:17] Standard Deviation's Difference: -0.10781944600103222
+[2026-05-03 09:46:17] BioClinicalBERT with euclidean Values:     [exact,  related]
+[2026-05-03 09:46:17] Means:                           [0.04497013730234853, -0.11437854096305725]
+[2026-05-03 09:46:17] Standard Deviation:              [0.9658218692054517, 1.0736413152064839]
+[2026-05-03 09:46:17] Strictly standardized mean difference: 0.33981455954086764
+[2026-05-03 09:46:17] BioClinicalBERT with manhattan Difference: [exact - related]
+[2026-05-03 09:46:17] Mean's Differnece:               0.09475290485951854
+[2026-05-03 09:46:17] Standard Deviation's Difference: 0.2005525825640625
+[2026-05-03 09:46:17] BioClinicalBERT with manhattan Values:     [exact,  related]
+[2026-05-03 09:46:17] Means:                           [0.026740423502175738, -0.0680124813573428]
+[2026-05-03 09:46:17] Standard Deviation:              [1.0516074653225542, 0.8510548827584917]
+[2026-05-03 09:46:17] Strictly standardized mean difference: 0.15339017455890575
+[2026-05-03 09:46:17] BioClinicalBERT with angular Difference: [exact - related]
+[2026-05-03 09:46:17] Mean's Differnece:               0.2896300510475106
+[2026-05-03 09:46:17] Standard Deviation's Difference: -0.1663912709486023
+[2026-05-03 09:46:17] BioClinicalBERT with angular Values:     [exact,  related]
+[2026-05-03 09:46:17] Means:                           [0.08173712706169578, -0.20789292398581483]
+[2026-05-03 09:46:17] Standard Deviation:              [0.9416836683877944, 1.1080749393363967]
+[2026-05-03 09:46:17] Strictly standardized mean difference: 0.4959375495933829
+[2026-05-03 09:46:17] Set up (3/10) model and tokenizer "BioLinkBERT"...
+[2026-05-03 09:46:20] Model set up.
+[2026-05-03 09:46:20] Tokenize Labels...
+[2026-05-03 09:46:23] Labels tokenized.
+[2026-05-03 09:46:23] Embedding Labels...
+[2026-05-03 10:07:28] Labels embedded.
+[2026-05-03 10:07:28] Finalizing embeddings of Labels...
+[2026-05-03 10:07:35] Finalized Label embeddings.
+[2026-05-03 10:07:35] Tokenize Synonyms...
+[2026-05-03 10:07:43] Synonyms tokenized.
+[2026-05-03 10:07:43] Embedding Synonyms...
+[2026-05-03 11:07:41] Synonyms embedded.
+[2026-05-03 11:07:41] Finalizing embeddings of Synoyms...
+[2026-05-03 11:07:50] Finalized Synonym embeddings.
+[2026-05-03 11:09:29] BioLinkBERT with cosine Difference: [exact - related]
+[2026-05-03 11:09:29] Mean's Differnece:               0.2384486931196515
+[2026-05-03 11:09:29] Standard Deviation's Difference: -0.20579287237661636
+[2026-05-03 11:09:29] BioLinkBERT with cosine Values:     [exact,  related]
+[2026-05-03 11:09:29] Means:                           [0.06729312464892992, -0.17115556847072158]
+[2026-05-03 11:09:29] Standard Deviation:              [0.9318300958382623, 1.1376229682148786]
+[2026-05-03 11:09:29] Strictly standardized mean difference: 0.36538607449279537
+[2026-05-03 11:09:29] BioLinkBERT with euclidean Difference: [exact - related]
+[2026-05-03 11:09:29] Mean's Differnece:               0.048997597798696196
+[2026-05-03 11:09:29] Standard Deviation's Difference: -0.3862261941267694
+[2026-05-03 11:09:29] BioLinkBERT with euclidean Values:     [exact,  related]
+[2026-05-03 11:09:29] Means:                           [0.013827718713942764, -0.035169879084753435]
+[2026-05-03 11:09:29] Standard Deviation:              [0.8755385442259885, 1.261764738352758]
+[2026-05-03 11:09:29] Strictly standardized mean difference: 0.05392881155858898
+[2026-05-03 11:09:29] BioLinkBERT with manhattan Difference: [exact - related]
+[2026-05-03 11:09:29] Mean's Differnece:               -0.03263104338470622
+[2026-05-03 11:09:29] Standard Deviation's Difference: -0.6590656844573405
+[2026-05-03 11:09:29] BioLinkBERT with manhattan Values:     [exact,  related]
+[2026-05-03 11:09:29] Means:                           [-0.009208877772334131, 0.023422165612372085]
+[2026-05-03 11:09:29] Standard Deviation:              [0.7688928827361129, 1.4279585671934534]
+[2026-05-03 11:09:29] Strictly standardized mean difference: 0.027118537551265736
+[2026-05-03 11:09:29] BioLinkBERT with angular Difference: [exact - related]
+[2026-05-03 11:09:29] Mean's Differnece:               0.2092080604397231
+[2026-05-03 11:09:29] Standard Deviation's Difference: -0.14574331319557077
+[2026-05-03 11:09:29] BioLinkBERT with angular Values:     [exact,  related]
+[2026-05-03 11:09:29] Means:                           [0.05904106206053633, -0.15016699837918676]
+[2026-05-03 11:09:29] Standard Deviation:              [0.952269538417861, 1.0980128516134318]
+[2026-05-03 11:09:29] Strictly standardized mean difference: 0.3827165590566988
+[2026-05-03 11:09:29] Set up (4/10) model and tokenizer "ClinicalBERT"...
+[2026-05-03 11:09:34] Model set up.
+[2026-05-03 11:09:34] Tokenize Labels...
+[2026-05-03 11:09:37] Labels tokenized.
+[2026-05-03 11:09:37] Embedding Labels...
+[2026-05-03 11:13:27] Labels embedded.
+[2026-05-03 11:13:27] Finalizing embeddings of Labels...
+[2026-05-03 11:13:34] Finalized Label embeddings.
+[2026-05-03 11:13:34] Tokenize Synonyms...
+[2026-05-03 11:13:40] Synonyms tokenized.
+[2026-05-03 11:13:40] Embedding Synonyms...
+[2026-05-03 11:23:35] Synonyms embedded.
+[2026-05-03 11:23:35] Finalizing embeddings of Synoyms...
+[2026-05-03 11:23:42] Finalized Synonym embeddings.
+[2026-05-03 11:25:24] ClinicalBERT with cosine Difference: [exact - related]
+[2026-05-03 11:25:24] Mean's Differnece:               0.26385909294448845
+[2026-05-03 11:25:24] Standard Deviation's Difference: -0.1625303935857937
+[2026-05-03 11:25:24] ClinicalBERT with cosine Values:     [exact,  related]
+[2026-05-03 11:25:24] Means:                           [0.074464248887107, -0.18939484405738144]
+[2026-05-03 11:25:24] Standard Deviation:              [0.944363402676076, 1.1068937962618697]
+[2026-05-03 11:25:24] Strictly standardized mean difference: 0.4569773896000403
+[2026-05-03 11:25:24] ClinicalBERT with euclidean Difference: [exact - related]
+[2026-05-03 11:25:24] Mean's Differnece:               0.137312370093836
+[2026-05-03 11:25:24] Standard Deviation's Difference: -0.06477555976071503
+[2026-05-03 11:25:24] ClinicalBERT with euclidean Values:     [exact,  related]
+[2026-05-03 11:25:24] Means:                           [0.03875122281306784, -0.09856114728076816]
+[2026-05-03 11:25:24] Standard Deviation:              [0.9793880729887238, 1.0441636327494388]
+[2026-05-03 11:25:24] Strictly standardized mean difference: 0.3792686301711558
+[2026-05-03 11:25:24] ClinicalBERT with manhattan Difference: [exact - related]
+[2026-05-03 11:25:24] Mean's Differnece:               0.08563241280978638
+[2026-05-03 11:25:24] Standard Deviation's Difference: 0.2739567452484457
+[2026-05-03 11:25:24] ClinicalBERT with manhattan Values:     [exact,  related]
+[2026-05-03 11:25:24] Means:                           [0.024166509590833146, -0.06146590321895324]
+[2026-05-03 11:25:24] Standard Deviation:              [1.0689388915944915, 0.7949821463460458]
+[2026-05-03 11:25:24] Strictly standardized mean difference: 0.11983493012150924
+[2026-05-03 11:25:24] ClinicalBERT with angular Difference: [exact - related]
+[2026-05-03 11:25:24] Mean's Differnece:               0.23025521336989357
+[2026-05-03 11:25:24] Standard Deviation's Difference: -0.1264614189911607
+[2026-05-03 11:25:24] ClinicalBERT with angular Values:     [exact,  related]
+[2026-05-03 11:25:24] Means:                           [0.06498082489632762, -0.16527438847356596]
+[2026-05-03 11:25:24] Standard Deviation:              [0.9573030053898358, 1.0837644243809965]
+[2026-05-03 11:25:24] Strictly standardized mean difference: 0.4532123862449727
+[2026-05-03 11:25:24] Set up (5/10) model and tokenizer "PubMedBERT"...
+[2026-05-03 11:25:28] Model set up.
+[2026-05-03 11:25:28] Tokenize Labels...
+[2026-05-03 11:25:31] Labels tokenized.
+[2026-05-03 11:25:31] Embedding Labels...
+[2026-05-03 11:32:53] Labels embedded.
+[2026-05-03 11:32:53] Finalizing embeddings of Labels...
+[2026-05-03 11:33:00] Finalized Label embeddings.
+[2026-05-03 11:33:00] Tokenize Synonyms...
+[2026-05-03 11:33:08] Synonyms tokenized.
+[2026-05-03 11:33:08] Embedding Synonyms...
+[2026-05-03 11:53:49] Synonyms embedded.
+[2026-05-03 11:53:49] Finalizing embeddings of Synoyms...
+[2026-05-03 11:53:56] Finalized Synonym embeddings.
+[2026-05-03 11:55:39] PubMedBERT with cosine Difference: [exact - related]
+[2026-05-03 11:55:39] Mean's Differnece:               0.5196368528089172
+[2026-05-03 11:55:39] Standard Deviation's Difference: -0.3012663054756568
+[2026-05-03 11:55:39] PubMedBERT with cosine Values:     [exact,  related]
+[2026-05-03 11:55:39] Means:                           [0.1466478471773438, -0.37298900563157344]
+[2026-05-03 11:55:39] Standard Deviation:              [0.8777508229451907, 1.1790171284208475]
+[2026-05-03 11:55:39] Strictly standardized mean difference: 0.6601338680879992
+[2026-05-03 11:55:39] PubMedBERT with euclidean Difference: [exact - related]
+[2026-05-03 11:55:39] Mean's Differnece:               0.3422285110638631
+[2026-05-03 11:55:39] Standard Deviation's Difference: -0.05990235747305095
+[2026-05-03 11:55:39] PubMedBERT with euclidean Values:     [exact,  related]
+[2026-05-03 11:55:39] Means:                           [0.09658105293905798, -0.24564745812480512]
+[2026-05-03 11:55:39] Standard Deviation:              [0.9707989987465014, 1.0307013562195524]
+[2026-05-03 11:55:39] Strictly standardized mean difference: 0.9883628085368027
+[2026-05-03 11:55:39] PubMedBERT with manhattan Difference: [exact - related]
+[2026-05-03 11:55:39] Mean's Differnece:               0.2262716138573898
+[2026-05-03 11:55:39] Standard Deviation's Difference: 0.05032660848645154
+[2026-05-03 11:55:39] PubMedBERT with manhattan Values:     [exact,  related]
+[2026-05-03 11:55:39] Means:                           [0.0638566046079332, -0.16241500924945662]
+[2026-05-03 11:55:39] Standard Deviation:              [1.0087510196101919, 0.9584244111237403]
+[2026-05-03 11:55:39] Strictly standardized mean difference: 0.7191337917162756
+[2026-05-03 11:55:39] PubMedBERT with angular Difference: [exact - related]
+[2026-05-03 11:55:39] Mean's Differnece:               0.47709905933236596
+[2026-05-03 11:55:39] Standard Deviation's Difference: -0.19003666434611
+[2026-05-03 11:55:39] PubMedBERT with angular Values:     [exact,  related]
+[2026-05-03 11:55:39] Means:                           [0.13464316390037848, -0.3424558954319875]
+[2026-05-03 11:55:39] Standard Deviation:              [0.919296473069279, 1.109333137415389]
+[2026-05-03 11:55:39] Strictly standardized mean difference: 0.7684019897009589
+[2026-05-03 11:55:39] Set up (6/10) model and tokenizer "SapBERT"...
+[2026-05-03 11:55:40] Model set up.
+[2026-05-03 11:55:40] Tokenize Labels...
+[2026-05-03 11:55:44] Labels tokenized.
+[2026-05-03 11:55:44] Embedding Labels...
+[2026-05-03 12:02:57] Labels embedded.
+[2026-05-03 12:02:57] Finalizing embeddings of Labels...
+[2026-05-03 12:03:04] Finalized Label embeddings.
+[2026-05-03 12:03:04] Tokenize Synonyms...
+[2026-05-03 12:03:13] Synonyms tokenized.
+[2026-05-03 12:03:13] Embedding Synonyms...
+[2026-05-03 12:24:30] Synonyms embedded.
+[2026-05-03 12:24:30] Finalizing embeddings of Synoyms...
+[2026-05-03 12:24:36] Finalized Synonym embeddings.
+[2026-05-03 12:26:22] SapBERT with cosine Difference: [exact - related]
+[2026-05-03 12:26:22] Mean's Differnece:               0.5386958707855294
+[2026-05-03 12:26:22] Standard Deviation's Difference: -0.33745719499090265
+[2026-05-03 12:26:22] SapBERT with cosine Values:     [exact,  related]
+[2026-05-03 12:26:22] Means:                           [0.15202653412088327, -0.38666933666464615]
+[2026-05-03 12:26:22] Standard Deviation:              [0.8629728455477521, 1.2004300405386548]
+[2026-05-03 12:26:22] Strictly standardized mean difference: 0.645568429347585
+[2026-05-03 12:26:22] SapBERT with euclidean Difference: [exact - related]
+[2026-05-03 12:26:22] Mean's Differnece:               0.3455585494179174
+[2026-05-03 12:26:22] Standard Deviation's Difference: 0.11151602689277129
+[2026-05-03 12:26:22] SapBERT with euclidean Values:     [exact,  related]
+[2026-05-03 12:26:22] Means:                           [0.09752083031050571, -0.24803771910741168]
+[2026-05-03 12:26:22] Standard Deviation:              [1.0180317211847434, 0.9065156942919721]
+[2026-05-03 12:26:22] Strictly standardized mean difference: 0.7459138834563677
+[2026-05-03 12:26:22] SapBERT with manhattan Difference: [exact - related]
+[2026-05-03 12:26:22] Mean's Differnece:               0.2324024526959207
+[2026-05-03 12:26:22] Standard Deviation's Difference: 0.44480031506894413
+[2026-05-03 12:26:22] SapBERT with manhattan Values:     [exact,  related]
+[2026-05-03 12:26:22] Means:                           [0.06558680197981263, -0.16681565071610807]
+[2026-05-03 12:26:22] Standard Deviation:              [1.0996885465668147, 0.6548882314978706]
+[2026-05-03 12:26:22] Strictly standardized mean difference: 0.26307039413635946
+[2026-05-03 12:26:22] SapBERT with angular Difference: [exact - related]
+[2026-05-03 12:26:22] Mean's Differnece:               0.5001200800273051
+[2026-05-03 12:26:22] Standard Deviation's Difference: -0.18232939477988908
+[2026-05-03 12:26:22] SapBERT with angular Values:     [exact,  related]
+[2026-05-03 12:26:22] Means:                           [0.14113997625402253, -0.35898010377328265]
+[2026-05-03 12:26:22] Standard Deviation:              [0.9194261271172673, 1.1017555218971564]
+[2026-05-03 12:26:22] Strictly standardized mean difference: 0.8238407570482442
+[2026-05-03 12:26:22] Set up (7/10) model and tokenizer "SapUMLSBERT"...
+[2026-05-03 12:26:30] Model set up.
+[2026-05-03 12:26:30] Tokenize Labels...
+[2026-05-03 12:26:33] Labels tokenized.
+[2026-05-03 12:26:33] Embedding Labels...
+[2026-05-03 12:33:54] Labels embedded.
+[2026-05-03 12:33:54] Finalizing embeddings of Labels...
+[2026-05-03 12:34:00] Finalized Label embeddings.
+[2026-05-03 12:34:00] Tokenize Synonyms...
+[2026-05-03 12:34:06] Synonyms tokenized.
+[2026-05-03 12:34:06] Embedding Synonyms...
+[2026-05-03 12:55:42] Synonyms embedded.
+[2026-05-03 12:55:42] Finalizing embeddings of Synoyms...
+[2026-05-03 12:55:49] Finalized Synonym embeddings.
+[2026-05-03 12:57:37] SapUMLSBERT with cosine Difference: [exact - related]
+[2026-05-03 12:57:37] Mean's Differnece:               0.3948428190590175
+[2026-05-03 12:57:37] Standard Deviation's Difference: -0.2090705477518887
+[2026-05-03 12:57:37] SapUMLSBERT with cosine Values:     [exact,  related]
+[2026-05-03 12:57:37] Means:                           [0.11142945130901116, -0.28341336775000636]
+[2026-05-03 12:57:37] Standard Deviation:              [0.9205781003429877, 1.1296486480948764]
+[2026-05-03 12:57:37] Strictly standardized mean difference: 0.6030826962627334
+[2026-05-03 12:57:37] SapUMLSBERT with euclidean Difference: [exact - related]
+[2026-05-03 12:57:37] Mean's Differnece:               0.2864172874198239
+[2026-05-03 12:57:37] Standard Deviation's Difference: 0.2370817064715619
+[2026-05-03 12:57:37] SapUMLSBERT with euclidean Values:     [exact,  related]
+[2026-05-03 12:57:37] Means:                           [0.08083044604601464, -0.20558684137380928]
+[2026-05-03 12:57:37] Standard Deviation:              [1.0528105399972252, 0.8157288335256633]
+[2026-05-03 12:57:37] Strictly standardized mean difference: 0.4303274779587735
+[2026-05-03 12:57:37] SapUMLSBERT with manhattan Difference: [exact - related]
+[2026-05-03 12:57:37] Mean's Differnece:               0.2648302431031197
+[2026-05-03 12:57:37] Standard Deviation's Difference: 0.3493885501697811
+[2026-05-03 12:57:37] SapUMLSBERT with manhattan Values:     [exact,  related]
+[2026-05-03 12:57:37] Means:                           [0.07473831928700159, -0.1900919238161181]
+[2026-05-03 12:57:37] Standard Deviation:              [1.0789448419628287, 0.7295562917930476]
+[2026-05-03 12:57:37] Strictly standardized mean difference: 0.3331607662122914
+[2026-05-03 12:57:37] SapUMLSBERT with angular Difference: [exact - related]
+[2026-05-03 12:57:37] Mean's Differnece:               0.37361778885883123
+[2026-05-03 12:57:37] Standard Deviation's Difference: -0.09889642290623168
+[2026-05-03 12:57:37] SapUMLSBERT with angular Values:     [exact,  related]
+[2026-05-03 12:57:37] Means:                           [0.10543948934171343, -0.2681782995171178]
+[2026-05-03 12:57:37] Standard Deviation:              [0.9568509983445737, 1.0557474212508053]
+[2026-05-03 12:57:37] Strictly standardized mean difference: 0.8374496212929434
+[2026-05-03 12:57:37] Set up (8/10) model and tokenizer "SciBERT"...
+[2026-05-03 12:57:43] Model set up.
+[2026-05-03 12:57:43] Tokenize Labels...
+[2026-05-03 12:57:47] Labels tokenized.
+[2026-05-03 12:57:47] Embedding Labels...
+[2026-05-03 13:05:36] Labels embedded.
+[2026-05-03 13:05:36] Finalizing embeddings of Labels...
+[2026-05-03 13:05:42] Finalized Label embeddings.
+[2026-05-03 13:05:42] Tokenize Synonyms...
+[2026-05-03 13:05:51] Synonyms tokenized.
+[2026-05-03 13:05:51] Embedding Synonyms...
+[2026-05-03 13:27:40] Synonyms embedded.
+[2026-05-03 13:27:40] Finalizing embeddings of Synoyms...
+[2026-05-03 13:27:47] Finalized Synonym embeddings.
+[2026-05-03 13:29:38] SciBERT with cosine Difference: [exact - related]
+[2026-05-03 13:29:38] Mean's Differnece:               0.3159473459919776
+[2026-05-03 13:29:38] Standard Deviation's Difference: -0.2752995618547651
+[2026-05-03 13:29:38] SciBERT with cosine Values:     [exact,  related]
+[2026-05-03 13:29:38] Means:                           [0.08916418814536459, -0.22678315784661301]
+[2026-05-03 13:29:38] Standard Deviation:              [0.9043661889732304, 1.1796657508279955]
+[2026-05-03 13:29:38] Strictly standardized mean difference: 0.41711880165783133
+[2026-05-03 13:29:38] SciBERT with euclidean Difference: [exact - related]
+[2026-05-03 13:29:38] Mean's Differnece:               0.14488898954449428
+[2026-05-03 13:29:38] Standard Deviation's Difference: -0.05612113116785811
+[2026-05-03 13:29:38] SciBERT with euclidean Values:     [exact,  related]
+[2026-05-03 13:29:38] Means:                           [0.04088943707811717, -0.1039995524663771]
+[2026-05-03 13:29:38] Standard Deviation:              [0.9817195588693209, 1.037840690037179]
+[2026-05-03 13:29:38] Strictly standardized mean difference: 0.4303717625088081
+[2026-05-03 13:29:38] SciBERT with manhattan Difference: [exact - related]
+[2026-05-03 13:29:38] Mean's Differnece:               0.06855713259033594
+[2026-05-03 13:29:38] Standard Deviation's Difference: 0.5959342971381164
+[2026-05-03 13:29:38] SciBERT with manhattan Values:     [exact,  related]
+[2026-05-03 13:29:38] Means:                           [0.019347657597182676, -0.04920947499315327]
+[2026-05-03 13:29:38] Standard Deviation:              [1.1310478066718872, 0.5351135095337708]
+[2026-05-03 13:29:38] Strictly standardized mean difference: 0.06880102858183205
+[2026-05-03 13:29:38] SciBERT with angular Difference: [exact - related]
+[2026-05-03 13:29:38] Mean's Differnece:               0.26540279702567227
+[2026-05-03 13:29:38] Standard Deviation's Difference: -0.1762630493610876
+[2026-05-03 13:29:38] SciBERT with angular Values:     [exact,  related]
+[2026-05-03 13:29:38] Means:                           [0.07489990097559876, -0.19050289605007348]
+[2026-05-03 13:29:38] Standard Deviation:              [0.9399283469423297, 1.1161913963034173]
+[2026-05-03 13:29:38] Strictly standardized mean difference: 0.44085995731769917
+[2026-05-03 13:29:38] Set up (9/10) model and tokenizer "UMLSBERT"...
+[2026-05-03 13:29:40] Model set up.
+[2026-05-03 13:29:40] Tokenize Labels...
+[2026-05-03 13:29:44] Labels tokenized.
+[2026-05-03 13:29:44] Embedding Labels...
+[2026-05-03 13:36:59] Labels embedded.
+[2026-05-03 13:36:59] Finalizing embeddings of Labels...
+[2026-05-03 13:37:06] Finalized Label embeddings.
+[2026-05-03 13:37:06] Tokenize Synonyms...
+[2026-05-03 13:37:14] Synonyms tokenized.
+[2026-05-03 13:37:14] Embedding Synonyms...
+[2026-05-03 13:58:00] Synonyms embedded.
+[2026-05-03 13:58:00] Finalizing embeddings of Synoyms...
+[2026-05-03 13:58:07] Finalized Synonym embeddings.
+[2026-05-03 13:59:57] UMLSBERT with cosine Difference: [exact - related]
+[2026-05-03 13:59:57] Mean's Differnece:               0.5547995678834838
+[2026-05-03 13:59:57] Standard Deviation's Difference: -0.31749184610176207
+[2026-05-03 13:59:57] UMLSBERT with cosine Values:     [exact,  related]
+[2026-05-03 13:59:57] Means:                           [0.15657119352724697, -0.3982283743562369]
+[2026-05-03 13:59:57] Standard Deviation:              [0.8681278854669087, 1.1856197315686707]
+[2026-05-03 13:59:57] Strictly standardized mean difference: 0.6870625704045082
+[2026-05-03 13:59:57] UMLSBERT with euclidean Difference: [exact - related]
+[2026-05-03 13:59:57] Mean's Differnece:               0.417453375961234
+[2026-05-03 13:59:57] Standard Deviation's Difference: 0.13954533639768896
+[2026-05-03 13:59:57] UMLSBERT with euclidean Values:     [exact,  related]
+[2026-05-03 13:59:57] Means:                           [0.1178104257823711, -0.2996429501788629]
+[2026-05-03 13:59:57] Standard Deviation:              [1.0195668316697062, 0.8800214952720172]
+[2026-05-03 13:59:57] Strictly standardized mean difference: 0.8108127475063391
+[2026-05-03 13:59:57] UMLSBERT with manhattan Difference: [exact - related]
+[2026-05-03 13:59:57] Mean's Differnece:               0.22400642845266405
+[2026-05-03 13:59:57] Standard Deviation's Difference: 0.6799509771464187
+[2026-05-03 13:59:57] UMLSBERT with manhattan Values:     [exact,  related]
+[2026-05-03 13:59:57] Means:                           [0.06321734170487892, -0.16078908674778514]
+[2026-05-03 13:59:57] Standard Deviation:              [1.138561922467122, 0.45861094532070323]
+[2026-05-03 13:59:57] Strictly standardized mean difference: 0.21495409279885164
+[2026-05-03 13:59:57] UMLSBERT with angular Difference: [exact - related]
+[2026-05-03 13:59:57] Mean's Differnece:               0.5246433568522342
+[2026-05-03 13:59:57] Standard Deviation's Difference: -0.17560214462340018
+[2026-05-03 13:59:57] UMLSBERT with angular Values:     [exact,  related]
+[2026-05-03 13:59:57] Means:                           [0.14806074357964488, -0.37658261327258935]
+[2026-05-03 13:59:57] Standard Deviation:              [0.9189511696978121, 1.0945533143212123]
+[2026-05-03 13:59:58] Strictly standardized mean difference: 0.8823135923478561
+[2026-05-03 13:59:58] Set up (10/10) model and tokenizer "medCPT"...
+[2026-05-03 13:59:58] Model set up.
+[2026-05-03 13:59:58] Tokenize Labels...
+[2026-05-03 14:00:02] Labels tokenized.
+[2026-05-03 14:00:02] Embedding Labels...
+[2026-05-03 14:07:16] Labels embedded.
+[2026-05-03 14:07:16] Finalizing embeddings of Labels...
+[2026-05-03 14:07:23] Finalized Label embeddings.
+[2026-05-03 14:07:23] Tokenize Synonyms...
+[2026-05-03 14:07:31] Synonyms tokenized.
+[2026-05-03 14:07:31] Embedding Synonyms...
+[2026-05-03 14:28:19] Synonyms embedded.
+[2026-05-03 14:28:19] Finalizing embeddings of Synoyms...
+[2026-05-03 14:28:25] Finalized Synonym embeddings.
+[2026-05-03 14:30:20] medCPT with cosine Difference: [exact - related]
+[2026-05-03 14:30:20] Mean's Differnece:               0.4201333835821013
+[2026-05-03 14:30:20] Standard Deviation's Difference: -0.2813973742782262
+[2026-05-03 14:30:20] medCPT with cosine Values:     [exact,  related]
+[2026-05-03 14:30:20] Means:                           [0.11856675656586856, -0.3015666270162327]
+[2026-05-03 14:30:20] Standard Deviation:              [0.8943507024632557, 1.1757480767414819]
+[2026-05-03 14:30:20] Strictly standardized mean difference: 0.5504674413694165
+[2026-05-03 14:30:20] medCPT with euclidean Difference: [exact - related]
+[2026-05-03 14:30:20] Mean's Differnece:               0.19716548164888442
+[2026-05-03 14:30:20] Standard Deviation's Difference: -0.038782243990306275
+[2026-05-03 14:30:20] medCPT with euclidean Values:     [exact,  related]
+[2026-05-03 14:30:20] Means:                           [0.055642499690309155, -0.14152298195857527]
+[2026-05-03 14:30:20] Standard Deviation:              [0.9849628458917072, 1.0237450898820135]
+[2026-05-03 14:30:20] Strictly standardized mean difference: 0.7064086673262588
+[2026-05-03 14:30:20] medCPT with manhattan Difference: [exact - related]
+[2026-05-03 14:30:20] Mean's Differnece:               0.11910504954832232
+[2026-05-03 14:30:20] Standard Deviation's Difference: 0.023383790931782555
+[2026-05-03 14:30:20] medCPT with manhattan Values:     [exact,  related]
+[2026-05-03 14:30:20] Means:                           [0.03361289525520868, -0.08549215429311365]
+[2026-05-03 14:30:20] Standard Deviation:              [1.0051113585844986, 0.9817275676527161]
+[2026-05-03 14:30:20] Strictly standardized mean difference: 0.5525751933553745
+[2026-05-03 14:30:20] medCPT with angular Difference: [exact - related]
+[2026-05-03 14:30:20] Mean's Differnece:               0.37410184530853424
+[2026-05-03 14:30:20] Standard Deviation's Difference: -0.16755865399175962
+[2026-05-03 14:30:20] medCPT with angular Values:     [exact,  related]
+[2026-05-03 14:30:20] Means:                           [0.10557609596589178, -0.26852574934264245]
+[2026-05-03 14:30:20] Standard Deviation:              [0.9355532244389574, 1.103111878430717]
+[2026-05-03 14:30:20] Strictly standardized mean difference: 0.64007884610344
+[2026-05-03 14:30:20] Writing file 'transform.csv'.
+[2026-05-03 14:30:26] Writing file 'transform.csv' completed.
+[2026-05-03 14:30:26] ============================================================
+[2026-05-03 14:30:26] =     Embedding of HPO Terms completed [Minutes: 347]      =
+[2026-05-03 14:30:26] ============================================================

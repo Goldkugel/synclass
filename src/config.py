@@ -17,7 +17,29 @@ if "few-shot" in sys.argv:
 if "chain-of-thoughts" in sys.argv:
     chainOfThoughts = True
 
+forceDrawAdditionalPlots = False
+
+addDefinition   = False
+if "definition" in sys.argv:
+    addDefinition = True
+
+addComment      = False
+if "comment" in sys.argv:
+    addComment = True
+
+addParents      = False
+if "parents" in sys.argv:
+    addParents = True
+
+addChildren     = False
+if "children" in sys.argv:
+    addChildren = True
+
 testStr                 = "Test" if reduceToTestIDs else "NoTest"
+configStr               = "Definition" if addDefinition else "NoDefinition"
+configStr              += "_Comment" if addComment else "_NoComment"
+configStr              += "_Parents" if addParents else "_NoParents"
+configStr              += "_Children" if addChildren else "_NoChildren"
 fewShotStr              = "FewShot" if fewShot else "NoFewShot"
 chainOfThoughtsStr      = "ChainOfThoughts" if chainOfThoughts else "NoChainOfThoughts"
 
@@ -83,44 +105,44 @@ similarityColumnPrefix      = f"{similarityColumnPrePrefix}" + "{}_{}"
 # the synonym is classified as related.
 # F1 Score > 0.9 for Related
 embeddingThresholdsRelated  = {
-    similarityColumnPrefix.format(bioClinicalBERT, angularSimilarity)   : -2.157, # 
-    similarityColumnPrefix.format(bioClinicalBERT, cosineSimilarity)    : -2.536, # 
-    similarityColumnPrefix.format(bioClinicalBERT, euclideanSimilarity) : -1.54,  #
-    similarityColumnPrefix.format(bioClinicalBERT, manhattanSimilarity) : -1.172, #
-    similarityColumnPrefix.format(clinicalBERT,    angularSimilarity)   : -2.043, #
-    similarityColumnPrefix.format(clinicalBERT,    cosineSimilarity)    : -2.421, #
-    similarityColumnPrefix.format(clinicalBERT,    euclideanSimilarity) : -1.415, # 
-    similarityColumnPrefix.format(clinicalBERT,    manhattanSimilarity) : -1.148, #
-    similarityColumnPrefix.format(bioBERT,         cosineSimilarity)    : -3.396, #
-    similarityColumnPrefix.format(bioBERT,         angularSimilarity)   : -2.691, #
-    similarityColumnPrefix.format(bioBERT,         manhattanSimilarity) : -1.071, # 
-    similarityColumnPrefix.format(bioBERT,         euclideanSimilarity) : -1.414, # 
-    similarityColumnPrefix.format(sciBERT,         angularSimilarity)   : -2.526, #
-    similarityColumnPrefix.format(sciBERT,         cosineSimilarity)    : -3.138, #
-    similarityColumnPrefix.format(sciBERT,         euclideanSimilarity) : -1.127, # 
-    similarityColumnPrefix.format(umlsBERT,        euclideanSimilarity) : -1.198, # 
-    similarityColumnPrefix.format(umlsBERT,        manhattanSimilarity) : -1.089, # 
-    similarityColumnPrefix.format(umlsBERT,        angularSimilarity)   : -2.297, #
-    similarityColumnPrefix.format(umlsBERT,        cosineSimilarity)    : -2.793, #
-    similarityColumnPrefix.format(bioLinkBERT,     cosineSimilarity)    : -2.55,  #
-    similarityColumnPrefix.format(bioLinkBERT,     manhattanSimilarity) : -0.131, # 
-    similarityColumnPrefix.format(bioLinkBERT,     euclideanSimilarity) : -1.161, #
-    similarityColumnPrefix.format(medCPT,          angularSimilarity)   : -2.151, #
-    similarityColumnPrefix.format(medCPT,          cosineSimilarity)    : -2.703, #
-    similarityColumnPrefix.format(medCPT,          euclideanSimilarity) : -1.128, #
-    similarityColumnPrefix.format(medCPT,          manhattanSimilarity) : -0.768, # 
-    similarityColumnPrefix.format(pubmedBERT,      angularSimilarity)   : -2.745, #
-    similarityColumnPrefix.format(pubmedBERT,      cosineSimilarity)    : -3.635, #
-    similarityColumnPrefix.format(pubmedBERT,      euclideanSimilarity) : -1.452, #
-    similarityColumnPrefix.format(pubmedBERT,      manhattanSimilarity) : -0.903, # 
-    similarityColumnPrefix.format(sapBERT,         angularSimilarity)   : -2.162, #
-    similarityColumnPrefix.format(sapBERT,         cosineSimilarity)    : -2.646, #
+    #similarityColumnPrefix.format(bioClinicalBERT, angularSimilarity)   : -2.157, # 
+    #similarityColumnPrefix.format(bioClinicalBERT, cosineSimilarity)    : -2.536, # 
+    #similarityColumnPrefix.format(bioClinicalBERT, euclideanSimilarity) : -1.54,  #
+    #similarityColumnPrefix.format(bioClinicalBERT, manhattanSimilarity) : -1.172, #
+    #similarityColumnPrefix.format(clinicalBERT,    angularSimilarity)   : -2.043, #
+    #similarityColumnPrefix.format(clinicalBERT,    cosineSimilarity)    : -2.421, #
+    #similarityColumnPrefix.format(clinicalBERT,    euclideanSimilarity) : -1.415, # 
+    #similarityColumnPrefix.format(clinicalBERT,    manhattanSimilarity) : -1.148, #
+    #similarityColumnPrefix.format(bioBERT,         cosineSimilarity)    : -3.396, #
+    #similarityColumnPrefix.format(bioBERT,         angularSimilarity)   : -2.691, #
+    #similarityColumnPrefix.format(bioBERT,         manhattanSimilarity) : -1.071, # 
+    #similarityColumnPrefix.format(bioBERT,         euclideanSimilarity) : -1.414, # 
+    #similarityColumnPrefix.format(sciBERT,         angularSimilarity)   : -2.526, #
+    #similarityColumnPrefix.format(sciBERT,         cosineSimilarity)    : -3.138, #
+    #similarityColumnPrefix.format(sciBERT,         euclideanSimilarity) : -1.127, # 
+    #similarityColumnPrefix.format(umlsBERT,        euclideanSimilarity) : -1.198, # 
+    #similarityColumnPrefix.format(umlsBERT,        manhattanSimilarity) : -1.089, # 
+    #similarityColumnPrefix.format(umlsBERT,        angularSimilarity)   : -2.297, #
+    #similarityColumnPrefix.format(umlsBERT,        cosineSimilarity)    : -2.793, #
+    #similarityColumnPrefix.format(bioLinkBERT,     cosineSimilarity)    : -2.55,  #
+    #similarityColumnPrefix.format(bioLinkBERT,     manhattanSimilarity) : -0.131, # 
+    #similarityColumnPrefix.format(bioLinkBERT,     euclideanSimilarity) : -1.161, #
+    #similarityColumnPrefix.format(medCPT,          angularSimilarity)   : -2.151, #
+    #similarityColumnPrefix.format(medCPT,          cosineSimilarity)    : -2.703, #
+    #similarityColumnPrefix.format(medCPT,          euclideanSimilarity) : -1.128, #
+    #similarityColumnPrefix.format(medCPT,          manhattanSimilarity) : -0.768, # 
+    #similarityColumnPrefix.format(pubmedBERT,      angularSimilarity)   : -2.745, #
+    #similarityColumnPrefix.format(pubmedBERT,      cosineSimilarity)    : -3.635, #
+    #similarityColumnPrefix.format(pubmedBERT,      euclideanSimilarity) : -1.452, #
+    #similarityColumnPrefix.format(pubmedBERT,      manhattanSimilarity) : -0.903, # 
+    ##similarityColumnPrefix.format(sapBERT,         angularSimilarity)   : -2.162, #
+    ##similarityColumnPrefix.format(sapBERT,         cosineSimilarity)    : -2.647, #
     similarityColumnPrefix.format(sapBERT,         euclideanSimilarity) : -1.012, # 
-    similarityColumnPrefix.format(sapBERT,         manhattanSimilarity) : -0.852, #  
+    ##similarityColumnPrefix.format(sapBERT,         manhattanSimilarity) : -0.851, #  
     similarityColumnPrefix.format(sapUMLSBERT,     cosineSimilarity)    : -2.744, #
-    similarityColumnPrefix.format(sapUMLSBERT,     angularSimilarity)   : -2.26,  #
-    similarityColumnPrefix.format(sapUMLSBERT,     euclideanSimilarity) : -1.131, # 
-    similarityColumnPrefix.format(sapUMLSBERT,     manhattanSimilarity) : -0.947  #  
+    #similarityColumnPrefix.format(sapUMLSBERT,     angularSimilarity)   : -2.26,  #
+    #similarityColumnPrefix.format(sapUMLSBERT,     euclideanSimilarity) : -1.131, # 
+    #similarityColumnPrefix.format(sapUMLSBERT,     manhattanSimilarity) : -0.947  #  
 }
 
 # All listed similarity metrics are checked to be above the threshold such that 
@@ -128,18 +150,18 @@ embeddingThresholdsRelated  = {
 # F1 SCore > 0.85
 embeddingThresholdsExact  = {
     similarityColumnPrefix.format(sapBERT,         angularSimilarity)   : 1.656, #
-    similarityColumnPrefix.format(sapBERT,         cosineSimilarity)    : 1.244, # 
-    similarityColumnPrefix.format(sapBERT,         euclideanSimilarity) : 2.426, #
-    similarityColumnPrefix.format(sapBERT,         manhattanSimilarity) : 2.396, #
-    similarityColumnPrefix.format(sapUMLSBERT,     angularSimilarity)   : 1.748, #
-    similarityColumnPrefix.format(sapUMLSBERT,     cosineSimilarity)    : 1.274, #
-    similarityColumnPrefix.format(sapUMLSBERT,     euclideanSimilarity) : 2.972, #
+    ##similarityColumnPrefix.format(sapBERT,         cosineSimilarity)    : 1.244, # 
+    ##similarityColumnPrefix.format(sapBERT,         euclideanSimilarity) : 2.426, #
+    ##similarityColumnPrefix.format(sapBERT,         manhattanSimilarity) : 2.396, #
+    ##similarityColumnPrefix.format(sapUMLSBERT,     angularSimilarity)   : 1.748, #
+    ##similarityColumnPrefix.format(sapUMLSBERT,     cosineSimilarity)    : 1.274, #
+    ##similarityColumnPrefix.format(sapUMLSBERT,     euclideanSimilarity) : 2.972, #
     similarityColumnPrefix.format(sapUMLSBERT,     manhattanSimilarity) : 2.957  #
 }
 
 similarityEvaluationLowerBound = -4
 similarityEvaluationUperBound = 4
-similarityEvaluationParts = (similarityEvaluationUperBound - similarityEvaluationLowerBound) * 1000
+similarityEvaluationParts = (similarityEvaluationUperBound - similarityEvaluationLowerBound) * 1000 + 1
 
 gpu_id = "5,6"
 # gpu_id = "0,1,2,3"
@@ -316,10 +338,10 @@ outputFolderNameEvaluation          = "evaluate"
 
 logFileName                         = f"synclass_{testStr}"
 if modelName != "":
-    logFileName                     += f"_{chainOfThoughtsStr}_{fewShotStr}_{modelName}"
+    logFileName                     += f"_{configStr}_{chainOfThoughtsStr}_{fewShotStr}_{modelName}"
 logFileName                         += f".{logFileFormat}"
 
-logFilePromptsName                  = f"prompts_{chainOfThoughtsStr}_{fewShotStr}_{modelName}.{logFileFormat}"
+logFilePromptsName                  = f"prompts_{testStr}_{configStr}_{chainOfThoughtsStr}_{fewShotStr}_{modelName}.{logFileFormat}"
 
 logFile                     = os.path.join(
     dataDir,
@@ -372,7 +394,7 @@ inputFileTask = outputFileTransformed if reduceToTestIDs else outputFileTransfor
 # =============================================================================
 
 outputFolderNameClass    = "class"
-filesPrefixClass         = f"{outputFolderNameClass}_{testStr}"
+filesPrefixClass         = f"{outputFolderNameClass}_{testStr}_{configStr}"
 filesPrefixApproachClass = f"{filesPrefixClass}_{chainOfThoughtsStr}_{fewShotStr}"
 
 
@@ -521,9 +543,12 @@ outputFileCombinedEvaluationRelaxed           = os.path.join(
 
 outputFolderNameClassEmbedding = outputFolderNameEvaluation
 
-outputFileNameClassEmbeddingEvaluation    = f"{filesPrefixClass}_embedding_evaluation_" + "{}" + f".{plotFileFormat}"
+embeddingPrefix = f"{outputFolderNameClass}_{testStr}"
 
-outputFileNameClassEmbeddingSSMD          = f"{filesPrefixClass}_embedding_ssmd.{plotFileFormat}"
+outputFileNameClassEmbeddingEvaluation    = f"{embeddingPrefix}_embedding_evaluation_" + "{}" + f".{plotFileFormat}"
+outputFileNameClassSimilarityEvaluation   = f"{embeddingPrefix}_similarity_evaluation_" + "{}" + f".{plotFileFormat}"
+
+outputFileNameClassEmbeddingSSMD          = f"{embeddingPrefix}_embedding_ssmd.{plotFileFormat}"
 outputFileClassEmbeddingSSMD              = os.path.join(
     dataDir,        
     outputFolderName,
@@ -531,7 +556,7 @@ outputFileClassEmbeddingSSMD              = os.path.join(
     outputFileNameClassEmbeddingSSMD
 )
 
-outputFileNameClassEmbeddingOutcomeCounts = f"{filesPrefixClass}_embedding_outcome_counts.{plotFileFormat}"
+outputFileNameClassEmbeddingOutcomeCounts = f"{embeddingPrefix}_embedding_outcome_counts.{plotFileFormat}"
 outputFileClassEmbeddingOutcomeCounts     = os.path.join(
     dataDir,        
     outputFolderName,
@@ -539,7 +564,7 @@ outputFileClassEmbeddingOutcomeCounts     = os.path.join(
     outputFileNameClassEmbeddingOutcomeCounts
 )
 
-outputFileNameClassEmbeddingDifference    = f"{filesPrefixClass}_embedding_diff_votes.{plotFileFormat}"
+outputFileNameClassEmbeddingDifference    = f"{embeddingPrefix}_embedding_diff_votes.{plotFileFormat}"
 outputFileClassEmbeddingDifference        = os.path.join(
     dataDir,        
     outputFolderName,
@@ -547,7 +572,7 @@ outputFileClassEmbeddingDifference        = os.path.join(
     outputFileNameClassEmbeddingDifference
 )
 
-outputFileNameClassEmbeddingExactRelaxed    = f"{filesPrefixClass}_embedding_exact_votes_relaxed.{plotFileFormat}"
+outputFileNameClassEmbeddingExactRelaxed    = f"{embeddingPrefix}_embedding_exact_votes_relaxed.{plotFileFormat}"
 outputFileClassEmbeddingExactRelaxed        = os.path.join(
     dataDir,        
     outputFolderName,
@@ -555,7 +580,7 @@ outputFileClassEmbeddingExactRelaxed        = os.path.join(
     outputFileNameClassEmbeddingExactRelaxed
 )
 
-outputFileNameClassEmbeddingRelatedAbsolute    = f"{filesPrefixClass}_embedding_related_votes_absolute.{plotFileFormat}"
+outputFileNameClassEmbeddingRelatedAbsolute    = f"{embeddingPrefix}_embedding_related_votes_absolute.{plotFileFormat}"
 outputFileClassEmbeddingRelatedAbsolute        = os.path.join(
     dataDir,        
     outputFolderName,
@@ -563,7 +588,7 @@ outputFileClassEmbeddingRelatedAbsolute        = os.path.join(
     outputFileNameClassEmbeddingRelatedAbsolute
 )
 
-outputFileNameClassEmbeddingExactAbsolute    = f"{filesPrefixClass}_embedding_exact_votes_absolute.{plotFileFormat}"
+outputFileNameClassEmbeddingExactAbsolute    = f"{embeddingPrefix}_embedding_exact_votes_absolute.{plotFileFormat}"
 outputFileClassEmbeddingExactAbsolute        = os.path.join(
     dataDir,        
     outputFolderName,
@@ -571,7 +596,7 @@ outputFileClassEmbeddingExactAbsolute        = os.path.join(
     outputFileNameClassEmbeddingExactAbsolute
 )
 
-outputFileNameClassEmbeddingRelatedRelaxed    = f"{filesPrefixClass}_embedding_related_votes_relaxed.{plotFileFormat}"
+outputFileNameClassEmbeddingRelatedRelaxed    = f"{embeddingPrefix}_embedding_related_votes_relaxed.{plotFileFormat}"
 outputFileClassEmbeddingRelatedRelaxed        = os.path.join(
     dataDir,        
     outputFolderName,
@@ -579,7 +604,7 @@ outputFileClassEmbeddingRelatedRelaxed        = os.path.join(
     outputFileNameClassEmbeddingRelatedRelaxed
 )
 
-outputFileNameClassEmbeddingPerformance   = f"{filesPrefixClass}_embedding_performance.{plotFileFormat}"
+outputFileNameClassEmbeddingPerformance   = f"{embeddingPrefix}_embedding_performance.{plotFileFormat}"
 outputFileClassEmbeddingPerformance       = os.path.join(
     dataDir,        
     outputFolderName,
@@ -587,137 +612,6 @@ outputFileClassEmbeddingPerformance       = os.path.join(
     outputFileNameClassEmbeddingPerformance
 )
 
-
-# =============================================================================
-
-# =============================================================================
-# Files for Synonym Type Classification
-# =============================================================================
-
-outputFolderNameClassificationType = "type"
-filesPrefixType                    = f"{outputFolderNameClass}_{testStr}"
-filesPrefixApproachType            = f"{filesPrefixType}_{chainOfThoughtsStr}_{fewShotStr}"
-
-
-inputFileClassificationType                         = inputFileTask
-
-outputFileNameClassificationType                    = f"{filesPrefixApproachType}_raw_{modelName}.{csvFileFormat}"
-outputFileClassificationType                            = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameClassificationType,
-    outputFileNameClassificationType
-)
-
-inputFileClassificationTypeFormatted                = outputFileClassificationType
-
-outputFileNameClassificationTypeFormattedPrefix     = f"{filesPrefixApproachType}_formatted"
-outputFileNameClassificationTypeFormatted           = f"{outputFileNameClassificationTypeFormattedPrefix}_{modelName}.{csvFileFormat}"
-outputFileClassificationTypeFormatted               = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameFormatted,
-    outputFileNameClassificationTypeFormatted
-)
-
-inputFileNameClassificationTypeMerged               = [
-    file
-    for file in os.listdir(os.path.join(dataDir, outputFolderName, outputFolderNameFormatted))
-    if file.startswith(outputFileNameClassificationTypeFormattedPrefix) and file.endswith(csvFileFormat)
-]
-inputFileClassificationTypeMerged                   = [
-    os.path.join(dataDir, outputFolderName, outputFolderNameFormatted, filename) for filename in inputFileNameClassificationTypeMerged
-]
-
-outputFileNameClassificationTypeMerged              = f"{filesPrefixApproachType}_merged_classes.{csvFileFormat}"
-outputFileClassificationTypeMerged                  = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameMerged,
-    outputFileNameClassificationTypeMerged
-)
-
-inputFileClassificationTypeEvaluation               = outputFileClassificationTypeMerged
-
-outputFileNameClassificationTypeGoldCounts   = f"{filesPrefixApproachType}_gold_counts.{plotFileFormat}"
-outputFileClassificationTypeGoldCounts       = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassificationTypeGoldCounts
-)
-
-outputFileNameClassificationTypeAnswerCounts   = f"{filesPrefixApproachType}_answer_counts.{plotFileFormat}"
-outputFileClassificationTypeAnswerCounts = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassificationTypeAnswerCounts
-)
-
-outputFileNameClassificationTypeRecallPrecisionF1   = f"{filesPrefixApproachType}_base_evaluation.{plotFileFormat}"
-outputFileClassificationTypeRecallPrecisionF1       = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassificationTypeRecallPrecisionF1
-)
-
-outputFileNameClassificationTYpeAccuracyMacroMicro  = f"{filesPrefixApproachType}_accuracy_threshold.{plotFileFormat}"
-outputFileClassificationTYpeAccuracyMacroMicro      = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassificationTYpeAccuracyMacroMicro
-)
-
-outputFileNameClassificationTypeClassAccuracy       = f"{filesPrefixApproachType}_class_accuracy.{plotFileFormat}"
-outputFileClassificationTypeClassAccuracy           = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassificationTypeClassAccuracy
-)
-
-outputFileNameClassificationTypeEvaluationExactHPO  = f"{filesPrefixApproachType}_exact_HPO_evaluation.{plotFileFormat}"
-outputFileClassificationTypeEvaluationExactHPO      = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassificationTypeEvaluationExactHPO
-)
-
-outputFileNameClassificationTypeEvaluationExactUBERON  = f"{filesPrefixApproachType}_exact_UBERON_evaluation.{plotFileFormat}"
-outputFileClassificationTypeEvaluationExactUBERON      = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassificationTypeEvaluationExactUBERON
-)
-
-outputFileNameClassificationTypeEvaluationExactGO  = f"{filesPrefixApproachType}_exact_GO_evaluation.{plotFileFormat}"
-outputFileClassificationTypeEvaluationExactGO      = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassificationTypeEvaluationExactGO
-)
-
-outputFileNameClassificationTypeEvaluationExactCHEBI  = f"{filesPrefixApproachType}_exact_CHEBI_evaluation.{plotFileFormat}"
-outputFileClassificationTypeEvaluationExactCHEBI      = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassificationTypeEvaluationExactCHEBI
-)
-
-outputFileNameClassificationTypeEvaluationMajority  = f"{filesPrefixApproachType}_majority_voting.{plotFileFormat}"
-outputFileClassificationTypeEvaluationMajority      = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassificationTypeEvaluationMajority
-)
 
 # =============================================================================
 

@@ -2,6 +2,7 @@ import numpy                as np
 import matplotlib.pyplot    as plt
 import seaborn              as sns
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support
+from matplotlib.lines import Line2D
 import sys
 import time
 import math
@@ -23,6 +24,12 @@ startTime = time.time()
 exitIfFileNotExist(inputFileClassEvaluation)
 
 classifiedComplete = readCSV(inputFileClassEvaluation)
+
+
+
+
+
+
 
 ontologies = [
     str(s).split(":", 1)[0] for s in classifiedComplete[hpoidColumn].to_list()
@@ -62,7 +69,9 @@ color_map = {
 
 
 
-if reduceToTestIDs:
+
+# Ploting Similarity distributions and threshold calculation.
+if reduceToTestIDs or forceDrawAdditionalPlots:
     classified = classifiedComplete[classifiedComplete[systemColumn] == systems[0]].copy().reset_index(drop = True)
     for embeddingModel in embeddingModels.keys():
         for similarityMetric in similarityMetrics:
@@ -74,7 +83,53 @@ if reduceToTestIDs:
                 outputFolderNameClassEmbedding,
                 outputFileNameClassEmbeddingEvaluation.format(column)
             )
-            if column in classified.columns and not os.path.isfile(outputFileClassEmbeddingEval):
+
+            outputFileClassSimilarityEval              = os.path.join(
+                dataDir,        
+                outputFolderName,
+                outputFolderNameClassEmbedding,
+                outputFileNameClassSimilarityEvaluation.format(column)
+            )
+
+            if column in classified.columns and (not os.path.isfile(outputFileClassSimilarityEval) or forceDrawAdditionalPlots):
+                plt.figure(figsize=(8, 5))
+
+                palette = {
+                        exactSynonymClass : colors[0],
+                        relatedSynonymClass : colors[1]
+                    }
+
+                # Draw density curves for each class
+                sns.kdeplot(
+                    data=classified,
+                    x=column,
+                    palette=palette,
+                    hue=classified[classColumn],
+                    common_norm=False,   # keeps each class independent
+                    fill=False           # set True if you want filled curves
+                )
+
+                plt.xlabel("Similarity")
+                plt.ylabel("Density")
+                plt.title("Density Curves of Similarity by Class")
+                plt.yticks(np.linspace(0, 1, 6))
+                plt.xticks(np.linspace(similarityEvaluationLowerBound, similarityEvaluationUperBound, 9))
+                plt.xlim(similarityEvaluationLowerBound, similarityEvaluationUperBound)
+                
+                handles = [
+                    Line2D([0], [0], color=color, lw=2, label=cls)
+                    for cls, color in palette.items()
+                ]
+
+                plt.legend(handles=handles, title="Class")
+
+                plt.grid(axis = "both")
+
+                plt.tight_layout()
+                plt.savefig(outputFileClassSimilarityEval, dpi = 300, bbox_inches = "tight")
+
+
+            if column in classified.columns and (not os.path.isfile(outputFileClassEmbeddingEval) or forceDrawAdditionalPlots):
                 log(f"Plotting {similarityMetric} for Model {embeddingModel}...")
 
                 x1 = []
@@ -154,10 +209,11 @@ if reduceToTestIDs:
                     max_y = math.ceil(roundFactor * y1[max_index]) / roundFactor
 
                     c = sum(classified[column] <= max_x)
-                    p = int(math.floor(100 * roundFactor * c / len(classified.index)) / roundFactor)
+                    p = 100 * float(math.floor(roundFactor * c / len(classified.index))) / roundFactor
+
 
                     plt.scatter(max_x, max_y, s = 200, marker = 'x', color = "red", zorder = 100, label = "(" + str(max_x) + ", " + str(max_y) + ") (Count: " + str(c) + ", " + str(p) + "%)")
-                    log(f"Suggested Threshold for Class {quote(relatedSynonymClass)}, Metric {quote(similarityMetric)}, and Model {quote(embeddingModel)}: {str(max_x)}" )
+                    log(f"Suggested Threshold for Class {quote(relatedSynonymClass)}, Metric {quote(similarityMetric)}, and Model {quote(embeddingModel)}: {str(max_x)} with F1 of {max_y} classifying {str(p)}% of the data." )
 
                 if not np.all(np.isnan(y2)):
                     max_index = np.nanargmax(y2)
@@ -165,10 +221,10 @@ if reduceToTestIDs:
                     max_y = math.ceil(roundFactor * y2[max_index]) / roundFactor
 
                     c = sum(classified[column] >= max_x)
-                    p = int(math.floor(roundFactor * c / len(classified.index)))
+                    p = 100 * float(math.floor(roundFactor * c / len(classified.index)))  / roundFactor
 
                     plt.scatter(max_x, max_y, s = 200, marker = 'x', color = "blue", zorder = 100, label = "(" + str(max_x) + ", " + str(max_y) + ") (Count: " + str(c) + ", " + str(p) + "%)")
-                    log(f"Suggested Threshold for Class {quote(exactSynonymClass)}, Metric {quote(similarityMetric)}, and Model {quote(embeddingModel)}: {str(max_x)}" )
+                    log(f"Suggested Threshold for Class {quote(exactSynonymClass)}, Metric {quote(similarityMetric)}, and Model {quote(embeddingModel)}: {str(max_x)} with F1 of {max_y} classifying {str(p)}% of the data." )
 
                 plt.xlabel("Threshold")
                 plt.ylabel("F1 Score")
@@ -186,6 +242,7 @@ if reduceToTestIDs:
 
 
 
+# Plot Gold Counts
 classified = classifiedComplete[classifiedComplete[systemColumn] == systems[0]].copy().drop([answerColumn, systemColumn], axis = 1).drop_duplicates().reset_index(drop = True)
 classes = Counter(classified[classColumn])
 
@@ -211,7 +268,7 @@ for bar in bars:
 plt.xlabel("Semantic Class")
 plt.ylabel("Count")
 plt.title("Count of Semantic Classes")
-plt.grid(axis = "y")
+plt.grid(axis = "both")
 plt.show()
 plt.savefig(outputFileClassGoldCounts, dpi = 300, bbox_inches = "tight")
 
@@ -220,7 +277,7 @@ plt.savefig(outputFileClassGoldCounts, dpi = 300, bbox_inches = "tight")
 
 
 
-
+# Plot Classification Counts
 classifiedComplete = classifiedComplete[classifiedComplete[classColumn].isin(synonymClasses)].copy().reset_index(drop = True)
 
 # Count occurrences per system and classification
@@ -237,7 +294,7 @@ plt.xlabel("Classified Semantic Class")
 plt.ylabel("Count")
 plt.title("Count of Classified Semantic Class")
 plt.xticks(rotation = 0)
-plt.grid(axis = "y")
+plt.grid(axis = "both")
 plt.show()
 plt.savefig(outputFileClassAnswerCounts, dpi = 300, bbox_inches = "tight")
 
@@ -331,13 +388,14 @@ def ontologySubplot(data : pd.DataFrame = None, startString : str = "", outputFi
         handles,
         systems,
         loc = "lower center",
-        ncol = int(len(systems) / 2),
+        ncol = int(len(systems) / 2 if len(systems) >= 2 else 1 ),
         frameon = False
     )
 
     for i, cls in enumerate(classes):
         for j, metric in enumerate(metrics):
             ax = axes[j, i]
+            ax.grid(True, axis="both")
             values = [result[system][cls][metric] for system in systems]
 
             for k, system in enumerate(systems):
@@ -368,121 +426,201 @@ def ontologySubplot(data : pd.DataFrame = None, startString : str = "", outputFi
             if j == 0:
                 ax.set_title(cls)
 
-            ax.grid(axis="y")
-
     fig.suptitle(title, fontsize=14)
     plt.tight_layout(rect = [0, 0.05, 1, 1])
     plt.savefig(outputFile, dpi = 300, bbox_inches = "tight")
 
+# Plot evaluation on different ontologies.
 ontologySubplot(classifiedComplete, "",        outputFileClassRecallPrecisionF1,     "Semantic Class Classification Performance of LLM Systems")
 ontologySubplot(classifiedComplete, "HP:",     outputFileClassEvaluationExactHPO,    "Semantic Class Classification Performance of LLM Systems (HPO only)")
 ontologySubplot(classifiedComplete, "UBERON:", outputFileClassEvaluationExactUBERON, "Semantic Class Classification Performance of LLM Systems (UBERON only)")
 ontologySubplot(classifiedComplete, "GO:",     outputFileClassEvaluationExactGO,     "Semantic Class Classification Performance of LLM Systems (GO only)")
 ontologySubplot(classifiedComplete, "CHEBI:",  outputFileClassEvaluationExactCHEBI,  "Semantic Class Classification Performance of LLM Systems (CHEBI only)")
 
+
+
+
+
+
+
 combinedEvaluationData = classifiedComplete.copy()
 
-combinedEvaluationData["embeddingRelated"] = [0.0] * len(combinedEvaluationData.index)
+combinedEvaluationData["embeddingRelated"] = [0] * len(combinedEvaluationData.index)
 for relatedThresholds in embeddingThresholdsRelated.keys():
     if relatedThresholds in combinedEvaluationData.columns:
-        combinedEvaluationData.loc[combinedEvaluationData[relatedThresholds] <= embeddingThresholdsRelated[relatedThresholds], "embeddingRelated"] += (1.0 / len(embeddingThresholdsRelated.keys()))
+        combinedEvaluationData.loc[combinedEvaluationData[relatedThresholds] <= embeddingThresholdsRelated[relatedThresholds], "embeddingRelated"] += 1
     else:
         log(f"{relatedThresholds} not found in Columns of Data.")
 
-combinedEvaluationData["embeddingExact"] = [0.0] * len(combinedEvaluationData.index)
+combinedEvaluationData["embeddingExact"] = [0] * len(combinedEvaluationData.index)
 for exactThresholds in embeddingThresholdsExact.keys():
     if exactThresholds in combinedEvaluationData.columns:
-        combinedEvaluationData.loc[combinedEvaluationData[exactThresholds] >= embeddingThresholdsExact[exactThresholds], "embeddingExact"] += (1.0 / len(embeddingThresholdsExact.keys()))
+        combinedEvaluationData.loc[combinedEvaluationData[exactThresholds] >= embeddingThresholdsExact[exactThresholds], "embeddingExact"] += 1
     else:
         log(f"{relatedThresholds} not found in Columns of Data.")
 
-if reduceToTestIDs:
-    diff = combinedEvaluationData[combinedEvaluationData[systemColumn] == systems[0]]
-    diff = diff[(diff["embeddingExact"] > 0) | (diff["embeddingRelated"] > 0)]
-
-    d1 = diff['embeddingExact'] - diff['embeddingRelated']
 
 
-    plt.figure()
-    sns.stripplot(y=d1, jitter=True)
 
-    plt.title("Embedding Voting Differences")
-    plt.ylabel("Difference")
-    plt.grid(axis = "both")
 
-    plt.savefig(outputFileClassEmbeddingDifference, dpi = 300, bbox_inches = "tight")
 
-    plt.figure()
-    d2 = diff[diff['embeddingExact'] > diff['embeddingRelated'] ].copy().reset_index(drop=True)
-    d2["flag"] = d2[answerColumn] == exactSynonymClass
-    sns.stripplot(
-        data=d2,
-        y='embeddingExact',
-        hue='flag',
-        jitter=0.5,
-        alpha=0.6#,
-        #size=0.3
-    )
+combinedEvaluationAbsoluteData = combinedEvaluationData[combinedEvaluationData[systemColumn] == systems[0]].copy()
+combinedEvaluationAbsoluteData["embeddingCorrect"] = (
+    ((combinedEvaluationData["embeddingRelated"] > 0) & (combinedEvaluationData["embeddingExact"] == 0) & (combinedEvaluationData[classColumn] == relatedSynonymClass)) |
+    ((combinedEvaluationData["embeddingExact"] > 0) & (combinedEvaluationData["embeddingRelated"] == 0) & (combinedEvaluationData[classColumn] == exactSynonymClass))
+)
 
-    plt.title(f"Embedding Voting Exact Relaxed (Classified: {len(d2.index)})")
-    plt.ylabel("Votes [%]")
-    plt.grid(axis = "both")
 
-    plt.savefig(outputFileClassEmbeddingExactRelaxed, dpi = 300, bbox_inches = "tight")
+discrepanciesCount = len(combinedEvaluationData[(combinedEvaluationData['embeddingRelated'] > 0) & (combinedEvaluationData['embeddingExact'] > 0)].index)
+log(f"Discrepancies for Embedding Answers: {discrepanciesCount}")
 
-    plt.figure()
-    d3 = diff[diff['embeddingRelated'] > diff['embeddingExact']].copy().reset_index(drop=True)
-    d3["flag"] = d3[answerColumn] == relatedSynonymClass
-    sns.stripplot(
-        data=d3,
-        y='embeddingRelated',
-        hue='flag',
-        jitter=0.5,
-        alpha=0.6#,
-        #size=0.3
-    )
+embeddingRelatedAnswer = combinedEvaluationAbsoluteData[combinedEvaluationAbsoluteData["embeddingRelated"] > 0]
+embeddingExactAnswer   = combinedEvaluationAbsoluteData[combinedEvaluationAbsoluteData["embeddingExact"]   > 0]
 
-    plt.title(f"Embedding Voting Related Relaxed (Classified: {len(d3.index)})")
-    plt.ylabel("Votes [%]")
-    plt.grid(axis = "both")
 
-    plt.savefig(outputFileClassEmbeddingRelatedRelaxed, dpi = 300, bbox_inches = "tight")
 
-    plt.figure()
-    d4 = diff[(diff['embeddingExact'] > 1.0 / len(embeddingThresholdsExact.keys())) & (diff['embeddingRelated'] < (1.0 / len(embeddingThresholdsRelated.keys())))].copy().reset_index(drop=True)
-    d4["flag"] = d4[answerColumn] == exactSynonymClass
-    sns.stripplot(
-        data=d4,
-        y='embeddingExact',
-        hue='flag',
-        jitter=0.5,
-        alpha=0.6#,
-        #size=0.3
-    )
 
-    plt.title(f"Embedding Voting Exact Absolute (Classified: {len(d4.index)})")
-    plt.ylabel("Votes [%]")
-    plt.grid(axis = "both")
 
-    plt.savefig(outputFileClassEmbeddingExactAbsolute, dpi = 300, bbox_inches = "tight")
 
-    plt.figure()
-    d5 = diff[(diff['embeddingRelated'] > 1.0 / len(embeddingThresholdsRelated.keys())) & (diff['embeddingExact'] < (1.0 / len(embeddingThresholdsExact.keys())))].copy().reset_index(drop=True)
-    d5["flag"] = d5[answerColumn] == relatedSynonymClass
-    sns.stripplot(
-        data=d5,
-        y='embeddingRelated',
-        hue='flag',
-        jitter=0.5,
-        alpha=0.6#,
-        #size=0.3
-    )
+# Group by votes and correctness, then count occurrences
+grouped = embeddingRelatedAnswer.groupby(["embeddingRelated", 'embeddingCorrect']).size().unstack(fill_value=0)
 
-    plt.title(f"Embedding Voting Related Absolute (Classified: {len(d5.index)})")
-    plt.ylabel("Votes [%]")
-    plt.grid(axis = "both")
+# Ensure both columns exist (in case one category is missing)
+grouped = grouped.reindex(columns=[False, True], fill_value=0)
 
-    plt.savefig(outputFileClassEmbeddingRelatedAbsolute, dpi = 300, bbox_inches = "tight")
+# Rename columns for clarity
+grouped.columns = ['Wrong', 'Correct']
+
+# Sort by vote count (optional but recommended)
+grouped = grouped.sort_index()
+
+# Plot
+plt.figure()
+
+plt.bar(grouped.index, grouped['Wrong'], label='Wrong', color='red')
+plt.bar(grouped.index, grouped['Correct'],
+        bottom=grouped['Wrong'], label='Correct', color='blue')
+
+plt.xlabel('Number of Absolute-"Related" Votes')
+plt.ylabel('Frequency')
+plt.title('Vote Distribution (Correct vs Wrong)')
+plt.grid(axis = "both")
+plt.legend()
+
+plt.savefig(outputFileClassEmbeddingRelatedAbsolute, dpi = 300, bbox_inches = "tight")
+
+
+
+
+
+
+# Group by votes and correctness, then count occurrences
+grouped = embeddingExactAnswer.groupby(["embeddingExact", 'embeddingCorrect']).size().unstack(fill_value=0)
+
+# Ensure both columns exist (in case one category is missing)
+grouped = grouped.reindex(columns=[False, True], fill_value=0)
+
+# Rename columns for clarity
+grouped.columns = ['Wrong', 'Correct']
+
+# Sort by vote count (optional but recommended)
+grouped = grouped.sort_index()
+
+# Plot
+plt.figure()
+
+plt.bar(grouped.index, grouped['Wrong'], label='Wrong', color='red')
+plt.bar(grouped.index, grouped['Correct'],
+        bottom=grouped['Wrong'], label='Correct', color='blue')
+
+plt.xlabel('Number of Absolute-"Exact" Votes')
+plt.ylabel('Frequency')
+plt.title('Vote Distribution (Correct vs Wrong)')
+plt.grid(axis = "both")
+plt.legend()
+
+plt.savefig(outputFileClassEmbeddingExactAbsolute, dpi = 300, bbox_inches = "tight")
+
+
+
+
+
+
+combinedEvaluationRelaxedData = combinedEvaluationData[combinedEvaluationData[systemColumn] == systems[0]].copy()
+combinedEvaluationRelaxedData["embeddingCorrect"] = (
+    ((combinedEvaluationData["embeddingRelated"] > 0) & (combinedEvaluationData[classColumn] == relatedSynonymClass)) |
+    ((combinedEvaluationData["embeddingExact"] > 0)   & (combinedEvaluationData[classColumn] == exactSynonymClass))
+)
+
+embeddingRelatedAnswer = combinedEvaluationRelaxedData[combinedEvaluationRelaxedData["embeddingRelated"] > 0]
+embeddingExactAnswer   = combinedEvaluationRelaxedData[combinedEvaluationRelaxedData["embeddingExact"]   > 0]
+
+
+
+
+
+
+# Group by votes and correctness, then count occurrences
+grouped = embeddingRelatedAnswer.groupby(["embeddingRelated", 'embeddingCorrect']).size().unstack(fill_value=0)
+
+# Ensure both columns exist (in case one category is missing)
+grouped = grouped.reindex(columns=[False, True], fill_value=0)
+
+# Rename columns for clarity
+grouped.columns = ['Wrong', 'Correct']
+
+# Sort by vote count (optional but recommended)
+grouped = grouped.sort_index()
+
+# Plot
+plt.figure()
+
+plt.bar(grouped.index, grouped['Wrong'], label='Wrong', color='red')
+plt.bar(grouped.index, grouped['Correct'],
+        bottom=grouped['Wrong'], label='Correct', color='blue')
+
+plt.xlabel('Number of Relaxed-"Related" Votes')
+plt.ylabel('Frequency')
+plt.title('Vote Distribution (Correct vs Wrong)')
+plt.grid(axis = "both")
+plt.legend()
+
+plt.savefig(outputFileClassEmbeddingRelatedRelaxed, dpi = 300, bbox_inches = "tight")
+
+
+
+
+
+
+# Group by votes and correctness, then count occurrences
+grouped = embeddingExactAnswer.groupby(["embeddingExact", 'embeddingCorrect']).size().unstack(fill_value=0)
+
+# Ensure both columns exist (in case one category is missing)
+grouped = grouped.reindex(columns=[False, True], fill_value=0)
+
+# Rename columns for clarity
+grouped.columns = ['Wrong', 'Correct']
+
+# Sort by vote count (optional but recommended)
+grouped = grouped.sort_index()
+
+# Plot
+plt.figure()
+
+plt.bar(grouped.index, grouped['Wrong'], label='Wrong', color='red')
+plt.bar(grouped.index, grouped['Correct'],
+        bottom=grouped['Wrong'], label='Correct', color='blue')
+
+plt.xlabel('Number of Relaxed-"Exact" Votes')
+plt.ylabel('Frequency')
+plt.title('Vote Distribution (Correct vs Wrong)')
+plt.grid(axis = "both")
+plt.legend()
+
+plt.savefig(outputFileClassEmbeddingExactRelaxed, dpi = 300, bbox_inches = "tight")
+
+
+
 
 
 

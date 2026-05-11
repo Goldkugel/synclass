@@ -1,0 +1,2001 @@
+[2026-05-03 08:21:53] ============================================================
+[2026-05-03 08:21:53] =                   Embedding HPO Terms                    =
+[2026-05-03 08:21:53] ============================================================
+[2026-05-03 08:21:53] Reading file 'transform.reduced.csv'.
+[2026-05-03 08:21:53] Reading file 'transform.reduced.csv' completed.
+[2026-05-03 08:21:53] Retrieving IDs...
+[2026-05-03 08:21:53] IDs retrieved.
+[2026-05-03 08:21:53] Filtering Labels of HPO Concepts...
+[2026-05-03 08:21:53] Filtering Labels completed.
+[2026-05-03 08:21:53] Filtering Synonyms (exact, related)...
+[2026-05-03 08:21:53] Filtering Synonyms completed.
+[2026-05-03 08:21:53] Start to Embed Synonyms and Labels with all Embedding Models.
+[2026-05-03 08:21:53] Set up (1/10) model and tokenizer "BioBERT"...
+[2026-05-03 08:21:55] Model set up.
+[2026-05-03 08:21:55] Tokenize Labels...
+[2026-05-03 08:21:55] Labels tokenized.
+[2026-05-03 08:21:55] Embedding Labels...
+[2026-05-03 08:22:02] Labels embedded.
+[2026-05-03 08:22:02] Finalizing embeddings of Labels...
+[2026-05-03 08:22:02] Finalized Label embeddings.
+[2026-05-03 08:22:02] Tokenize Synonyms...
+[2026-05-03 08:22:03] Synonyms tokenized.
+[2026-05-03 08:22:03] Embedding Synonyms...
+[2026-05-03 08:23:28] Synonyms embedded.
+[2026-05-03 08:23:28] Finalizing embeddings of Synoyms...
+[2026-05-03 08:23:28] Finalized Synonym embeddings.
+[2026-05-03 08:23:33] BioBERT with cosine Difference: [exact - related]
+[2026-05-03 08:23:33] Mean's Differnece:               0.46131064308321346
+[2026-05-03 08:23:33] Standard Deviation's Difference: -0.27885182562536914
+[2026-05-03 08:23:33] BioBERT with cosine Values:     [exact,  related]
+[2026-05-03 08:23:33] Means:                           [0.24323836591959158, -0.21807227716362187]
+[2026-05-03 08:23:33] Standard Deviation:              [0.8161735334785951, 1.0950253591039643]
+[2026-05-03 08:23:33] Strictly standardized mean difference: 0.6319079014846821
+[2026-05-03 08:23:33] BioBERT with euclidean Difference: [exact - related]
+[2026-05-03 08:23:33] Mean's Differnece:               0.3740688581562073
+[2026-05-03 08:23:33] Standard Deviation's Difference: 0.006158593381391464
+[2026-05-03 08:23:33] BioBERT with euclidean Values:     [exact,  related]
+[2026-05-03 08:23:33] Means:                           [0.19723780312371922, -0.17683105503248803]
+[2026-05-03 08:23:33] Standard Deviation:              [0.9857530803664138, 0.9795944869850224]
+[2026-05-03 08:23:33] Strictly standardized mean difference: 3.4000954242275405
+[2026-05-03 08:23:33] BioBERT with manhattan Difference: [exact - related]
+[2026-05-03 08:23:33] Mean's Differnece:               0.31062556061545904
+[2026-05-03 08:23:33] Standard Deviation's Difference: 0.1311307889426656
+[2026-05-03 08:23:33] BioBERT with manhattan Values:     [exact,  related]
+[2026-05-03 08:23:33] Means:                           [0.16378562885949305, -0.146839931755966]
+[2026-05-03 08:23:33] Standard Deviation:              [1.0549800813417374, 0.9238492923990718]
+[2026-05-03 08:23:33] Strictly standardized mean difference: 0.6097905343525747
+[2026-05-03 08:23:33] BioBERT with angular Difference: [exact - related]
+[2026-05-03 08:23:33] Mean's Differnece:               0.4581094947517186
+[2026-05-03 08:23:33] Standard Deviation's Difference: -0.17424748881507268
+[2026-05-03 08:23:33] BioBERT with angular Values:     [exact,  related]
+[2026-05-03 08:23:33] Means:                           [0.2415504749053847, -0.21655901984633386]
+[2026-05-03 08:23:33] Standard Deviation:              [0.8778218223195486, 1.0520693111346213]
+[2026-05-03 08:23:33] Strictly standardized mean difference: 0.7899864161569424
+[2026-05-03 08:23:33] Set up (2/10) model and tokenizer "BioClinicalBERT"...
+[2026-05-03 08:23:35] Model set up.
+[2026-05-03 08:23:35] Tokenize Labels...
+[2026-05-03 08:23:36] Labels tokenized.
+[2026-05-03 08:23:36] Embedding Labels...
+[2026-05-03 08:23:41] Labels embedded.
+[2026-05-03 08:23:41] Finalizing embeddings of Labels...
+[2026-05-03 08:23:41] Finalized Label embeddings.
+[2026-05-03 08:23:41] Tokenize Synonyms...
+[2026-05-03 08:23:42] Synonyms tokenized.
+[2026-05-03 08:23:42] Embedding Synonyms...
+[2026-05-03 08:25:03] Synonyms embedded.
+[2026-05-03 08:25:03] Finalizing embeddings of Synoyms...
+[2026-05-03 08:25:03] Finalized Synonym embeddings.
+[2026-05-03 08:25:08] BioClinicalBERT with cosine Difference: [exact - related]
+[2026-05-03 08:25:08] Mean's Differnece:               0.3933876877215212
+[2026-05-03 08:25:08] Standard Deviation's Difference: -0.26595649921108666
+[2026-05-03 08:25:08] BioClinicalBERT with cosine Values:     [exact,  related]
+[2026-05-03 08:25:08] Means:                           [0.20742417234238594, -0.18596351537913527]
+[2026-05-03 08:25:08] Standard Deviation:              [0.831360358704636, 1.0973168579157226]
+[2026-05-03 08:25:08] Strictly standardized mean difference: 0.5492697532064159
+[2026-05-03 08:25:08] BioClinicalBERT with euclidean Difference: [exact - related]
+[2026-05-03 08:25:08] Mean's Differnece:               0.2558622961481204
+[2026-05-03 08:25:08] Standard Deviation's Difference: -0.06319115042835022
+[2026-05-03 08:25:08] BioClinicalBERT with euclidean Values:     [exact,  related]
+[2026-05-03 08:25:08] Means:                           [0.1349102340226675, -0.12095206212545292]
+[2026-05-03 08:25:08] Standard Deviation:              [0.9580931061342592, 1.0212842565626095]
+[2026-05-03 08:25:08] Strictly standardized mean difference: 0.7234588978882895
+[2026-05-03 08:25:08] BioClinicalBERT with manhattan Difference: [exact - related]
+[2026-05-03 08:25:08] Mean's Differnece:               0.19899423423224738
+[2026-05-03 08:25:08] Standard Deviation's Difference: -0.06862168832001769
+[2026-05-03 08:25:08] BioClinicalBERT with manhattan Values:     [exact,  related]
+[2026-05-03 08:25:08] Means:                           [0.10492502847661582, -0.09406920575563156]
+[2026-05-03 08:25:08] Standard Deviation:              [0.9583877131007557, 1.0270094014207733]
+[2026-05-03 08:25:08] Strictly standardized mean difference: 0.5391208157010118
+[2026-05-03 08:25:08] BioClinicalBERT with angular Difference: [exact - related]
+[2026-05-03 08:25:08] Mean's Differnece:               0.377730611394245
+[2026-05-03 08:25:08] Standard Deviation's Difference: -0.16978110446247863
+[2026-05-03 08:25:08] BioClinicalBERT with angular Values:     [exact,  related]
+[2026-05-03 08:25:08] Means:                           [0.19916856038539502, -0.17856205100885003]
+[2026-05-03 08:25:08] Standard Deviation:              [0.8889729030649733, 1.058754007527452]
+[2026-05-03 08:25:08] Strictly standardized mean difference: 0.6568609922831111
+[2026-05-03 08:25:08] Set up (3/10) model and tokenizer "BioLinkBERT"...
+[2026-05-03 08:25:13] Model set up.
+[2026-05-03 08:25:13] Tokenize Labels...
+[2026-05-03 08:25:13] Labels tokenized.
+[2026-05-03 08:25:13] Embedding Labels...
+[2026-05-03 08:25:29] Labels embedded.
+[2026-05-03 08:25:29] Finalizing embeddings of Labels...
+[2026-05-03 08:25:29] Finalized Label embeddings.
+[2026-05-03 08:25:29] Tokenize Synonyms...
+[2026-05-03 08:25:30] Synonyms tokenized.
+[2026-05-03 08:25:30] Embedding Synonyms...
+[2026-05-03 08:29:12] Synonyms embedded.
+[2026-05-03 08:29:12] Finalizing embeddings of Synoyms...
+[2026-05-03 08:29:12] Finalized Synonym embeddings.
+[2026-05-03 08:29:18] BioLinkBERT with cosine Difference: [exact - related]
+[2026-05-03 08:29:18] Mean's Differnece:               0.30208380504525456
+[2026-05-03 08:29:18] Standard Deviation's Difference: -0.24127914597741207
+[2026-05-03 08:29:18] BioLinkBERT with cosine Values:     [exact,  related]
+[2026-05-03 08:29:18] Means:                           [0.15928175994137136, -0.14280204510388317]
+[2026-05-03 08:29:18] Standard Deviation:              [0.8540782901626308, 1.0953574361400429]
+[2026-05-03 08:29:18] Strictly standardized mean difference: 0.44046670858758585
+[2026-05-03 08:29:18] BioLinkBERT with euclidean Difference: [exact - related]
+[2026-05-03 08:29:18] Mean's Differnece:               0.04751905181570529
+[2026-05-03 08:29:18] Standard Deviation's Difference: -0.4835652352024249
+[2026-05-03 08:29:18] BioLinkBERT with euclidean Values:     [exact,  related]
+[2026-05-03 08:29:18] Means:                           [0.025055690101681558, -0.02246336171402373]
+[2026-05-03 08:29:18] Standard Deviation:              [0.7152649153324342, 1.198830150534859]
+[2026-05-03 08:29:18] Strictly standardized mean difference: 0.049392212319153986
+[2026-05-03 08:29:18] BioLinkBERT with manhattan Difference: [exact - related]
+[2026-05-03 08:29:18] Mean's Differnece:               -0.0392047002028801
+[2026-05-03 08:29:18] Standard Deviation's Difference: -1.2956586081564705
+[2026-05-03 08:29:18] BioLinkBERT with manhattan Values:     [exact,  related]
+[2026-05-03 08:29:18] Means:                           [-0.02067172599786709, 0.018532974205013007]
+[2026-05-03 08:29:18] Standard Deviation:              [0.07931240180602751, 1.374971009962498]
+[2026-05-03 08:29:18] Strictly standardized mean difference: 0.028560665286454113
+[2026-05-03 08:29:18] BioLinkBERT with angular Difference: [exact - related]
+[2026-05-03 08:29:18] Mean's Differnece:               0.2729851911296644
+[2026-05-03 08:29:18] Standard Deviation's Difference: -0.18990559894097225
+[2026-05-03 08:29:18] BioLinkBERT with angular Values:     [exact,  related]
+[2026-05-03 08:29:18] Means:                           [0.14393873804175136, -0.12904645308791304]
+[2026-05-03 08:29:18] Standard Deviation:              [0.886094065896368, 1.0759996648373402]
+[2026-05-03 08:29:18] Strictly standardized mean difference: 0.4472087872905059
+[2026-05-03 08:29:18] Set up (4/10) model and tokenizer "ClinicalBERT"...
+[2026-05-03 08:29:20] Model set up.
+[2026-05-03 08:29:20] Tokenize Labels...
+[2026-05-03 08:29:20] Labels tokenized.
+[2026-05-03 08:29:20] Embedding Labels...
+[2026-05-03 08:29:23] Labels embedded.
+[2026-05-03 08:29:23] Finalizing embeddings of Labels...
+[2026-05-03 08:29:23] Finalized Label embeddings.
+[2026-05-03 08:29:23] Tokenize Synonyms...
+[2026-05-03 08:29:23] Synonyms tokenized.
+[2026-05-03 08:29:23] Embedding Synonyms...
+[2026-05-03 08:30:00] Synonyms embedded.
+[2026-05-03 08:30:00] Finalizing embeddings of Synoyms...
+[2026-05-03 08:30:00] Finalized Synonym embeddings.
+[2026-05-03 08:30:05] ClinicalBERT with cosine Difference: [exact - related]
+[2026-05-03 08:30:05] Mean's Differnece:               0.39432894881436387
+[2026-05-03 08:30:05] Standard Deviation's Difference: -0.1634208683062347
+[2026-05-03 08:30:05] ClinicalBERT with cosine Values:     [exact,  related]
+[2026-05-03 08:30:05] Means:                           [0.2079204774104771, -0.18640847140388678]
+[2026-05-03 08:30:05] Standard Deviation:              [0.8909626418376032, 1.054383510143838]
+[2026-05-03 08:30:05] Strictly standardized mean difference: 0.6993691305300926
+[2026-05-03 08:30:05] ClinicalBERT with euclidean Difference: [exact - related]
+[2026-05-03 08:30:05] Mean's Differnece:               0.27480391136016313
+[2026-05-03 08:30:05] Standard Deviation's Difference: -0.07064838427547304
+[2026-05-03 08:30:05] ClinicalBERT with euclidean Values:     [exact,  related]
+[2026-05-03 08:30:05] Means:                           [0.14489770689184112, -0.12990620446832202]
+[2026-05-03 08:30:05] Standard Deviation:              [0.952770424334795, 1.023418808610268]
+[2026-05-03 08:30:05] Strictly standardized mean difference: 0.7354574108192448
+[2026-05-03 08:30:05] ClinicalBERT with manhattan Difference: [exact - related]
+[2026-05-03 08:30:05] Mean's Differnece:               0.22316670044866954
+[2026-05-03 08:30:05] Standard Deviation's Difference: -0.11270505624509941
+[2026-05-03 08:30:05] ClinicalBERT with manhattan Values:     [exact,  related]
+[2026-05-03 08:30:05] Means:                           [0.11767060734172032, -0.10549609310694924]
+[2026-05-03 08:30:05] Standard Deviation:              [0.93285948766103, 1.0455645439061294]
+[2026-05-03 08:30:05] Strictly standardized mean difference: 0.4726046637227625
+[2026-05-03 08:30:05] ClinicalBERT with angular Difference: [exact - related]
+[2026-05-03 08:30:05] Mean's Differnece:               0.37114756379236685
+[2026-05-03 08:30:05] Standard Deviation's Difference: -0.11517780515120957
+[2026-05-03 08:30:05] ClinicalBERT with angular Values:     [exact,  related]
+[2026-05-03 08:30:05] Means:                           [0.19569747259355594, -0.17545009119881091]
+[2026-05-03 08:30:05] Standard Deviation:              [0.9203711018725573, 1.035548907023767]
+[2026-05-03 08:30:05] Strictly standardized mean difference: 0.7819638393878267
+[2026-05-03 08:30:05] Set up (5/10) model and tokenizer "PubMedBERT"...
+[2026-05-03 08:30:09] Model set up.
+[2026-05-03 08:30:09] Tokenize Labels...
+[2026-05-03 08:30:09] Labels tokenized.
+[2026-05-03 08:30:09] Embedding Labels...
+[2026-05-03 08:30:14] Labels embedded.
+[2026-05-03 08:30:14] Finalizing embeddings of Labels...
+[2026-05-03 08:30:14] Finalized Label embeddings.
+[2026-05-03 08:30:14] Tokenize Synonyms...
+[2026-05-03 08:30:15] Synonyms tokenized.
+[2026-05-03 08:30:15] Embedding Synonyms...
+[2026-05-03 08:31:29] Synonyms embedded.
+[2026-05-03 08:31:29] Finalizing embeddings of Synoyms...
+[2026-05-03 08:31:29] Finalized Synonym embeddings.
+[2026-05-03 08:31:34] PubMedBERT with cosine Difference: [exact - related]
+[2026-05-03 08:31:34] Mean's Differnece:               0.5031850950309396
+[2026-05-03 08:31:34] Standard Deviation's Difference: -0.27165387069951474
+[2026-05-03 08:31:34] PubMedBERT with cosine Values:     [exact,  related]
+[2026-05-03 08:31:34] Means:                           [0.26531778987883037, -0.2378673051521092]
+[2026-05-03 08:31:34] Standard Deviation:              [0.8152420366685119, 1.0868959073680267]
+[2026-05-03 08:31:34] Strictly standardized mean difference: 0.7000012491637564
+[2026-05-03 08:31:34] PubMedBERT with euclidean Difference: [exact - related]
+[2026-05-03 08:31:34] Mean's Differnece:               0.3462090815883443
+[2026-05-03 08:31:34] Standard Deviation's Difference: -0.13125185072551604
+[2026-05-03 08:31:34] PubMedBERT with euclidean Values:     [exact,  related]
+[2026-05-03 08:31:34] Means:                           [0.1825479913258385, -0.16366109026250583]
+[2026-05-03 08:31:34] Standard Deviation:              [0.913664182444228, 1.044916033169744]
+[2026-05-03 08:31:34] Strictly standardized mean difference: 0.6828338722401887
+[2026-05-03 08:31:34] PubMedBERT with manhattan Difference: [exact - related]
+[2026-05-03 08:31:34] Mean's Differnece:               0.2163566081658591
+[2026-05-03 08:31:34] Standard Deviation's Difference: -0.36963407454113795
+[2026-05-03 08:31:34] PubMedBERT with manhattan Values:     [exact,  related]
+[2026-05-03 08:31:34] Means:                           [0.11407980417368337, -0.10227680399217574]
+[2026-05-03 08:31:34] Standard Deviation:              [0.7820769894581527, 1.1517110639992907]
+[2026-05-03 08:31:34] Strictly standardized mean difference: 0.2559055637054509
+[2026-05-03 08:31:34] PubMedBERT with angular Difference: [exact - related]
+[2026-05-03 08:31:34] Mean's Differnece:               0.478030921627988
+[2026-05-03 08:31:34] Standard Deviation's Difference: -0.18902682445183505
+[2026-05-03 08:31:34] PubMedBERT with angular Values:     [exact,  related]
+[2026-05-03 08:31:34] Means:                           [0.2520545796617409, -0.2259763419662471]
+[2026-05-03 08:31:34] Standard Deviation:              [0.8669359885134486, 1.0559628129652836]
+[2026-05-03 08:31:34] Strictly standardized mean difference: 0.7928956887088429
+[2026-05-03 08:31:34] Set up (6/10) model and tokenizer "SapBERT"...
+[2026-05-03 08:31:35] Model set up.
+[2026-05-03 08:31:35] Tokenize Labels...
+[2026-05-03 08:31:36] Labels tokenized.
+[2026-05-03 08:31:36] Embedding Labels...
+[2026-05-03 08:31:42] Labels embedded.
+[2026-05-03 08:31:42] Finalizing embeddings of Labels...
+[2026-05-03 08:31:42] Finalized Label embeddings.
+[2026-05-03 08:31:42] Tokenize Synonyms...
+[2026-05-03 08:31:43] Synonyms tokenized.
+[2026-05-03 08:31:43] Embedding Synonyms...
+[2026-05-03 08:32:57] Synonyms embedded.
+[2026-05-03 08:32:57] Finalizing embeddings of Synoyms...
+[2026-05-03 08:32:58] Finalized Synonym embeddings.
+[2026-05-03 08:33:03] SapBERT with cosine Difference: [exact - related]
+[2026-05-03 08:33:03] Mean's Differnece:               0.5133875132100648
+[2026-05-03 08:33:03] Standard Deviation's Difference: -0.22623391367066392
+[2026-05-03 08:33:03] SapBERT with cosine Values:     [exact,  related]
+[2026-05-03 08:33:03] Means:                           [0.2706972875416905, -0.24269022566837437]
+[2026-05-03 08:33:03] Standard Deviation:              [0.8407814022661588, 1.0670153159368228]
+[2026-05-03 08:33:03] Strictly standardized mean difference: 0.7814485658032977
+[2026-05-03 08:33:03] SapBERT with euclidean Difference: [exact - related]
+[2026-05-03 08:33:03] Mean's Differnece:               0.39014421777057473
+[2026-05-03 08:33:03] Standard Deviation's Difference: 0.1280279957911561
+[2026-05-03 08:33:03] SapBERT with euclidean Values:     [exact,  related]
+[2026-05-03 08:33:03] Means:                           [0.2057139661232, -0.1844302516473747]
+[2026-05-03 08:33:03] Standard Deviation:              [1.0463733422370554, 0.9183453464458993]
+[2026-05-03 08:33:03] Strictly standardized mean difference: 0.7778977461097164
+[2026-05-03 08:33:03] SapBERT with manhattan Difference: [exact - related]
+[2026-05-03 08:33:03] Mean's Differnece:               0.33902517684639866
+[2026-05-03 08:33:03] Standard Deviation's Difference: 0.1008557340208327
+[2026-05-03 08:33:03] SapBERT with manhattan Values:     [exact,  related]
+[2026-05-03 08:33:03] Means:                           [0.17876008554791392, -0.1602650912984847]
+[2026-05-03 08:33:03] Standard Deviation:              [1.0375697834619102, 0.9367140494410775]
+[2026-05-03 08:33:03] Strictly standardized mean difference: 0.7597607598654087
+[2026-05-03 08:33:03] SapBERT with angular Difference: [exact - related]
+[2026-05-03 08:33:03] Mean's Differnece:               0.5103963953476605
+[2026-05-03 08:33:03] Standard Deviation's Difference: -0.09820481059825303
+[2026-05-03 08:33:03] SapBERT with angular Values:     [exact,  related]
+[2026-05-03 08:33:03] Means:                           [0.26912014070575085, -0.24127625464190955]
+[2026-05-03 08:33:03] Standard Deviation:              [0.914062069542077, 1.01226688014033]
+[2026-05-03 08:33:03] Strictly standardized mean difference: 1.1734808091224325
+[2026-05-03 08:33:03] Set up (7/10) model and tokenizer "SapUMLSBERT"...
+[2026-05-03 08:33:07] Model set up.
+[2026-05-03 08:33:07] Tokenize Labels...
+[2026-05-03 08:33:07] Labels tokenized.
+[2026-05-03 08:33:07] Embedding Labels...
+[2026-05-03 08:33:15] Labels embedded.
+[2026-05-03 08:33:15] Finalizing embeddings of Labels...
+[2026-05-03 08:33:15] Finalized Label embeddings.
+[2026-05-03 08:33:15] Tokenize Synonyms...
+[2026-05-03 08:33:15] Synonyms tokenized.
+[2026-05-03 08:33:15] Embedding Synonyms...
+[2026-05-03 08:34:29] Synonyms embedded.
+[2026-05-03 08:34:29] Finalizing embeddings of Synoyms...
+[2026-05-03 08:34:29] Finalized Synonym embeddings.
+[2026-05-03 08:34:34] SapUMLSBERT with cosine Difference: [exact - related]
+[2026-05-03 08:34:34] Mean's Differnece:               0.49146958127235807
+[2026-05-03 08:34:34] Standard Deviation's Difference: -0.19243578450704157
+[2026-05-03 08:34:34] SapUMLSBERT with cosine Values:     [exact,  related]
+[2026-05-03 08:34:34] Means:                           [0.25914047213150987, -0.2323291091408482]
+[2026-05-03 08:34:34] Standard Deviation:              [0.8632884637163639, 1.0557242482234055]
+[2026-05-03 08:34:34] Strictly standardized mean difference: 0.8087509426734923
+[2026-05-03 08:34:34] SapUMLSBERT with euclidean Difference: [exact - related]
+[2026-05-03 08:34:34] Mean's Differnece:               0.38523100340390604
+[2026-05-03 08:34:34] Standard Deviation's Difference: 0.11698967914593694
+[2026-05-03 08:34:34] SapUMLSBERT with euclidean Values:     [exact,  related]
+[2026-05-03 08:34:34] Means:                           [0.20312334253391184, -0.18210766086999416]
+[2026-05-03 08:34:34] Standard Deviation:              [1.0413821995107486, 0.9243925203648117]
+[2026-05-03 08:34:34] Strictly standardized mean difference: 0.8033052107971389
+[2026-05-03 08:34:34] SapUMLSBERT with manhattan Difference: [exact - related]
+[2026-05-03 08:34:34] Mean's Differnece:               0.33570975265370673
+[2026-05-03 08:34:34] Standard Deviation's Difference: 0.07898536106699494
+[2026-05-03 08:34:34] SapUMLSBERT with manhattan Values:     [exact,  related]
+[2026-05-03 08:34:34] Means:                           [0.1770119395316619, -0.15869781312204484]
+[2026-05-03 08:34:34] Standard Deviation:              [1.026818772839761, 0.9478334117727661]
+[2026-05-03 08:34:34] Strictly standardized mean difference: 0.8500517174414142
+[2026-05-03 08:34:34] SapUMLSBERT with angular Difference: [exact - related]
+[2026-05-03 08:34:34] Mean's Differnece:               0.4913986496969358
+[2026-05-03 08:34:34] Standard Deviation's Difference: -0.10291998896646049
+[2026-05-03 08:34:34] SapUMLSBERT with angular Values:     [exact,  related]
+[2026-05-03 08:34:34] Means:                           [0.259103071562593, -0.2322955781343428]
+[2026-05-03 08:34:34] Standard Deviation:              [0.913907486239693, 1.0168274752061535]
+[2026-05-03 08:34:34] Strictly standardized mean difference: 1.10235826569851
+[2026-05-03 08:34:34] Set up (8/10) model and tokenizer "SciBERT"...
+[2026-05-03 08:34:36] Model set up.
+[2026-05-03 08:34:36] Tokenize Labels...
+[2026-05-03 08:34:37] Labels tokenized.
+[2026-05-03 08:34:37] Embedding Labels...
+[2026-05-03 08:34:42] Labels embedded.
+[2026-05-03 08:34:42] Finalizing embeddings of Labels...
+[2026-05-03 08:34:42] Finalized Label embeddings.
+[2026-05-03 08:34:42] Tokenize Synonyms...
+[2026-05-03 08:34:42] Synonyms tokenized.
+[2026-05-03 08:34:42] Embedding Synonyms...
+[2026-05-03 08:35:55] Synonyms embedded.
+[2026-05-03 08:35:55] Finalizing embeddings of Synoyms...
+[2026-05-03 08:35:55] Finalized Synonym embeddings.
+[2026-05-03 08:36:01] SciBERT with cosine Difference: [exact - related]
+[2026-05-03 08:36:01] Mean's Differnece:               0.3258006271928008
+[2026-05-03 08:36:01] Standard Deviation's Difference: -0.3058402247920783
+[2026-05-03 08:36:01] SciBERT with cosine Values:     [exact,  related]
+[2026-05-03 08:36:01] Means:                           [0.17178708829325615, -0.15401353889954467]
+[2026-05-03 08:36:01] Standard Deviation:              [0.8136369588289055, 1.1194771836209838]
+[2026-05-03 08:36:01] Strictly standardized mean difference: 0.42371697672188385
+[2026-05-03 08:36:01] SciBERT with euclidean Difference: [exact - related]
+[2026-05-03 08:36:01] Mean's Differnece:               0.10016126765788166
+[2026-05-03 08:36:01] Standard Deviation's Difference: -0.1305460544515079
+[2026-05-03 08:36:01] SciBERT with euclidean Values:     [exact,  related]
+[2026-05-03 08:36:01] Means:                           [0.05281270536206388, -0.04734856229581778]
+[2026-05-03 08:36:01] Standard Deviation:              [0.9278944331431757, 1.0584404875946836]
+[2026-05-03 08:36:01] Strictly standardized mean difference: 0.19669426538886128
+[2026-05-03 08:36:01] SciBERT with manhattan Difference: [exact - related]
+[2026-05-03 08:36:01] Mean's Differnece:               0.06757962034778868
+[2026-05-03 08:36:01] Standard Deviation's Difference: -0.20234922185799165
+[2026-05-03 08:36:01] SciBERT with manhattan Values:     [exact,  related]
+[2026-05-03 08:36:01] Means:                           [0.03563316101488108, -0.0319464593329076]
+[2026-05-03 08:36:01] Standard Deviation:              [0.8877256815944261, 1.0900749034524178]
+[2026-05-03 08:36:01] Strictly standardized mean difference: 0.10682520325476647
+[2026-05-03 08:36:01] SciBERT with angular Difference: [exact - related]
+[2026-05-03 08:36:01] Mean's Differnece:               0.28015492713805346
+[2026-05-03 08:36:01] Standard Deviation's Difference: -0.21089496756765946
+[2026-05-03 08:36:01] SciBERT with angular Values:     [exact,  related]
+[2026-05-03 08:36:01] Means:                           [0.14771917297622536, -0.13243575416182812]
+[2026-05-03 08:36:01] Standard Deviation:              [0.8734609092781205, 1.08435587684578]
+[2026-05-03 08:36:01] Strictly standardized mean difference: 0.4359926145963523
+[2026-05-03 08:36:01] Set up (9/10) model and tokenizer "UMLSBERT"...
+[2026-05-03 08:36:03] Model set up.
+[2026-05-03 08:36:03] Tokenize Labels...
+[2026-05-03 08:36:03] Labels tokenized.
+[2026-05-03 08:36:03] Embedding Labels...
+[2026-05-03 08:36:11] Labels embedded.
+[2026-05-03 08:36:11] Finalizing embeddings of Labels...
+[2026-05-03 08:36:11] Finalized Label embeddings.
+[2026-05-03 08:36:11] Tokenize Synonyms...
+[2026-05-03 08:36:12] Synonyms tokenized.
+[2026-05-03 08:36:12] Embedding Synonyms...
+[2026-05-03 08:37:26] Synonyms embedded.
+[2026-05-03 08:37:26] Finalizing embeddings of Synoyms...
+[2026-05-03 08:37:26] Finalized Synonym embeddings.
+[2026-05-03 08:37:32] UMLSBERT with cosine Difference: [exact - related]
+[2026-05-03 08:37:32] Mean's Differnece:               0.5374212732572743
+[2026-05-03 08:37:32] Standard Deviation's Difference: -0.19184849846287055
+[2026-05-03 08:37:32] UMLSBERT with cosine Values:     [exact,  related]
+[2026-05-03 08:37:32] Means:                           [0.2833697298719066, -0.2540515433853676]
+[2026-05-03 08:37:32] Standard Deviation:              [0.8574977459247346, 1.0493462443876052]
+[2026-05-03 08:37:32] Strictly standardized mean difference: 0.8885422230878721
+[2026-05-03 08:37:32] UMLSBERT with euclidean Difference: [exact - related]
+[2026-05-03 08:37:32] Mean's Differnece:               0.45564605976530725
+[2026-05-03 08:37:32] Standard Deviation's Difference: 0.07065191553048689
+[2026-05-03 08:37:32] UMLSBERT with euclidean Values:     [exact,  related]
+[2026-05-03 08:37:32] Means:                           [0.2402515629690807, -0.21539449679622658]
+[2026-05-03 08:37:32] Standard Deviation:              [1.0104981333897636, 0.9398462178592767]
+[2026-05-03 08:37:32] Strictly standardized mean difference: 1.2274674946088149
+[2026-05-03 08:37:32] UMLSBERT with manhattan Difference: [exact - related]
+[2026-05-03 08:37:32] Mean's Differnece:               0.4306372183241125
+[2026-05-03 08:37:32] Standard Deviation's Difference: 0.08540187758394768
+[2026-05-03 08:37:32] UMLSBERT with manhattan Values:     [exact,  related]
+[2026-05-03 08:37:32] Means:                           [0.22706498291308805, -0.20357223541102448]
+[2026-05-03 08:37:32] Standard Deviation:              [1.0208171108386008, 0.9354152332546531]
+[2026-05-03 08:37:32] Strictly standardized mean difference: 1.0535802828996677
+[2026-05-03 08:37:32] UMLSBERT with angular Difference: [exact - related]
+[2026-05-03 08:37:32] Mean's Differnece:               0.5513659142628212
+[2026-05-03 08:37:32] Standard Deviation's Difference: -0.09129537802212395
+[2026-05-03 08:37:32] UMLSBERT with angular Values:     [exact,  related]
+[2026-05-03 08:37:32] Means:                           [0.29072241453761266, -0.26064349972520856]
+[2026-05-03 08:37:32] Standard Deviation:              [0.9122433509768662, 1.00353872899899]
+[2026-05-03 08:37:32] Strictly standardized mean difference: 1.3183856441760202
+[2026-05-03 08:37:32] Set up (10/10) model and tokenizer "medCPT"...
+[2026-05-03 08:37:33] Model set up.
+[2026-05-03 08:37:33] Tokenize Labels...
+[2026-05-03 08:37:33] Labels tokenized.
+[2026-05-03 08:37:33] Embedding Labels...
+[2026-05-03 08:37:41] Labels embedded.
+[2026-05-03 08:37:41] Finalizing embeddings of Labels...
+[2026-05-03 08:37:41] Finalized Label embeddings.
+[2026-05-03 08:37:41] Tokenize Synonyms...
+[2026-05-03 08:37:42] Synonyms tokenized.
+[2026-05-03 08:37:42] Embedding Synonyms...
+[2026-05-03 08:38:55] Synonyms embedded.
+[2026-05-03 08:38:55] Finalizing embeddings of Synoyms...
+[2026-05-03 08:38:55] Finalized Synonym embeddings.
+[2026-05-03 08:39:01] medCPT with cosine Difference: [exact - related]
+[2026-05-03 08:39:01] Mean's Differnece:               0.46217470157931295
+[2026-05-03 08:39:01] Standard Deviation's Difference: -0.22219051643752763
+[2026-05-03 08:39:01] medCPT with cosine Values:     [exact,  related]
+[2026-05-03 08:39:01] Means:                           [0.24369396385517184, -0.21848073772414114]
+[2026-05-03 08:39:01] Standard Deviation:              [0.8496138095996554, 1.071804326037183]
+[2026-05-03 08:39:01] Strictly standardized mean difference: 0.7073469211127927
+[2026-05-03 08:39:01] medCPT with euclidean Difference: [exact - related]
+[2026-05-03 08:39:01] Mean's Differnece:               0.2961730449643243
+[2026-05-03 08:39:01] Standard Deviation's Difference: 0.03231655572784253
+[2026-05-03 08:39:01] medCPT with euclidean Values:     [exact,  related]
+[2026-05-03 08:39:01] Means:                           [0.1561651537130411, -0.1400078912512832]
+[2026-05-03 08:39:01] Standard Deviation:              [1.0060223501525165, 0.973705794424674]
+[2026-05-03 08:39:01] Strictly standardized mean difference: 1.1709280716727017
+[2026-05-03 08:39:01] medCPT with manhattan Difference: [exact - related]
+[2026-05-03 08:39:01] Mean's Differnece:               0.20300343138293286
+[2026-05-03 08:39:01] Standard Deviation's Difference: -0.027546689198653995
+[2026-05-03 08:39:01] medCPT with manhattan Values:     [exact,  related]
+[2026-05-03 08:39:01] Means:                           [0.10703898482729654, -0.09596444655563632]
+[2026-05-03 08:39:01] Standard Deviation:              [0.9803389883840323, 1.0078856775826863]
+[2026-05-03 08:39:01] Strictly standardized mean difference: 0.8674330111429616
+[2026-05-03 08:39:01] medCPT with angular Difference: [exact - related]
+[2026-05-03 08:39:01] Mean's Differnece:               0.45411140434062713
+[2026-05-03 08:39:01] Standard Deviation's Difference: -0.10623381936646781
+[2026-05-03 08:39:01] medCPT with angular Values:     [exact,  related]
+[2026-05-03 08:39:01] Means:                           [0.23944237488000167, -0.2146690294606255]
+[2026-05-03 08:39:01] Standard Deviation:              [0.9166009775419177, 1.0228347969083855]
+[2026-05-03 08:39:01] Strictly standardized mean difference: 1.0004452111591418
+[2026-05-03 08:39:01] Writing file 'transform.reduced.csv'.
+[2026-05-03 08:39:02] Writing file 'transform.reduced.csv' completed.
+[2026-05-03 08:39:02] ============================================================
+[2026-05-03 08:39:02] =      Embedding of HPO Terms completed [Minutes: 17]      =
+[2026-05-03 08:39:02] ============================================================
+[2026-05-03 11:03:13] ============================================================
+[2026-05-03 11:03:13] =            Merging Generated Classifications             =
+[2026-05-03 11:03:13] ============================================================
+[2026-05-03 11:03:13] Reading files...
+[2026-05-03 11:03:13] Files read.
+[2026-05-03 11:03:13] Merging Data...
+[2026-05-03 11:03:14] Data merged.
+[2026-05-03 11:03:14] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-03 11:03:15] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-03 11:03:15] Merged 6 files into 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-03 11:03:15] ============================================================
+[2026-05-03 11:03:15] =                 Data Merged [Minutes: 0]                 =
+[2026-05-03 11:03:15] ============================================================
+[2026-05-03 11:03:17] ============================================================
+[2026-05-03 11:03:17] =            Merging Generated Classifications             =
+[2026-05-03 11:03:17] ============================================================
+[2026-05-03 11:03:17] Reading files...
+[2026-05-03 11:03:17] Files read.
+[2026-05-03 11:03:17] Merging Data...
+[2026-05-03 11:03:17] Data merged.
+[2026-05-03 11:03:17] Writing file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-03 11:03:19] Writing file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-03 11:03:19] Merged 6 files into 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-03 11:03:19] ============================================================
+[2026-05-03 11:03:19] =                 Data Merged [Minutes: 0]                 =
+[2026-05-03 11:03:19] ============================================================
+[2026-05-03 11:03:20] ============================================================
+[2026-05-03 11:03:20] =            Merging Generated Classifications             =
+[2026-05-03 11:03:20] ============================================================
+[2026-05-03 11:03:20] Reading files...
+[2026-05-03 11:03:20] Files read.
+[2026-05-03 11:03:20] Merging Data...
+[2026-05-03 11:03:20] Data merged.
+[2026-05-03 11:03:20] Writing file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-03 11:03:23] Writing file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-03 11:03:23] Merged 6 files into 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-03 11:03:23] ============================================================
+[2026-05-03 11:03:23] =                 Data Merged [Minutes: 0]                 =
+[2026-05-03 11:03:23] ============================================================
+[2026-05-03 11:03:24] ============================================================
+[2026-05-03 11:03:24] =            Merging Generated Classifications             =
+[2026-05-03 11:03:24] ============================================================
+[2026-05-03 11:03:24] Reading files...
+[2026-05-03 11:03:24] Files read.
+[2026-05-03 11:03:24] Merging Data...
+[2026-05-03 11:03:24] Data merged.
+[2026-05-03 11:03:24] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-03 11:03:25] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-03 11:03:25] Merged 6 files into 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-03 11:03:25] ============================================================
+[2026-05-03 11:03:25] =                 Data Merged [Minutes: 0]                 =
+[2026-05-03 11:03:25] ============================================================
+[2026-05-03 11:03:34] ============================================================
+[2026-05-03 11:03:34] =     Evaluating the Results of Synonym Classification     =
+[2026-05-03 11:03:34] ============================================================
+[2026-05-03 11:03:34] class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv could not be found. Terminating.
+[2026-05-03 11:03:46] ============================================================
+[2026-05-03 11:03:46] =     Evaluating the Results of Synonym Classification     =
+[2026-05-03 11:03:46] ============================================================
+[2026-05-03 11:03:46] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-03 11:03:47] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-03 11:03:47] 7 ontologies found.
+[2026-05-03 11:03:47] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-03 11:03:47] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-03 11:03:47] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-03 11:03:47] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-03 11:03:47] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-03 11:03:47] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-03 11:03:47] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-03 11:03:47] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-03 11:03:47] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-03 11:03:47] Plotting cosine for Model BioClinicalBERT...
+[2026-05-03 11:04:15] Suggested Threshold for Class "related", Metric "cosine", and Model "BioClinicalBERT": -2.537 with F1 of 0.944 classifying 2.2% of the data.
+[2026-05-03 11:04:15] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioClinicalBERT": 0.749 with F1 of 0.751 classifying 24.2% of the data.
+[2026-05-03 11:04:16] Plotting euclidean for Model BioClinicalBERT...
+[2026-05-03 11:04:46] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioClinicalBERT": -1.541 with F1 of 0.942 classifying 0.1% of the data.
+[2026-05-03 11:04:46] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioClinicalBERT": 0.484 with F1 of 0.741 classifying 24.1% of the data.
+[2026-05-03 11:04:46] Plotting manhattan for Model BioClinicalBERT...
+[2026-05-03 11:05:09] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioClinicalBERT": -1.173 with F1 of 0.953 classifying 0.2% of the data.
+[2026-05-03 11:05:09] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioClinicalBERT": 0.401 with F1 of 0.745 classifying 21.8% of the data.
+[2026-05-03 11:05:10] Plotting angular for Model BioClinicalBERT...
+[2026-05-03 11:05:34] Suggested Threshold for Class "related", Metric "angular", and Model "BioClinicalBERT": -2.157 with F1 of 0.944 classifying 2.2% of the data.
+[2026-05-03 11:05:34] Suggested Threshold for Class "exact", Metric "angular", and Model "BioClinicalBERT": 0.744 with F1 of 0.751 classifying 24.3% of the data.
+[2026-05-03 11:05:35] Plotting cosine for Model SapBERT...
+[2026-05-03 11:06:00] Suggested Threshold for Class "related", Metric "cosine", and Model "SapBERT": -2.647 with F1 of 0.991 classifying 1.2% of the data.
+[2026-05-03 11:06:00] Suggested Threshold for Class "exact", Metric "cosine", and Model "SapBERT": 1.244 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 11:06:01] Plotting euclidean for Model SapBERT...
+[2026-05-03 11:06:28] Suggested Threshold for Class "related", Metric "euclidean", and Model "SapBERT": -1.012 with F1 of 0.994 classifying 1.7% of the data.
+[2026-05-03 11:06:28] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SapBERT": 2.425 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 11:06:28] Plotting manhattan for Model SapBERT...
+[2026-05-03 11:06:52] Suggested Threshold for Class "related", Metric "manhattan", and Model "SapBERT": -0.851 with F1 of 0.994 classifying 1.7% of the data.
+[2026-05-03 11:06:52] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SapBERT": 2.396 with F1 of 0.85 classifying 3.0% of the data.
+[2026-05-03 11:06:53] Plotting angular for Model SapBERT...
+[2026-05-03 11:07:20] Suggested Threshold for Class "related", Metric "angular", and Model "SapBERT": -2.162 with F1 of 0.991 classifying 1.2% of the data.
+[2026-05-03 11:07:20] Suggested Threshold for Class "exact", Metric "angular", and Model "SapBERT": 1.656 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 11:07:20] Plotting cosine for Model ClinicalBERT...
+[2026-05-03 11:07:43] Suggested Threshold for Class "related", Metric "cosine", and Model "ClinicalBERT": -2.421 with F1 of 0.955 classifying 1.0% of the data.
+[2026-05-03 11:07:43] Suggested Threshold for Class "exact", Metric "cosine", and Model "ClinicalBERT": 0.8 with F1 of 0.748 classifying 24.4% of the data.
+[2026-05-03 11:07:44] Plotting euclidean for Model ClinicalBERT...
+[2026-05-03 11:08:06] Suggested Threshold for Class "related", Metric "euclidean", and Model "ClinicalBERT": -1.416 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 11:08:06] Suggested Threshold for Class "exact", Metric "euclidean", and Model "ClinicalBERT": 0.569 with F1 of 0.756 classifying 21.3% of the data.
+[2026-05-03 11:08:07] Plotting manhattan for Model ClinicalBERT...
+[2026-05-03 11:08:29] Suggested Threshold for Class "related", Metric "manhattan", and Model "ClinicalBERT": -1.166 with F1 of 0.91 classifying 0.3% of the data.
+[2026-05-03 11:08:29] Suggested Threshold for Class "exact", Metric "manhattan", and Model "ClinicalBERT": 0.377 with F1 of 0.754 classifying 22.5% of the data.
+[2026-05-03 11:08:30] Plotting angular for Model ClinicalBERT...
+[2026-05-03 11:08:53] Suggested Threshold for Class "related", Metric "angular", and Model "ClinicalBERT": -2.044 with F1 of 0.955 classifying 1.0% of the data.
+[2026-05-03 11:08:53] Suggested Threshold for Class "exact", Metric "angular", and Model "ClinicalBERT": 0.742 with F1 of 0.748 classifying 24.5% of the data.
+[2026-05-03 11:08:53] Plotting cosine for Model BioBERT...
+[2026-05-03 11:09:16] Suggested Threshold for Class "related", Metric "cosine", and Model "BioBERT": -3.397 with F1 of 0.96 classifying 0.8% of the data.
+[2026-05-03 11:09:16] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioBERT": 0.726 with F1 of 0.777 classifying 24.7% of the data.
+[2026-05-03 11:09:16] Plotting euclidean for Model BioBERT...
+[2026-05-03 11:09:39] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioBERT": -1.414 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 11:09:39] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioBERT": 0.489 with F1 of 0.779 classifying 23.5% of the data.
+[2026-05-03 11:09:39] Plotting manhattan for Model BioBERT...
+[2026-05-03 11:10:02] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioBERT": -1.072 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 11:10:02] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioBERT": 0.323 with F1 of 0.782 classifying 23.3% of the data.
+[2026-05-03 11:10:03] Plotting angular for Model BioBERT...
+[2026-05-03 11:10:27] Suggested Threshold for Class "related", Metric "angular", and Model "BioBERT": -2.692 with F1 of 0.96 classifying 0.8% of the data.
+[2026-05-03 11:10:27] Suggested Threshold for Class "exact", Metric "angular", and Model "BioBERT": 1.946 with F1 of 0.8 classifying 0.1% of the data.
+[2026-05-03 11:10:28] Plotting cosine for Model UMLSBERT...
+[2026-05-03 11:10:52] Suggested Threshold for Class "related", Metric "cosine", and Model "UMLSBERT": -2.794 with F1 of 0.936 classifying 0.9% of the data.
+[2026-05-03 11:10:52] Suggested Threshold for Class "exact", Metric "cosine", and Model "UMLSBERT": 0.749 with F1 of 0.805 classifying 25.9% of the data.
+[2026-05-03 11:10:53] Plotting euclidean for Model UMLSBERT...
+[2026-05-03 11:11:17] Suggested Threshold for Class "related", Metric "euclidean", and Model "UMLSBERT": -1.198 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 11:11:17] Suggested Threshold for Class "exact", Metric "euclidean", and Model "UMLSBERT": 0.273 with F1 of 0.806 classifying 28.7% of the data.
+[2026-05-03 11:11:18] Plotting manhattan for Model UMLSBERT...
+[2026-05-03 11:11:43] Suggested Threshold for Class "related", Metric "manhattan", and Model "UMLSBERT": -1.089 with F1 of 0.976 classifying 0.4% of the data.
+[2026-05-03 11:11:43] Suggested Threshold for Class "exact", Metric "manhattan", and Model "UMLSBERT": 0.425 with F1 of 0.81 classifying 22.1% of the data.
+[2026-05-03 11:11:44] Plotting angular for Model UMLSBERT...
+[2026-05-03 11:12:08] Suggested Threshold for Class "related", Metric "angular", and Model "UMLSBERT": -2.298 with F1 of 0.932 classifying 0.8% of the data.
+[2026-05-03 11:12:08] Suggested Threshold for Class "exact", Metric "angular", and Model "UMLSBERT": 0.715 with F1 of 0.805 classifying 25.9% of the data.
+[2026-05-03 11:12:10] Plotting cosine for Model SciBERT...
+[2026-05-03 11:12:35] Suggested Threshold for Class "related", Metric "cosine", and Model "SciBERT": -3.138 with F1 of 0.96 classifying 0.5% of the data.
+[2026-05-03 11:12:35] Suggested Threshold for Class "exact", Metric "cosine", and Model "SciBERT": 1.213 with F1 of 0.719 classifying 6.6% of the data.
+[2026-05-03 11:12:36] Plotting euclidean for Model SciBERT...
+[2026-05-03 11:12:59] Suggested Threshold for Class "related", Metric "euclidean", and Model "SciBERT": -1.126 with F1 of 0.966 classifying 0.6% of the data.
+[2026-05-03 11:12:59] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SciBERT": 1.374 with F1 of 0.724 classifying 8.4% of the data.
+[2026-05-03 11:13:00] Plotting manhattan for Model SciBERT...
+[2026-05-03 11:13:24] Suggested Threshold for Class "related", Metric "manhattan", and Model "SciBERT": -1.0 with F1 of 0.957 classifying 0.5% of the data.
+[2026-05-03 11:13:24] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SciBERT": 1.601 with F1 of 0.721 classifying 5.3% of the data.
+[2026-05-03 11:13:24] Plotting angular for Model SciBERT...
+[2026-05-03 11:13:47] Suggested Threshold for Class "related", Metric "angular", and Model "SciBERT": -2.527 with F1 of 0.96 classifying 0.5% of the data.
+[2026-05-03 11:13:47] Suggested Threshold for Class "exact", Metric "angular", and Model "SciBERT": 1.447 with F1 of 0.719 classifying 6.6% of the data.
+[2026-05-03 11:13:48] Plotting cosine for Model SapUMLSBERT...
+[2026-05-03 11:14:10] Suggested Threshold for Class "related", Metric "cosine", and Model "SapUMLSBERT": -2.745 with F1 of 0.98 classifying 1.0% of the data.
+[2026-05-03 11:14:10] Suggested Threshold for Class "exact", Metric "cosine", and Model "SapUMLSBERT": 1.274 with F1 of 0.856 classifying 2.2% of the data.
+[2026-05-03 11:14:11] Plotting euclidean for Model SapUMLSBERT...
+[2026-05-03 11:14:35] Suggested Threshold for Class "related", Metric "euclidean", and Model "SapUMLSBERT": -1.13 with F1 of 0.97 classifying 0.7% of the data.
+[2026-05-03 11:14:35] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SapUMLSBERT": 2.971 with F1 of 0.863 classifying 2.0% of the data.
+[2026-05-03 11:14:36] Plotting manhattan for Model SapUMLSBERT...
+[2026-05-03 11:15:01] Suggested Threshold for Class "related", Metric "manhattan", and Model "SapUMLSBERT": -0.948 with F1 of 0.973 classifying 0.8% of the data.
+[2026-05-03 11:15:01] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SapUMLSBERT": 2.957 with F1 of 0.865 classifying 2.0% of the data.
+[2026-05-03 11:15:02] Plotting angular for Model SapUMLSBERT...
+[2026-05-03 11:15:26] Suggested Threshold for Class "related", Metric "angular", and Model "SapUMLSBERT": -2.261 with F1 of 0.98 classifying 1.0% of the data.
+[2026-05-03 11:15:26] Suggested Threshold for Class "exact", Metric "angular", and Model "SapUMLSBERT": 1.749 with F1 of 0.856 classifying 2.2% of the data.
+[2026-05-03 11:15:26] Plotting cosine for Model medCPT...
+[2026-05-03 11:15:52] Suggested Threshold for Class "related", Metric "cosine", and Model "medCPT": -2.703 with F1 of 0.943 classifying 1.2% of the data.
+[2026-05-03 11:15:52] Suggested Threshold for Class "exact", Metric "cosine", and Model "medCPT": 1.002 with F1 of 0.79 classifying 14.5% of the data.
+[2026-05-03 11:15:52] Plotting euclidean for Model medCPT...
+[2026-05-03 11:16:17] Suggested Threshold for Class "related", Metric "euclidean", and Model "medCPT": -1.129 with F1 of 0.942 classifying 0.1% of the data.
+[2026-05-03 11:16:17] Suggested Threshold for Class "exact", Metric "euclidean", and Model "medCPT": 0.771 with F1 of 0.767 classifying 16.7% of the data.
+[2026-05-03 11:16:18] Plotting manhattan for Model medCPT...
+[2026-05-03 11:16:44] Suggested Threshold for Class "related", Metric "manhattan", and Model "medCPT": -0.767 with F1 of 0.96 classifying 0.2% of the data.
+[2026-05-03 11:16:44] Suggested Threshold for Class "exact", Metric "manhattan", and Model "medCPT": 0.438 with F1 of 0.765 classifying 16.6% of the data.
+[2026-05-03 11:16:45] Plotting angular for Model medCPT...
+[2026-05-03 11:17:10] Suggested Threshold for Class "related", Metric "angular", and Model "medCPT": -2.152 with F1 of 0.943 classifying 1.2% of the data.
+[2026-05-03 11:17:10] Suggested Threshold for Class "exact", Metric "angular", and Model "medCPT": 1.13 with F1 of 0.79 classifying 14.5% of the data.
+[2026-05-03 11:17:11] Plotting cosine for Model PubMedBERT...
+[2026-05-03 11:17:34] Suggested Threshold for Class "related", Metric "cosine", and Model "PubMedBERT": -3.636 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 11:17:34] Suggested Threshold for Class "exact", Metric "cosine", and Model "PubMedBERT": 0.999 with F1 of 0.753 classifying 11.5% of the data.
+[2026-05-03 11:17:35] Plotting euclidean for Model PubMedBERT...
+[2026-05-03 11:17:59] Suggested Threshold for Class "related", Metric "euclidean", and Model "PubMedBERT": -1.452 with F1 of 0.948 classifying 0.4% of the data.
+[2026-05-03 11:17:59] Suggested Threshold for Class "exact", Metric "euclidean", and Model "PubMedBERT": 1.14 with F1 of 0.757 classifying 10.7% of the data.
+[2026-05-03 11:17:59] Plotting manhattan for Model PubMedBERT...
+[2026-05-03 11:18:25] Suggested Threshold for Class "related", Metric "manhattan", and Model "PubMedBERT": -0.903 with F1 of 0.91 classifying 1.9% of the data.
+[2026-05-03 11:18:25] Suggested Threshold for Class "exact", Metric "manhattan", and Model "PubMedBERT": 0.803 with F1 of 0.753 classifying 11.4% of the data.
+[2026-05-03 11:18:25] Plotting angular for Model PubMedBERT...
+[2026-05-03 11:18:49] Suggested Threshold for Class "related", Metric "angular", and Model "PubMedBERT": -2.746 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 11:18:49] Suggested Threshold for Class "exact", Metric "angular", and Model "PubMedBERT": 1.145 with F1 of 0.754 classifying 10.9% of the data.
+[2026-05-03 11:18:50] Plotting cosine for Model BioLinkBERT...
+[2026-05-03 11:19:14] Suggested Threshold for Class "related", Metric "cosine", and Model "BioLinkBERT": -2.551 with F1 of 0.923 classifying 2.1% of the data.
+[2026-05-03 11:19:14] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioLinkBERT": 0.148 with F1 of 0.705 classifying 53.0% of the data.
+[2026-05-03 11:19:15] Plotting euclidean for Model BioLinkBERT...
+[2026-05-03 11:19:39] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioLinkBERT": -1.162 with F1 of 0.956 classifying 0.7% of the data.
+[2026-05-03 11:19:39] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioLinkBERT": -0.238 with F1 of 0.702 classifying 53.0% of the data.
+[2026-05-03 11:19:40] Plotting manhattan for Model BioLinkBERT...
+[2026-05-03 11:20:06] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioLinkBERT": -0.132 with F1 of 0.942 classifying 0.5% of the data.
+[2026-05-03 11:20:06] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioLinkBERT": -0.048 with F1 of 0.697 classifying 52.7% of the data.
+[2026-05-03 11:20:07] Plotting angular for Model BioLinkBERT...
+[2026-05-03 11:20:29] Suggested Threshold for Class "related", Metric "angular", and Model "BioLinkBERT": -2.218 with F1 of 0.923 classifying 2.1% of the data.
+[2026-05-03 11:20:29] Suggested Threshold for Class "exact", Metric "angular", and Model "BioLinkBERT": 0.015 with F1 of 0.705 classifying 53.1% of the data.
+[2026-05-03 11:20:35] Discrepancies for Embedding Answers: 0
+[2026-05-03 11:20:42] Unsure Count: 25566
+[2026-05-03 11:20:58] ============================================================
+[2026-05-03 11:20:58] =     Evaluating the Results of Synonym Classification     =
+[2026-05-03 11:20:58] ============================================================
+[2026-05-03 11:20:58] Reading file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-03 11:20:58] Reading file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-03 11:20:58] 7 ontologies found.
+[2026-05-03 11:20:58] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-03 11:20:58] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-03 11:20:58] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-03 11:20:58] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-03 11:20:58] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-03 11:20:58] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-03 11:20:58] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-03 11:20:58] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-03 11:20:58] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-03 11:20:59] Plotting cosine for Model BioClinicalBERT...
+[2026-05-03 11:21:24] Suggested Threshold for Class "related", Metric "cosine", and Model "BioClinicalBERT": -2.537 with F1 of 0.944 classifying 2.2% of the data.
+[2026-05-03 11:21:24] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioClinicalBERT": 0.749 with F1 of 0.751 classifying 24.2% of the data.
+[2026-05-03 11:21:24] Plotting euclidean for Model BioClinicalBERT...
+[2026-05-03 11:21:50] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioClinicalBERT": -1.541 with F1 of 0.942 classifying 0.1% of the data.
+[2026-05-03 11:21:50] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioClinicalBERT": 0.484 with F1 of 0.741 classifying 24.1% of the data.
+[2026-05-03 11:21:51] Plotting manhattan for Model BioClinicalBERT...
+[2026-05-03 11:22:17] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioClinicalBERT": -1.173 with F1 of 0.953 classifying 0.2% of the data.
+[2026-05-03 11:22:17] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioClinicalBERT": 0.401 with F1 of 0.745 classifying 21.8% of the data.
+[2026-05-03 11:22:18] Plotting angular for Model BioClinicalBERT...
+[2026-05-03 11:22:44] Suggested Threshold for Class "related", Metric "angular", and Model "BioClinicalBERT": -2.157 with F1 of 0.944 classifying 2.2% of the data.
+[2026-05-03 11:22:44] Suggested Threshold for Class "exact", Metric "angular", and Model "BioClinicalBERT": 0.744 with F1 of 0.751 classifying 24.3% of the data.
+[2026-05-03 11:22:45] Plotting cosine for Model SapBERT...
+[2026-05-03 11:23:11] Suggested Threshold for Class "related", Metric "cosine", and Model "SapBERT": -2.647 with F1 of 0.991 classifying 1.2% of the data.
+[2026-05-03 11:23:11] Suggested Threshold for Class "exact", Metric "cosine", and Model "SapBERT": 1.244 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 11:23:12] Plotting euclidean for Model SapBERT...
+[2026-05-03 11:23:35] Suggested Threshold for Class "related", Metric "euclidean", and Model "SapBERT": -1.012 with F1 of 0.994 classifying 1.7% of the data.
+[2026-05-03 11:23:35] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SapBERT": 2.425 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 11:23:36] Plotting manhattan for Model SapBERT...
+[2026-05-03 11:23:59] Suggested Threshold for Class "related", Metric "manhattan", and Model "SapBERT": -0.851 with F1 of 0.994 classifying 1.7% of the data.
+[2026-05-03 11:23:59] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SapBERT": 2.396 with F1 of 0.85 classifying 3.0% of the data.
+[2026-05-03 11:23:59] Plotting angular for Model SapBERT...
+[2026-05-03 11:24:22] Suggested Threshold for Class "related", Metric "angular", and Model "SapBERT": -2.162 with F1 of 0.991 classifying 1.2% of the data.
+[2026-05-03 11:24:22] Suggested Threshold for Class "exact", Metric "angular", and Model "SapBERT": 1.656 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 11:24:23] Plotting cosine for Model ClinicalBERT...
+[2026-05-03 11:24:46] Suggested Threshold for Class "related", Metric "cosine", and Model "ClinicalBERT": -2.421 with F1 of 0.955 classifying 1.0% of the data.
+[2026-05-03 11:24:46] Suggested Threshold for Class "exact", Metric "cosine", and Model "ClinicalBERT": 0.8 with F1 of 0.748 classifying 24.4% of the data.
+[2026-05-03 11:24:47] Plotting euclidean for Model ClinicalBERT...
+[2026-05-03 11:25:09] Suggested Threshold for Class "related", Metric "euclidean", and Model "ClinicalBERT": -1.416 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 11:25:09] Suggested Threshold for Class "exact", Metric "euclidean", and Model "ClinicalBERT": 0.569 with F1 of 0.756 classifying 21.3% of the data.
+[2026-05-03 11:25:10] Plotting manhattan for Model ClinicalBERT...
+[2026-05-03 11:25:33] Suggested Threshold for Class "related", Metric "manhattan", and Model "ClinicalBERT": -1.166 with F1 of 0.91 classifying 0.3% of the data.
+[2026-05-03 11:25:33] Suggested Threshold for Class "exact", Metric "manhattan", and Model "ClinicalBERT": 0.377 with F1 of 0.754 classifying 22.5% of the data.
+[2026-05-03 11:25:33] Plotting angular for Model ClinicalBERT...
+[2026-05-03 11:25:57] Suggested Threshold for Class "related", Metric "angular", and Model "ClinicalBERT": -2.044 with F1 of 0.955 classifying 1.0% of the data.
+[2026-05-03 11:25:57] Suggested Threshold for Class "exact", Metric "angular", and Model "ClinicalBERT": 0.742 with F1 of 0.748 classifying 24.5% of the data.
+[2026-05-03 11:25:57] Plotting cosine for Model BioBERT...
+[2026-05-03 11:26:22] Suggested Threshold for Class "related", Metric "cosine", and Model "BioBERT": -3.397 with F1 of 0.96 classifying 0.8% of the data.
+[2026-05-03 11:26:22] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioBERT": 0.726 with F1 of 0.777 classifying 24.7% of the data.
+[2026-05-03 11:26:23] Plotting euclidean for Model BioBERT...
+[2026-05-03 11:26:48] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioBERT": -1.414 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 11:26:48] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioBERT": 0.489 with F1 of 0.779 classifying 23.5% of the data.
+[2026-05-03 11:26:48] Plotting manhattan for Model BioBERT...
+[2026-05-03 11:27:13] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioBERT": -1.072 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 11:27:13] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioBERT": 0.323 with F1 of 0.782 classifying 23.3% of the data.
+[2026-05-03 11:27:14] Plotting angular for Model BioBERT...
+[2026-05-03 11:27:39] Suggested Threshold for Class "related", Metric "angular", and Model "BioBERT": -2.692 with F1 of 0.96 classifying 0.8% of the data.
+[2026-05-03 11:27:39] Suggested Threshold for Class "exact", Metric "angular", and Model "BioBERT": 1.946 with F1 of 0.8 classifying 0.1% of the data.
+[2026-05-03 11:27:40] Plotting cosine for Model UMLSBERT...
+[2026-05-03 11:28:05] Suggested Threshold for Class "related", Metric "cosine", and Model "UMLSBERT": -2.794 with F1 of 0.936 classifying 0.9% of the data.
+[2026-05-03 11:28:05] Suggested Threshold for Class "exact", Metric "cosine", and Model "UMLSBERT": 0.749 with F1 of 0.805 classifying 25.9% of the data.
+[2026-05-03 11:28:06] Plotting euclidean for Model UMLSBERT...
+[2026-05-03 11:28:30] Suggested Threshold for Class "related", Metric "euclidean", and Model "UMLSBERT": -1.198 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 11:28:30] Suggested Threshold for Class "exact", Metric "euclidean", and Model "UMLSBERT": 0.273 with F1 of 0.806 classifying 28.7% of the data.
+[2026-05-03 11:28:31] Plotting manhattan for Model UMLSBERT...
+[2026-05-03 11:28:56] Suggested Threshold for Class "related", Metric "manhattan", and Model "UMLSBERT": -1.089 with F1 of 0.976 classifying 0.4% of the data.
+[2026-05-03 11:28:56] Suggested Threshold for Class "exact", Metric "manhattan", and Model "UMLSBERT": 0.425 with F1 of 0.81 classifying 22.1% of the data.
+[2026-05-03 11:28:57] Plotting angular for Model UMLSBERT...
+[2026-05-03 11:29:21] Suggested Threshold for Class "related", Metric "angular", and Model "UMLSBERT": -2.298 with F1 of 0.932 classifying 0.8% of the data.
+[2026-05-03 11:29:21] Suggested Threshold for Class "exact", Metric "angular", and Model "UMLSBERT": 0.715 with F1 of 0.805 classifying 25.9% of the data.
+[2026-05-03 11:29:23] Plotting cosine for Model SciBERT...
+[2026-05-03 11:29:48] Suggested Threshold for Class "related", Metric "cosine", and Model "SciBERT": -3.138 with F1 of 0.96 classifying 0.5% of the data.
+[2026-05-03 11:29:48] Suggested Threshold for Class "exact", Metric "cosine", and Model "SciBERT": 1.213 with F1 of 0.719 classifying 6.6% of the data.
+[2026-05-03 11:29:49] Plotting euclidean for Model SciBERT...
+[2026-05-03 11:30:14] Suggested Threshold for Class "related", Metric "euclidean", and Model "SciBERT": -1.126 with F1 of 0.966 classifying 0.6% of the data.
+[2026-05-03 11:30:14] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SciBERT": 1.374 with F1 of 0.724 classifying 8.4% of the data.
+[2026-05-03 11:30:15] Plotting manhattan for Model SciBERT...
+[2026-05-03 11:30:41] Suggested Threshold for Class "related", Metric "manhattan", and Model "SciBERT": -1.0 with F1 of 0.957 classifying 0.5% of the data.
+[2026-05-03 11:30:41] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SciBERT": 1.601 with F1 of 0.721 classifying 5.3% of the data.
+[2026-05-03 11:30:41] Plotting angular for Model SciBERT...
+[2026-05-03 11:31:07] Suggested Threshold for Class "related", Metric "angular", and Model "SciBERT": -2.527 with F1 of 0.96 classifying 0.5% of the data.
+[2026-05-03 11:31:07] Suggested Threshold for Class "exact", Metric "angular", and Model "SciBERT": 1.447 with F1 of 0.719 classifying 6.6% of the data.
+[2026-05-03 11:31:08] Plotting cosine for Model SapUMLSBERT...
+[2026-05-03 11:31:32] Suggested Threshold for Class "related", Metric "cosine", and Model "SapUMLSBERT": -2.745 with F1 of 0.98 classifying 1.0% of the data.
+[2026-05-03 11:31:32] Suggested Threshold for Class "exact", Metric "cosine", and Model "SapUMLSBERT": 1.274 with F1 of 0.856 classifying 2.2% of the data.
+[2026-05-03 11:31:32] Plotting euclidean for Model SapUMLSBERT...
+[2026-05-03 11:31:57] Suggested Threshold for Class "related", Metric "euclidean", and Model "SapUMLSBERT": -1.13 with F1 of 0.97 classifying 0.7% of the data.
+[2026-05-03 11:31:57] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SapUMLSBERT": 2.971 with F1 of 0.863 classifying 2.0% of the data.
+[2026-05-03 11:31:58] Plotting manhattan for Model SapUMLSBERT...
+[2026-05-03 11:32:22] Suggested Threshold for Class "related", Metric "manhattan", and Model "SapUMLSBERT": -0.948 with F1 of 0.973 classifying 0.8% of the data.
+[2026-05-03 11:32:22] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SapUMLSBERT": 2.957 with F1 of 0.865 classifying 2.0% of the data.
+[2026-05-03 11:32:23] Plotting angular for Model SapUMLSBERT...
+[2026-05-03 11:32:48] Suggested Threshold for Class "related", Metric "angular", and Model "SapUMLSBERT": -2.261 with F1 of 0.98 classifying 1.0% of the data.
+[2026-05-03 11:32:48] Suggested Threshold for Class "exact", Metric "angular", and Model "SapUMLSBERT": 1.749 with F1 of 0.856 classifying 2.2% of the data.
+[2026-05-03 11:32:49] Plotting cosine for Model medCPT...
+[2026-05-03 11:33:12] Suggested Threshold for Class "related", Metric "cosine", and Model "medCPT": -2.703 with F1 of 0.943 classifying 1.2% of the data.
+[2026-05-03 11:33:12] Suggested Threshold for Class "exact", Metric "cosine", and Model "medCPT": 1.002 with F1 of 0.79 classifying 14.5% of the data.
+[2026-05-03 11:33:13] Plotting euclidean for Model medCPT...
+[2026-05-03 11:33:36] Suggested Threshold for Class "related", Metric "euclidean", and Model "medCPT": -1.129 with F1 of 0.942 classifying 0.1% of the data.
+[2026-05-03 11:33:36] Suggested Threshold for Class "exact", Metric "euclidean", and Model "medCPT": 0.771 with F1 of 0.767 classifying 16.7% of the data.
+[2026-05-03 11:33:37] Plotting manhattan for Model medCPT...
+[2026-05-03 11:34:01] Suggested Threshold for Class "related", Metric "manhattan", and Model "medCPT": -0.767 with F1 of 0.96 classifying 0.2% of the data.
+[2026-05-03 11:34:01] Suggested Threshold for Class "exact", Metric "manhattan", and Model "medCPT": 0.438 with F1 of 0.765 classifying 16.6% of the data.
+[2026-05-03 11:34:02] Plotting angular for Model medCPT...
+[2026-05-03 11:34:28] Suggested Threshold for Class "related", Metric "angular", and Model "medCPT": -2.152 with F1 of 0.943 classifying 1.2% of the data.
+[2026-05-03 11:34:28] Suggested Threshold for Class "exact", Metric "angular", and Model "medCPT": 1.13 with F1 of 0.79 classifying 14.5% of the data.
+[2026-05-03 11:34:29] Plotting cosine for Model PubMedBERT...
+[2026-05-03 11:34:53] Suggested Threshold for Class "related", Metric "cosine", and Model "PubMedBERT": -3.636 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 11:34:53] Suggested Threshold for Class "exact", Metric "cosine", and Model "PubMedBERT": 0.999 with F1 of 0.753 classifying 11.5% of the data.
+[2026-05-03 11:34:54] Plotting euclidean for Model PubMedBERT...
+[2026-05-03 11:35:19] Suggested Threshold for Class "related", Metric "euclidean", and Model "PubMedBERT": -1.452 with F1 of 0.948 classifying 0.4% of the data.
+[2026-05-03 11:35:19] Suggested Threshold for Class "exact", Metric "euclidean", and Model "PubMedBERT": 1.14 with F1 of 0.757 classifying 10.7% of the data.
+[2026-05-03 11:35:20] Plotting manhattan for Model PubMedBERT...
+[2026-05-03 11:35:45] Suggested Threshold for Class "related", Metric "manhattan", and Model "PubMedBERT": -0.903 with F1 of 0.91 classifying 1.9% of the data.
+[2026-05-03 11:35:45] Suggested Threshold for Class "exact", Metric "manhattan", and Model "PubMedBERT": 0.803 with F1 of 0.753 classifying 11.4% of the data.
+[2026-05-03 11:35:46] Plotting angular for Model PubMedBERT...
+[2026-05-03 11:36:12] Suggested Threshold for Class "related", Metric "angular", and Model "PubMedBERT": -2.746 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 11:36:12] Suggested Threshold for Class "exact", Metric "angular", and Model "PubMedBERT": 1.145 with F1 of 0.754 classifying 10.9% of the data.
+[2026-05-03 11:36:13] Plotting cosine for Model BioLinkBERT...
+[2026-05-03 11:36:38] Suggested Threshold for Class "related", Metric "cosine", and Model "BioLinkBERT": -2.551 with F1 of 0.923 classifying 2.1% of the data.
+[2026-05-03 11:36:38] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioLinkBERT": 0.148 with F1 of 0.705 classifying 53.0% of the data.
+[2026-05-03 11:36:39] Plotting euclidean for Model BioLinkBERT...
+[2026-05-03 11:37:05] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioLinkBERT": -1.162 with F1 of 0.956 classifying 0.7% of the data.
+[2026-05-03 11:37:05] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioLinkBERT": -0.238 with F1 of 0.702 classifying 53.0% of the data.
+[2026-05-03 11:37:06] Plotting manhattan for Model BioLinkBERT...
+[2026-05-03 11:37:31] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioLinkBERT": -0.132 with F1 of 0.942 classifying 0.5% of the data.
+[2026-05-03 11:37:31] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioLinkBERT": -0.048 with F1 of 0.697 classifying 52.7% of the data.
+[2026-05-03 11:37:32] Plotting angular for Model BioLinkBERT...
+[2026-05-03 11:37:55] Suggested Threshold for Class "related", Metric "angular", and Model "BioLinkBERT": -2.218 with F1 of 0.923 classifying 2.1% of the data.
+[2026-05-03 11:37:55] Suggested Threshold for Class "exact", Metric "angular", and Model "BioLinkBERT": 0.015 with F1 of 0.705 classifying 53.1% of the data.
+[2026-05-03 11:38:01] Discrepancies for Embedding Answers: 0
+[2026-05-03 11:38:07] Unsure Count: 25566
+[2026-05-03 11:38:21] ============================================================
+[2026-05-03 11:38:21] =     Evaluating the Results of Synonym Classification     =
+[2026-05-03 11:38:21] ============================================================
+[2026-05-03 11:38:21] Reading file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-03 11:38:21] Reading file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-03 11:38:21] 7 ontologies found.
+[2026-05-03 11:38:21] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-03 11:38:21] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-03 11:38:21] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-03 11:38:21] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-03 11:38:21] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-03 11:38:21] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-03 11:38:21] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-03 11:38:21] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-03 11:38:21] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-03 11:38:22] Plotting cosine for Model BioClinicalBERT...
+[2026-05-03 11:38:45] Suggested Threshold for Class "related", Metric "cosine", and Model "BioClinicalBERT": -2.537 with F1 of 0.944 classifying 2.2% of the data.
+[2026-05-03 11:38:45] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioClinicalBERT": 0.749 with F1 of 0.751 classifying 24.2% of the data.
+[2026-05-03 11:38:46] Plotting euclidean for Model BioClinicalBERT...
+[2026-05-03 11:39:11] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioClinicalBERT": -1.541 with F1 of 0.942 classifying 0.1% of the data.
+[2026-05-03 11:39:11] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioClinicalBERT": 0.484 with F1 of 0.741 classifying 24.1% of the data.
+[2026-05-03 11:39:12] Plotting manhattan for Model BioClinicalBERT...
+[2026-05-03 11:39:37] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioClinicalBERT": -1.173 with F1 of 0.953 classifying 0.2% of the data.
+[2026-05-03 11:39:37] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioClinicalBERT": 0.401 with F1 of 0.745 classifying 21.8% of the data.
+[2026-05-03 11:39:37] Plotting angular for Model BioClinicalBERT...
+[2026-05-03 11:40:00] Suggested Threshold for Class "related", Metric "angular", and Model "BioClinicalBERT": -2.157 with F1 of 0.944 classifying 2.2% of the data.
+[2026-05-03 11:40:00] Suggested Threshold for Class "exact", Metric "angular", and Model "BioClinicalBERT": 0.744 with F1 of 0.751 classifying 24.3% of the data.
+[2026-05-03 11:40:01] Plotting cosine for Model SapBERT...
+[2026-05-03 11:40:24] Suggested Threshold for Class "related", Metric "cosine", and Model "SapBERT": -2.647 with F1 of 0.991 classifying 1.2% of the data.
+[2026-05-03 11:40:24] Suggested Threshold for Class "exact", Metric "cosine", and Model "SapBERT": 1.244 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 11:40:24] Plotting euclidean for Model SapBERT...
+[2026-05-03 11:40:49] Suggested Threshold for Class "related", Metric "euclidean", and Model "SapBERT": -1.012 with F1 of 0.994 classifying 1.7% of the data.
+[2026-05-03 11:40:49] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SapBERT": 2.425 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 11:40:49] Plotting manhattan for Model SapBERT...
+[2026-05-03 11:41:14] Suggested Threshold for Class "related", Metric "manhattan", and Model "SapBERT": -0.851 with F1 of 0.994 classifying 1.7% of the data.
+[2026-05-03 11:41:14] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SapBERT": 2.396 with F1 of 0.85 classifying 3.0% of the data.
+[2026-05-03 11:41:15] Plotting angular for Model SapBERT...
+[2026-05-03 11:41:41] Suggested Threshold for Class "related", Metric "angular", and Model "SapBERT": -2.162 with F1 of 0.991 classifying 1.2% of the data.
+[2026-05-03 11:41:41] Suggested Threshold for Class "exact", Metric "angular", and Model "SapBERT": 1.656 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 11:41:42] Plotting cosine for Model ClinicalBERT...
+[2026-05-03 11:42:06] Suggested Threshold for Class "related", Metric "cosine", and Model "ClinicalBERT": -2.421 with F1 of 0.955 classifying 1.0% of the data.
+[2026-05-03 11:42:06] Suggested Threshold for Class "exact", Metric "cosine", and Model "ClinicalBERT": 0.8 with F1 of 0.748 classifying 24.4% of the data.
+[2026-05-03 11:42:07] Plotting euclidean for Model ClinicalBERT...
+[2026-05-03 11:42:31] Suggested Threshold for Class "related", Metric "euclidean", and Model "ClinicalBERT": -1.416 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 11:42:31] Suggested Threshold for Class "exact", Metric "euclidean", and Model "ClinicalBERT": 0.569 with F1 of 0.756 classifying 21.3% of the data.
+[2026-05-03 11:42:31] Plotting manhattan for Model ClinicalBERT...
+[2026-05-03 11:42:56] Suggested Threshold for Class "related", Metric "manhattan", and Model "ClinicalBERT": -1.166 with F1 of 0.91 classifying 0.3% of the data.
+[2026-05-03 11:42:56] Suggested Threshold for Class "exact", Metric "manhattan", and Model "ClinicalBERT": 0.377 with F1 of 0.754 classifying 22.5% of the data.
+[2026-05-03 11:42:57] Plotting angular for Model ClinicalBERT...
+[2026-05-03 11:43:23] Suggested Threshold for Class "related", Metric "angular", and Model "ClinicalBERT": -2.044 with F1 of 0.955 classifying 1.0% of the data.
+[2026-05-03 11:43:23] Suggested Threshold for Class "exact", Metric "angular", and Model "ClinicalBERT": 0.742 with F1 of 0.748 classifying 24.5% of the data.
+[2026-05-03 11:43:23] Plotting cosine for Model BioBERT...
+[2026-05-03 11:43:48] Suggested Threshold for Class "related", Metric "cosine", and Model "BioBERT": -3.397 with F1 of 0.96 classifying 0.8% of the data.
+[2026-05-03 11:43:48] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioBERT": 0.726 with F1 of 0.777 classifying 24.7% of the data.
+[2026-05-03 11:43:49] Plotting euclidean for Model BioBERT...
+[2026-05-03 11:44:13] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioBERT": -1.414 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 11:44:13] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioBERT": 0.489 with F1 of 0.779 classifying 23.5% of the data.
+[2026-05-03 11:44:14] Plotting manhattan for Model BioBERT...
+[2026-05-03 11:44:41] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioBERT": -1.072 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 11:44:41] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioBERT": 0.323 with F1 of 0.782 classifying 23.3% of the data.
+[2026-05-03 11:44:42] Plotting angular for Model BioBERT...
+[2026-05-03 11:45:05] Suggested Threshold for Class "related", Metric "angular", and Model "BioBERT": -2.692 with F1 of 0.96 classifying 0.8% of the data.
+[2026-05-03 11:45:05] Suggested Threshold for Class "exact", Metric "angular", and Model "BioBERT": 1.946 with F1 of 0.8 classifying 0.1% of the data.
+[2026-05-03 11:45:06] Plotting cosine for Model UMLSBERT...
+[2026-05-03 11:45:31] Suggested Threshold for Class "related", Metric "cosine", and Model "UMLSBERT": -2.794 with F1 of 0.936 classifying 0.9% of the data.
+[2026-05-03 11:45:31] Suggested Threshold for Class "exact", Metric "cosine", and Model "UMLSBERT": 0.749 with F1 of 0.805 classifying 25.9% of the data.
+[2026-05-03 11:45:32] Plotting euclidean for Model UMLSBERT...
+[2026-05-03 11:45:57] Suggested Threshold for Class "related", Metric "euclidean", and Model "UMLSBERT": -1.198 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 11:45:57] Suggested Threshold for Class "exact", Metric "euclidean", and Model "UMLSBERT": 0.273 with F1 of 0.806 classifying 28.7% of the data.
+[2026-05-03 11:45:57] Plotting manhattan for Model UMLSBERT...
+[2026-05-03 11:46:23] Suggested Threshold for Class "related", Metric "manhattan", and Model "UMLSBERT": -1.089 with F1 of 0.976 classifying 0.4% of the data.
+[2026-05-03 11:46:23] Suggested Threshold for Class "exact", Metric "manhattan", and Model "UMLSBERT": 0.425 with F1 of 0.81 classifying 22.1% of the data.
+[2026-05-03 11:46:24] Plotting angular for Model UMLSBERT...
+[2026-05-03 11:46:49] Suggested Threshold for Class "related", Metric "angular", and Model "UMLSBERT": -2.298 with F1 of 0.932 classifying 0.8% of the data.
+[2026-05-03 11:46:49] Suggested Threshold for Class "exact", Metric "angular", and Model "UMLSBERT": 0.715 with F1 of 0.805 classifying 25.9% of the data.
+[2026-05-03 11:46:50] Plotting cosine for Model SciBERT...
+[2026-05-03 11:47:16] Suggested Threshold for Class "related", Metric "cosine", and Model "SciBERT": -3.138 with F1 of 0.96 classifying 0.5% of the data.
+[2026-05-03 11:47:16] Suggested Threshold for Class "exact", Metric "cosine", and Model "SciBERT": 1.213 with F1 of 0.719 classifying 6.6% of the data.
+[2026-05-03 11:47:16] Plotting euclidean for Model SciBERT...
+[2026-05-03 11:47:42] Suggested Threshold for Class "related", Metric "euclidean", and Model "SciBERT": -1.126 with F1 of 0.966 classifying 0.6% of the data.
+[2026-05-03 11:47:42] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SciBERT": 1.374 with F1 of 0.724 classifying 8.4% of the data.
+[2026-05-03 11:47:43] Plotting manhattan for Model SciBERT...
+[2026-05-03 11:48:06] Suggested Threshold for Class "related", Metric "manhattan", and Model "SciBERT": -1.0 with F1 of 0.957 classifying 0.5% of the data.
+[2026-05-03 11:48:06] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SciBERT": 1.601 with F1 of 0.721 classifying 5.3% of the data.
+[2026-05-03 11:48:07] Plotting angular for Model SciBERT...
+[2026-05-03 11:48:30] Suggested Threshold for Class "related", Metric "angular", and Model "SciBERT": -2.527 with F1 of 0.96 classifying 0.5% of the data.
+[2026-05-03 11:48:30] Suggested Threshold for Class "exact", Metric "angular", and Model "SciBERT": 1.447 with F1 of 0.719 classifying 6.6% of the data.
+[2026-05-03 11:48:31] Plotting cosine for Model SapUMLSBERT...
+[2026-05-03 11:48:54] Suggested Threshold for Class "related", Metric "cosine", and Model "SapUMLSBERT": -2.745 with F1 of 0.98 classifying 1.0% of the data.
+[2026-05-03 11:48:54] Suggested Threshold for Class "exact", Metric "cosine", and Model "SapUMLSBERT": 1.274 with F1 of 0.856 classifying 2.2% of the data.
+[2026-05-03 11:48:55] Plotting euclidean for Model SapUMLSBERT...
+[2026-05-03 11:49:19] Suggested Threshold for Class "related", Metric "euclidean", and Model "SapUMLSBERT": -1.13 with F1 of 0.97 classifying 0.7% of the data.
+[2026-05-03 11:49:19] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SapUMLSBERT": 2.971 with F1 of 0.863 classifying 2.0% of the data.
+[2026-05-03 11:49:20] Plotting manhattan for Model SapUMLSBERT...
+[2026-05-03 11:49:46] Suggested Threshold for Class "related", Metric "manhattan", and Model "SapUMLSBERT": -0.948 with F1 of 0.973 classifying 0.8% of the data.
+[2026-05-03 11:49:46] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SapUMLSBERT": 2.957 with F1 of 0.865 classifying 2.0% of the data.
+[2026-05-03 11:49:46] Plotting angular for Model SapUMLSBERT...
+[2026-05-03 11:50:10] Suggested Threshold for Class "related", Metric "angular", and Model "SapUMLSBERT": -2.261 with F1 of 0.98 classifying 1.0% of the data.
+[2026-05-03 11:50:10] Suggested Threshold for Class "exact", Metric "angular", and Model "SapUMLSBERT": 1.749 with F1 of 0.856 classifying 2.2% of the data.
+[2026-05-03 11:50:11] Plotting cosine for Model medCPT...
+[2026-05-03 11:50:34] Suggested Threshold for Class "related", Metric "cosine", and Model "medCPT": -2.703 with F1 of 0.943 classifying 1.2% of the data.
+[2026-05-03 11:50:34] Suggested Threshold for Class "exact", Metric "cosine", and Model "medCPT": 1.002 with F1 of 0.79 classifying 14.5% of the data.
+[2026-05-03 11:50:35] Plotting euclidean for Model medCPT...
+[2026-05-03 11:50:59] Suggested Threshold for Class "related", Metric "euclidean", and Model "medCPT": -1.129 with F1 of 0.942 classifying 0.1% of the data.
+[2026-05-03 11:50:59] Suggested Threshold for Class "exact", Metric "euclidean", and Model "medCPT": 0.771 with F1 of 0.767 classifying 16.7% of the data.
+[2026-05-03 11:51:00] Plotting manhattan for Model medCPT...
+[2026-05-03 11:51:23] Suggested Threshold for Class "related", Metric "manhattan", and Model "medCPT": -0.767 with F1 of 0.96 classifying 0.2% of the data.
+[2026-05-03 11:51:23] Suggested Threshold for Class "exact", Metric "manhattan", and Model "medCPT": 0.438 with F1 of 0.765 classifying 16.6% of the data.
+[2026-05-03 11:51:24] Plotting angular for Model medCPT...
+[2026-05-03 11:51:50] Suggested Threshold for Class "related", Metric "angular", and Model "medCPT": -2.152 with F1 of 0.943 classifying 1.2% of the data.
+[2026-05-03 11:51:50] Suggested Threshold for Class "exact", Metric "angular", and Model "medCPT": 1.13 with F1 of 0.79 classifying 14.5% of the data.
+[2026-05-03 11:51:51] Plotting cosine for Model PubMedBERT...
+[2026-05-03 11:52:16] Suggested Threshold for Class "related", Metric "cosine", and Model "PubMedBERT": -3.636 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 11:52:16] Suggested Threshold for Class "exact", Metric "cosine", and Model "PubMedBERT": 0.999 with F1 of 0.753 classifying 11.5% of the data.
+[2026-05-03 11:52:16] Plotting euclidean for Model PubMedBERT...
+[2026-05-03 11:52:40] Suggested Threshold for Class "related", Metric "euclidean", and Model "PubMedBERT": -1.452 with F1 of 0.948 classifying 0.4% of the data.
+[2026-05-03 11:52:40] Suggested Threshold for Class "exact", Metric "euclidean", and Model "PubMedBERT": 1.14 with F1 of 0.757 classifying 10.7% of the data.
+[2026-05-03 11:52:40] Plotting manhattan for Model PubMedBERT...
+[2026-05-03 11:53:05] Suggested Threshold for Class "related", Metric "manhattan", and Model "PubMedBERT": -0.903 with F1 of 0.91 classifying 1.9% of the data.
+[2026-05-03 11:53:05] Suggested Threshold for Class "exact", Metric "manhattan", and Model "PubMedBERT": 0.803 with F1 of 0.753 classifying 11.4% of the data.
+[2026-05-03 11:53:06] Plotting angular for Model PubMedBERT...
+[2026-05-03 11:53:31] Suggested Threshold for Class "related", Metric "angular", and Model "PubMedBERT": -2.746 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 11:53:31] Suggested Threshold for Class "exact", Metric "angular", and Model "PubMedBERT": 1.145 with F1 of 0.754 classifying 10.9% of the data.
+[2026-05-03 11:53:32] Plotting cosine for Model BioLinkBERT...
+[2026-05-03 11:53:55] Suggested Threshold for Class "related", Metric "cosine", and Model "BioLinkBERT": -2.551 with F1 of 0.923 classifying 2.1% of the data.
+[2026-05-03 11:53:55] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioLinkBERT": 0.148 with F1 of 0.705 classifying 53.0% of the data.
+[2026-05-03 11:53:55] Plotting euclidean for Model BioLinkBERT...
+[2026-05-03 11:54:18] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioLinkBERT": -1.162 with F1 of 0.956 classifying 0.7% of the data.
+[2026-05-03 11:54:18] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioLinkBERT": -0.238 with F1 of 0.702 classifying 53.0% of the data.
+[2026-05-03 11:54:18] Plotting manhattan for Model BioLinkBERT...
+[2026-05-03 11:54:41] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioLinkBERT": -0.132 with F1 of 0.942 classifying 0.5% of the data.
+[2026-05-03 11:54:41] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioLinkBERT": -0.048 with F1 of 0.697 classifying 52.7% of the data.
+[2026-05-03 11:54:42] Plotting angular for Model BioLinkBERT...
+[2026-05-03 11:55:04] Suggested Threshold for Class "related", Metric "angular", and Model "BioLinkBERT": -2.218 with F1 of 0.923 classifying 2.1% of the data.
+[2026-05-03 11:55:04] Suggested Threshold for Class "exact", Metric "angular", and Model "BioLinkBERT": 0.015 with F1 of 0.705 classifying 53.1% of the data.
+[2026-05-03 11:55:09] Discrepancies for Embedding Answers: 0
+[2026-05-03 11:55:14] Unsure Count: 25566
+[2026-05-03 11:55:28] ============================================================
+[2026-05-03 11:55:28] =     Evaluating the Results of Synonym Classification     =
+[2026-05-03 11:55:28] ============================================================
+[2026-05-03 11:55:28] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-03 11:55:28] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-03 11:55:28] 7 ontologies found.
+[2026-05-03 11:55:28] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-03 11:55:28] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-03 11:55:28] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-03 11:55:28] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-03 11:55:28] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-03 11:55:28] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-03 11:55:28] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-03 11:55:28] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-03 11:55:28] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-03 11:55:28] Plotting cosine for Model BioClinicalBERT...
+[2026-05-03 11:55:51] Suggested Threshold for Class "related", Metric "cosine", and Model "BioClinicalBERT": -2.537 with F1 of 0.944 classifying 2.2% of the data.
+[2026-05-03 11:55:51] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioClinicalBERT": 0.749 with F1 of 0.751 classifying 24.2% of the data.
+[2026-05-03 11:55:52] Plotting euclidean for Model BioClinicalBERT...
+[2026-05-03 11:56:15] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioClinicalBERT": -1.541 with F1 of 0.942 classifying 0.1% of the data.
+[2026-05-03 11:56:15] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioClinicalBERT": 0.484 with F1 of 0.741 classifying 24.1% of the data.
+[2026-05-03 11:56:16] Plotting manhattan for Model BioClinicalBERT...
+[2026-05-03 11:56:40] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioClinicalBERT": -1.173 with F1 of 0.953 classifying 0.2% of the data.
+[2026-05-03 11:56:40] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioClinicalBERT": 0.401 with F1 of 0.745 classifying 21.8% of the data.
+[2026-05-03 11:56:41] Plotting angular for Model BioClinicalBERT...
+[2026-05-03 11:57:06] Suggested Threshold for Class "related", Metric "angular", and Model "BioClinicalBERT": -2.157 with F1 of 0.944 classifying 2.2% of the data.
+[2026-05-03 11:57:06] Suggested Threshold for Class "exact", Metric "angular", and Model "BioClinicalBERT": 0.744 with F1 of 0.751 classifying 24.3% of the data.
+[2026-05-03 11:57:06] Plotting cosine for Model SapBERT...
+[2026-05-03 11:57:31] Suggested Threshold for Class "related", Metric "cosine", and Model "SapBERT": -2.647 with F1 of 0.991 classifying 1.2% of the data.
+[2026-05-03 11:57:31] Suggested Threshold for Class "exact", Metric "cosine", and Model "SapBERT": 1.244 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 11:57:31] Plotting euclidean for Model SapBERT...
+[2026-05-03 11:57:57] Suggested Threshold for Class "related", Metric "euclidean", and Model "SapBERT": -1.012 with F1 of 0.994 classifying 1.7% of the data.
+[2026-05-03 11:57:57] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SapBERT": 2.425 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 11:57:57] Plotting manhattan for Model SapBERT...
+[2026-05-03 11:58:23] Suggested Threshold for Class "related", Metric "manhattan", and Model "SapBERT": -0.851 with F1 of 0.994 classifying 1.7% of the data.
+[2026-05-03 11:58:23] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SapBERT": 2.396 with F1 of 0.85 classifying 3.0% of the data.
+[2026-05-03 11:58:24] Plotting angular for Model SapBERT...
+[2026-05-03 11:58:50] Suggested Threshold for Class "related", Metric "angular", and Model "SapBERT": -2.162 with F1 of 0.991 classifying 1.2% of the data.
+[2026-05-03 11:58:50] Suggested Threshold for Class "exact", Metric "angular", and Model "SapBERT": 1.656 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 11:58:50] Plotting cosine for Model ClinicalBERT...
+[2026-05-03 11:59:15] Suggested Threshold for Class "related", Metric "cosine", and Model "ClinicalBERT": -2.421 with F1 of 0.955 classifying 1.0% of the data.
+[2026-05-03 11:59:15] Suggested Threshold for Class "exact", Metric "cosine", and Model "ClinicalBERT": 0.8 with F1 of 0.748 classifying 24.4% of the data.
+[2026-05-03 11:59:16] Plotting euclidean for Model ClinicalBERT...
+[2026-05-03 11:59:41] Suggested Threshold for Class "related", Metric "euclidean", and Model "ClinicalBERT": -1.416 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 11:59:41] Suggested Threshold for Class "exact", Metric "euclidean", and Model "ClinicalBERT": 0.569 with F1 of 0.756 classifying 21.3% of the data.
+[2026-05-03 11:59:42] Plotting manhattan for Model ClinicalBERT...
+[2026-05-03 12:00:08] Suggested Threshold for Class "related", Metric "manhattan", and Model "ClinicalBERT": -1.166 with F1 of 0.91 classifying 0.3% of the data.
+[2026-05-03 12:00:08] Suggested Threshold for Class "exact", Metric "manhattan", and Model "ClinicalBERT": 0.377 with F1 of 0.754 classifying 22.5% of the data.
+[2026-05-03 12:00:09] Plotting angular for Model ClinicalBERT...
+[2026-05-03 12:00:34] Suggested Threshold for Class "related", Metric "angular", and Model "ClinicalBERT": -2.044 with F1 of 0.955 classifying 1.0% of the data.
+[2026-05-03 12:00:34] Suggested Threshold for Class "exact", Metric "angular", and Model "ClinicalBERT": 0.742 with F1 of 0.748 classifying 24.5% of the data.
+[2026-05-03 12:00:35] Plotting cosine for Model BioBERT...
+[2026-05-03 12:01:00] Suggested Threshold for Class "related", Metric "cosine", and Model "BioBERT": -3.397 with F1 of 0.96 classifying 0.8% of the data.
+[2026-05-03 12:01:00] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioBERT": 0.726 with F1 of 0.777 classifying 24.7% of the data.
+[2026-05-03 12:01:02] Plotting euclidean for Model BioBERT...
+[2026-05-03 12:01:27] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioBERT": -1.414 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 12:01:27] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioBERT": 0.489 with F1 of 0.779 classifying 23.5% of the data.
+[2026-05-03 12:01:28] Plotting manhattan for Model BioBERT...
+[2026-05-03 12:01:53] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioBERT": -1.072 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 12:01:53] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioBERT": 0.323 with F1 of 0.782 classifying 23.3% of the data.
+[2026-05-03 12:01:54] Plotting angular for Model BioBERT...
+[2026-05-03 12:02:19] Suggested Threshold for Class "related", Metric "angular", and Model "BioBERT": -2.692 with F1 of 0.96 classifying 0.8% of the data.
+[2026-05-03 12:02:19] Suggested Threshold for Class "exact", Metric "angular", and Model "BioBERT": 1.946 with F1 of 0.8 classifying 0.1% of the data.
+[2026-05-03 12:02:20] Plotting cosine for Model UMLSBERT...
+[2026-05-03 12:02:46] Suggested Threshold for Class "related", Metric "cosine", and Model "UMLSBERT": -2.794 with F1 of 0.936 classifying 0.9% of the data.
+[2026-05-03 12:02:46] Suggested Threshold for Class "exact", Metric "cosine", and Model "UMLSBERT": 0.749 with F1 of 0.805 classifying 25.9% of the data.
+[2026-05-03 12:02:47] Plotting euclidean for Model UMLSBERT...
+[2026-05-03 12:03:11] Suggested Threshold for Class "related", Metric "euclidean", and Model "UMLSBERT": -1.198 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 12:03:11] Suggested Threshold for Class "exact", Metric "euclidean", and Model "UMLSBERT": 0.273 with F1 of 0.806 classifying 28.7% of the data.
+[2026-05-03 12:03:11] Plotting manhattan for Model UMLSBERT...
+[2026-05-03 12:03:34] Suggested Threshold for Class "related", Metric "manhattan", and Model "UMLSBERT": -1.089 with F1 of 0.976 classifying 0.4% of the data.
+[2026-05-03 12:03:34] Suggested Threshold for Class "exact", Metric "manhattan", and Model "UMLSBERT": 0.425 with F1 of 0.81 classifying 22.1% of the data.
+[2026-05-03 12:03:36] Plotting angular for Model UMLSBERT...
+[2026-05-03 12:03:59] Suggested Threshold for Class "related", Metric "angular", and Model "UMLSBERT": -2.298 with F1 of 0.932 classifying 0.8% of the data.
+[2026-05-03 12:03:59] Suggested Threshold for Class "exact", Metric "angular", and Model "UMLSBERT": 0.715 with F1 of 0.805 classifying 25.9% of the data.
+[2026-05-03 12:04:00] Plotting cosine for Model SciBERT...
+[2026-05-03 12:04:24] Suggested Threshold for Class "related", Metric "cosine", and Model "SciBERT": -3.138 with F1 of 0.96 classifying 0.5% of the data.
+[2026-05-03 12:04:24] Suggested Threshold for Class "exact", Metric "cosine", and Model "SciBERT": 1.213 with F1 of 0.719 classifying 6.6% of the data.
+[2026-05-03 12:04:24] Plotting euclidean for Model SciBERT...
+[2026-05-03 12:04:50] Suggested Threshold for Class "related", Metric "euclidean", and Model "SciBERT": -1.126 with F1 of 0.966 classifying 0.6% of the data.
+[2026-05-03 12:04:50] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SciBERT": 1.374 with F1 of 0.724 classifying 8.4% of the data.
+[2026-05-03 12:04:51] Plotting manhattan for Model SciBERT...
+[2026-05-03 12:05:14] Suggested Threshold for Class "related", Metric "manhattan", and Model "SciBERT": -1.0 with F1 of 0.957 classifying 0.5% of the data.
+[2026-05-03 12:05:14] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SciBERT": 1.601 with F1 of 0.721 classifying 5.3% of the data.
+[2026-05-03 12:05:15] Plotting angular for Model SciBERT...
+[2026-05-03 12:05:41] Suggested Threshold for Class "related", Metric "angular", and Model "SciBERT": -2.527 with F1 of 0.96 classifying 0.5% of the data.
+[2026-05-03 12:05:41] Suggested Threshold for Class "exact", Metric "angular", and Model "SciBERT": 1.447 with F1 of 0.719 classifying 6.6% of the data.
+[2026-05-03 12:05:41] Plotting cosine for Model SapUMLSBERT...
+[2026-05-03 12:06:06] Suggested Threshold for Class "related", Metric "cosine", and Model "SapUMLSBERT": -2.745 with F1 of 0.98 classifying 1.0% of the data.
+[2026-05-03 12:06:06] Suggested Threshold for Class "exact", Metric "cosine", and Model "SapUMLSBERT": 1.274 with F1 of 0.856 classifying 2.2% of the data.
+[2026-05-03 12:06:07] Plotting euclidean for Model SapUMLSBERT...
+[2026-05-03 12:06:33] Suggested Threshold for Class "related", Metric "euclidean", and Model "SapUMLSBERT": -1.13 with F1 of 0.97 classifying 0.7% of the data.
+[2026-05-03 12:06:33] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SapUMLSBERT": 2.971 with F1 of 0.863 classifying 2.0% of the data.
+[2026-05-03 12:06:33] Plotting manhattan for Model SapUMLSBERT...
+[2026-05-03 12:06:59] Suggested Threshold for Class "related", Metric "manhattan", and Model "SapUMLSBERT": -0.948 with F1 of 0.973 classifying 0.8% of the data.
+[2026-05-03 12:06:59] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SapUMLSBERT": 2.957 with F1 of 0.865 classifying 2.0% of the data.
+[2026-05-03 12:07:00] Plotting angular for Model SapUMLSBERT...
+[2026-05-03 12:07:25] Suggested Threshold for Class "related", Metric "angular", and Model "SapUMLSBERT": -2.261 with F1 of 0.98 classifying 1.0% of the data.
+[2026-05-03 12:07:25] Suggested Threshold for Class "exact", Metric "angular", and Model "SapUMLSBERT": 1.749 with F1 of 0.856 classifying 2.2% of the data.
+[2026-05-03 12:07:26] Plotting cosine for Model medCPT...
+[2026-05-03 12:07:52] Suggested Threshold for Class "related", Metric "cosine", and Model "medCPT": -2.703 with F1 of 0.943 classifying 1.2% of the data.
+[2026-05-03 12:07:52] Suggested Threshold for Class "exact", Metric "cosine", and Model "medCPT": 1.002 with F1 of 0.79 classifying 14.5% of the data.
+[2026-05-03 12:07:53] Plotting euclidean for Model medCPT...
+[2026-05-03 12:08:16] Suggested Threshold for Class "related", Metric "euclidean", and Model "medCPT": -1.129 with F1 of 0.942 classifying 0.1% of the data.
+[2026-05-03 12:08:16] Suggested Threshold for Class "exact", Metric "euclidean", and Model "medCPT": 0.771 with F1 of 0.767 classifying 16.7% of the data.
+[2026-05-03 12:08:17] Plotting manhattan for Model medCPT...
+[2026-05-03 12:08:41] Suggested Threshold for Class "related", Metric "manhattan", and Model "medCPT": -0.767 with F1 of 0.96 classifying 0.2% of the data.
+[2026-05-03 12:08:41] Suggested Threshold for Class "exact", Metric "manhattan", and Model "medCPT": 0.438 with F1 of 0.765 classifying 16.6% of the data.
+[2026-05-03 12:08:42] Plotting angular for Model medCPT...
+[2026-05-03 12:09:08] Suggested Threshold for Class "related", Metric "angular", and Model "medCPT": -2.152 with F1 of 0.943 classifying 1.2% of the data.
+[2026-05-03 12:09:08] Suggested Threshold for Class "exact", Metric "angular", and Model "medCPT": 1.13 with F1 of 0.79 classifying 14.5% of the data.
+[2026-05-03 12:09:09] Plotting cosine for Model PubMedBERT...
+[2026-05-03 12:09:35] Suggested Threshold for Class "related", Metric "cosine", and Model "PubMedBERT": -3.636 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 12:09:35] Suggested Threshold for Class "exact", Metric "cosine", and Model "PubMedBERT": 0.999 with F1 of 0.753 classifying 11.5% of the data.
+[2026-05-03 12:09:35] Plotting euclidean for Model PubMedBERT...
+[2026-05-03 12:09:58] Suggested Threshold for Class "related", Metric "euclidean", and Model "PubMedBERT": -1.452 with F1 of 0.948 classifying 0.4% of the data.
+[2026-05-03 12:09:58] Suggested Threshold for Class "exact", Metric "euclidean", and Model "PubMedBERT": 1.14 with F1 of 0.757 classifying 10.7% of the data.
+[2026-05-03 12:09:59] Plotting manhattan for Model PubMedBERT...
+[2026-05-03 12:10:23] Suggested Threshold for Class "related", Metric "manhattan", and Model "PubMedBERT": -0.903 with F1 of 0.91 classifying 1.9% of the data.
+[2026-05-03 12:10:23] Suggested Threshold for Class "exact", Metric "manhattan", and Model "PubMedBERT": 0.803 with F1 of 0.753 classifying 11.4% of the data.
+[2026-05-03 12:10:24] Plotting angular for Model PubMedBERT...
+[2026-05-03 12:10:49] Suggested Threshold for Class "related", Metric "angular", and Model "PubMedBERT": -2.746 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 12:10:49] Suggested Threshold for Class "exact", Metric "angular", and Model "PubMedBERT": 1.145 with F1 of 0.754 classifying 10.9% of the data.
+[2026-05-03 12:10:49] Plotting cosine for Model BioLinkBERT...
+[2026-05-03 12:11:15] Suggested Threshold for Class "related", Metric "cosine", and Model "BioLinkBERT": -2.551 with F1 of 0.923 classifying 2.1% of the data.
+[2026-05-03 12:11:15] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioLinkBERT": 0.148 with F1 of 0.705 classifying 53.0% of the data.
+[2026-05-03 12:11:15] Plotting euclidean for Model BioLinkBERT...
+[2026-05-03 12:11:41] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioLinkBERT": -1.162 with F1 of 0.956 classifying 0.7% of the data.
+[2026-05-03 12:11:41] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioLinkBERT": -0.238 with F1 of 0.702 classifying 53.0% of the data.
+[2026-05-03 12:11:42] Plotting manhattan for Model BioLinkBERT...
+[2026-05-03 12:12:07] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioLinkBERT": -0.132 with F1 of 0.942 classifying 0.5% of the data.
+[2026-05-03 12:12:07] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioLinkBERT": -0.048 with F1 of 0.697 classifying 52.7% of the data.
+[2026-05-03 12:12:07] Plotting angular for Model BioLinkBERT...
+[2026-05-03 12:12:31] Suggested Threshold for Class "related", Metric "angular", and Model "BioLinkBERT": -2.218 with F1 of 0.923 classifying 2.1% of the data.
+[2026-05-03 12:12:31] Suggested Threshold for Class "exact", Metric "angular", and Model "BioLinkBERT": 0.015 with F1 of 0.705 classifying 53.1% of the data.
+[2026-05-03 12:12:36] Discrepancies for Embedding Answers: 0
+[2026-05-03 12:12:42] Unsure Count: 25566
+[2026-05-03 17:30:57] ============================================================
+[2026-05-03 17:30:57] =            Merging Generated Classifications             =
+[2026-05-03 17:30:57] ============================================================
+[2026-05-03 17:30:57] Reading files...
+[2026-05-03 17:30:57] Files read.
+[2026-05-03 17:30:57] Merging Data...
+[2026-05-03 17:30:57] Data merged.
+[2026-05-03 17:30:57] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-03 17:30:58] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-03 17:30:58] Merged 6 files into 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-03 17:30:58] ============================================================
+[2026-05-03 17:30:58] =                 Data Merged [Minutes: 0]                 =
+[2026-05-03 17:30:58] ============================================================
+[2026-05-03 17:30:59] ============================================================
+[2026-05-03 17:30:59] =            Merging Generated Classifications             =
+[2026-05-03 17:30:59] ============================================================
+[2026-05-03 17:30:59] Reading files...
+[2026-05-03 17:30:59] Files read.
+[2026-05-03 17:30:59] Merging Data...
+[2026-05-03 17:30:59] Data merged.
+[2026-05-03 17:30:59] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-03 17:31:00] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-03 17:31:00] Merged 6 files into 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-03 17:31:00] ============================================================
+[2026-05-03 17:31:00] =                 Data Merged [Minutes: 0]                 =
+[2026-05-03 17:31:00] ============================================================
+[2026-05-03 17:31:01] ============================================================
+[2026-05-03 17:31:01] =            Merging Generated Classifications             =
+[2026-05-03 17:31:01] ============================================================
+[2026-05-03 17:31:01] Reading files...
+[2026-05-03 17:31:01] Files read.
+[2026-05-03 17:31:01] Merging Data...
+[2026-05-03 17:31:01] Data merged.
+[2026-05-03 17:31:01] Writing file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-03 17:31:03] Writing file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-03 17:31:03] Merged 6 files into 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-03 17:31:03] ============================================================
+[2026-05-03 17:31:03] =                 Data Merged [Minutes: 0]                 =
+[2026-05-03 17:31:03] ============================================================
+[2026-05-03 17:31:03] ============================================================
+[2026-05-03 17:31:03] =            Merging Generated Classifications             =
+[2026-05-03 17:31:03] ============================================================
+[2026-05-03 17:31:03] Reading files...
+[2026-05-03 17:31:03] Files read.
+[2026-05-03 17:31:03] Merging Data...
+[2026-05-03 17:31:03] Data merged.
+[2026-05-03 17:31:03] Writing file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-03 17:31:05] Writing file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-03 17:31:05] Merged 6 files into 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-03 17:31:05] ============================================================
+[2026-05-03 17:31:05] =                 Data Merged [Minutes: 0]                 =
+[2026-05-03 17:31:05] ============================================================
+[2026-05-03 17:31:05] ============================================================
+[2026-05-03 17:31:05] =            Merging Generated Classifications             =
+[2026-05-03 17:31:05] ============================================================
+[2026-05-03 17:31:05] Reading files...
+[2026-05-03 17:31:06] Files read.
+[2026-05-03 17:31:06] Merging Data...
+[2026-05-03 17:31:06] Data merged.
+[2026-05-03 17:31:06] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-03 17:31:07] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-03 17:31:07] Merged 6 files into 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-03 17:31:07] ============================================================
+[2026-05-03 17:31:07] =                 Data Merged [Minutes: 0]                 =
+[2026-05-03 17:31:07] ============================================================
+[2026-05-03 17:31:15] ============================================================
+[2026-05-03 17:31:15] =     Evaluating the Results of Synonym Classification     =
+[2026-05-03 17:31:15] ============================================================
+[2026-05-03 17:31:15] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-03 17:31:15] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-03 17:31:15] 7 ontologies found.
+[2026-05-03 17:31:15] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-03 17:31:15] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-03 17:31:15] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-03 17:31:15] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-03 17:31:15] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-03 17:31:15] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-03 17:31:15] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-03 17:31:15] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-03 17:31:15] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-03 17:31:16] Plotting cosine for Model BioClinicalBERT...
+[2026-05-03 17:31:38] Suggested Threshold for Class "related", Metric "cosine", and Model "BioClinicalBERT": -2.537 with F1 of 0.944 classifying 2.2% of the data.
+[2026-05-03 17:31:38] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioClinicalBERT": 0.749 with F1 of 0.751 classifying 24.2% of the data.
+[2026-05-03 17:31:38] Plotting euclidean for Model BioClinicalBERT...
+[2026-05-03 17:32:01] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioClinicalBERT": -1.541 with F1 of 0.942 classifying 0.1% of the data.
+[2026-05-03 17:32:01] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioClinicalBERT": 0.484 with F1 of 0.741 classifying 24.1% of the data.
+[2026-05-03 17:32:02] Plotting manhattan for Model BioClinicalBERT...
+[2026-05-03 17:32:24] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioClinicalBERT": -1.173 with F1 of 0.953 classifying 0.2% of the data.
+[2026-05-03 17:32:24] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioClinicalBERT": 0.401 with F1 of 0.745 classifying 21.8% of the data.
+[2026-05-03 17:32:25] Plotting angular for Model BioClinicalBERT...
+[2026-05-03 17:32:47] Suggested Threshold for Class "related", Metric "angular", and Model "BioClinicalBERT": -2.157 with F1 of 0.944 classifying 2.2% of the data.
+[2026-05-03 17:32:47] Suggested Threshold for Class "exact", Metric "angular", and Model "BioClinicalBERT": 0.744 with F1 of 0.751 classifying 24.3% of the data.
+[2026-05-03 17:32:48] Plotting cosine for Model SapBERT...
+[2026-05-03 17:33:10] Suggested Threshold for Class "related", Metric "cosine", and Model "SapBERT": -2.647 with F1 of 0.991 classifying 1.2% of the data.
+[2026-05-03 17:33:10] Suggested Threshold for Class "exact", Metric "cosine", and Model "SapBERT": 1.244 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 17:33:11] Plotting euclidean for Model SapBERT...
+[2026-05-03 17:33:33] Suggested Threshold for Class "related", Metric "euclidean", and Model "SapBERT": -1.012 with F1 of 0.994 classifying 1.7% of the data.
+[2026-05-03 17:33:33] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SapBERT": 2.425 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 17:33:34] Plotting manhattan for Model SapBERT...
+[2026-05-03 17:33:56] Suggested Threshold for Class "related", Metric "manhattan", and Model "SapBERT": -0.851 with F1 of 0.994 classifying 1.7% of the data.
+[2026-05-03 17:33:56] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SapBERT": 2.396 with F1 of 0.85 classifying 3.0% of the data.
+[2026-05-03 17:33:57] Plotting angular for Model SapBERT...
+[2026-05-03 17:34:19] Suggested Threshold for Class "related", Metric "angular", and Model "SapBERT": -2.162 with F1 of 0.991 classifying 1.2% of the data.
+[2026-05-03 17:34:19] Suggested Threshold for Class "exact", Metric "angular", and Model "SapBERT": 1.656 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 17:34:20] Plotting cosine for Model ClinicalBERT...
+[2026-05-03 17:34:42] Suggested Threshold for Class "related", Metric "cosine", and Model "ClinicalBERT": -2.421 with F1 of 0.955 classifying 1.0% of the data.
+[2026-05-03 17:34:42] Suggested Threshold for Class "exact", Metric "cosine", and Model "ClinicalBERT": 0.8 with F1 of 0.748 classifying 24.4% of the data.
+[2026-05-03 17:34:43] Plotting euclidean for Model ClinicalBERT...
+[2026-05-03 17:35:06] Suggested Threshold for Class "related", Metric "euclidean", and Model "ClinicalBERT": -1.416 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 17:35:06] Suggested Threshold for Class "exact", Metric "euclidean", and Model "ClinicalBERT": 0.569 with F1 of 0.756 classifying 21.3% of the data.
+[2026-05-03 17:35:06] Plotting manhattan for Model ClinicalBERT...
+[2026-05-03 17:35:28] Suggested Threshold for Class "related", Metric "manhattan", and Model "ClinicalBERT": -1.166 with F1 of 0.91 classifying 0.3% of the data.
+[2026-05-03 17:35:28] Suggested Threshold for Class "exact", Metric "manhattan", and Model "ClinicalBERT": 0.377 with F1 of 0.754 classifying 22.5% of the data.
+[2026-05-03 17:35:29] Plotting angular for Model ClinicalBERT...
+[2026-05-03 17:35:51] Suggested Threshold for Class "related", Metric "angular", and Model "ClinicalBERT": -2.044 with F1 of 0.955 classifying 1.0% of the data.
+[2026-05-03 17:35:51] Suggested Threshold for Class "exact", Metric "angular", and Model "ClinicalBERT": 0.742 with F1 of 0.748 classifying 24.5% of the data.
+[2026-05-03 17:35:52] Plotting cosine for Model BioBERT...
+[2026-05-03 17:36:14] Suggested Threshold for Class "related", Metric "cosine", and Model "BioBERT": -3.397 with F1 of 0.96 classifying 0.8% of the data.
+[2026-05-03 17:36:14] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioBERT": 0.726 with F1 of 0.777 classifying 24.7% of the data.
+[2026-05-03 17:36:15] Plotting euclidean for Model BioBERT...
+[2026-05-03 17:36:37] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioBERT": -1.414 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 17:36:37] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioBERT": 0.489 with F1 of 0.779 classifying 23.5% of the data.
+[2026-05-03 17:36:38] Plotting manhattan for Model BioBERT...
+[2026-05-03 17:37:01] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioBERT": -1.072 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 17:37:01] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioBERT": 0.323 with F1 of 0.782 classifying 23.3% of the data.
+[2026-05-03 17:37:01] Plotting angular for Model BioBERT...
+[2026-05-03 17:37:24] Suggested Threshold for Class "related", Metric "angular", and Model "BioBERT": -2.692 with F1 of 0.96 classifying 0.8% of the data.
+[2026-05-03 17:37:24] Suggested Threshold for Class "exact", Metric "angular", and Model "BioBERT": 1.946 with F1 of 0.8 classifying 0.1% of the data.
+[2026-05-03 17:37:24] Plotting cosine for Model UMLSBERT...
+[2026-05-03 17:37:47] Suggested Threshold for Class "related", Metric "cosine", and Model "UMLSBERT": -2.794 with F1 of 0.936 classifying 0.9% of the data.
+[2026-05-03 17:37:47] Suggested Threshold for Class "exact", Metric "cosine", and Model "UMLSBERT": 0.749 with F1 of 0.805 classifying 25.9% of the data.
+[2026-05-03 17:37:47] Plotting euclidean for Model UMLSBERT...
+[2026-05-03 17:38:10] Suggested Threshold for Class "related", Metric "euclidean", and Model "UMLSBERT": -1.198 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 17:38:10] Suggested Threshold for Class "exact", Metric "euclidean", and Model "UMLSBERT": 0.273 with F1 of 0.806 classifying 28.7% of the data.
+[2026-05-03 17:38:11] Plotting manhattan for Model UMLSBERT...
+[2026-05-03 17:38:33] Suggested Threshold for Class "related", Metric "manhattan", and Model "UMLSBERT": -1.089 with F1 of 0.976 classifying 0.4% of the data.
+[2026-05-03 17:38:33] Suggested Threshold for Class "exact", Metric "manhattan", and Model "UMLSBERT": 0.425 with F1 of 0.81 classifying 22.1% of the data.
+[2026-05-03 17:38:34] Plotting angular for Model UMLSBERT...
+[2026-05-03 17:38:57] Suggested Threshold for Class "related", Metric "angular", and Model "UMLSBERT": -2.298 with F1 of 0.932 classifying 0.8% of the data.
+[2026-05-03 17:38:57] Suggested Threshold for Class "exact", Metric "angular", and Model "UMLSBERT": 0.715 with F1 of 0.805 classifying 25.9% of the data.
+[2026-05-03 17:38:58] Plotting cosine for Model SciBERT...
+[2026-05-03 17:39:21] Suggested Threshold for Class "related", Metric "cosine", and Model "SciBERT": -3.138 with F1 of 0.96 classifying 0.5% of the data.
+[2026-05-03 17:39:21] Suggested Threshold for Class "exact", Metric "cosine", and Model "SciBERT": 1.213 with F1 of 0.719 classifying 6.6% of the data.
+[2026-05-03 17:39:21] Plotting euclidean for Model SciBERT...
+[2026-05-03 17:39:44] Suggested Threshold for Class "related", Metric "euclidean", and Model "SciBERT": -1.126 with F1 of 0.966 classifying 0.6% of the data.
+[2026-05-03 17:39:44] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SciBERT": 1.374 with F1 of 0.724 classifying 8.4% of the data.
+[2026-05-03 17:39:45] Plotting manhattan for Model SciBERT...
+[2026-05-03 17:40:07] Suggested Threshold for Class "related", Metric "manhattan", and Model "SciBERT": -1.0 with F1 of 0.957 classifying 0.5% of the data.
+[2026-05-03 17:40:07] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SciBERT": 1.601 with F1 of 0.721 classifying 5.3% of the data.
+[2026-05-03 17:40:08] Plotting angular for Model SciBERT...
+[2026-05-03 17:40:30] Suggested Threshold for Class "related", Metric "angular", and Model "SciBERT": -2.527 with F1 of 0.96 classifying 0.5% of the data.
+[2026-05-03 17:40:30] Suggested Threshold for Class "exact", Metric "angular", and Model "SciBERT": 1.447 with F1 of 0.719 classifying 6.6% of the data.
+[2026-05-03 17:40:31] Plotting cosine for Model SapUMLSBERT...
+[2026-05-03 17:40:54] Suggested Threshold for Class "related", Metric "cosine", and Model "SapUMLSBERT": -2.745 with F1 of 0.98 classifying 1.0% of the data.
+[2026-05-03 17:40:54] Suggested Threshold for Class "exact", Metric "cosine", and Model "SapUMLSBERT": 1.274 with F1 of 0.856 classifying 2.2% of the data.
+[2026-05-03 17:40:54] Plotting euclidean for Model SapUMLSBERT...
+[2026-05-03 17:41:16] Suggested Threshold for Class "related", Metric "euclidean", and Model "SapUMLSBERT": -1.13 with F1 of 0.97 classifying 0.7% of the data.
+[2026-05-03 17:41:16] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SapUMLSBERT": 2.971 with F1 of 0.863 classifying 2.0% of the data.
+[2026-05-03 17:41:17] Plotting manhattan for Model SapUMLSBERT...
+[2026-05-03 17:41:39] Suggested Threshold for Class "related", Metric "manhattan", and Model "SapUMLSBERT": -0.948 with F1 of 0.973 classifying 0.8% of the data.
+[2026-05-03 17:41:39] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SapUMLSBERT": 2.957 with F1 of 0.865 classifying 2.0% of the data.
+[2026-05-03 17:41:40] Plotting angular for Model SapUMLSBERT...
+[2026-05-03 17:42:03] Suggested Threshold for Class "related", Metric "angular", and Model "SapUMLSBERT": -2.261 with F1 of 0.98 classifying 1.0% of the data.
+[2026-05-03 17:42:03] Suggested Threshold for Class "exact", Metric "angular", and Model "SapUMLSBERT": 1.749 with F1 of 0.856 classifying 2.2% of the data.
+[2026-05-03 17:42:03] Plotting cosine for Model medCPT...
+[2026-05-03 17:42:26] Suggested Threshold for Class "related", Metric "cosine", and Model "medCPT": -2.703 with F1 of 0.943 classifying 1.2% of the data.
+[2026-05-03 17:42:26] Suggested Threshold for Class "exact", Metric "cosine", and Model "medCPT": 1.002 with F1 of 0.79 classifying 14.5% of the data.
+[2026-05-03 17:42:26] Plotting euclidean for Model medCPT...
+[2026-05-03 17:42:49] Suggested Threshold for Class "related", Metric "euclidean", and Model "medCPT": -1.129 with F1 of 0.942 classifying 0.1% of the data.
+[2026-05-03 17:42:49] Suggested Threshold for Class "exact", Metric "euclidean", and Model "medCPT": 0.771 with F1 of 0.767 classifying 16.7% of the data.
+[2026-05-03 17:42:49] Plotting manhattan for Model medCPT...
+[2026-05-03 17:43:12] Suggested Threshold for Class "related", Metric "manhattan", and Model "medCPT": -0.767 with F1 of 0.96 classifying 0.2% of the data.
+[2026-05-03 17:43:12] Suggested Threshold for Class "exact", Metric "manhattan", and Model "medCPT": 0.438 with F1 of 0.765 classifying 16.6% of the data.
+[2026-05-03 17:43:13] Plotting angular for Model medCPT...
+[2026-05-03 17:43:35] Suggested Threshold for Class "related", Metric "angular", and Model "medCPT": -2.152 with F1 of 0.943 classifying 1.2% of the data.
+[2026-05-03 17:43:35] Suggested Threshold for Class "exact", Metric "angular", and Model "medCPT": 1.13 with F1 of 0.79 classifying 14.5% of the data.
+[2026-05-03 17:43:36] Plotting cosine for Model PubMedBERT...
+[2026-05-03 17:43:58] Suggested Threshold for Class "related", Metric "cosine", and Model "PubMedBERT": -3.636 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 17:43:58] Suggested Threshold for Class "exact", Metric "cosine", and Model "PubMedBERT": 0.999 with F1 of 0.753 classifying 11.5% of the data.
+[2026-05-03 17:43:59] Plotting euclidean for Model PubMedBERT...
+[2026-05-03 17:44:21] Suggested Threshold for Class "related", Metric "euclidean", and Model "PubMedBERT": -1.452 with F1 of 0.948 classifying 0.4% of the data.
+[2026-05-03 17:44:21] Suggested Threshold for Class "exact", Metric "euclidean", and Model "PubMedBERT": 1.14 with F1 of 0.757 classifying 10.7% of the data.
+[2026-05-03 17:44:22] Plotting manhattan for Model PubMedBERT...
+[2026-05-03 17:44:44] Suggested Threshold for Class "related", Metric "manhattan", and Model "PubMedBERT": -0.903 with F1 of 0.91 classifying 1.9% of the data.
+[2026-05-03 17:44:44] Suggested Threshold for Class "exact", Metric "manhattan", and Model "PubMedBERT": 0.803 with F1 of 0.753 classifying 11.4% of the data.
+[2026-05-03 17:44:45] Plotting angular for Model PubMedBERT...
+[2026-05-03 17:45:07] Suggested Threshold for Class "related", Metric "angular", and Model "PubMedBERT": -2.746 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 17:45:07] Suggested Threshold for Class "exact", Metric "angular", and Model "PubMedBERT": 1.145 with F1 of 0.754 classifying 10.9% of the data.
+[2026-05-03 17:45:08] Plotting cosine for Model BioLinkBERT...
+[2026-05-03 17:45:30] Suggested Threshold for Class "related", Metric "cosine", and Model "BioLinkBERT": -2.551 with F1 of 0.923 classifying 2.1% of the data.
+[2026-05-03 17:45:30] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioLinkBERT": 0.148 with F1 of 0.705 classifying 53.0% of the data.
+[2026-05-03 17:45:31] Plotting euclidean for Model BioLinkBERT...
+[2026-05-03 17:45:53] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioLinkBERT": -1.162 with F1 of 0.956 classifying 0.7% of the data.
+[2026-05-03 17:45:53] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioLinkBERT": -0.238 with F1 of 0.702 classifying 53.0% of the data.
+[2026-05-03 17:45:54] Plotting manhattan for Model BioLinkBERT...
+[2026-05-03 17:46:16] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioLinkBERT": -0.132 with F1 of 0.942 classifying 0.5% of the data.
+[2026-05-03 17:46:16] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioLinkBERT": -0.048 with F1 of 0.697 classifying 52.7% of the data.
+[2026-05-03 17:46:17] Plotting angular for Model BioLinkBERT...
+[2026-05-03 17:46:39] Suggested Threshold for Class "related", Metric "angular", and Model "BioLinkBERT": -2.218 with F1 of 0.923 classifying 2.1% of the data.
+[2026-05-03 17:46:39] Suggested Threshold for Class "exact", Metric "angular", and Model "BioLinkBERT": 0.015 with F1 of 0.705 classifying 53.1% of the data.
+[2026-05-03 17:46:45] Discrepancies for Embedding Answers: 0
+[2026-05-03 17:46:50] Unsure Count: 25566
+[2026-05-03 17:47:03] ============================================================
+[2026-05-03 17:47:03] =     Evaluating the Results of Synonym Classification     =
+[2026-05-03 17:47:03] ============================================================
+[2026-05-03 17:47:03] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-03 17:47:03] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-03 17:47:03] 7 ontologies found.
+[2026-05-03 17:47:03] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-03 17:47:03] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-03 17:47:03] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-03 17:47:03] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-03 17:47:03] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-03 17:47:03] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-03 17:47:03] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-03 17:47:03] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-03 17:47:03] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-03 17:47:03] Plotting cosine for Model BioClinicalBERT...
+[2026-05-03 17:47:26] Suggested Threshold for Class "related", Metric "cosine", and Model "BioClinicalBERT": -2.537 with F1 of 0.944 classifying 2.2% of the data.
+[2026-05-03 17:47:26] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioClinicalBERT": 0.749 with F1 of 0.751 classifying 24.2% of the data.
+[2026-05-03 17:47:27] Plotting euclidean for Model BioClinicalBERT...
+[2026-05-03 17:47:49] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioClinicalBERT": -1.541 with F1 of 0.942 classifying 0.1% of the data.
+[2026-05-03 17:47:49] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioClinicalBERT": 0.484 with F1 of 0.741 classifying 24.1% of the data.
+[2026-05-03 17:47:50] Plotting manhattan for Model BioClinicalBERT...
+[2026-05-03 17:48:12] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioClinicalBERT": -1.173 with F1 of 0.953 classifying 0.2% of the data.
+[2026-05-03 17:48:12] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioClinicalBERT": 0.401 with F1 of 0.745 classifying 21.8% of the data.
+[2026-05-03 17:48:13] Plotting angular for Model BioClinicalBERT...
+[2026-05-03 17:48:35] Suggested Threshold for Class "related", Metric "angular", and Model "BioClinicalBERT": -2.157 with F1 of 0.944 classifying 2.2% of the data.
+[2026-05-03 17:48:35] Suggested Threshold for Class "exact", Metric "angular", and Model "BioClinicalBERT": 0.744 with F1 of 0.751 classifying 24.3% of the data.
+[2026-05-03 17:48:36] Plotting cosine for Model SapBERT...
+[2026-05-03 17:48:58] Suggested Threshold for Class "related", Metric "cosine", and Model "SapBERT": -2.647 with F1 of 0.991 classifying 1.2% of the data.
+[2026-05-03 17:48:58] Suggested Threshold for Class "exact", Metric "cosine", and Model "SapBERT": 1.244 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 17:48:59] Plotting euclidean for Model SapBERT...
+[2026-05-03 17:49:21] Suggested Threshold for Class "related", Metric "euclidean", and Model "SapBERT": -1.012 with F1 of 0.994 classifying 1.7% of the data.
+[2026-05-03 17:49:21] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SapBERT": 2.425 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 17:49:22] Plotting manhattan for Model SapBERT...
+[2026-05-03 17:49:44] Suggested Threshold for Class "related", Metric "manhattan", and Model "SapBERT": -0.851 with F1 of 0.994 classifying 1.7% of the data.
+[2026-05-03 17:49:44] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SapBERT": 2.396 with F1 of 0.85 classifying 3.0% of the data.
+[2026-05-03 17:49:45] Plotting angular for Model SapBERT...
+[2026-05-03 17:50:07] Suggested Threshold for Class "related", Metric "angular", and Model "SapBERT": -2.162 with F1 of 0.991 classifying 1.2% of the data.
+[2026-05-03 17:50:07] Suggested Threshold for Class "exact", Metric "angular", and Model "SapBERT": 1.656 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 17:50:08] Plotting cosine for Model ClinicalBERT...
+[2026-05-03 17:50:30] Suggested Threshold for Class "related", Metric "cosine", and Model "ClinicalBERT": -2.421 with F1 of 0.955 classifying 1.0% of the data.
+[2026-05-03 17:50:30] Suggested Threshold for Class "exact", Metric "cosine", and Model "ClinicalBERT": 0.8 with F1 of 0.748 classifying 24.4% of the data.
+[2026-05-03 17:50:31] Plotting euclidean for Model ClinicalBERT...
+[2026-05-03 17:50:53] Suggested Threshold for Class "related", Metric "euclidean", and Model "ClinicalBERT": -1.416 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 17:50:53] Suggested Threshold for Class "exact", Metric "euclidean", and Model "ClinicalBERT": 0.569 with F1 of 0.756 classifying 21.3% of the data.
+[2026-05-03 17:50:54] Plotting manhattan for Model ClinicalBERT...
+[2026-05-03 17:51:17] Suggested Threshold for Class "related", Metric "manhattan", and Model "ClinicalBERT": -1.166 with F1 of 0.91 classifying 0.3% of the data.
+[2026-05-03 17:51:17] Suggested Threshold for Class "exact", Metric "manhattan", and Model "ClinicalBERT": 0.377 with F1 of 0.754 classifying 22.5% of the data.
+[2026-05-03 17:51:17] Plotting angular for Model ClinicalBERT...
+[2026-05-03 17:51:40] Suggested Threshold for Class "related", Metric "angular", and Model "ClinicalBERT": -2.044 with F1 of 0.955 classifying 1.0% of the data.
+[2026-05-03 17:51:40] Suggested Threshold for Class "exact", Metric "angular", and Model "ClinicalBERT": 0.742 with F1 of 0.748 classifying 24.5% of the data.
+[2026-05-03 17:51:41] Plotting cosine for Model BioBERT...
+[2026-05-03 17:52:03] Suggested Threshold for Class "related", Metric "cosine", and Model "BioBERT": -3.397 with F1 of 0.96 classifying 0.8% of the data.
+[2026-05-03 17:52:03] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioBERT": 0.726 with F1 of 0.777 classifying 24.7% of the data.
+[2026-05-03 17:52:04] Plotting euclidean for Model BioBERT...
+[2026-05-03 17:52:27] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioBERT": -1.414 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 17:52:27] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioBERT": 0.489 with F1 of 0.779 classifying 23.5% of the data.
+[2026-05-03 17:52:28] Plotting manhattan for Model BioBERT...
+[2026-05-03 17:52:50] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioBERT": -1.072 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 17:52:50] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioBERT": 0.323 with F1 of 0.782 classifying 23.3% of the data.
+[2026-05-03 17:52:50] Plotting angular for Model BioBERT...
+[2026-05-03 17:53:13] Suggested Threshold for Class "related", Metric "angular", and Model "BioBERT": -2.692 with F1 of 0.96 classifying 0.8% of the data.
+[2026-05-03 17:53:13] Suggested Threshold for Class "exact", Metric "angular", and Model "BioBERT": 1.946 with F1 of 0.8 classifying 0.1% of the data.
+[2026-05-03 17:53:13] Plotting cosine for Model UMLSBERT...
+[2026-05-03 17:53:36] Suggested Threshold for Class "related", Metric "cosine", and Model "UMLSBERT": -2.794 with F1 of 0.936 classifying 0.9% of the data.
+[2026-05-03 17:53:36] Suggested Threshold for Class "exact", Metric "cosine", and Model "UMLSBERT": 0.749 with F1 of 0.805 classifying 25.9% of the data.
+[2026-05-03 17:53:37] Plotting euclidean for Model UMLSBERT...
+[2026-05-03 17:53:59] Suggested Threshold for Class "related", Metric "euclidean", and Model "UMLSBERT": -1.198 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 17:53:59] Suggested Threshold for Class "exact", Metric "euclidean", and Model "UMLSBERT": 0.273 with F1 of 0.806 classifying 28.7% of the data.
+[2026-05-03 17:54:00] Plotting manhattan for Model UMLSBERT...
+[2026-05-03 17:54:22] Suggested Threshold for Class "related", Metric "manhattan", and Model "UMLSBERT": -1.089 with F1 of 0.976 classifying 0.4% of the data.
+[2026-05-03 17:54:22] Suggested Threshold for Class "exact", Metric "manhattan", and Model "UMLSBERT": 0.425 with F1 of 0.81 classifying 22.1% of the data.
+[2026-05-03 17:54:23] Plotting angular for Model UMLSBERT...
+[2026-05-03 17:54:45] Suggested Threshold for Class "related", Metric "angular", and Model "UMLSBERT": -2.298 with F1 of 0.932 classifying 0.8% of the data.
+[2026-05-03 17:54:45] Suggested Threshold for Class "exact", Metric "angular", and Model "UMLSBERT": 0.715 with F1 of 0.805 classifying 25.9% of the data.
+[2026-05-03 17:54:46] Plotting cosine for Model SciBERT...
+[2026-05-03 17:55:09] Suggested Threshold for Class "related", Metric "cosine", and Model "SciBERT": -3.138 with F1 of 0.96 classifying 0.5% of the data.
+[2026-05-03 17:55:09] Suggested Threshold for Class "exact", Metric "cosine", and Model "SciBERT": 1.213 with F1 of 0.719 classifying 6.6% of the data.
+[2026-05-03 17:55:09] Plotting euclidean for Model SciBERT...
+[2026-05-03 17:55:32] Suggested Threshold for Class "related", Metric "euclidean", and Model "SciBERT": -1.126 with F1 of 0.966 classifying 0.6% of the data.
+[2026-05-03 17:55:32] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SciBERT": 1.374 with F1 of 0.724 classifying 8.4% of the data.
+[2026-05-03 17:55:33] Plotting manhattan for Model SciBERT...
+[2026-05-03 17:55:55] Suggested Threshold for Class "related", Metric "manhattan", and Model "SciBERT": -1.0 with F1 of 0.957 classifying 0.5% of the data.
+[2026-05-03 17:55:55] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SciBERT": 1.601 with F1 of 0.721 classifying 5.3% of the data.
+[2026-05-03 17:55:56] Plotting angular for Model SciBERT...
+[2026-05-03 17:56:18] Suggested Threshold for Class "related", Metric "angular", and Model "SciBERT": -2.527 with F1 of 0.96 classifying 0.5% of the data.
+[2026-05-03 17:56:18] Suggested Threshold for Class "exact", Metric "angular", and Model "SciBERT": 1.447 with F1 of 0.719 classifying 6.6% of the data.
+[2026-05-03 17:56:19] Plotting cosine for Model SapUMLSBERT...
+[2026-05-03 17:56:41] Suggested Threshold for Class "related", Metric "cosine", and Model "SapUMLSBERT": -2.745 with F1 of 0.98 classifying 1.0% of the data.
+[2026-05-03 17:56:41] Suggested Threshold for Class "exact", Metric "cosine", and Model "SapUMLSBERT": 1.274 with F1 of 0.856 classifying 2.2% of the data.
+[2026-05-03 17:56:42] Plotting euclidean for Model SapUMLSBERT...
+[2026-05-03 17:57:04] Suggested Threshold for Class "related", Metric "euclidean", and Model "SapUMLSBERT": -1.13 with F1 of 0.97 classifying 0.7% of the data.
+[2026-05-03 17:57:04] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SapUMLSBERT": 2.971 with F1 of 0.863 classifying 2.0% of the data.
+[2026-05-03 17:57:05] Plotting manhattan for Model SapUMLSBERT...
+[2026-05-03 17:57:27] Suggested Threshold for Class "related", Metric "manhattan", and Model "SapUMLSBERT": -0.948 with F1 of 0.973 classifying 0.8% of the data.
+[2026-05-03 17:57:27] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SapUMLSBERT": 2.957 with F1 of 0.865 classifying 2.0% of the data.
+[2026-05-03 17:57:28] Plotting angular for Model SapUMLSBERT...
+[2026-05-03 17:57:50] Suggested Threshold for Class "related", Metric "angular", and Model "SapUMLSBERT": -2.261 with F1 of 0.98 classifying 1.0% of the data.
+[2026-05-03 17:57:50] Suggested Threshold for Class "exact", Metric "angular", and Model "SapUMLSBERT": 1.749 with F1 of 0.856 classifying 2.2% of the data.
+[2026-05-03 17:57:51] Plotting cosine for Model medCPT...
+[2026-05-03 17:58:13] Suggested Threshold for Class "related", Metric "cosine", and Model "medCPT": -2.703 with F1 of 0.943 classifying 1.2% of the data.
+[2026-05-03 17:58:13] Suggested Threshold for Class "exact", Metric "cosine", and Model "medCPT": 1.002 with F1 of 0.79 classifying 14.5% of the data.
+[2026-05-03 17:58:14] Plotting euclidean for Model medCPT...
+[2026-05-03 17:58:36] Suggested Threshold for Class "related", Metric "euclidean", and Model "medCPT": -1.129 with F1 of 0.942 classifying 0.1% of the data.
+[2026-05-03 17:58:36] Suggested Threshold for Class "exact", Metric "euclidean", and Model "medCPT": 0.771 with F1 of 0.767 classifying 16.7% of the data.
+[2026-05-03 17:58:37] Plotting manhattan for Model medCPT...
+[2026-05-03 17:58:59] Suggested Threshold for Class "related", Metric "manhattan", and Model "medCPT": -0.767 with F1 of 0.96 classifying 0.2% of the data.
+[2026-05-03 17:58:59] Suggested Threshold for Class "exact", Metric "manhattan", and Model "medCPT": 0.438 with F1 of 0.765 classifying 16.6% of the data.
+[2026-05-03 17:59:00] Plotting angular for Model medCPT...
+[2026-05-03 17:59:22] Suggested Threshold for Class "related", Metric "angular", and Model "medCPT": -2.152 with F1 of 0.943 classifying 1.2% of the data.
+[2026-05-03 17:59:22] Suggested Threshold for Class "exact", Metric "angular", and Model "medCPT": 1.13 with F1 of 0.79 classifying 14.5% of the data.
+[2026-05-03 17:59:23] Plotting cosine for Model PubMedBERT...
+[2026-05-03 17:59:45] Suggested Threshold for Class "related", Metric "cosine", and Model "PubMedBERT": -3.636 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 17:59:45] Suggested Threshold for Class "exact", Metric "cosine", and Model "PubMedBERT": 0.999 with F1 of 0.753 classifying 11.5% of the data.
+[2026-05-03 17:59:46] Plotting euclidean for Model PubMedBERT...
+[2026-05-03 18:00:08] Suggested Threshold for Class "related", Metric "euclidean", and Model "PubMedBERT": -1.452 with F1 of 0.948 classifying 0.4% of the data.
+[2026-05-03 18:00:08] Suggested Threshold for Class "exact", Metric "euclidean", and Model "PubMedBERT": 1.14 with F1 of 0.757 classifying 10.7% of the data.
+[2026-05-03 18:00:09] Plotting manhattan for Model PubMedBERT...
+[2026-05-03 18:00:31] Suggested Threshold for Class "related", Metric "manhattan", and Model "PubMedBERT": -0.903 with F1 of 0.91 classifying 1.9% of the data.
+[2026-05-03 18:00:31] Suggested Threshold for Class "exact", Metric "manhattan", and Model "PubMedBERT": 0.803 with F1 of 0.753 classifying 11.4% of the data.
+[2026-05-03 18:00:32] Plotting angular for Model PubMedBERT...
+[2026-05-03 18:00:55] Suggested Threshold for Class "related", Metric "angular", and Model "PubMedBERT": -2.746 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 18:00:55] Suggested Threshold for Class "exact", Metric "angular", and Model "PubMedBERT": 1.145 with F1 of 0.754 classifying 10.9% of the data.
+[2026-05-03 18:00:55] Plotting cosine for Model BioLinkBERT...
+[2026-05-03 18:01:17] Suggested Threshold for Class "related", Metric "cosine", and Model "BioLinkBERT": -2.551 with F1 of 0.923 classifying 2.1% of the data.
+[2026-05-03 18:01:17] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioLinkBERT": 0.148 with F1 of 0.705 classifying 53.0% of the data.
+[2026-05-03 18:01:18] Plotting euclidean for Model BioLinkBERT...
+[2026-05-03 18:01:41] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioLinkBERT": -1.162 with F1 of 0.956 classifying 0.7% of the data.
+[2026-05-03 18:01:41] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioLinkBERT": -0.238 with F1 of 0.702 classifying 53.0% of the data.
+[2026-05-03 18:01:41] Plotting manhattan for Model BioLinkBERT...
+[2026-05-03 18:02:04] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioLinkBERT": -0.132 with F1 of 0.942 classifying 0.5% of the data.
+[2026-05-03 18:02:04] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioLinkBERT": -0.048 with F1 of 0.697 classifying 52.7% of the data.
+[2026-05-03 18:02:04] Plotting angular for Model BioLinkBERT...
+[2026-05-03 18:02:27] Suggested Threshold for Class "related", Metric "angular", and Model "BioLinkBERT": -2.218 with F1 of 0.923 classifying 2.1% of the data.
+[2026-05-03 18:02:27] Suggested Threshold for Class "exact", Metric "angular", and Model "BioLinkBERT": 0.015 with F1 of 0.705 classifying 53.1% of the data.
+[2026-05-03 18:02:32] Discrepancies for Embedding Answers: 0
+[2026-05-03 18:02:37] Unsure Count: 25566
+[2026-05-03 18:02:50] ============================================================
+[2026-05-03 18:02:50] =     Evaluating the Results of Synonym Classification     =
+[2026-05-03 18:02:50] ============================================================
+[2026-05-03 18:02:50] Reading file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-03 18:02:50] Reading file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-03 18:02:50] 7 ontologies found.
+[2026-05-03 18:02:50] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-03 18:02:50] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-03 18:02:50] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-03 18:02:50] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-03 18:02:50] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-03 18:02:50] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-03 18:02:50] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-03 18:02:50] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-03 18:02:50] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-03 18:02:50] Plotting cosine for Model BioClinicalBERT...
+[2026-05-03 18:03:13] Suggested Threshold for Class "related", Metric "cosine", and Model "BioClinicalBERT": -2.537 with F1 of 0.944 classifying 2.2% of the data.
+[2026-05-03 18:03:13] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioClinicalBERT": 0.749 with F1 of 0.751 classifying 24.2% of the data.
+[2026-05-03 18:03:13] Plotting euclidean for Model BioClinicalBERT...
+[2026-05-03 18:03:35] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioClinicalBERT": -1.541 with F1 of 0.942 classifying 0.1% of the data.
+[2026-05-03 18:03:35] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioClinicalBERT": 0.484 with F1 of 0.741 classifying 24.1% of the data.
+[2026-05-03 18:03:36] Plotting manhattan for Model BioClinicalBERT...
+[2026-05-03 18:03:59] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioClinicalBERT": -1.173 with F1 of 0.953 classifying 0.2% of the data.
+[2026-05-03 18:03:59] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioClinicalBERT": 0.401 with F1 of 0.745 classifying 21.8% of the data.
+[2026-05-03 18:03:59] Plotting angular for Model BioClinicalBERT...
+[2026-05-03 18:04:22] Suggested Threshold for Class "related", Metric "angular", and Model "BioClinicalBERT": -2.157 with F1 of 0.944 classifying 2.2% of the data.
+[2026-05-03 18:04:22] Suggested Threshold for Class "exact", Metric "angular", and Model "BioClinicalBERT": 0.744 with F1 of 0.751 classifying 24.3% of the data.
+[2026-05-03 18:04:23] Plotting cosine for Model SapBERT...
+[2026-05-03 18:04:45] Suggested Threshold for Class "related", Metric "cosine", and Model "SapBERT": -2.647 with F1 of 0.991 classifying 1.2% of the data.
+[2026-05-03 18:04:45] Suggested Threshold for Class "exact", Metric "cosine", and Model "SapBERT": 1.244 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 18:04:45] Plotting euclidean for Model SapBERT...
+[2026-05-03 18:05:08] Suggested Threshold for Class "related", Metric "euclidean", and Model "SapBERT": -1.012 with F1 of 0.994 classifying 1.7% of the data.
+[2026-05-03 18:05:08] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SapBERT": 2.425 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 18:05:08] Plotting manhattan for Model SapBERT...
+[2026-05-03 18:05:30] Suggested Threshold for Class "related", Metric "manhattan", and Model "SapBERT": -0.851 with F1 of 0.994 classifying 1.7% of the data.
+[2026-05-03 18:05:30] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SapBERT": 2.396 with F1 of 0.85 classifying 3.0% of the data.
+[2026-05-03 18:05:31] Plotting angular for Model SapBERT...
+[2026-05-03 18:05:53] Suggested Threshold for Class "related", Metric "angular", and Model "SapBERT": -2.162 with F1 of 0.991 classifying 1.2% of the data.
+[2026-05-03 18:05:53] Suggested Threshold for Class "exact", Metric "angular", and Model "SapBERT": 1.656 with F1 of 0.856 classifying 3.1% of the data.
+[2026-05-03 18:05:54] Plotting cosine for Model ClinicalBERT...
+[2026-05-03 18:06:16] Suggested Threshold for Class "related", Metric "cosine", and Model "ClinicalBERT": -2.421 with F1 of 0.955 classifying 1.0% of the data.
+[2026-05-03 18:06:16] Suggested Threshold for Class "exact", Metric "cosine", and Model "ClinicalBERT": 0.8 with F1 of 0.748 classifying 24.4% of the data.
+[2026-05-03 18:06:17] Plotting euclidean for Model ClinicalBERT...
+[2026-05-03 18:06:39] Suggested Threshold for Class "related", Metric "euclidean", and Model "ClinicalBERT": -1.416 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 18:06:39] Suggested Threshold for Class "exact", Metric "euclidean", and Model "ClinicalBERT": 0.569 with F1 of 0.756 classifying 21.3% of the data.
+[2026-05-03 18:06:40] Plotting manhattan for Model ClinicalBERT...
+[2026-05-03 18:07:02] Suggested Threshold for Class "related", Metric "manhattan", and Model "ClinicalBERT": -1.166 with F1 of 0.91 classifying 0.3% of the data.
+[2026-05-03 18:07:02] Suggested Threshold for Class "exact", Metric "manhattan", and Model "ClinicalBERT": 0.377 with F1 of 0.754 classifying 22.5% of the data.
+[2026-05-03 18:07:03] Plotting angular for Model ClinicalBERT...
+[2026-05-03 18:07:25] Suggested Threshold for Class "related", Metric "angular", and Model "ClinicalBERT": -2.044 with F1 of 0.955 classifying 1.0% of the data.
+[2026-05-03 18:07:25] Suggested Threshold for Class "exact", Metric "angular", and Model "ClinicalBERT": 0.742 with F1 of 0.748 classifying 24.5% of the data.
+[2026-05-03 18:07:25] Plotting cosine for Model BioBERT...
+[2026-05-03 18:07:48] Suggested Threshold for Class "related", Metric "cosine", and Model "BioBERT": -3.397 with F1 of 0.96 classifying 0.8% of the data.
+[2026-05-03 18:07:48] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioBERT": 0.726 with F1 of 0.777 classifying 24.7% of the data.
+[2026-05-03 18:07:48] Plotting euclidean for Model BioBERT...
+[2026-05-03 18:08:10] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioBERT": -1.414 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 18:08:10] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioBERT": 0.489 with F1 of 0.779 classifying 23.5% of the data.
+[2026-05-03 18:08:11] Plotting manhattan for Model BioBERT...
+[2026-05-03 18:08:33] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioBERT": -1.072 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 18:08:33] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioBERT": 0.323 with F1 of 0.782 classifying 23.3% of the data.
+[2026-05-03 18:08:34] Plotting angular for Model BioBERT...
+[2026-05-03 18:08:56] Suggested Threshold for Class "related", Metric "angular", and Model "BioBERT": -2.692 with F1 of 0.96 classifying 0.8% of the data.
+[2026-05-03 18:08:56] Suggested Threshold for Class "exact", Metric "angular", and Model "BioBERT": 1.946 with F1 of 0.8 classifying 0.1% of the data.
+[2026-05-03 18:08:56] Plotting cosine for Model UMLSBERT...
+[2026-05-03 18:09:19] Suggested Threshold for Class "related", Metric "cosine", and Model "UMLSBERT": -2.794 with F1 of 0.936 classifying 0.9% of the data.
+[2026-05-03 18:09:19] Suggested Threshold for Class "exact", Metric "cosine", and Model "UMLSBERT": 0.749 with F1 of 0.805 classifying 25.9% of the data.
+[2026-05-03 18:09:19] Plotting euclidean for Model UMLSBERT...
+[2026-05-03 18:09:42] Suggested Threshold for Class "related", Metric "euclidean", and Model "UMLSBERT": -1.198 with F1 of 0.968 classifying 1.0% of the data.
+[2026-05-03 18:09:42] Suggested Threshold for Class "exact", Metric "euclidean", and Model "UMLSBERT": 0.273 with F1 of 0.806 classifying 28.7% of the data.
+[2026-05-03 18:09:42] Plotting manhattan for Model UMLSBERT...
+[2026-05-03 18:10:05] Suggested Threshold for Class "related", Metric "manhattan", and Model "UMLSBERT": -1.089 with F1 of 0.976 classifying 0.4% of the data.
+[2026-05-03 18:10:05] Suggested Threshold for Class "exact", Metric "manhattan", and Model "UMLSBERT": 0.425 with F1 of 0.81 classifying 22.1% of the data.
+[2026-05-03 18:10:06] Plotting angular for Model UMLSBERT...
+[2026-05-03 18:10:28] Suggested Threshold for Class "related", Metric "angular", and Model "UMLSBERT": -2.298 with F1 of 0.932 classifying 0.8% of the data.
+[2026-05-03 18:10:28] Suggested Threshold for Class "exact", Metric "angular", and Model "UMLSBERT": 0.715 with F1 of 0.805 classifying 25.9% of the data.
+[2026-05-03 18:10:29] Plotting cosine for Model SciBERT...
+[2026-05-03 18:10:51] Suggested Threshold for Class "related", Metric "cosine", and Model "SciBERT": -3.138 with F1 of 0.96 classifying 0.5% of the data.
+[2026-05-03 18:10:51] Suggested Threshold for Class "exact", Metric "cosine", and Model "SciBERT": 1.213 with F1 of 0.719 classifying 6.6% of the data.
+[2026-05-03 18:10:52] Plotting euclidean for Model SciBERT...
+[2026-05-03 18:11:14] Suggested Threshold for Class "related", Metric "euclidean", and Model "SciBERT": -1.126 with F1 of 0.966 classifying 0.6% of the data.
+[2026-05-03 18:11:14] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SciBERT": 1.374 with F1 of 0.724 classifying 8.4% of the data.
+[2026-05-03 18:11:15] Plotting manhattan for Model SciBERT...
+[2026-05-03 18:11:37] Suggested Threshold for Class "related", Metric "manhattan", and Model "SciBERT": -1.0 with F1 of 0.957 classifying 0.5% of the data.
+[2026-05-03 18:11:37] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SciBERT": 1.601 with F1 of 0.721 classifying 5.3% of the data.
+[2026-05-03 18:11:38] Plotting angular for Model SciBERT...
+[2026-05-03 18:12:00] Suggested Threshold for Class "related", Metric "angular", and Model "SciBERT": -2.527 with F1 of 0.96 classifying 0.5% of the data.
+[2026-05-03 18:12:00] Suggested Threshold for Class "exact", Metric "angular", and Model "SciBERT": 1.447 with F1 of 0.719 classifying 6.6% of the data.
+[2026-05-03 18:12:00] Plotting cosine for Model SapUMLSBERT...
+[2026-05-03 18:12:22] Suggested Threshold for Class "related", Metric "cosine", and Model "SapUMLSBERT": -2.745 with F1 of 0.98 classifying 1.0% of the data.
+[2026-05-03 18:12:22] Suggested Threshold for Class "exact", Metric "cosine", and Model "SapUMLSBERT": 1.274 with F1 of 0.856 classifying 2.2% of the data.
+[2026-05-03 18:12:23] Plotting euclidean for Model SapUMLSBERT...
+[2026-05-03 18:12:45] Suggested Threshold for Class "related", Metric "euclidean", and Model "SapUMLSBERT": -1.13 with F1 of 0.97 classifying 0.7% of the data.
+[2026-05-03 18:12:45] Suggested Threshold for Class "exact", Metric "euclidean", and Model "SapUMLSBERT": 2.971 with F1 of 0.863 classifying 2.0% of the data.
+[2026-05-03 18:12:46] Plotting manhattan for Model SapUMLSBERT...
+[2026-05-03 18:13:08] Suggested Threshold for Class "related", Metric "manhattan", and Model "SapUMLSBERT": -0.948 with F1 of 0.973 classifying 0.8% of the data.
+[2026-05-03 18:13:08] Suggested Threshold for Class "exact", Metric "manhattan", and Model "SapUMLSBERT": 2.957 with F1 of 0.865 classifying 2.0% of the data.
+[2026-05-03 18:13:08] Plotting angular for Model SapUMLSBERT...
+[2026-05-03 18:13:30] Suggested Threshold for Class "related", Metric "angular", and Model "SapUMLSBERT": -2.261 with F1 of 0.98 classifying 1.0% of the data.
+[2026-05-03 18:13:30] Suggested Threshold for Class "exact", Metric "angular", and Model "SapUMLSBERT": 1.749 with F1 of 0.856 classifying 2.2% of the data.
+[2026-05-03 18:13:31] Plotting cosine for Model medCPT...
+[2026-05-03 18:13:53] Suggested Threshold for Class "related", Metric "cosine", and Model "medCPT": -2.703 with F1 of 0.943 classifying 1.2% of the data.
+[2026-05-03 18:13:53] Suggested Threshold for Class "exact", Metric "cosine", and Model "medCPT": 1.002 with F1 of 0.79 classifying 14.5% of the data.
+[2026-05-03 18:13:54] Plotting euclidean for Model medCPT...
+[2026-05-03 18:14:16] Suggested Threshold for Class "related", Metric "euclidean", and Model "medCPT": -1.129 with F1 of 0.942 classifying 0.1% of the data.
+[2026-05-03 18:14:16] Suggested Threshold for Class "exact", Metric "euclidean", and Model "medCPT": 0.771 with F1 of 0.767 classifying 16.7% of the data.
+[2026-05-03 18:14:17] Plotting manhattan for Model medCPT...
+[2026-05-03 18:14:39] Suggested Threshold for Class "related", Metric "manhattan", and Model "medCPT": -0.767 with F1 of 0.96 classifying 0.2% of the data.
+[2026-05-03 18:14:39] Suggested Threshold for Class "exact", Metric "manhattan", and Model "medCPT": 0.438 with F1 of 0.765 classifying 16.6% of the data.
+[2026-05-03 18:14:40] Plotting angular for Model medCPT...
+[2026-05-03 18:15:02] Suggested Threshold for Class "related", Metric "angular", and Model "medCPT": -2.152 with F1 of 0.943 classifying 1.2% of the data.
+[2026-05-03 18:15:02] Suggested Threshold for Class "exact", Metric "angular", and Model "medCPT": 1.13 with F1 of 0.79 classifying 14.5% of the data.
+[2026-05-03 18:15:03] Plotting cosine for Model PubMedBERT...
+[2026-05-03 18:15:25] Suggested Threshold for Class "related", Metric "cosine", and Model "PubMedBERT": -3.636 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 18:15:25] Suggested Threshold for Class "exact", Metric "cosine", and Model "PubMedBERT": 0.999 with F1 of 0.753 classifying 11.5% of the data.
+[2026-05-03 18:15:26] Plotting euclidean for Model PubMedBERT...
+[2026-05-03 18:15:48] Suggested Threshold for Class "related", Metric "euclidean", and Model "PubMedBERT": -1.452 with F1 of 0.948 classifying 0.4% of the data.
+[2026-05-03 18:15:48] Suggested Threshold for Class "exact", Metric "euclidean", and Model "PubMedBERT": 1.14 with F1 of 0.757 classifying 10.7% of the data.
+[2026-05-03 18:15:49] Plotting manhattan for Model PubMedBERT...
+[2026-05-03 18:16:11] Suggested Threshold for Class "related", Metric "manhattan", and Model "PubMedBERT": -0.903 with F1 of 0.91 classifying 1.9% of the data.
+[2026-05-03 18:16:11] Suggested Threshold for Class "exact", Metric "manhattan", and Model "PubMedBERT": 0.803 with F1 of 0.753 classifying 11.4% of the data.
+[2026-05-03 18:16:11] Plotting angular for Model PubMedBERT...
+[2026-05-03 18:16:34] Suggested Threshold for Class "related", Metric "angular", and Model "PubMedBERT": -2.746 with F1 of 0.924 classifying 0.3% of the data.
+[2026-05-03 18:16:34] Suggested Threshold for Class "exact", Metric "angular", and Model "PubMedBERT": 1.145 with F1 of 0.754 classifying 10.9% of the data.
+[2026-05-03 18:16:35] Plotting cosine for Model BioLinkBERT...
+[2026-05-03 18:16:57] Suggested Threshold for Class "related", Metric "cosine", and Model "BioLinkBERT": -2.551 with F1 of 0.923 classifying 2.1% of the data.
+[2026-05-03 18:16:57] Suggested Threshold for Class "exact", Metric "cosine", and Model "BioLinkBERT": 0.148 with F1 of 0.705 classifying 53.0% of the data.
+[2026-05-03 18:16:58] Plotting euclidean for Model BioLinkBERT...
+[2026-05-03 18:17:20] Suggested Threshold for Class "related", Metric "euclidean", and Model "BioLinkBERT": -1.162 with F1 of 0.956 classifying 0.7% of the data.
+[2026-05-03 18:17:20] Suggested Threshold for Class "exact", Metric "euclidean", and Model "BioLinkBERT": -0.238 with F1 of 0.702 classifying 53.0% of the data.
+[2026-05-03 18:17:20] Plotting manhattan for Model BioLinkBERT...
+[2026-05-03 18:17:42] Suggested Threshold for Class "related", Metric "manhattan", and Model "BioLinkBERT": -0.132 with F1 of 0.942 classifying 0.5% of the data.
+[2026-05-03 18:17:42] Suggested Threshold for Class "exact", Metric "manhattan", and Model "BioLinkBERT": -0.048 with F1 of 0.697 classifying 52.7% of the data.
+[2026-05-03 18:17:43] Plotting angular for Model BioLinkBERT...
+[2026-05-03 18:18:05] Suggested Threshold for Class "related", Metric "angular", and Model "BioLinkBERT": -2.218 with F1 of 0.923 classifying 2.1% of the data.
+[2026-05-03 18:18:05] Suggested Threshold for Class "exact", Metric "angular", and Model "BioLinkBERT": 0.015 with F1 of 0.705 classifying 53.1% of the data.
+[2026-05-03 18:18:10] Discrepancies for Embedding Answers: 0
+[2026-05-03 18:18:15] Unsure Count: 25566
+[2026-05-03 18:18:28] ============================================================
+[2026-05-03 18:18:28] =     Evaluating the Results of Synonym Classification     =
+[2026-05-03 18:18:28] ============================================================
+[2026-05-03 18:18:28] Reading file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-03 18:18:29] Reading file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-03 18:18:29] 7 ontologies found.
+[2026-05-03 18:18:29] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-03 18:18:29] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-03 18:18:29] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-03 18:18:29] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-03 18:18:29] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-03 18:18:29] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-03 18:18:29] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-03 18:18:29] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-03 18:18:29] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-03 18:18:33] Discrepancies for Embedding Answers: 0
+[2026-05-03 18:18:38] Unsure Count: 25566
+[2026-05-03 18:18:51] ============================================================
+[2026-05-03 18:18:51] =     Evaluating the Results of Synonym Classification     =
+[2026-05-03 18:18:51] ============================================================
+[2026-05-03 18:18:51] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-03 18:18:51] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-03 18:18:51] 7 ontologies found.
+[2026-05-03 18:18:51] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-03 18:18:51] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-03 18:18:51] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-03 18:18:51] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-03 18:18:51] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-03 18:18:51] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-03 18:18:51] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-03 18:18:51] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-03 18:18:51] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-03 18:18:56] Discrepancies for Embedding Answers: 0
+[2026-05-03 18:19:01] Unsure Count: 25566
+[2026-05-07 10:59:33] ============================================================
+[2026-05-07 10:59:33] =            Merging Generated Classifications             =
+[2026-05-07 10:59:33] ============================================================
+[2026-05-07 10:59:33] Reading files...
+[2026-05-07 10:59:33] Files read.
+[2026-05-07 10:59:33] Merging Data...
+[2026-05-07 10:59:33] Data merged.
+[2026-05-07 10:59:33] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-07 10:59:34] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-07 10:59:34] Merged 6 files into 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-07 10:59:34] ============================================================
+[2026-05-07 10:59:34] =                 Data Merged [Minutes: 0]                 =
+[2026-05-07 10:59:34] ============================================================
+[2026-05-07 10:59:35] ============================================================
+[2026-05-07 10:59:35] =            Merging Generated Classifications             =
+[2026-05-07 10:59:35] ============================================================
+[2026-05-07 10:59:35] Reading files...
+[2026-05-07 10:59:35] Files read.
+[2026-05-07 10:59:35] Merging Data...
+[2026-05-07 10:59:35] Data merged.
+[2026-05-07 10:59:35] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-07 10:59:37] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-07 10:59:37] Merged 6 files into 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-07 10:59:37] ============================================================
+[2026-05-07 10:59:37] =                 Data Merged [Minutes: 0]                 =
+[2026-05-07 10:59:37] ============================================================
+[2026-05-07 10:59:37] ============================================================
+[2026-05-07 10:59:37] =            Merging Generated Classifications             =
+[2026-05-07 10:59:37] ============================================================
+[2026-05-07 10:59:37] Reading files...
+[2026-05-07 10:59:38] Files read.
+[2026-05-07 10:59:38] Merging Data...
+[2026-05-07 10:59:38] Data merged.
+[2026-05-07 10:59:38] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-07 10:59:39] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-07 10:59:39] Merged 6 files into 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-07 10:59:39] ============================================================
+[2026-05-07 10:59:39] =                 Data Merged [Minutes: 0]                 =
+[2026-05-07 10:59:39] ============================================================
+[2026-05-07 10:59:40] ============================================================
+[2026-05-07 10:59:40] =            Merging Generated Classifications             =
+[2026-05-07 10:59:40] ============================================================
+[2026-05-07 10:59:40] Reading files...
+[2026-05-07 10:59:40] Files read.
+[2026-05-07 10:59:40] Merging Data...
+[2026-05-07 10:59:40] Data merged.
+[2026-05-07 10:59:40] Writing file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-07 10:59:41] Writing file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-07 10:59:41] Merged 6 files into 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-07 10:59:41] ============================================================
+[2026-05-07 10:59:41] =                 Data Merged [Minutes: 0]                 =
+[2026-05-07 10:59:41] ============================================================
+[2026-05-07 10:59:42] ============================================================
+[2026-05-07 10:59:42] =            Merging Generated Classifications             =
+[2026-05-07 10:59:42] ============================================================
+[2026-05-07 10:59:42] Reading files...
+[2026-05-07 10:59:42] Files read.
+[2026-05-07 10:59:42] Merging Data...
+[2026-05-07 10:59:42] Data merged.
+[2026-05-07 10:59:42] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-07 10:59:44] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-07 10:59:44] Merged 6 files into 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-07 10:59:44] ============================================================
+[2026-05-07 10:59:44] =                 Data Merged [Minutes: 0]                 =
+[2026-05-07 10:59:44] ============================================================
+[2026-05-07 10:59:52] ============================================================
+[2026-05-07 10:59:52] =     Evaluating the Results of Synonym Classification     =
+[2026-05-07 10:59:52] ============================================================
+[2026-05-07 10:59:52] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-07 10:59:52] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-07 10:59:52] 7 ontologies found.
+[2026-05-07 10:59:52] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-07 10:59:52] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-07 10:59:52] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-07 10:59:52] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-07 10:59:52] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-07 10:59:52] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-07 10:59:52] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-07 10:59:52] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-07 10:59:52] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-07 10:59:57] Discrepancies for Embedding Answers: 0
+[2026-05-07 11:00:02] Unsure Count: 25566
+[2026-05-07 11:00:14] ============================================================
+[2026-05-07 11:00:14] =     Evaluating the Results of Synonym Classification     =
+[2026-05-07 11:00:14] ============================================================
+[2026-05-07 11:00:14] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-07 11:00:15] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-07 11:00:15] 7 ontologies found.
+[2026-05-07 11:00:15] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-07 11:00:15] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-07 11:00:15] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-07 11:00:15] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-07 11:00:15] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-07 11:00:15] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-07 11:00:15] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-07 11:00:15] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-07 11:00:15] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-07 11:00:19] Discrepancies for Embedding Answers: 0
+[2026-05-07 11:00:24] Unsure Count: 25566
+[2026-05-07 11:00:37] ============================================================
+[2026-05-07 11:00:37] =     Evaluating the Results of Synonym Classification     =
+[2026-05-07 11:00:37] ============================================================
+[2026-05-07 11:00:37] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-07 11:00:37] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-07 11:00:37] 7 ontologies found.
+[2026-05-07 11:00:37] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-07 11:00:37] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-07 11:00:37] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-07 11:00:37] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-07 11:00:37] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-07 11:00:37] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-07 11:00:37] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-07 11:00:37] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-07 11:00:37] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-07 11:00:42] Discrepancies for Embedding Answers: 0
+[2026-05-07 11:00:47] Unsure Count: 25566
+[2026-05-07 11:00:59] ============================================================
+[2026-05-07 11:00:59] =     Evaluating the Results of Synonym Classification     =
+[2026-05-07 11:00:59] ============================================================
+[2026-05-07 11:00:59] Reading file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-07 11:00:59] Reading file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-07 11:00:59] 7 ontologies found.
+[2026-05-07 11:00:59] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-07 11:00:59] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-07 11:00:59] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-07 11:00:59] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-07 11:00:59] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-07 11:00:59] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-07 11:00:59] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-07 11:00:59] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-07 11:00:59] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-07 11:01:04] Discrepancies for Embedding Answers: 0
+[2026-05-07 11:01:09] Unsure Count: 25566
+[2026-05-07 11:01:22] ============================================================
+[2026-05-07 11:01:22] =     Evaluating the Results of Synonym Classification     =
+[2026-05-07 11:01:22] ============================================================
+[2026-05-07 11:01:22] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-07 11:01:22] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-07 11:01:22] 7 ontologies found.
+[2026-05-07 11:01:22] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-07 11:01:22] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-07 11:01:22] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-07 11:01:22] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-07 11:01:22] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-07 11:01:22] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-07 11:01:22] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-07 11:01:22] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-07 11:01:22] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-07 11:01:27] Discrepancies for Embedding Answers: 0
+[2026-05-07 11:01:32] Unsure Count: 25566
+[2026-05-09 17:09:57] ============================================================
+[2026-05-09 17:09:57] =            Merging Generated Classifications             =
+[2026-05-09 17:09:57] ============================================================
+[2026-05-09 17:09:57] Reading files...
+[2026-05-09 17:09:57] Files read.
+[2026-05-09 17:09:57] Merging Data...
+[2026-05-09 17:09:57] Data merged.
+[2026-05-09 17:09:57] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-09 17:09:58] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-09 17:09:58] Merged 5 files into 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-09 17:09:58] ============================================================
+[2026-05-09 17:09:58] =                 Data Merged [Minutes: 0]                 =
+[2026-05-09 17:09:58] ============================================================
+[2026-05-09 17:09:59] ============================================================
+[2026-05-09 17:09:59] =            Merging Generated Classifications             =
+[2026-05-09 17:09:59] ============================================================
+[2026-05-09 17:09:59] Reading files...
+[2026-05-09 17:09:59] Files read.
+[2026-05-09 17:09:59] Merging Data...
+[2026-05-09 17:09:59] Data merged.
+[2026-05-09 17:09:59] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-09 17:10:01] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-09 17:10:01] Merged 5 files into 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-09 17:10:01] ============================================================
+[2026-05-09 17:10:01] =                 Data Merged [Minutes: 0]                 =
+[2026-05-09 17:10:01] ============================================================
+[2026-05-09 17:10:01] ============================================================
+[2026-05-09 17:10:01] =            Merging Generated Classifications             =
+[2026-05-09 17:10:01] ============================================================
+[2026-05-09 17:10:01] Reading files...
+[2026-05-09 17:10:01] Files read.
+[2026-05-09 17:10:01] Merging Data...
+[2026-05-09 17:10:01] Data merged.
+[2026-05-09 17:10:01] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-09 17:10:03] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-09 17:10:03] Merged 5 files into 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-09 17:10:03] ============================================================
+[2026-05-09 17:10:03] =                 Data Merged [Minutes: 0]                 =
+[2026-05-09 17:10:03] ============================================================
+[2026-05-09 17:10:03] ============================================================
+[2026-05-09 17:10:03] =            Merging Generated Classifications             =
+[2026-05-09 17:10:03] ============================================================
+[2026-05-09 17:10:03] Reading files...
+[2026-05-09 17:10:04] Files read.
+[2026-05-09 17:10:04] Merging Data...
+[2026-05-09 17:10:04] Data merged.
+[2026-05-09 17:10:04] Writing file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-09 17:10:05] Writing file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-09 17:10:05] Merged 5 files into 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-09 17:10:05] ============================================================
+[2026-05-09 17:10:05] =                 Data Merged [Minutes: 0]                 =
+[2026-05-09 17:10:05] ============================================================
+[2026-05-09 17:10:06] ============================================================
+[2026-05-09 17:10:06] =            Merging Generated Classifications             =
+[2026-05-09 17:10:06] ============================================================
+[2026-05-09 17:10:06] Reading files...
+[2026-05-09 17:10:06] Files read.
+[2026-05-09 17:10:06] Merging Data...
+[2026-05-09 17:10:06] Data merged.
+[2026-05-09 17:10:06] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-09 17:10:07] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-09 17:10:07] Merged 5 files into 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-09 17:10:07] ============================================================
+[2026-05-09 17:10:07] =                 Data Merged [Minutes: 0]                 =
+[2026-05-09 17:10:07] ============================================================
+[2026-05-09 17:10:16] ============================================================
+[2026-05-09 17:10:16] =     Evaluating the Results of Synonym Classification     =
+[2026-05-09 17:10:16] ============================================================
+[2026-05-09 17:10:16] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-09 17:10:16] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-09 17:10:16] 7 ontologies found.
+[2026-05-09 17:10:16] Found 7120 entries in HPO for ontology 'CHEBI'.
+[2026-05-09 17:10:16] Found 335 entries in HPO for ontology 'CL'.
+[2026-05-09 17:10:16] Found 3180 entries in HPO for ontology 'GO'.
+[2026-05-09 17:10:16] Found 3060 entries in HPO for ontology 'HP'.
+[2026-05-09 17:10:16] Found 20 entries in HPO for ontology 'PATO'.
+[2026-05-09 17:10:16] Found 540 entries in HPO for ontology 'PR'.
+[2026-05-09 17:10:16] Found 8475 entries in HPO for ontology 'UBERON'.
+[2026-05-09 17:10:16] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-4b-it"
+[2026-05-09 17:10:16] Classified Synonyms: 22730 (~4546 per system)
+[2026-05-09 17:10:20] Discrepancies for Embedding Answers: 0
+[2026-05-09 17:10:25] Unsure Count: 21305
+[2026-05-09 17:10:38] ============================================================
+[2026-05-09 17:10:38] =     Evaluating the Results of Synonym Classification     =
+[2026-05-09 17:10:38] ============================================================
+[2026-05-09 17:10:38] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-09 17:10:38] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-09 17:10:38] 7 ontologies found.
+[2026-05-09 17:10:38] Found 7120 entries in HPO for ontology 'CHEBI'.
+[2026-05-09 17:10:38] Found 335 entries in HPO for ontology 'CL'.
+[2026-05-09 17:10:38] Found 3180 entries in HPO for ontology 'GO'.
+[2026-05-09 17:10:38] Found 3060 entries in HPO for ontology 'HP'.
+[2026-05-09 17:10:38] Found 20 entries in HPO for ontology 'PATO'.
+[2026-05-09 17:10:38] Found 540 entries in HPO for ontology 'PR'.
+[2026-05-09 17:10:38] Found 8475 entries in HPO for ontology 'UBERON'.
+[2026-05-09 17:10:38] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-4b-it"
+[2026-05-09 17:10:38] Classified Synonyms: 22730 (~4546 per system)
+[2026-05-09 17:10:42] Discrepancies for Embedding Answers: 0
+[2026-05-09 17:10:47] Unsure Count: 21305
+[2026-05-09 17:11:00] ============================================================
+[2026-05-09 17:11:00] =     Evaluating the Results of Synonym Classification     =
+[2026-05-09 17:11:00] ============================================================
+[2026-05-09 17:11:00] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-09 17:11:00] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-09 17:11:00] 7 ontologies found.
+[2026-05-09 17:11:00] Found 7120 entries in HPO for ontology 'CHEBI'.
+[2026-05-09 17:11:00] Found 335 entries in HPO for ontology 'CL'.
+[2026-05-09 17:11:00] Found 3180 entries in HPO for ontology 'GO'.
+[2026-05-09 17:11:00] Found 3060 entries in HPO for ontology 'HP'.
+[2026-05-09 17:11:00] Found 20 entries in HPO for ontology 'PATO'.
+[2026-05-09 17:11:00] Found 540 entries in HPO for ontology 'PR'.
+[2026-05-09 17:11:00] Found 8475 entries in HPO for ontology 'UBERON'.
+[2026-05-09 17:11:00] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-4b-it"
+[2026-05-09 17:11:00] Classified Synonyms: 22730 (~4546 per system)
+[2026-05-09 17:11:04] Discrepancies for Embedding Answers: 0
+[2026-05-09 17:11:09] Unsure Count: 21305
+[2026-05-09 17:11:22] ============================================================
+[2026-05-09 17:11:22] =     Evaluating the Results of Synonym Classification     =
+[2026-05-09 17:11:22] ============================================================
+[2026-05-09 17:11:22] Reading file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-09 17:11:22] Reading file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-09 17:11:22] 7 ontologies found.
+[2026-05-09 17:11:22] Found 7120 entries in HPO for ontology 'CHEBI'.
+[2026-05-09 17:11:22] Found 335 entries in HPO for ontology 'CL'.
+[2026-05-09 17:11:22] Found 3180 entries in HPO for ontology 'GO'.
+[2026-05-09 17:11:22] Found 3060 entries in HPO for ontology 'HP'.
+[2026-05-09 17:11:22] Found 20 entries in HPO for ontology 'PATO'.
+[2026-05-09 17:11:22] Found 540 entries in HPO for ontology 'PR'.
+[2026-05-09 17:11:22] Found 8475 entries in HPO for ontology 'UBERON'.
+[2026-05-09 17:11:22] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-4b-it"
+[2026-05-09 17:11:22] Classified Synonyms: 22730 (~4546 per system)
+[2026-05-09 17:11:26] Discrepancies for Embedding Answers: 0
+[2026-05-09 17:11:31] Unsure Count: 21305
+[2026-05-09 17:11:44] ============================================================
+[2026-05-09 17:11:44] =     Evaluating the Results of Synonym Classification     =
+[2026-05-09 17:11:44] ============================================================
+[2026-05-09 17:11:44] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-09 17:11:44] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-09 17:11:44] 7 ontologies found.
+[2026-05-09 17:11:44] Found 7120 entries in HPO for ontology 'CHEBI'.
+[2026-05-09 17:11:44] Found 335 entries in HPO for ontology 'CL'.
+[2026-05-09 17:11:44] Found 3180 entries in HPO for ontology 'GO'.
+[2026-05-09 17:11:44] Found 3060 entries in HPO for ontology 'HP'.
+[2026-05-09 17:11:44] Found 20 entries in HPO for ontology 'PATO'.
+[2026-05-09 17:11:44] Found 540 entries in HPO for ontology 'PR'.
+[2026-05-09 17:11:44] Found 8475 entries in HPO for ontology 'UBERON'.
+[2026-05-09 17:11:44] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-4b-it"
+[2026-05-09 17:11:44] Classified Synonyms: 22730 (~4546 per system)
+[2026-05-09 17:11:49] Discrepancies for Embedding Answers: 0
+[2026-05-09 17:11:53] Unsure Count: 21305
+[2026-05-11 02:11:33] ============================================================
+[2026-05-11 02:11:33] =            Merging Generated Classifications             =
+[2026-05-11 02:11:33] ============================================================
+[2026-05-11 02:11:33] Reading files...
+[2026-05-11 02:11:34] Files read.
+[2026-05-11 02:11:34] Merging Data...
+[2026-05-11 02:11:34] Data merged.
+[2026-05-11 02:11:34] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 02:11:36] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 02:11:36] Merged 6 files into 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 02:11:36] ============================================================
+[2026-05-11 02:11:36] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 02:11:36] ============================================================
+[2026-05-11 02:11:36] ============================================================
+[2026-05-11 02:11:36] =            Merging Generated Classifications             =
+[2026-05-11 02:11:36] ============================================================
+[2026-05-11 02:11:36] Reading files...
+[2026-05-11 02:11:37] Files read.
+[2026-05-11 02:11:37] Merging Data...
+[2026-05-11 02:11:37] Data merged.
+[2026-05-11 02:11:37] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 02:11:38] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 02:11:38] Merged 6 files into 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 02:11:38] ============================================================
+[2026-05-11 02:11:38] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 02:11:38] ============================================================
+[2026-05-11 02:11:39] ============================================================
+[2026-05-11 02:11:39] =            Merging Generated Classifications             =
+[2026-05-11 02:11:39] ============================================================
+[2026-05-11 02:11:39] Reading files...
+[2026-05-11 02:11:39] Files read.
+[2026-05-11 02:11:39] Merging Data...
+[2026-05-11 02:11:39] Data merged.
+[2026-05-11 02:11:39] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 02:11:41] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 02:11:41] Merged 5 files into 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 02:11:41] ============================================================
+[2026-05-11 02:11:41] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 02:11:41] ============================================================
+[2026-05-11 02:11:41] ============================================================
+[2026-05-11 02:11:41] =            Merging Generated Classifications             =
+[2026-05-11 02:11:41] ============================================================
+[2026-05-11 02:11:41] Reading files...
+[2026-05-11 02:11:42] Files read.
+[2026-05-11 02:11:42] Merging Data...
+[2026-05-11 02:11:42] Data merged.
+[2026-05-11 02:11:42] Writing file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 02:11:43] Writing file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 02:11:43] Merged 6 files into 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 02:11:43] ============================================================
+[2026-05-11 02:11:43] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 02:11:43] ============================================================
+[2026-05-11 02:11:44] ============================================================
+[2026-05-11 02:11:44] =            Merging Generated Classifications             =
+[2026-05-11 02:11:44] ============================================================
+[2026-05-11 02:11:44] Reading files...
+[2026-05-11 02:11:44] Files read.
+[2026-05-11 02:11:44] Merging Data...
+[2026-05-11 02:11:44] Data merged.
+[2026-05-11 02:11:44] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 02:11:46] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 02:11:46] Merged 6 files into 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 02:11:46] ============================================================
+[2026-05-11 02:11:46] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 02:11:46] ============================================================
+[2026-05-11 02:11:54] ============================================================
+[2026-05-11 02:11:54] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 02:11:54] ============================================================
+[2026-05-11 02:11:54] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 02:11:54] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 02:11:54] 7 ontologies found.
+[2026-05-11 02:11:54] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 02:11:54] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 02:11:54] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 02:11:54] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 02:11:54] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 02:11:54] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 02:11:54] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 02:11:54] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 02:11:54] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 02:11:59] Discrepancies for Embedding Answers: 0
+[2026-05-11 02:12:04] Unsure Count: 25566
+[2026-05-11 02:12:17] ============================================================
+[2026-05-11 02:12:17] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 02:12:17] ============================================================
+[2026-05-11 02:12:17] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 02:12:17] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 02:12:17] 7 ontologies found.
+[2026-05-11 02:12:17] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 02:12:17] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 02:12:17] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 02:12:17] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 02:12:17] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 02:12:17] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 02:12:17] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 02:12:17] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 02:12:17] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 02:12:22] Discrepancies for Embedding Answers: 0
+[2026-05-11 02:12:27] Unsure Count: 25566
+[2026-05-11 02:12:40] ============================================================
+[2026-05-11 02:12:40] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 02:12:40] ============================================================
+[2026-05-11 02:12:40] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 02:12:40] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 02:12:40] 7 ontologies found.
+[2026-05-11 02:12:40] Found 7120 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 02:12:40] Found 335 entries in HPO for ontology 'CL'.
+[2026-05-11 02:12:40] Found 3180 entries in HPO for ontology 'GO'.
+[2026-05-11 02:12:40] Found 3060 entries in HPO for ontology 'HP'.
+[2026-05-11 02:12:40] Found 20 entries in HPO for ontology 'PATO'.
+[2026-05-11 02:12:40] Found 540 entries in HPO for ontology 'PR'.
+[2026-05-11 02:12:40] Found 8475 entries in HPO for ontology 'UBERON'.
+[2026-05-11 02:12:40] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-4b-it"
+[2026-05-11 02:12:40] Classified Synonyms: 22730 (~4546 per system)
+[2026-05-11 02:12:44] Discrepancies for Embedding Answers: 0
+[2026-05-11 02:12:49] Unsure Count: 21305
+[2026-05-11 02:13:01] ============================================================
+[2026-05-11 02:13:01] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 02:13:01] ============================================================
+[2026-05-11 02:13:01] Reading file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 02:13:01] Reading file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 02:13:01] 7 ontologies found.
+[2026-05-11 02:13:01] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 02:13:01] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 02:13:01] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 02:13:01] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 02:13:01] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 02:13:01] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 02:13:01] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 02:13:01] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 02:13:01] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 02:13:06] Discrepancies for Embedding Answers: 0
+[2026-05-11 02:13:11] Unsure Count: 25566
+[2026-05-11 02:13:24] ============================================================
+[2026-05-11 02:13:24] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 02:13:24] ============================================================
+[2026-05-11 02:13:24] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 02:13:25] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 02:13:25] 7 ontologies found.
+[2026-05-11 02:13:25] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 02:13:25] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 02:13:25] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 02:13:25] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 02:13:25] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 02:13:25] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 02:13:25] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 02:13:25] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 02:13:25] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 02:13:29] Discrepancies for Embedding Answers: 0
+[2026-05-11 02:13:34] Unsure Count: 25566

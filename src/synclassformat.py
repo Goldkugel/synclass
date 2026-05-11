@@ -12,7 +12,7 @@ from utils      import *
 # Initialization.
 # ------------------------------------------------------------------------------
 
-printHeader(f"Fomratting Answers of Synonym's Classification")
+printHeader(f"Formatting Answers of Synonym's Classification")
 
 # To track time.
 startTime = time.time()

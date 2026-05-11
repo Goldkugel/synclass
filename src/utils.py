@@ -1048,19 +1048,21 @@ def getMetrics(
     return ret
     
 def cosSim(a, b) -> float:
+    # a = b -> 1 (most similar)
     a = np.array(a)
     b = np.array(b)
     return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
 
 def eucDis(a, b) -> float:
+    # the closer a and b are, the smaller the distance
     a = np.array(a)
     b = np.array(b)
     return np.linalg.norm(a - b)
 
 
 def eucSim(a, b) -> float:
-    # Convert distance → similarity (higher = more similar)
+    # a = b -> 1 (most similar)
     return 1 / (1 + eucDis(a, b))
 
 

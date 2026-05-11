@@ -7,13 +7,56 @@ sys.dont_write_bytecode = True
 from config import *
 from utils import *
 
-def createJSONExample(cl : str = "", co : str = 10) -> str:
-    ret = "{" \
+def createJSONExample(cl : str = "", co : str = "10") -> str:
+    ret = "{\n" \
         f"\t{quote(synonymClass)}: {quote(cl)},\n" \
         f"\t{quote(confidenceColumn)}: {co}\n" \
         "}"
     
     return ret
+
+def formatInput(label : str = "", definition : str = "", comment : str = "", parents : list = [], children : list = [], synonym : str = "") -> str:
+    ret = f"Label: {quote(label)}"
+
+    if addDefinition:
+        ret = ret + f"\nDefinition: {quote(definition)}"
+    if addComment:
+        ret = ret + f"\nComment: {quote(comment)}"
+    if addParents:
+        ret = ret + f"\nParents: {applyFormat(parents)}"
+    if addChildren:
+        ret = ret + f"\nChildren: {applyFormat(children)}"
+    if len(synonym) > 0:
+        ret = ret + f"\nSynonym: {quote(synonym)}"
+
+    return ret
+
+def getExamples() -> str:
+    return f"""Examples
+
+Example 1
+
+Input: 
+{formatInput("Neck muscle hypoplasia", "Underdevelopment of muscles of the neck.", "", ["Abnormal neck morphology", "Hypoplasia of the musculature"], [], "Underdevelopment of neck muscle")}
+
+Output:
+{createJSONExample("exact", "9")}
+
+Example 2
+
+Input:
+{formatInput("D-cysteine", "An optically active form of cysteine having D-configuration.", "", ["cysteine", "D-α-amino acid"], [], "DCY")} 
+
+Output:
+{createJSONExample("related", "8")}
+
+Example 3
+
+Input:
+{formatInput("mandibular ramus", "The upturned perpendicular extremity of the mandible.", "", ["zone of bone organ"], ["mandible condylar process", "mandible coronoid process", "mandible temporal crest"], "rami mandibulae")} 
+
+Output:
+{createJSONExample("related", "10")}"""
 
 def semanticClassificationPrompt1(
         label : str, 
@@ -22,210 +65,132 @@ def semanticClassificationPrompt1(
         parents : list,
         children : list
 ) -> str:
-    return f"""
-You are an expert in biomedical terminology and ontology curation.
+    return f"""You are a biomedical ontology expert.
 
-Your task is to analyze and interpret the meaning of the given Human Phenotype Ontology (HPO) concept based on the available information.
+Your fist task:
 
-## Instructions
+Analyze the Label term and identify its biomedical meaning.
 
-Carefully read the available information:
+Instructions:
 
-- Label: {quote(label)}
-- Definition: {quote(definition)}
-- Parents: {applyFormat(parents)}
-- Children (if any): {applyFormat(children)}
-- Comment (if any): {quote(comment)}
+1. Normalize the Label into standard biomedical language.
+2. Identify the precise biomedical concept represented by the Label.
+3. Extract important semantic properties.
 
-## Your Goal
+Focus especially on:
 
-Produce a precise semantic interpretation of the concept by:
+    * biological or clinical meaning
+    * chemical structure interpretation
+    * acid/base state
+    * ionic state
+    * stereochemistry
+    * salt forms
+    * specificity level
+    * anatomical scope
+    * process vs entity distinctions
 
-1. Identifying the core entity or phenomenon described by the label
-2. Clarifying its biological, chemical, or clinical nature
-3. Determining its level of specificity (broad, narrow, exact entity)
-4. Noting any critical qualifiers, such as:
-\t- chemical form (e.g., acid, anion, stereochemistry)
-\t- biological role or process
-\t- anatomical scope
-5. Using parent terms to contextualize the concept within the ontology hierarchy
-"""
+Ignore superficial linguistic variation such as:
+
+    * word order
+    * punctuation
+    * hyphenation
+    * grammatical variation
+
+Input:
+
+{formatInput(label, definition, comment, parents, children, "")}"""
 
 def semanticClassificationPrompt2(
     synonym : str
 ) -> str:
-    return f"""Your task is to analyze and interpret the meaning of the given medical term independently of the concept.
+    return f"""Your second task:
 
-## Instructions
+Analyze ONLY the Synonym term and identify its biomedical meaning.
 
-Carefully examine the medical term: {quote(synonym)}
+Instructions:
 
-## Your Goal
+1. Normalize the Synonym into standard biomedical language.
+2. Identify the precise biomedical concept represented by the Synonym.
+3. Extract important semantic properties.
 
-Produce a precise semantic interpretation of the medical term by:
+Focus especially on:
 
-1. Identifying the core entity or phenomenon the medical term refers to
-2. Clarifying its biological, chemical, or clinical meaning
-3. Identifying any implicit assumptions or conventions, such as:
-\t- abbreviation or shorthand forms
-\t- systematic vs common naming
-\t- chemical structure implications (e.g., acid vs anion, stereochemistry, chain length)
-4. Expanding the medical term into its fully explicit meaning, if needed
-"""
+    * biological or clinical meaning
+    * chemical structure interpretation
+    * acid/base state
+    * ionic state
+    * stereochemistry
+    * salt forms
+    * specificity level
+    * anatomical scope
+    * process vs entity distinctions
 
-def semanticClassificationPrompt3() -> str:
-    return """
-Your task is to analyze the semantic relationship between the concept and the medical term, based on their previously derived meanings.
+Ignore superficial linguistic variation such as:
 
-## Inputs
+    * word order
+    * punctuation
+    * hyphenation
+    * grammatical variation
 
-You have already:
+Input:
 
-- The interpreted meaning of the concept
-- The interpreted meaning of the medical term
+Synonym: {quote(synonym)}"""
 
-## Your Goal
+def semanticClassificationPrompt3(fewShot : bool = fewShot) -> str:
+    ret = f"""Your third Task:
 
-Determine how the synonym relates to the concept by:
+Compare the biomedical meaning of the Label and the Synonym using your prior semantic analyses.
 
-1. Comparing their core semantic meaning
-2. Evaluating equivalence vs difference in:
-\t- scope
-\t- specificity
-\t- chemical identity (if applicable)
-\t- biological or clinical interpretation
-3. Identifying any mismatches or deviations, including:
-\t- broader or narrower meaning
-\t- different chemical forms (e.g., acid vs anion, stereochemistry, derivatives)
-\t- naming conventions (systematic vs common names)
-\t- implicit vs explicit meaning differences
-4. Assessing interchangeability:
-\t- Could the synonym replace the concept in ALL contexts without changing meaning?
+Your goal is to determine whether the two terms represent:
 
-Provide a clear, structured comparison describing:
+    * the SAME biomedical concept ("exact")
+    * or NON-identical concepts ("related")
 
-- Key similarities
-- Key differences
-- Interchangeability assessment
+Classification Rules:
 
-Keep the explanation concise but semantically precise. Thank you!
-"""
+* "exact":
 
-def semanticClassificationPrompt4(fewShot : bool = fewShot) -> str:
-    ret = """Your task is to assign the final classification of the synonym based on the previously analyzed relationship.
+    * rewording or paraphrasing, e.g., "biliary system" vs "biliary apparatus"
+    * word order changes, e.g., "delayed puberty" vs "pubertal delay"
+    * grammatical variation, e.g., "abnormal X" vs "abnormality of X"
+    * common linguistic variants used interchangeably in biomedical text
 
-## Your Goal
+* "related":
 
-Determine the type of synonym of the medical term:
+    * plural/singular variants, e.g., "kidney cyst" vs "kidney cysts"
+    * broader or narrower scope, e.g., "cranial muscle" vs "adult head muscle organ"
+    * loss or addition of specificity, e.g., "alveolus of lung" vs "alveolus" or "methanol" vs "wood alcohol"
+    * different biological or clinical interpretation, e.g., "diabetes mellitus" vs "hyperglycemia"
+    * ambiguity compared to the label
+    * abbreviations or symbols, e.g., "obsessive compulsive disorder" vs "OCD"
+    * different languages, e.g., "electron" vs "Elektron" or "triglyceride" vs "Triglyzerid"
+    * chemical formulas or systematic names, e.g., "calcitriol" vs "1alpha,25-dihydroxyvitamin D3"
+    * different chemical forms (stereochemistry, salts, acid/base forms)
+    * wording like "agent", "drug", "process" that may shift meaning
 
-exact → strictly identical in meaning
-related → any difference in meaning, no matter how small
+Instructions:
 
-## Critical Rule (VERY IMPORTANT)
+1. Compare the normalized concepts and semantic features from both analyses.
+2. Determine whether biomedical experts would use the terms interchangeably without changing meaning.
+3. Make a positive semantic decision.
+4. Do NOT default to "related" solely because of uncertainty.
+5. If uncertain, choose the closer match and reduce confidence.
 
-If there is ANY difference or ANY uncertainty → classify as related.
+Output Format (STRICT JSON)
 
-Use "exact" ONLY if:
+{createJSONExample('"exact" or "related"', '<integer from 1 to 10>')}
 
-\t- meanings are strictly identical
-\t- fully interchangeable in ALL contexts
-\t- no difference in scope, specificity, or interpretation
+Confidence guidelines:
 
-## Decision Guidance
+    * 10 → completely certain
+    * 7–9 → high confidence
+    * 4–6 → moderate uncertainty
+    * 1–3 → low confidence / guess
 
-Classify as related if there is any indication of:
+Do not include any additional text."""
 
-\t- broader or narrower scope
-\t- different chemical form (e.g., acid vs anion, stereochemistry, derivatives)
-\t- systematic vs common naming differences
-\t- abbreviations or alternative representations
-\t- implicit vs explicit meaning differences
-\t- incomplete or ambiguous equivalence
-
-## Confidence Score
-
-Assign a confidence score from 1 to 10:
-
-10 → completely certain
-7–9 → high confidence
-4–6 → moderate uncertainty
-1–3 → low confidence / guess
-
-Output Format (MANDATORY)
-
-Return ONLY a JSON object:
-
-{
-"classification": "exact" or "related",
-"confidence": <integer from 1 to 10>
-}
-
-Do not include any additional text.
-"""
-    
     if fewShot:
-        ret = ret + f"""
-
-## Examples
-
-Example 1
-Label: arrector muscle of hair  
-Definition: A tiny smooth muscle that connects the hair follicle with the dermis.  
-Parents: smooth muscle tissue  
-Children:  
-Synonym: arrector pili smooth muscle  
-
-Output:
-{createJSONExample("exact", "10")}
-
----
-
-Example 2
-Label: anticholesteremic drug  
-Definition: A substance used to lower plasma cholesterol levels.  
-Parents: antilipemic drug  
-Children:  
-Synonym: cholesterol inhibitor  
-
-Output:
-{createJSONExample("related", "8")}
-
----
-
-Example 3
-Label: Abnormal upper limb epiphysis morphology  
-Definition:  
-Parents: Abnormal limb epiphysis morphology  
-Children:  
-Synonym: Abnormality involving the epiphyses of the upper limbs  
-
-Output:
-{createJSONExample("exact", "10")}
-
----
-
-Example 4
-Label: calcidiol  
-Definition: A hydroxycalciol derived from vitamin D3 metabolism.  
-Parents: diol, hydroxycalciol  
-Children:  
-Synonym: 25(OH)D3  
-
-Output:
-{createJSONExample("related", "7")}
-
----
-
-Example 5
-Label: positive regulation of membrane invagination  
-Definition: Any process that increases membrane invagination.  
-Parents: regulation of membrane invagination  
-Children:  
-Synonym: up regulation of membrane invagination  
-
-Output:
-{createJSONExample("exact", "9")}
-"""
+        ret = ret + "\n\n" + getExamples()
 
     return ret
 
@@ -239,710 +204,75 @@ def semanticClassificationPrompt(
         fewShot : bool = fewShot
 )-> str:
     ret = \
-f"""You are an expert in biomedical terminology and ontology curation.
+f"""You are a biomedical ontology expert.
 
-Your task is to classify the semantic relationship between an HPO concept and a given synonym.
+Your task:
 
----
+Classify the semantic relationship between a Label and a Synonym.
 
-## Classes
+Classes:
 
-- exact  
-  The synonym is STRICTLY identical in meaning to the label.
-  It must refer to the exact same entity, with no change in:
-  - scope
-  - specificity
-  - chemical identity
-  - biological interpretation
+    * "exact": same meaning and refers to the same concept; minor linguistic variation is allowed.
+    * "related": not identical in meaning (broader, narrower, different, or partially overlapping).
 
-- related  
-  The synonym is NOT strictly identical, even if very similar.
-  This includes:
-  - plural vs singular forms
-  - translations into other languages
-  - abbreviations or symbols
-  - systematic vs common chemical names
-  - different chemical forms (e.g., acid vs conjugate base, stereochemistry, racemic forms)
-  - drug vs agent vs class wording differences
-  - near-synonyms used in practice but not strictly interchangeable
-  - broader or narrower concepts
+Core Principle:
+Choose the class that BEST reflects the semantic relationship.
+Do NOT default to "related" solely due to uncertainty. Make a positive decision based on evidence.
 
----
+Decision Process (evaluate both sides):
 
-## Critical Rule (VERY IMPORTANT)
+1. Semantic Equivalence
+   Does the synonym express the SAME concept as the label?
+   Allow:
 
-If there is ANY doubt or ANY difference in meaning → classify as **related**.
+    * rewording or paraphrasing, e.g., "biliary system" vs "biliary apparatus"
+    * word order changes, e.g., "delayed puberty" vs "pubertal delay"
+    * grammatical variation, e.g., "abnormal X" vs "abnormality of X"
+    * common linguistic variants used interchangeably in biomedical text
 
-The "exact" class must be used VERY conservatively.
+If YES → candidate for "exact"
 
----
+2. Meaning Difference
+   Does the synonym introduce ANY of the following?
 
-## Decision Rules
+    * plural/singular variants, e.g., "kidney cyst" vs "kidney cysts"
+    * broader or narrower scope, e.g., "cranial muscle" vs "adult head muscle organ"
+    * loss or addition of specificity, e.g., "alveolus of lung" vs "alveolus" or "methanol" vs "wood alcohol"
+    * different biological or clinical interpretation, e.g., "diabetes mellitus" vs "hyperglycemia"
+    * ambiguity compared to the label
+    * abbreviations or symbols, e.g., "obsessive compulsive disorder" vs "OCD"
+    * different languages, e.g., "electron" vs "Elektron" or "triglyceride" vs "Triglyzerid"
+    * chemical formulas or systematic names, e.g., "calcitriol" vs "1alpha,25-dihydroxyvitamin D3"
+    * different chemical forms (stereochemistry, salts, acid/base forms)
+    * wording like "agent", "drug", "process" that may shift meaning
 
-1. Interchangeability (strict)
-   The synonym must replace the label in ALL contexts with identical meaning.
-   If not → related
+If YES → candidate for "related"
 
-2. ALWAYS classify as "related" if:
-   - plural vs singular (e.g., "fatty acid" vs "fatty acids")
-   - different languages (e.g., "acide gras", "Fettsäure")
-   - abbreviations (e.g., "SFA", "PHE")
-   - chemical formulas or systematic names
-   - stereochemistry or racemic indicators (e.g., rac-, dl-, (+-))
-   - acid vs ion vs derivative forms
-   - "drug" vs "agent" vs "compound"
-   - minor wording differences that may change scope
+3. Interchangeability Check (final decision)
+   Would experts use these terms interchangeably in biomedical context without changing meaning?
 
-3. Chemical compounds
-   Treat different representations as **related** unless they are clearly the exact same standardized name.
+    * Clearly yes → "exact"
+    * Clearly no → "related"
+    * Unclear → choose the closer match and reflect uncertainty in confidence
 
-4. Ontology guidance
-   If the synonym could be interpreted as a broader, narrower, or variant concept → related
-
----
-
-## Output Format (MANDATORY)
-
-Return ONLY a JSON object:
+Output format (STRICT JSON):
 
 {createJSONExample("'exact' or 'related'", "<integer from 1 to 10>")}
 
-- confidence reflects how certain you are:
-  - 10 = completely certain
-  - 5 = uncertain
-  - 1 = guess
+Confidence guidelines:
 
-Do not include any additional text.
+    * 9–10 = clearly correct
+    * 6–8 = reasonably confident
+    * 3–5 = uncertain
+    * 1–2 = weak guess
 
 """
     
     if fewShot:
-        ret = ret + f"""
----
+        ret = ret + getExamples() + "\n\n"
 
-## Examples
+    ret = ret + f"""Now classify the following input:
 
-Example 1
-Label: arrector muscle of hair  
-Definition: A tiny smooth muscle that connects the hair follicle with the dermis.  
-Parents: smooth muscle tissue  
-Children:  
-Synonym: arrector pili smooth muscle  
+{formatInput(label, definition, comment, parents, children, synonym)}"""
 
-Output:
-{createJSONExample("exact", "10")}
-
----
-
-Example 2
-Label: anticholesteremic drug  
-Definition: A substance used to lower plasma cholesterol levels.  
-Parents: antilipemic drug  
-Children:  
-Synonym: cholesterol inhibitor  
-
-Output:
-{createJSONExample("related", "8")}
-
----
-
-Example 3
-Label: Abnormal upper limb epiphysis morphology  
-Definition:  
-Parents: Abnormal limb epiphysis morphology  
-Children:  
-Synonym: Abnormality involving the epiphyses of the upper limbs  
-
-Output:
-{createJSONExample("exact", "10")}
-
----
-
-Example 4
-Label: calcidiol  
-Definition: A hydroxycalciol derived from vitamin D3 metabolism.  
-Parents: diol, hydroxycalciol  
-Children:  
-Synonym: 25(OH)D3  
-
-Output:
-{createJSONExample("related", "7")}
-
----
-
-Example 5
-Label: positive regulation of membrane invagination  
-Definition: Any process that increases membrane invagination.  
-Parents: regulation of membrane invagination  
-Children:  
-Synonym: up regulation of membrane invagination  
-
-Output:
-{createJSONExample("exact", "9")}
-
-"""
-
-    ret = ret + f"""
----
-
-## Now classify the following input:
-
-Label: {quote(label)}
-Definition: {quote(definition)}
-Comment: {quote(comment)}
-Parents: {applyFormat(parents)}
-Children: {applyFormat(children)}
-
-Synonym: {quote(synonym)}
-"""
     return ret
-
-def sourceTypeClassificationPrompt1(
-    label : str, 
-    definition : str, 
-    comment : str, 
-    parents : list, 
-    children : list,
-) -> str:
-    return ""
-
-def sourceTypeClassificationPrompt2(    
-    synonym : str,
-) -> str:
-    return ""
-
-def sourceTypeClassificationPrompt3() -> str:
-    return ""
-
-def sourceTypeClassificationPrompt4(fewShot : bool = fewShot) -> str:
-    return ""
-
-def sourceTypeClassificationPrompt(
-    label : str, 
-    definition : str, 
-    comment : str, 
-    parents : list, 
-    children : list,
-    synonym : str,
-    fewShot : bool = fewShot
-) -> str:
-    return ""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def getPreTaskSystem() -> str:
-    return f"You are a biomedical ontology expert with expertise in " \
-        "clinical phenotype terminology and precise medical condition " \
-        "definitions."
-
-def getPreTaskPart1(
-    label : str
-) -> str:
-    return \
-    "Let us create a medically precise definition of the " \
-        "following concept of a medical condition.\n\n" \
-    "The medical condition is: {}.\n\n" \
-    "Based on your understanding of the condition, generate a clear and " \
-        "medically precise definition of the term.".format(
-        quote(label)
-    )
-
-def getPreTaskPart2(parents : list) -> str:
-    return \
-    "This is the list of parent concept(s) of the medical condition:\n\n" \
-    "Parent Concept(s): {}.\n\n" \
-    "Does the definition describe a condition that is fully consistent " \
-        "with — and more specific than — each of its parent concepts?".format(
-        applyFormat(parents) 
-    )
-
-def getPreTaskPart3(children : list) -> str:
-    return \
-    "This is the list of child concept(s) of the medical condition:\n\n" \
-    "Child Concept(s): {}.\n\n" \
-    "Does the definition describe something that includes all of the child " \
-        "concept(s) as specific instances, without being so narrow that " \
-        "any child would be left out?".format(
-        applyFormat(children) 
-    )
-
-def getPreTaskPart4() -> str:
-    return \
-    "Provide only the final, validated definition of the medical " \
-        "condition.\n\n" \
-    "Your response must consist of a single, medically accurate sentence " \
-        "that defines the condition.\n\n" \
-    "Do not include any introductory phrases, commentary, bullet points, " \
-        "or additional information. Output only the definition text — " \
-        "nothing else."
-
-def getAlternativeComplexPrompt1(
-        label : str, 
-        definition : str, 
-        comment : str, 
-        parents : list = [], 
-        children : list = []
-) -> str:
-    return "You are an ontology-focused biomedical language model tasked " \
-        "with generating EXACT synonyms for a Human Phenotype Ontology " \
-        "(HPO) term.\n\n" \
-    "Below is the information about the target HPO term.\n\n" \
-    f"Label]: {quote(label)}\n" \
-    f"Definition(s): {quote(definition)}\n" \
-    f"Comment: {quote(comment)}\n" \
-    f"Parent Concept(s): {applyFormat(parents)}\n" \
-    f"child Concept(s): {applyFormat(children)}\n\n" \
-    "You may use the parent and child terms only to understand the semantic" \
-        "boundaries of the target concept. Do not generate synonyms for the " \
-        "child or parent terms, and do not use any wording that corresponds " \
-        "specifically to a child or parent term.\n\n" \
-    "Your task is to generate ONLY *exact* synonyms that are strictly " \
-    "interchangeable with the provided HPO label. These synonyms must:\n\n" \
-    "• Preserve identical meaning without adding, removing, or modifying " \
-        "any semantic component of the phenotype.\n" \
-    "• Remain at the same level of granularity as the original term.\n" \
-    "• Avoid implying a cause, mechanism, diagnosis, severity, " \
-        "timeframe, or anatomical shift not present in the definition.\n" \
-    "• Represent standard biomedical phrasing, not colloquial language.\n" \
-    "• Not be broader, narrower, related-but-not-equivalent, or figurative.\n" \
-    "• Not overlap with or drift toward the meaning of any child or parent " \
-        "term.\n\n" \
-    "Output only synonyms that can be used in exactly the same contexts " \
-        "as the original label in phenotype annotation."
-
-def getAlternativeComplexPrompt2() -> str:
-    return \
-    "You will now evaluate all candidate synonyms generated so far.\n\n" \
-    "Your task is to remove every candidate that fails strict " \
-        "equivalence criteria.\n\n" \
-    "A candidate MUST be eliminated if it does any of the following:\n\n" \
-    "— SEMANTIC DRIFT —\n" \
-    "• Broadens or narrows the meaning relative to the original label.\n" \
-    "• Introduces or removes any semantic component.\n" \
-    "• Overlaps with, resembles, or implies the meaning of any child term.\n" \
-    "• Implies abnormality in a different structure or anatomical region.\n\n" \
-    "— CLINICAL OR CAUSAL IMPLICATIONS —\n" \
-    "• Suggests a cause, mechanism, etiology, risk factor, or diagnostic" \
-        "process.\n\n" \
-    "— NON-PHENOTYPIC OR NON-BIOMEDICAL LANGUAGE —\n" \
-    "• Uses colloquial, figurative, idiomatic, or ambiguous terminology.\n" \
-    "• Uses outdated, rarely used, or unstandardized phrasing in clinical " \
-        "practice.\n\n" \
-    "— LINGUISTIC OR STRUCTURAL ISSUES —\n" \
-    "• Rephrases the term in a way that alters focus or specificity.\n" \
-    "• Breaks biomedical naming conventions.\n" \
-    "• Collapses separate semantic components into one, or splits them " \
-        "apart.\n\n" \
-    "Only retain candidates that:\n" \
-    "• are strictly equivalent in meaning to the original HPO label,\n" \
-    "• preserve its full semantic scope and boundaries,\n" \
-    "• adhere to standard biomedical phrasing,\n" \
-    "• and can be used interchangeably in phenotype annotation.\n\n" \
-    "Output the curated list of surviving candidates."
-
-def getAlternativeComplexPrompt3() -> str:
-    return \
-    "Before generating final list of candidate synonyms, create controlled " \
-        "rephrasings of the surviving candidates and the label. These " \
-            "rephrasings must:\n\n" \
-    "• Preserve strict semantic equivalence with the surviving candidates or " \
-        "the label.\n" \
-    "• Maintain the same level of specificity and anatomical/phenotypic " \
-        "focus.\n" \
-    "• Follow standard biomedical phrasing conventions.\n" \
-    "• Avoid introducing causality, severity, temporality, " \
-        "diagnostic implications, or any expansion/reduction of meaning.\n" \
-    "• Avoid wording that corresponds to any child or parent term or " \
-        "implies one of them.\n\n" \
-    "Generate rephrasings by transforming the label and candidate synonyms " \
-        "through conventional biomedical linguistic operations, such as:\n\n" \
-    "• Switching between noun phrase and adjectival constructions " \
-        "(e.g., “Pubertal delay” → “Delayed puberty”).\n" \
-    "• Reordering components without changing meaning.\n" \
-    "• Using standard nominalized or adjectival variants.\n" \
-    "• Converting passive ↔ active or descriptive forms in medically " \
-        "accepted ways.\n" \
-    "• Producing equivalent forms that keep all semantic components intact.\n" \
-    "All rephrased forms must be fully interchangeable with the original " \
-        "label or candidate synonym in phenotype annotation.\n" \
-    "Output the new curated list of candidate synonyms containing also the " \
-        "rephrased terms."
-
-def getAlternativeComplexPrompt4() -> str:
-    return \
-    "You now have a curated list of synonym candidates that survived the " \
-        "filtering process. Before finalizing them, perform a strict " \
-        "consistency evaluation to ensure that every remaining candidate " \
-        "is a true EXACT synonym of the original HPO label.\n\n" \
-    "For EACH remaining candidate, verify all of the following:\n\n" \
-    "— SEMANTIC CONSISTENCY —\n" \
-    "• It preserves the full meaning of the original HPO label with " \
-        "no additions, reductions, shifts in scope, or changes in " \
-        "anatomical focus.\n" \
-    "• It aligns precisely with the definition and logical " \
-        "constraints provided.\n" \
-    "• It does not overlap with or drift toward the meaning of any child " \
-        "or parent term.\n\n" \
-    "— LINGUISTIC CONSISTENCY —\n" \
-    "• It represents standard biomedical phrasing used in clinical or " \
-        "scientific contexts.\n" \
-    "• It does not introduce ambiguity, idiomatic language, colloquial " \
-        "terms, or unusual constructions.\n" \
-    "• It maintains the same level of granularity as the original term " \
-        "and follows typical ontology naming conventions.\n\n" \
-    "— CONTEXTUAL CONSISTENCY —\n" \
-    "• It remains interchangeable with the original label in " \
-        "phenotype annotation.\n" \
-    "• It can be used without altering interpretation in any context where " \
-        "the original label is appropriate.\n" \
-    "• It does not imply any clinical workflow, causality, severity, or " \
-        "temporal dimension not present in the original definition.\n\n" \
-    "If a candidate fails ANY of the criteria above, remove it.\n" \
-    "After performing this final review, output ONLY the candidates that " \
-        "satisfy all consistency requirements."
-
-def getAlternativeComplexPrompt5() -> str:
-    return \
-    "You will now prepare the surviving candidate synonyms for final " \
-        "evaluation by placing them into a strict, machine-readable output " \
-        "structure.\n\n" \
-    "Follow these rules:\n\n" \
-    "• Do NOT include any chain-of-thought or internal reasoning.\n" \
-    "• Do NOT describe your decision process.\n" \
-    "• Include ONLY the elements explicitly requested below.\n" \
-    "• Do NOT invent additional fields.\n" \
-    "Use the following exact JSON structure:\n\n" \
-    "{\n" \
-    "\t\"exact_synonyms\": [\n" \
-    "\t\t\"<<list the remaining exact synonyms>>\"" \
-    "\t]\n"\
-    "}\n\n" \
-    "EXAMPLE OUTPUT (for demonstration only):\n\n" \
-    "{\n" \
-    "\t\"exact_synonyms\": [\n" \
-    "\t\t\"Delayed puberty\",\n" \
-    "\t\t\"Pubertal delay\",\n" \
-    "\t\t\"Late onset of puberty\"\n" \
-    "\t]\n" \
-    "}\n\n" \
-    "Produce exactly one JSON object as specified above."
-
-def getSynonymClassPrompt(
-        label : str, 
-        definition : str, 
-        comment : str, 
-        parents : list, 
-        children : list,
-        synonym : str
-)-> str:
-    return f"""
-You are an expert in biomedical terminology and ontologies. 
-
-Your task is to decide whether the given synonym is an "Exact" synonym or a "Related" synonym of the concept label.
-
-Definitions:
-
-- Exact: The synonym describes exactly the same phenotype and can replace the concept label in medical text without changing the meaning, e.g., "Focal myoclonic seizure" vs. "Partial myoclonic seizure".
-- Related: The synonym is associated with the concept but refers to a different concept, a broader class, a narrower class, or a commonly associated entity, e.g., "Myocardial infarction" vs. "Coronary artery disease".
-
-Important ontology rules:
-
-Classify as "Related" if the synonym is:
-- a chemical formula (e.g., H2N-CH2-COOH)
-- a chemical systematic name
-- a chemical identifier or registry name
-- a molecular abbreviation (e.g., Gly, ALA, 5-HT)
-- a gene or protein symbol
-- a short acronym or abbreviation
-- a plural or grammatical variant (e.g., ion vs ions)
-- a Latin anatomical name (e.g., nodus lymphaticus)
-- a broader or more generic term
-- a narrower subtype
-- a commonly associated condition
-- a cause or consequence of the phenotype
-
-Classify as "Exact" if the synonym:
-- describes the same phenotype using different wording
-- is a clinical paraphrase with identical meaning
-- is a reordered phrase with the same meaning
-- replaces words with equivalent medical terms (e.g., hypoplasia vs underdevelopment)
-- describes the same anatomical abnormality
-
-Information regarding the HPO concept:
-
-Concept label: {quote(label)}
-Definition: {quote(definition)}
-Parent concept labels: {applyFormat(parents)}
-Child concept labels: {applyFormat(children)}
-Comment (may be empty): {quote(comment)}
-
-Information regarding the synonym to classify:
-
-Synonym to classify: {quote(synonym)}
-
-Important: 
-
-- Return only one word as the output: "Exact" or "Related".
-"""
-
-"""
-    "Your Task:\n\n" \
-    "You are given a primary Human Phenotype Ontology (HPO) concept and a " \
-        "candidate synonym. Using only the information provided and HPO " \
-        "curation conventions, classify the synonym into exactly one of " \
-        "the following classes:\n\n" \
-    "\"Exact\", \"Broad\", \"Narrow\", or \"Related\"\n\n" \
-    "Your goal is to decide whether the candidate synonym could be used " \
-        "interchangeably with the primary label in phenotype annotation, " \
-        "not whether it is clinically, mechanistically, or etiologically " \
-        "identical.\n\n" \
-    "Mandatory ontology rules:\n\n" \
-    "Apply all of the following rules:\n" \
-    "- Collapse etiology, timing, and mechanism: Ignore differences such as " \
-        "congenital vs acquired, mechanism vs manifestation, histology vs " \
-        "appearance, or cause vs effect unless the synonym explicitly " \
-        "excludes part of the label’s meaning.\n" \
-    "- Treat historical, pathological, and descriptive disease names as " \
-        "\"Exact\": If multiple names refer to the same recognized disease " \
-        "entity (including deprecated, histologic, or descriptive names), " \
-        "classify as \"Exact\", even if they emphasize different features.\n" \
-    "- Accept lay, colloquial, and paraphrased descriptions as \"Exact\": " \
-        "Plain-language descriptions, shorthand phrases, or less technical " \
-        "wording are Exact if they describe the same observable phenotype.\n" \
-    "- Ignore pluralization and count: Singular vs plural forms (e.g., " \
-        "\"tumor\" vs \"tumors\", \"head\" vs \"heads\") are lexical " \
-        "variants, not semantic changes.\n" \
-    "- Named clinical signs ≡ defining descriptions: A named sign (e.g., " \
-        "\"sandal gap\", \"prognathia\") and a phrase that directly " \
-        "describes it are Exact, even if the description sounds broader or " \
-        "vaguer.\n" \
-    "- Size, projection, prominence, and excess are interchangeable in " \
-        "dysmorphology: Terms such as large, big, enlarged, prominent, " \
-        "projecting, excess, hyperplasia are \"Exact\" when they refer to " \
-        "the same anatomical structure and direction of change.\n" \
-    "- Anatomical shorthand is acceptable: Closely related anatomical terms " \
-        "commonly used interchangeably in phenotype annotation (e.g., " \
-        "\"jaw\" ↔ \"mandible\", \"nasal ridge\" ↔ \"nasal dorsum\") are " \
-        "\"Exact\" unless a clear exclusion is stated.\n" \
-    "- Laboratory proxies and functional readouts may be \"Exact\": If a " \
-        "laboratory measurement or functional descriptor is the standard " \
-        "phenotypic manifestation of the label, classify as \"Exact\" even " \
-        "if it represents a mechanism.\n\n" \
-    "When NOT to use \"Exact\":\n\n" \
-    "Only choose \"Broad\", \"Narrow\", or \"Related\" if one of the " \
-        "following is clearly true:\n\n" \
-    "- \"Broad\": The synonym explicitly includes additional phenotypes " \
-        "or anatomical regions not covered by the label.\n" \
-    "- \"Narrow\": The synonym explicitly refers to a subset or subtype " \
-        "of the label that does not cover all instances.\n" \
-    "- Related: The synonym describes a different pathological process, " \
-        "disease category, or downstream condition that cannot replace the " \
-        "label in annotation.\n\n" \
-    "Do not downgrade to \"Broad\"/\"Narrow\"/\"Related\" solely because " \
-        "of:\n\n"  \
-    "- Different terminology\n- Different emphasis\n- Added descriptive " \
-        "detail\n- Clinical causality\n- Pathological mechanism\n" \
-        "- Severity or degree\n- Common clinical usage differences\n\n" \
-    "Primary HPO concept:\n\n" \
-    f"- Label: {quote(label)}\n" \
-    f"- Definition: {quote(definition)}\n" \
-    f"- Comment: {quote(comment)}\n" \
-    f"- Parent concept(s): {applyFormat(parents)}\n" \
-    f"- Child concept(s): {applyFormat(children)}\n\n" \
-    "Candidate synonym:\n\n" \
-    f"- Synonym: {quote(synonym)}\n\n" \
-    "Class definitions:\n\n" \
-    "- \"Exact\": Interchangeable in phenotype annotation.\n" \
-    "- \"Broad\": More general than the label.\n" \
-    "- \"Narrow\": More specific than the label.\n" \
-    "- \"Related\": Conceptually associated but not interchangeable.\n\n" \
-    "Output format (strict):\n\n" \
-    "Output exactly one of the following and nothing else: \"Exact\", " \
-        "\"Broad\", \"Narrow\", and \"Related\"\n." \
-    "Do not include explanations or reasoning."
-"""
-
-def getSynonymTypePrompt(
-        label : str, 
-        definition : str, 
-        comment : str,  
-        parents : list,
-        children : list, 
-        synonym : str
-)-> str:
-    return \
-    "Your Task:\n\n" \
-    "You are given information about a primary Human Phenotype Ontology " \
-        "(HPO) concept and a candidate synonym.\n\n" \
-    "Your task is to classify the candidate synonym according to its " \
-        "language register, not its semantic relationship to the primary " \
-        "concept.\n\n" \
-    "Important:\n\n" \
-    "This is NOT a task about whether the synonym is a direct match, " \
-        "broader term, narrower term, or spelling variant.\n" \
-    "The ONLY goal is " \
-        "to determine whether the synonym is written in lay (everyday) " \
-        "language or expert (professional medical) language.\n" \
-    "Use only the information provided.\n\n" \
-   "Primary HPO concept:\n\n" \
-    f"- Label: {quote(label)}\n" \
-    f"- Definition: {quote(definition)}\n" \
-    f"- Comment: {quote(comment)}\n" \
-    f"- Parent concept(s): {applyFormat(parents)}\n" \
-    f"- Child concept(s): {applyFormat(children)}\n\n" \
-    "Candidate synonym:\n\n" \
-    f"- Label: {quote(synonym)}\n\n" \
-    "Class definitions:\n\n" \
-    "- Layperson: Uses everyday, non-technical language that would be " \
-        "understood by the general public. These expressions avoid " \
-        "specialized medical jargon and often describe conditions in " \
-        "plain English. (e.g., 'heart attack' instead of 'myocardial " \
-        "infarction', 'tooth decay' instead of 'dental caries', 'small " \
-        "lung' instead of 'pulmonary hypoplasia').\n" \
-    "- Expert: Uses technical, clinical, anatomical, Greek/Latin-derived, " \
-        "or standardized medical terminology intended for communication " \
-        "among healthcare professionals or researchers (e.g., " \
-        "'myocardial infarction', 'hemarthrosis', 'fetal hypokinesia', " \
-        "'pulmonary hypoplasia').\n\n" \
-    "Decision rules:\n\n" \
-    "- If medical terminology is replaced with plain English, classify " \
-        "as Layperson.\n" \
-    "- If the synonym contains formal diagnostic, pathological, or " \
-        "anatomical terminology, classify as Expert.\n" \
-    "- Plain-English anatomical descriptions (e.g.,'middle finger bone', " \
-        "'white patch in the mouth', 'underdeveloped lung') should be " \
-        "classified as Layperson, even if medically accurate.\n" \
-    "- Classify based on the dominant wording of the synonym.\n" \
-    "- Use only the information provided.\n\n" \
-    "Output instructions:\n\n" \
-    f"Do not include explanations or any additional text. Output exactly " \
-        f"one word: '{laypersonSynonymType.capitalize()}' or " \
-        f"'{expertSynonymType}'."
-
-"""
-    "Your Task:\n\n" \
-    "You are given information about a primary Human Phenotype Ontology " \
-        "(HPO) concept and a candidate synonym.\n\n" \
-    "Your task is to classify the candidate synonym according to its " \
-        "language register ONLY — not its semantic correctness and not its " \
-        "relationship to the primary label.\n\n" \
-    "IMPORTANT:\n\n" \
-    "This is strictly a linguistic register task.\n" \
-    "The fact that a term refers to a medical condition does NOT make " \
-        "it \"Expert\".\n" \
-    "Classify based on wording style, not subject matter.\n" \
-    "Ignore the wording of the primary HPO label when determining register.\n" \
-    "Evaluate ONLY the candidate synonym.\n\n" \
-    "CORE PRINCIPLE:\n\n" \
-    "\"Expert\": specialist medical terminology intended for professional " \
-        "communication.\n" \
-    "\"Layperson\": plain English wording that could naturally appear in " \
-        "patient-facing or general public communication.\n\n" \
-    "This task is about HOW the phrase is written, not what it refers to.\n\n" \
-    "MORPHOLOGY GUIDANCE:\n\n" \
-    "Strong indicators of \"Expert\":\n" \
-    "\t- Greek or Latin diagnostic suffixes (e.g., -itis, -oma, -osis, " \
-        "-emia, -pathy, -plegia, -megaly, -penia, -cephaly).\n" \
-    "\t- Formal anatomical or pathological terminology primarily used in " \
-        "professional contexts.\n" \
-    "\t- Standardized clinical disease names.\n\n" \
-    "Strong indicators of \"Layperson\":\n" \
-    "\t- Common everyday English words (e.g., liver, tumor, cancer, failure, " \
-        "rupture, finger, nail, bladder, bowel, leg).\n" \
-    "\t- Descriptive constructions like:\n" \
-    "\t\t- \"inflammation of ...\"\n" \
-    "\t\t- \"tumor of ...\"\n" \
-    "\t\t- \"failure\"\n" \
-    "\t\t- \"shortening\"\n" \
-    "\t\t- \"duplication\"\n" \
-    "\t\t- \"abnormality of ...\"\n" \
-    "\t\t- \"difference in ...\"\n" \
-    "\t\t- Plain descriptive phrasing without specialized suffixes\n\n" \
-    "The following words are NOT automatically Expert:\n" \
-    "tumor, cancer, failure, rupture, inflammation, duplication, " \
-        "abnormality, shortening, asymmetry, hernia.\n" \
-    "Formal grammatical structure (e.g., \"Abnormality of X\", \"Rupture " \
-        "of Y\") does NOT make a term Expert if it uses plain English " \
-        "vocabulary.\n\n" \
-    "DECISION PROCESS:\n\n" \
-    "Step 1:\n" \
-    "Does the synonym contain specialized Greek/Latin medical morphology or " \
-        "standardized diagnostic terminology?\n" \
-    "\t- If YES, then classify it as \"Expert\".\n" \
-    "\t- If NO, then go to Step 2.\n" \
-    "Step 2:\n" \
-    "Is the synonym written in plain descriptive English that could " \
-        "plausibly be used by a patient speaking to a doctor?\n" \
-    "- If YES, then classify as Layperson.\n" \
-    "- If you are unsure then prefer Layperson unless clear specialist " \
-        "terminology is present.\n\n" \
-    "CLASS DEFINITIONS\n\n" \
-    "\"Layperson\": Uses everyday, non-technical language understandable to " \
-        "the general public. May describe medical conditions, but avoids " \
-        "specialist morphological terminology.\n" \
-    "\"Expert\": Uses technical, clinical, anatomical, Greek/Latin-derived, " \
-        "or standardized medical terminology intended primarily for " \
-        "healthcare professionals or researchers.\n\n" \
-    "Primary HPO concept:\n\n" \
-    f"- Label: {quote(label)}\n" \
-    f"- Definition: {quote(definition)}\n" \
-    f"- Comment: {quote(comment)}\n" \
-    f"- Parent concept(s): {applyFormat(parents)}\n" \
-    f"- Child concept(s): {applyFormat(children)}\n\n" \
-    "Candidate synonym:\n\n" \
-    f"- Label: {quote(synonym)}\n\n" \
-    "OUTPUT INSTRUCTIONS:\n\n" \
-    "Do not include explanations or additional text.\n" \
-    "Output exactly one word:\n\n" \
-    "\"Layperson\"" \
-    "\"Expert\""
-"""
-
-
