@@ -1999,3 +1999,1186 @@
 [2026-05-11 02:13:25] Classified Synonyms: 27276 (~4546 per system)
 [2026-05-11 02:13:29] Discrepancies for Embedding Answers: 0
 [2026-05-11 02:13:34] Unsure Count: 25566
+[2026-05-11 14:32:20] ============================================================
+[2026-05-11 14:32:20] =            Merging Generated Classifications             =
+[2026-05-11 14:32:20] ============================================================
+[2026-05-11 14:32:20] Reading files...
+[2026-05-11 14:32:21] Files read.
+[2026-05-11 14:32:21] Merging Data...
+[2026-05-11 14:32:21] Data merged.
+[2026-05-11 14:32:21] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:32:22] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:32:22] Merged 6 files into 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 14:32:22] ============================================================
+[2026-05-11 14:32:22] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:32:22] ============================================================
+[2026-05-11 14:32:23] ============================================================
+[2026-05-11 14:32:23] =            Merging Generated Classifications             =
+[2026-05-11 14:32:23] ============================================================
+[2026-05-11 14:32:23] Reading files...
+[2026-05-11 14:32:23] Files read.
+[2026-05-11 14:32:23] Merging Data...
+[2026-05-11 14:32:23] Data merged.
+[2026-05-11 14:32:23] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:32:24] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:32:24] Merged 6 files into 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 14:32:24] ============================================================
+[2026-05-11 14:32:24] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:32:24] ============================================================
+[2026-05-11 14:32:25] ============================================================
+[2026-05-11 14:32:25] =            Merging Generated Classifications             =
+[2026-05-11 14:32:25] ============================================================
+[2026-05-11 14:32:25] Reading files...
+[2026-05-11 14:32:25] Files read.
+[2026-05-11 14:32:25] Merging Data...
+[2026-05-11 14:32:25] Data merged.
+[2026-05-11 14:32:25] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:32:26] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:32:26] Merged 5 files into 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 14:32:26] ============================================================
+[2026-05-11 14:32:26] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:32:26] ============================================================
+[2026-05-11 14:32:27] ============================================================
+[2026-05-11 14:32:27] =            Merging Generated Classifications             =
+[2026-05-11 14:32:27] ============================================================
+[2026-05-11 14:32:27] Reading files...
+[2026-05-11 14:32:27] Files read.
+[2026-05-11 14:32:27] Merging Data...
+[2026-05-11 14:32:27] Data merged.
+[2026-05-11 14:32:27] Writing file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:32:28] Writing file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:32:28] Merged 6 files into 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 14:32:28] ============================================================
+[2026-05-11 14:32:28] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:32:28] ============================================================
+[2026-05-11 14:32:29] ============================================================
+[2026-05-11 14:32:29] =            Merging Generated Classifications             =
+[2026-05-11 14:32:29] ============================================================
+[2026-05-11 14:32:29] Reading files...
+[2026-05-11 14:32:29] Files read.
+[2026-05-11 14:32:29] Merging Data...
+[2026-05-11 14:32:29] Data merged.
+[2026-05-11 14:32:29] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:32:31] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:32:31] Merged 6 files into 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 14:32:31] ============================================================
+[2026-05-11 14:32:31] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:32:31] ============================================================
+[2026-05-11 14:32:41] ============================================================
+[2026-05-11 14:32:41] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:32:41] ============================================================
+[2026-05-11 14:32:41] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:32:41] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:32:41] 7 ontologies found.
+[2026-05-11 14:32:41] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:32:41] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:32:41] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:32:41] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:32:41] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:32:41] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:32:41] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:32:41] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:32:41] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:32:45] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:32:53] Unsure Count: 18438
+[2026-05-11 14:33:08] ============================================================
+[2026-05-11 14:33:08] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:33:08] ============================================================
+[2026-05-11 14:33:08] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:33:08] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:33:08] 7 ontologies found.
+[2026-05-11 14:33:08] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:33:08] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:33:08] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:33:08] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:33:08] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:33:08] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:33:08] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:33:08] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:33:08] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:33:13] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:33:21] Unsure Count: 18438
+[2026-05-11 14:33:35] ============================================================
+[2026-05-11 14:33:35] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:33:35] ============================================================
+[2026-05-11 14:33:35] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:33:35] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:33:35] 7 ontologies found.
+[2026-05-11 14:33:35] Found 7120 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:33:35] Found 335 entries in HPO for ontology 'CL'.
+[2026-05-11 14:33:35] Found 3180 entries in HPO for ontology 'GO'.
+[2026-05-11 14:33:35] Found 3060 entries in HPO for ontology 'HP'.
+[2026-05-11 14:33:35] Found 20 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:33:35] Found 540 entries in HPO for ontology 'PR'.
+[2026-05-11 14:33:35] Found 8475 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:33:35] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-4b-it"
+[2026-05-11 14:33:35] Classified Synonyms: 22730 (~4546 per system)
+[2026-05-11 14:33:40] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:33:46] Unsure Count: 15365
+[2026-05-11 14:34:00] ============================================================
+[2026-05-11 14:34:00] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:34:00] ============================================================
+[2026-05-11 14:34:00] Reading file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:34:00] Reading file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:34:00] 7 ontologies found.
+[2026-05-11 14:34:00] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:34:00] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:34:00] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:34:00] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:34:00] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:34:00] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:34:00] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:34:00] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:34:00] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:34:05] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:34:12] Unsure Count: 18438
+[2026-05-11 14:34:27] ============================================================
+[2026-05-11 14:34:27] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:34:27] ============================================================
+[2026-05-11 14:34:27] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:34:27] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:34:27] 7 ontologies found.
+[2026-05-11 14:34:27] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:34:27] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:34:27] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:34:27] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:34:27] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:34:27] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:34:27] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:34:27] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:34:27] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:34:31] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:34:39] Unsure Count: 18438
+[2026-05-11 14:35:37] ============================================================
+[2026-05-11 14:35:37] =            Merging Generated Classifications             =
+[2026-05-11 14:35:37] ============================================================
+[2026-05-11 14:35:37] Reading files...
+[2026-05-11 14:35:38] Files read.
+[2026-05-11 14:35:38] Merging Data...
+[2026-05-11 14:35:38] Data merged.
+[2026-05-11 14:35:38] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:35:39] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:35:39] Merged 6 files into 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-11 14:35:39] ============================================================
+[2026-05-11 14:35:39] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:35:39] ============================================================
+[2026-05-11 14:35:39] ============================================================
+[2026-05-11 14:35:39] =            Merging Generated Classifications             =
+[2026-05-11 14:35:39] ============================================================
+[2026-05-11 14:35:39] Reading files...
+[2026-05-11 14:35:40] Files read.
+[2026-05-11 14:35:40] Merging Data...
+[2026-05-11 14:35:40] Data merged.
+[2026-05-11 14:35:40] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:35:41] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:35:41] Merged 6 files into 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-11 14:35:41] ============================================================
+[2026-05-11 14:35:41] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:35:41] ============================================================
+[2026-05-11 14:35:42] ============================================================
+[2026-05-11 14:35:42] =            Merging Generated Classifications             =
+[2026-05-11 14:35:42] ============================================================
+[2026-05-11 14:35:42] Reading files...
+[2026-05-11 14:35:42] Files read.
+[2026-05-11 14:35:42] Merging Data...
+[2026-05-11 14:35:42] Data merged.
+[2026-05-11 14:35:42] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:35:43] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:35:43] Merged 6 files into 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-11 14:35:43] ============================================================
+[2026-05-11 14:35:43] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:35:43] ============================================================
+[2026-05-11 14:35:44] ============================================================
+[2026-05-11 14:35:44] =            Merging Generated Classifications             =
+[2026-05-11 14:35:44] ============================================================
+[2026-05-11 14:35:44] Reading files...
+[2026-05-11 14:35:44] Files read.
+[2026-05-11 14:35:44] Merging Data...
+[2026-05-11 14:35:44] Data merged.
+[2026-05-11 14:35:44] Writing file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:35:46] Writing file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:35:46] Merged 6 files into 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-11 14:35:46] ============================================================
+[2026-05-11 14:35:46] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:35:46] ============================================================
+[2026-05-11 14:35:46] ============================================================
+[2026-05-11 14:35:46] =            Merging Generated Classifications             =
+[2026-05-11 14:35:46] ============================================================
+[2026-05-11 14:35:46] Reading files...
+[2026-05-11 14:35:47] Files read.
+[2026-05-11 14:35:47] Merging Data...
+[2026-05-11 14:35:47] Data merged.
+[2026-05-11 14:35:47] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:35:48] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:35:48] Merged 6 files into 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-11 14:35:48] ============================================================
+[2026-05-11 14:35:48] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:35:48] ============================================================
+[2026-05-11 14:35:56] ============================================================
+[2026-05-11 14:35:56] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:35:56] ============================================================
+[2026-05-11 14:35:56] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:35:56] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:35:56] 7 ontologies found.
+[2026-05-11 14:35:56] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:35:56] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:35:56] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:35:56] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:35:56] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:35:56] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:35:56] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:35:56] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:35:56] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:36:01] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:36:09] Unsure Count: 18438
+[2026-05-11 14:36:23] ============================================================
+[2026-05-11 14:36:23] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:36:23] ============================================================
+[2026-05-11 14:36:23] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:36:23] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:36:23] 7 ontologies found.
+[2026-05-11 14:36:23] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:36:23] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:36:23] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:36:23] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:36:23] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:36:23] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:36:23] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:36:23] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:36:23] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:36:28] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:36:36] Unsure Count: 18438
+[2026-05-11 14:36:51] ============================================================
+[2026-05-11 14:36:51] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:36:51] ============================================================
+[2026-05-11 14:36:51] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:36:51] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:36:51] 7 ontologies found.
+[2026-05-11 14:36:51] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:36:51] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:36:51] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:36:51] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:36:51] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:36:51] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:36:51] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:36:51] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:36:51] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:36:55] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:37:03] Unsure Count: 18438
+[2026-05-11 14:37:18] ============================================================
+[2026-05-11 14:37:18] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:37:18] ============================================================
+[2026-05-11 14:37:18] Reading file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:37:18] Reading file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:37:18] 7 ontologies found.
+[2026-05-11 14:37:18] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:37:18] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:37:18] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:37:18] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:37:18] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:37:18] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:37:18] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:37:18] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:37:18] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:37:23] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:37:31] Unsure Count: 18438
+[2026-05-11 14:37:45] ============================================================
+[2026-05-11 14:37:45] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:37:45] ============================================================
+[2026-05-11 14:37:45] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:37:45] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:37:45] 7 ontologies found.
+[2026-05-11 14:37:45] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:37:45] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:37:45] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:37:45] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:37:45] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:37:45] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:37:45] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:37:45] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:37:45] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:37:50] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:37:57] Unsure Count: 18438
+[2026-05-11 14:38:08] ============================================================
+[2026-05-11 14:38:08] =            Merging Generated Classifications             =
+[2026-05-11 14:38:08] ============================================================
+[2026-05-11 14:38:08] Reading files...
+[2026-05-11 14:38:08] Files read.
+[2026-05-11 14:38:08] Merging Data...
+[2026-05-11 14:38:08] Data merged.
+[2026-05-11 14:38:08] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:38:09] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:38:09] Merged 6 files into 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-11 14:38:09] ============================================================
+[2026-05-11 14:38:09] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:38:09] ============================================================
+[2026-05-11 14:38:10] ============================================================
+[2026-05-11 14:38:10] =            Merging Generated Classifications             =
+[2026-05-11 14:38:10] ============================================================
+[2026-05-11 14:38:10] Reading files...
+[2026-05-11 14:38:10] Files read.
+[2026-05-11 14:38:10] Merging Data...
+[2026-05-11 14:38:10] Data merged.
+[2026-05-11 14:38:10] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:38:11] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:38:11] Merged 6 files into 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-11 14:38:11] ============================================================
+[2026-05-11 14:38:11] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:38:11] ============================================================
+[2026-05-11 14:38:12] ============================================================
+[2026-05-11 14:38:12] =            Merging Generated Classifications             =
+[2026-05-11 14:38:12] ============================================================
+[2026-05-11 14:38:12] Reading files...
+[2026-05-11 14:38:12] Files read.
+[2026-05-11 14:38:12] Merging Data...
+[2026-05-11 14:38:12] Data merged.
+[2026-05-11 14:38:12] Writing file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:38:14] Writing file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:38:14] Merged 6 files into 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-11 14:38:14] ============================================================
+[2026-05-11 14:38:14] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:38:14] ============================================================
+[2026-05-11 14:38:14] ============================================================
+[2026-05-11 14:38:14] =            Merging Generated Classifications             =
+[2026-05-11 14:38:14] ============================================================
+[2026-05-11 14:38:14] Reading files...
+[2026-05-11 14:38:15] Files read.
+[2026-05-11 14:38:15] Merging Data...
+[2026-05-11 14:38:15] Data merged.
+[2026-05-11 14:38:15] Writing file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:38:16] Writing file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:38:16] Merged 6 files into 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-11 14:38:16] ============================================================
+[2026-05-11 14:38:16] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:38:16] ============================================================
+[2026-05-11 14:38:17] ============================================================
+[2026-05-11 14:38:17] =            Merging Generated Classifications             =
+[2026-05-11 14:38:17] ============================================================
+[2026-05-11 14:38:17] Reading files...
+[2026-05-11 14:38:17] Files read.
+[2026-05-11 14:38:17] Merging Data...
+[2026-05-11 14:38:17] Data merged.
+[2026-05-11 14:38:17] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:38:18] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:38:18] Merged 6 files into 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-11 14:38:18] ============================================================
+[2026-05-11 14:38:18] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:38:18] ============================================================
+[2026-05-11 14:38:26] ============================================================
+[2026-05-11 14:38:26] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:38:26] ============================================================
+[2026-05-11 14:38:26] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:38:27] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:38:27] 7 ontologies found.
+[2026-05-11 14:38:27] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:38:27] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:38:27] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:38:27] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:38:27] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:38:27] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:38:27] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:38:27] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:38:27] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:38:31] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:38:39] Unsure Count: 18438
+[2026-05-11 14:38:53] ============================================================
+[2026-05-11 14:38:53] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:38:53] ============================================================
+[2026-05-11 14:38:53] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:38:54] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:38:54] 7 ontologies found.
+[2026-05-11 14:38:54] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:38:54] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:38:54] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:38:54] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:38:54] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:38:54] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:38:54] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:38:54] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:38:54] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:38:58] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:39:06] Unsure Count: 18438
+[2026-05-11 14:39:21] ============================================================
+[2026-05-11 14:39:21] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:39:21] ============================================================
+[2026-05-11 14:39:21] Reading file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:39:21] Reading file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:39:21] 7 ontologies found.
+[2026-05-11 14:39:21] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:39:21] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:39:21] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:39:21] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:39:21] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:39:21] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:39:21] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:39:21] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:39:21] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:39:25] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:39:33] Unsure Count: 18438
+[2026-05-11 14:39:48] ============================================================
+[2026-05-11 14:39:48] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:39:48] ============================================================
+[2026-05-11 14:39:48] Reading file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:39:48] Reading file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:39:48] 7 ontologies found.
+[2026-05-11 14:39:48] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:39:48] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:39:48] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:39:48] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:39:48] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:39:48] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:39:48] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:39:48] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:39:48] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:39:53] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:40:00] Unsure Count: 18438
+[2026-05-11 14:40:15] ============================================================
+[2026-05-11 14:40:15] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:40:15] ============================================================
+[2026-05-11 14:40:15] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-11 14:40:15] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-11 14:40:15] 7 ontologies found.
+[2026-05-11 14:40:15] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:40:15] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:40:15] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:40:15] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:40:15] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:40:15] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:40:15] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:40:15] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:40:15] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:40:19] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:40:27] Unsure Count: 18438
+[2026-05-11 14:41:31] ============================================================
+[2026-05-11 14:41:31] =            Merging Generated Classifications             =
+[2026-05-11 14:41:31] ============================================================
+[2026-05-11 14:41:31] Reading files...
+[2026-05-11 14:41:31] Files read.
+[2026-05-11 14:41:31] Merging Data...
+[2026-05-11 14:41:31] Data merged.
+[2026-05-11 14:41:31] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:41:33] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:41:33] Merged 6 files into 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 14:41:33] ============================================================
+[2026-05-11 14:41:33] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:41:33] ============================================================
+[2026-05-11 14:41:33] ============================================================
+[2026-05-11 14:41:33] =            Merging Generated Classifications             =
+[2026-05-11 14:41:33] ============================================================
+[2026-05-11 14:41:33] Reading files...
+[2026-05-11 14:41:34] Files read.
+[2026-05-11 14:41:34] Merging Data...
+[2026-05-11 14:41:34] Data merged.
+[2026-05-11 14:41:34] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:41:35] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:41:35] Merged 6 files into 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 14:41:35] ============================================================
+[2026-05-11 14:41:35] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:41:35] ============================================================
+[2026-05-11 14:41:35] ============================================================
+[2026-05-11 14:41:35] =            Merging Generated Classifications             =
+[2026-05-11 14:41:35] ============================================================
+[2026-05-11 14:41:35] Reading files...
+[2026-05-11 14:41:36] Files read.
+[2026-05-11 14:41:36] Merging Data...
+[2026-05-11 14:41:36] Data merged.
+[2026-05-11 14:41:36] Writing file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:41:37] Writing file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:41:37] Merged 6 files into 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 14:41:37] ============================================================
+[2026-05-11 14:41:37] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:41:37] ============================================================
+[2026-05-11 14:41:38] ============================================================
+[2026-05-11 14:41:38] =            Merging Generated Classifications             =
+[2026-05-11 14:41:38] ============================================================
+[2026-05-11 14:41:38] Reading files...
+[2026-05-11 14:41:38] Files read.
+[2026-05-11 14:41:38] Merging Data...
+[2026-05-11 14:41:38] Data merged.
+[2026-05-11 14:41:38] Writing file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:41:39] Writing file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:41:39] Merged 6 files into 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 14:41:39] ============================================================
+[2026-05-11 14:41:39] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:41:39] ============================================================
+[2026-05-11 14:41:40] ============================================================
+[2026-05-11 14:41:40] =            Merging Generated Classifications             =
+[2026-05-11 14:41:40] ============================================================
+[2026-05-11 14:41:40] Reading files...
+[2026-05-11 14:41:40] Files read.
+[2026-05-11 14:41:40] Merging Data...
+[2026-05-11 14:41:40] Data merged.
+[2026-05-11 14:41:40] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:41:42] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:41:42] Merged 6 files into 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-11 14:41:42] ============================================================
+[2026-05-11 14:41:42] =                 Data Merged [Minutes: 0]                 =
+[2026-05-11 14:41:42] ============================================================
+[2026-05-11 14:41:50] ============================================================
+[2026-05-11 14:41:50] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:41:50] ============================================================
+[2026-05-11 14:41:50] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:41:50] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:41:50] 7 ontologies found.
+[2026-05-11 14:41:50] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:41:50] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:41:50] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:41:50] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:41:50] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:41:50] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:41:50] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:41:50] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:41:50] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:41:55] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:42:03] Unsure Count: 18438
+[2026-05-11 14:42:17] ============================================================
+[2026-05-11 14:42:17] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:42:17] ============================================================
+[2026-05-11 14:42:17] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:42:17] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:42:17] 7 ontologies found.
+[2026-05-11 14:42:17] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:42:17] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:42:17] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:42:17] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:42:17] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:42:17] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:42:17] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:42:17] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:42:17] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:42:22] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:42:30] Unsure Count: 18438
+[2026-05-11 14:42:44] ============================================================
+[2026-05-11 14:42:44] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:42:44] ============================================================
+[2026-05-11 14:42:44] Reading file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:42:44] Reading file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:42:44] 7 ontologies found.
+[2026-05-11 14:42:44] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:42:44] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:42:44] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:42:44] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:42:44] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:42:44] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:42:44] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:42:44] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:42:44] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:42:49] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:42:57] Unsure Count: 18438
+[2026-05-11 14:43:11] ============================================================
+[2026-05-11 14:43:11] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:43:11] ============================================================
+[2026-05-11 14:43:11] Reading file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:43:11] Reading file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:43:11] 7 ontologies found.
+[2026-05-11 14:43:11] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:43:11] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:43:11] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:43:11] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:43:11] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:43:11] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:43:11] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:43:11] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:43:11] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:43:16] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:43:24] Unsure Count: 18438
+[2026-05-11 14:43:38] ============================================================
+[2026-05-11 14:43:38] =     Evaluating the Results of Synonym Classification     =
+[2026-05-11 14:43:38] ============================================================
+[2026-05-11 14:43:38] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-11 14:43:39] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-11 14:43:39] 7 ontologies found.
+[2026-05-11 14:43:39] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-11 14:43:39] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-11 14:43:39] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-11 14:43:39] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-11 14:43:39] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-11 14:43:39] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-11 14:43:39] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-11 14:43:39] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-11 14:43:39] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-11 14:43:43] Discrepancies for Embedding Answers: 0
+[2026-05-11 14:43:51] Unsure Count: 18438
+[2026-05-12 04:44:19] ============================================================
+[2026-05-12 04:44:19] =            Merging Generated Classifications             =
+[2026-05-12 04:44:19] ============================================================
+[2026-05-12 04:44:19] Reading files...
+[2026-05-12 04:44:19] Files read.
+[2026-05-12 04:44:19] Merging Data...
+[2026-05-12 04:44:19] Data merged.
+[2026-05-12 04:44:19] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:44:21] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:44:21] Merged 6 files into 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-12 04:44:21] ============================================================
+[2026-05-12 04:44:21] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:44:21] ============================================================
+[2026-05-12 04:44:21] ============================================================
+[2026-05-12 04:44:21] =            Merging Generated Classifications             =
+[2026-05-12 04:44:21] ============================================================
+[2026-05-12 04:44:21] Reading files...
+[2026-05-12 04:44:21] Files read.
+[2026-05-12 04:44:21] Merging Data...
+[2026-05-12 04:44:21] Data merged.
+[2026-05-12 04:44:21] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:44:23] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:44:23] Merged 6 files into 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-12 04:44:23] ============================================================
+[2026-05-12 04:44:23] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:44:23] ============================================================
+[2026-05-12 04:44:23] ============================================================
+[2026-05-12 04:44:23] =            Merging Generated Classifications             =
+[2026-05-12 04:44:23] ============================================================
+[2026-05-12 04:44:23] Reading files...
+[2026-05-12 04:44:23] Files read.
+[2026-05-12 04:44:23] Merging Data...
+[2026-05-12 04:44:23] Data merged.
+[2026-05-12 04:44:23] Writing file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:44:25] Writing file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:44:25] Merged 6 files into 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-12 04:44:25] ============================================================
+[2026-05-12 04:44:25] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:44:25] ============================================================
+[2026-05-12 04:44:25] ============================================================
+[2026-05-12 04:44:25] =            Merging Generated Classifications             =
+[2026-05-12 04:44:25] ============================================================
+[2026-05-12 04:44:25] Reading files...
+[2026-05-12 04:44:26] Files read.
+[2026-05-12 04:44:26] Merging Data...
+[2026-05-12 04:44:26] Data merged.
+[2026-05-12 04:44:26] Writing file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:44:27] Writing file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:44:27] Merged 6 files into 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-12 04:44:27] ============================================================
+[2026-05-12 04:44:27] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:44:27] ============================================================
+[2026-05-12 04:44:27] ============================================================
+[2026-05-12 04:44:27] =            Merging Generated Classifications             =
+[2026-05-12 04:44:27] ============================================================
+[2026-05-12 04:44:27] Reading files...
+[2026-05-12 04:44:28] Files read.
+[2026-05-12 04:44:28] Merging Data...
+[2026-05-12 04:44:28] Data merged.
+[2026-05-12 04:44:28] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:44:29] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:44:29] Merged 6 files into 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-12 04:44:29] ============================================================
+[2026-05-12 04:44:29] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:44:29] ============================================================
+[2026-05-12 04:44:38] ============================================================
+[2026-05-12 04:44:38] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:44:38] ============================================================
+[2026-05-12 04:44:38] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:44:38] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:44:38] 7 ontologies found.
+[2026-05-12 04:44:38] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:44:38] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:44:38] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:44:38] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:44:38] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:44:38] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:44:38] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:44:38] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:44:38] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:44:43] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:44:48] Unsure Count: 25200
+[2026-05-12 04:45:02] ============================================================
+[2026-05-12 04:45:02] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:45:02] ============================================================
+[2026-05-12 04:45:02] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:45:02] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:45:02] 7 ontologies found.
+[2026-05-12 04:45:02] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:45:02] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:45:02] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:45:02] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:45:02] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:45:02] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:45:02] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:45:02] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:45:02] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:45:06] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:45:12] Unsure Count: 25200
+[2026-05-12 04:45:25] ============================================================
+[2026-05-12 04:45:25] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:45:25] ============================================================
+[2026-05-12 04:45:25] Reading file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:45:25] Reading file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:45:25] 7 ontologies found.
+[2026-05-12 04:45:25] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:45:25] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:45:25] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:45:25] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:45:25] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:45:25] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:45:25] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:45:25] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:45:25] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:45:30] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:45:35] Unsure Count: 25200
+[2026-05-12 04:45:48] ============================================================
+[2026-05-12 04:45:48] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:45:48] ============================================================
+[2026-05-12 04:45:48] Reading file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:45:49] Reading file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:45:49] 7 ontologies found.
+[2026-05-12 04:45:49] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:45:49] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:45:49] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:45:49] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:45:49] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:45:49] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:45:49] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:45:49] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:45:49] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:45:53] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:45:58] Unsure Count: 25200
+[2026-05-12 04:46:13] ============================================================
+[2026-05-12 04:46:13] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:46:13] ============================================================
+[2026-05-12 04:46:13] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:46:14] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:46:14] 7 ontologies found.
+[2026-05-12 04:46:14] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:46:14] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:46:14] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:46:14] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:46:14] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:46:14] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:46:14] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:46:14] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:46:14] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:46:18] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:46:23] Unsure Count: 25200
+[2026-05-12 04:47:07] ============================================================
+[2026-05-12 04:47:07] =            Merging Generated Classifications             =
+[2026-05-12 04:47:07] ============================================================
+[2026-05-12 04:47:07] Reading files...
+[2026-05-12 04:47:07] Files read.
+[2026-05-12 04:47:07] Merging Data...
+[2026-05-12 04:47:07] Data merged.
+[2026-05-12 04:47:07] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:47:08] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:47:08] Merged 6 files into 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-12 04:47:08] ============================================================
+[2026-05-12 04:47:08] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:47:08] ============================================================
+[2026-05-12 04:47:09] ============================================================
+[2026-05-12 04:47:09] =            Merging Generated Classifications             =
+[2026-05-12 04:47:09] ============================================================
+[2026-05-12 04:47:09] Reading files...
+[2026-05-12 04:47:09] Files read.
+[2026-05-12 04:47:09] Merging Data...
+[2026-05-12 04:47:09] Data merged.
+[2026-05-12 04:47:09] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:47:10] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:47:10] Merged 6 files into 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-12 04:47:10] ============================================================
+[2026-05-12 04:47:10] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:47:10] ============================================================
+[2026-05-12 04:47:11] ============================================================
+[2026-05-12 04:47:11] =            Merging Generated Classifications             =
+[2026-05-12 04:47:11] ============================================================
+[2026-05-12 04:47:11] Reading files...
+[2026-05-12 04:47:11] Files read.
+[2026-05-12 04:47:11] Merging Data...
+[2026-05-12 04:47:11] Data merged.
+[2026-05-12 04:47:11] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:47:12] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:47:12] Merged 5 files into 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-12 04:47:12] ============================================================
+[2026-05-12 04:47:12] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:47:12] ============================================================
+[2026-05-12 04:47:13] ============================================================
+[2026-05-12 04:47:13] =            Merging Generated Classifications             =
+[2026-05-12 04:47:13] ============================================================
+[2026-05-12 04:47:13] Reading files...
+[2026-05-12 04:47:13] Files read.
+[2026-05-12 04:47:13] Merging Data...
+[2026-05-12 04:47:13] Data merged.
+[2026-05-12 04:47:13] Writing file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:47:14] Writing file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:47:14] Merged 6 files into 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-12 04:47:14] ============================================================
+[2026-05-12 04:47:14] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:47:14] ============================================================
+[2026-05-12 04:47:15] ============================================================
+[2026-05-12 04:47:15] =            Merging Generated Classifications             =
+[2026-05-12 04:47:15] ============================================================
+[2026-05-12 04:47:15] Reading files...
+[2026-05-12 04:47:15] Files read.
+[2026-05-12 04:47:15] Merging Data...
+[2026-05-12 04:47:15] Data merged.
+[2026-05-12 04:47:15] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:47:16] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:47:16] Merged 6 files into 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-12 04:47:16] ============================================================
+[2026-05-12 04:47:16] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:47:16] ============================================================
+[2026-05-12 04:47:25] ============================================================
+[2026-05-12 04:47:25] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:47:25] ============================================================
+[2026-05-12 04:47:25] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:47:25] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:47:25] 7 ontologies found.
+[2026-05-12 04:47:25] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:47:25] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:47:25] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:47:25] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:47:25] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:47:25] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:47:25] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:47:25] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:47:25] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:47:30] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:47:35] Unsure Count: 25200
+[2026-05-12 04:47:49] ============================================================
+[2026-05-12 04:47:49] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:47:49] ============================================================
+[2026-05-12 04:47:49] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:47:49] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:47:49] 7 ontologies found.
+[2026-05-12 04:47:49] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:47:49] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:47:49] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:47:49] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:47:49] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:47:49] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:47:49] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:47:49] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:47:49] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:47:54] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:47:59] Unsure Count: 25200
+[2026-05-12 04:48:12] ============================================================
+[2026-05-12 04:48:12] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:48:12] ============================================================
+[2026-05-12 04:48:12] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:48:12] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:48:12] 7 ontologies found.
+[2026-05-12 04:48:12] Found 7120 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:48:12] Found 335 entries in HPO for ontology 'CL'.
+[2026-05-12 04:48:12] Found 3180 entries in HPO for ontology 'GO'.
+[2026-05-12 04:48:12] Found 3060 entries in HPO for ontology 'HP'.
+[2026-05-12 04:48:12] Found 20 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:48:12] Found 540 entries in HPO for ontology 'PR'.
+[2026-05-12 04:48:12] Found 8475 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:48:12] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-4b-it"
+[2026-05-12 04:48:12] Classified Synonyms: 22730 (~4546 per system)
+[2026-05-12 04:48:17] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:48:21] Unsure Count: 21000
+[2026-05-12 04:48:33] ============================================================
+[2026-05-12 04:48:33] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:48:33] ============================================================
+[2026-05-12 04:48:33] Reading file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:48:33] Reading file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:48:33] 7 ontologies found.
+[2026-05-12 04:48:33] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:48:33] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:48:33] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:48:33] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:48:33] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:48:33] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:48:33] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:48:33] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:48:33] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:48:38] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:48:43] Unsure Count: 25200
+[2026-05-12 04:48:56] ============================================================
+[2026-05-12 04:48:56] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:48:56] ============================================================
+[2026-05-12 04:48:56] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-12 04:48:56] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-12 04:48:56] 7 ontologies found.
+[2026-05-12 04:48:56] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:48:56] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:48:56] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:48:56] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:48:56] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:48:56] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:48:56] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:48:56] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:48:56] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:49:01] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:49:06] Unsure Count: 25200
+[2026-05-12 04:49:57] ============================================================
+[2026-05-12 04:49:57] =            Merging Generated Classifications             =
+[2026-05-12 04:49:57] ============================================================
+[2026-05-12 04:49:57] Reading files...
+[2026-05-12 04:49:57] Files read.
+[2026-05-12 04:49:57] Merging Data...
+[2026-05-12 04:49:57] Data merged.
+[2026-05-12 04:49:57] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:49:59] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:49:59] Merged 6 files into 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-12 04:49:59] ============================================================
+[2026-05-12 04:49:59] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:49:59] ============================================================
+[2026-05-12 04:49:59] ============================================================
+[2026-05-12 04:49:59] =            Merging Generated Classifications             =
+[2026-05-12 04:49:59] ============================================================
+[2026-05-12 04:49:59] Reading files...
+[2026-05-12 04:50:00] Files read.
+[2026-05-12 04:50:00] Merging Data...
+[2026-05-12 04:50:00] Data merged.
+[2026-05-12 04:50:00] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:50:01] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:50:01] Merged 6 files into 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-12 04:50:01] ============================================================
+[2026-05-12 04:50:01] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:50:01] ============================================================
+[2026-05-12 04:50:01] ============================================================
+[2026-05-12 04:50:01] =            Merging Generated Classifications             =
+[2026-05-12 04:50:01] ============================================================
+[2026-05-12 04:50:01] Reading files...
+[2026-05-12 04:50:02] Files read.
+[2026-05-12 04:50:02] Merging Data...
+[2026-05-12 04:50:02] Data merged.
+[2026-05-12 04:50:02] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:50:03] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:50:03] Merged 6 files into 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-12 04:50:03] ============================================================
+[2026-05-12 04:50:03] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:50:03] ============================================================
+[2026-05-12 04:50:04] ============================================================
+[2026-05-12 04:50:04] =            Merging Generated Classifications             =
+[2026-05-12 04:50:04] ============================================================
+[2026-05-12 04:50:04] Reading files...
+[2026-05-12 04:50:04] Files read.
+[2026-05-12 04:50:04] Merging Data...
+[2026-05-12 04:50:04] Data merged.
+[2026-05-12 04:50:04] Writing file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:50:05] Writing file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:50:05] Merged 6 files into 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-12 04:50:05] ============================================================
+[2026-05-12 04:50:05] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:50:05] ============================================================
+[2026-05-12 04:50:06] ============================================================
+[2026-05-12 04:50:06] =            Merging Generated Classifications             =
+[2026-05-12 04:50:06] ============================================================
+[2026-05-12 04:50:06] Reading files...
+[2026-05-12 04:50:06] Files read.
+[2026-05-12 04:50:06] Merging Data...
+[2026-05-12 04:50:06] Data merged.
+[2026-05-12 04:50:06] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:50:07] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:50:07] Merged 6 files into 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-12 04:50:07] ============================================================
+[2026-05-12 04:50:07] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:50:07] ============================================================
+[2026-05-12 04:50:15] ============================================================
+[2026-05-12 04:50:15] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:50:15] ============================================================
+[2026-05-12 04:50:15] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:50:16] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:50:16] 7 ontologies found.
+[2026-05-12 04:50:16] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:50:16] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:50:16] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:50:16] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:50:16] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:50:16] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:50:16] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:50:16] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:50:16] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:50:20] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:50:25] Unsure Count: 25200
+[2026-05-12 04:50:39] ============================================================
+[2026-05-12 04:50:39] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:50:39] ============================================================
+[2026-05-12 04:50:39] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:50:39] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:50:39] 7 ontologies found.
+[2026-05-12 04:50:39] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:50:39] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:50:39] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:50:39] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:50:39] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:50:39] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:50:39] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:50:39] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:50:39] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:50:44] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:50:49] Unsure Count: 25200
+[2026-05-12 04:51:02] ============================================================
+[2026-05-12 04:51:02] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:51:02] ============================================================
+[2026-05-12 04:51:02] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:51:02] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:51:02] 7 ontologies found.
+[2026-05-12 04:51:02] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:51:02] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:51:02] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:51:02] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:51:02] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:51:02] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:51:02] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:51:02] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:51:02] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:51:07] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:51:12] Unsure Count: 25200
+[2026-05-12 04:51:26] ============================================================
+[2026-05-12 04:51:26] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:51:26] ============================================================
+[2026-05-12 04:51:26] Reading file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:51:26] Reading file 'class_Test_Definition_Comment_Parents_Children_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:51:26] 7 ontologies found.
+[2026-05-12 04:51:26] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:51:26] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:51:26] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:51:26] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:51:26] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:51:26] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:51:26] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:51:26] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:51:26] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:51:30] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:51:36] Unsure Count: 25200
+[2026-05-12 04:51:49] ============================================================
+[2026-05-12 04:51:49] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:51:49] ============================================================
+[2026-05-12 04:51:49] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:51:49] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_ChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:51:49] 7 ontologies found.
+[2026-05-12 04:51:49] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:51:49] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:51:49] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:51:49] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:51:49] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:51:49] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:51:49] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:51:49] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:51:49] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:51:54] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:51:59] Unsure Count: 25200
+[2026-05-12 04:52:23] ============================================================
+[2026-05-12 04:52:23] =            Merging Generated Classifications             =
+[2026-05-12 04:52:23] ============================================================
+[2026-05-12 04:52:23] Reading files...
+[2026-05-12 04:52:23] Files read.
+[2026-05-12 04:52:23] Merging Data...
+[2026-05-12 04:52:23] Data merged.
+[2026-05-12 04:52:23] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:52:24] Writing file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:52:24] Merged 6 files into 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-12 04:52:24] ============================================================
+[2026-05-12 04:52:24] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:52:24] ============================================================
+[2026-05-12 04:52:25] ============================================================
+[2026-05-12 04:52:25] =            Merging Generated Classifications             =
+[2026-05-12 04:52:25] ============================================================
+[2026-05-12 04:52:25] Reading files...
+[2026-05-12 04:52:25] Files read.
+[2026-05-12 04:52:25] Merging Data...
+[2026-05-12 04:52:25] Data merged.
+[2026-05-12 04:52:25] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:52:26] Writing file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:52:26] Merged 6 files into 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-12 04:52:26] ============================================================
+[2026-05-12 04:52:26] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:52:26] ============================================================
+[2026-05-12 04:52:27] ============================================================
+[2026-05-12 04:52:27] =            Merging Generated Classifications             =
+[2026-05-12 04:52:27] ============================================================
+[2026-05-12 04:52:27] Reading files...
+[2026-05-12 04:52:27] Files read.
+[2026-05-12 04:52:27] Merging Data...
+[2026-05-12 04:52:27] Data merged.
+[2026-05-12 04:52:27] Writing file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:52:29] Writing file 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:52:29] Merged 6 files into 'class_Test_Definition_NoComment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-12 04:52:29] ============================================================
+[2026-05-12 04:52:29] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:52:29] ============================================================
+[2026-05-12 04:52:29] ============================================================
+[2026-05-12 04:52:29] =            Merging Generated Classifications             =
+[2026-05-12 04:52:29] ============================================================
+[2026-05-12 04:52:29] Reading files...
+[2026-05-12 04:52:29] Files read.
+[2026-05-12 04:52:29] Merging Data...
+[2026-05-12 04:52:29] Data merged.
+[2026-05-12 04:52:29] Writing file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:52:31] Writing file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:52:31] Merged 6 files into 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-12 04:52:31] ============================================================
+[2026-05-12 04:52:31] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:52:31] ============================================================
+[2026-05-12 04:52:31] ============================================================
+[2026-05-12 04:52:31] =            Merging Generated Classifications             =
+[2026-05-12 04:52:31] ============================================================
+[2026-05-12 04:52:31] Reading files...
+[2026-05-12 04:52:31] Files read.
+[2026-05-12 04:52:31] Merging Data...
+[2026-05-12 04:52:31] Data merged.
+[2026-05-12 04:52:31] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:52:33] Writing file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:52:33] Merged 6 files into 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'
+[2026-05-12 04:52:33] ============================================================
+[2026-05-12 04:52:33] =                 Data Merged [Minutes: 0]                 =
+[2026-05-12 04:52:33] ============================================================
+[2026-05-12 04:52:41] ============================================================
+[2026-05-12 04:52:41] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:52:41] ============================================================
+[2026-05-12 04:52:41] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:52:42] Reading file 'class_Test_NoDefinition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:52:42] 7 ontologies found.
+[2026-05-12 04:52:42] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:52:42] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:52:42] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:52:42] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:52:42] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:52:42] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:52:42] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:52:42] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:52:42] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:52:46] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:52:51] Unsure Count: 25200
+[2026-05-12 04:53:04] ============================================================
+[2026-05-12 04:53:04] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:53:04] ============================================================
+[2026-05-12 04:53:04] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:53:04] Reading file 'class_Test_Definition_NoComment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:53:04] 7 ontologies found.
+[2026-05-12 04:53:04] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:53:04] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:53:04] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:53:04] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:53:04] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:53:04] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:53:04] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:53:04] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:53:04] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:53:09] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:53:14] Unsure Count: 25200
+[2026-05-12 04:53:28] ============================================================
+[2026-05-12 04:53:28] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:53:28] ============================================================
+[2026-05-12 04:53:28] Reading file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:53:28] Reading file 'class_Test_Definition_Comment_Parents_Children_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:53:28] 7 ontologies found.
+[2026-05-12 04:53:28] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:53:28] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:53:28] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:53:28] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:53:28] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:53:28] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:53:28] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:53:28] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:53:28] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:53:32] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:53:38] Unsure Count: 25200
+[2026-05-12 04:53:51] ============================================================
+[2026-05-12 04:53:51] =     Evaluating the Results of Synonym Classification     =
+[2026-05-12 04:53:51] ============================================================
+[2026-05-12 04:53:51] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv'.
+[2026-05-12 04:53:52] Reading file 'class_Test_Definition_Comment_NoParents_NoChildren_NoChainOfThoughts_FewShot_merged_classes.csv' completed.
+[2026-05-12 04:53:52] 7 ontologies found.
+[2026-05-12 04:53:52] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-12 04:53:52] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-12 04:53:52] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-12 04:53:52] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-12 04:53:52] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-12 04:53:52] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-12 04:53:52] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-12 04:53:52] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-12 04:53:52] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-12 04:53:56] Discrepancies for Embedding Answers: 0
+[2026-05-12 04:54:01] Unsure Count: 25200

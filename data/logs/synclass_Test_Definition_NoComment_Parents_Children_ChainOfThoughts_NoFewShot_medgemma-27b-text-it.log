@@ -2,3 +2,27 @@
 [2026-05-11 02:11:21] =      Formatting Answers of Synonym's Classification      =
 [2026-05-11 02:11:21] ============================================================
 [2026-05-11 02:11:21] class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_raw_medgemma-27b-text-it.csv could not be found. Terminating.
+[2026-05-12 04:55:13] ============================================================
+[2026-05-12 04:55:13] =                 Classifying the Synonyms                 =
+[2026-05-12 04:55:13] ============================================================
+[2026-05-12 04:55:13] Reading file 'transform.reduced.csv'.
+[2026-05-12 04:55:13] Reading file 'transform.reduced.csv' completed.
+[2026-05-12 04:55:17] Set up the LLM (medgemma-27b-text-it)...
+[2026-05-12 05:03:59] Max Num batched Tokens: 16384
+[2026-05-12 05:03:59] Max new Tokens: 2048
+[2026-05-12 05:03:59] Temperature: 0.01
+[2026-05-12 05:03:59] Max Model Length: 8192
+[2026-05-12 05:03:59] Few-Shot (Zero-Shot): False
+[2026-05-12 05:03:59] Chain-Of-Thoughts: True
+[2026-05-12 05:03:59] GPUs: '0', '1'
+[2026-05-12 05:03:59] Set up of LLM complete.
+[2026-05-12 05:04:29] 4546 prompts added. Start generating responses...
+[2026-05-12 08:35:08] 4546 prompts added. Start generating responses...
+[2026-05-12 13:30:27] 4546 prompts added. Start generating responses...
+[2026-05-12 14:48:12] Logging Prompts of Model...
+[2026-05-12 14:49:54] Prompts of Model have been logged.
+[2026-05-12 14:49:55] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_raw_medgemma-27b-text-it.csv'.
+[2026-05-12 14:49:55] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_raw_medgemma-27b-text-it.csv' completed.
+[2026-05-12 14:49:55] ============================================================
+[2026-05-12 14:49:55] =            Synonyms Classified [Minutes: 594]            =
+[2026-05-12 14:49:55] ============================================================
