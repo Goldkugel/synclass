@@ -3182,3 +3182,33 @@
 [2026-05-12 04:53:52] Classified Synonyms: 27276 (~4546 per system)
 [2026-05-12 04:53:56] Discrepancies for Embedding Answers: 0
 [2026-05-12 04:54:01] Unsure Count: 25200
+[2026-05-19 13:42:59] ============================================================
+[2026-05-19 13:42:59] =            Merging Generated Classifications             =
+[2026-05-19 13:42:59] ============================================================
+[2026-05-19 13:42:59] Reading files...
+[2026-05-19 13:42:59] Files read.
+[2026-05-19 13:42:59] Merging Data...
+[2026-05-19 13:42:59] Data merged.
+[2026-05-19 13:42:59] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-19 13:43:00] Writing file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-19 13:43:00] Merged 6 files into 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'
+[2026-05-19 13:43:00] ============================================================
+[2026-05-19 13:43:00] =                 Data Merged [Minutes: 0]                 =
+[2026-05-19 13:43:00] ============================================================
+[2026-05-19 13:44:01] ============================================================
+[2026-05-19 13:44:01] =     Evaluating the Results of Synonym Classification     =
+[2026-05-19 13:44:01] ============================================================
+[2026-05-19 13:44:01] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv'.
+[2026-05-19 13:44:01] Reading file 'class_Test_Definition_NoComment_Parents_Children_ChainOfThoughts_NoFewShot_merged_classes.csv' completed.
+[2026-05-19 13:44:01] 7 ontologies found.
+[2026-05-19 13:44:01] Found 8544 entries in HPO for ontology 'CHEBI'.
+[2026-05-19 13:44:01] Found 402 entries in HPO for ontology 'CL'.
+[2026-05-19 13:44:01] Found 3816 entries in HPO for ontology 'GO'.
+[2026-05-19 13:44:01] Found 3672 entries in HPO for ontology 'HP'.
+[2026-05-19 13:44:01] Found 24 entries in HPO for ontology 'PATO'.
+[2026-05-19 13:44:01] Found 648 entries in HPO for ontology 'PR'.
+[2026-05-19 13:44:01] Found 10170 entries in HPO for ontology 'UBERON'.
+[2026-05-19 13:44:02] Found Systems: "Mistral-7B-Instruct-v0.2", "Mistral-Small-3.1-24B-Instruct-2503", "Qwen3-30B-A3B-Instruct-2507-FP8", "Qwen3-4B-Instruct-2507", "medgemma-27b-text-it", "medgemma-4b-it"
+[2026-05-19 13:44:02] Classified Synonyms: 27276 (~4546 per system)
+[2026-05-19 13:44:06] Discrepancies for Embedding Answers: 0
+[2026-05-19 13:44:11] Unsure Count: 25200

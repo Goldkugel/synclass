@@ -32,28 +32,28 @@ clear
 
 for MODEL in "${MODELS[@]}"; do
   python3 ./synclass.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS" "" "" "" ""
-  #python3 ./synclass.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS" "$DEFINITION" "" "" ""
+  python3 ./synclass.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS" "$DEFINITION" "" "" ""
   python3 ./synclass.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS" "$DEFINITION" "" "$CHILDREN" "$PARENTS"
-  #python3 ./synclass.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS" "$DEFINITION" "$COMMENT" "$CHILDREN" "$PARENTS"
+  python3 ./synclass.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS" "$DEFINITION" "$COMMENT" "$CHILDREN" "$PARENTS"
   python3 ./synclass.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS" "$DEFINITION" "$COMMENT" "" ""
 done
 
 for MODEL in "${MODELS[@]}"; do
   python3 ./synclassformat.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS" "" "" "" ""
-  #python3 ./synclassformat.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS" "$DEFINITION" "" "" ""
+  python3 ./synclassformat.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS" "$DEFINITION" "" "" ""
   python3 ./synclassformat.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS" "$DEFINITION" "" "$CHILDREN" "$PARENTS"
-  #python3 ./synclassformat.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS" "$DEFINITION" "$COMMENT" "$CHILDREN" "$PARENTS"
+  python3 ./synclassformat.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS" "$DEFINITION" "$COMMENT" "$CHILDREN" "$PARENTS"
   python3 ./synclassformat.py "$MODEL" "$GPUS" "$MODE" "$CoT" "$FS" "$DEFINITION" "$COMMENT" "" ""
 done
 
 python3 ./synclassmerge.py "" "" "$MODE" "$CoT" "$FS" "" "" "" ""
-#python3 ./synclassmerge.py "" "" "$MODE" "$CoT" "$FS" "$DEFINITION" "" "" ""
+python3 ./synclassmerge.py "" "" "$MODE" "$CoT" "$FS" "$DEFINITION" "" "" ""
 python3 ./synclassmerge.py "" "" "$MODE" "$CoT" "$FS" "$DEFINITION" "" "$CHILDREN" "$PARENTS"
-#python3 ./synclassmerge.py "" "" "$MODE" "$CoT" "$FS" "$DEFINITION" "$COMMENT" "$CHILDREN" "$PARENTS"
+python3 ./synclassmerge.py "" "" "$MODE" "$CoT" "$FS" "$DEFINITION" "$COMMENT" "$CHILDREN" "$PARENTS"
 python3 ./synclassmerge.py "" "" "$MODE" "$CoT" "$FS" "$DEFINITION" "$COMMENT" "" ""
 
 python3 ./synclasseval.py "" "" "$MODE" "$CoT" "$FS" "" "" "" ""
-#python3 ./synclasseval.py "" "" "$MODE" "$CoT" "$FS" "$DEFINITION" "" "" ""
+python3 ./synclasseval.py "" "" "$MODE" "$CoT" "$FS" "$DEFINITION" "" "" ""
 python3 ./synclasseval.py "" "" "$MODE" "$CoT" "$FS" "$DEFINITION" "" "$CHILDREN" "$PARENTS"
-#python3 ./synclasseval.py "" "" "$MODE" "$CoT" "$FS" "$DEFINITION" "$COMMENT" "$CHILDREN" "$PARENTS"
+python3 ./synclasseval.py "" "" "$MODE" "$CoT" "$FS" "$DEFINITION" "$COMMENT" "$CHILDREN" "$PARENTS"
 python3 ./synclasseval.py "" "" "$MODE" "$CoT" "$FS" "$DEFINITION" "$COMMENT" "" ""
