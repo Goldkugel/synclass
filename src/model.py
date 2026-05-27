@@ -20,6 +20,7 @@ sys.dont_write_bytecode = True
 # Ensure CUDA devices are enumerated by PCI bus ID
 # This guarantees consistent GPU ordering across runs
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["VLLM_TARGET_DEVICE"] = "cuda"
 
 # Restrict visible GPUs to those specified in config (e.g. "0,1")
 os.environ["CUDA_VISIBLE_DEVICES"] = gpu_id
@@ -47,6 +48,21 @@ class Model:
         """
         self.model = model
 
+        log(f"Available: {torch.cuda.is_available()}")
+        log(f"Device count: {torch.cuda.device_count()}")
+        log(f"Max Num batched Tokens: {max_num_batched_tokens}")
+        log(f"Max new Tokens: {max_tokens}")
+        log(f"Temperature: {temperature}")
+        log(f"Max Model Length: {max_model_len}")
+        log(f"Few-Shot (Zero-Shot): {fewShot}")
+        log(f"Chain-Of-Thoughts: {chainOfThoughts}")
+        log(f"Add Definitions to Prompt: {addDefinition}")
+        log(f"Add Comment to Prompt: {addComment}")
+        log(f"Add Parents to Prompt: {addParents}")
+        log(f"Add Children to Prompt: {addChildren}")
+        joinString = '\', \''
+        log(f"GPUs: '{joinString.join(gpu_id.split(','))}'")
+
         # Initialize vLLM engine
         self.llm = LLM(
             model=model,
@@ -66,14 +82,6 @@ class Model:
             max_tokens=max_tokens
         )
 
-        log(f"Max Num batched Tokens: {max_num_batched_tokens}")
-        log(f"Max new Tokens: {max_tokens}")
-        log(f"Temperature: {temperature}")
-        log(f"Max Model Length: {max_model_len}")
-        log(f"Few-Shot (Zero-Shot): {fewShot}")
-        log(f"Chain-Of-Thoughts: {chainOfThoughts}")
-        joinString = '\', \''
-        log(f"GPUs: '{joinString.join(gpu_id.split(','))}'")
 
     def addPrompt(self, role : str = userRole, message : list = []) -> int:
         """

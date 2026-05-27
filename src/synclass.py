@@ -38,6 +38,10 @@ hpoIDs   = getHPOIDs(synonyms)
 parents  = {}
 children = {}
 
+log(f"Set up the LLM ({modelName})...")
+model = Model(model = modelID)
+log(f"Set up of LLM complete.")
+
 with newProgress() as progress:
     
     task = newTask(progress, len(hpoIDs), "Get Parents and Children")
@@ -58,10 +62,6 @@ with newProgress() as progress:
 # ------------------------------------------------------------------------------
 # Classification of synonyms.
 # ------------------------------------------------------------------------------
-
-log(f"Set up the LLM ({modelName})...")
-model = Model(model = modelID)
-log(f"Set up of LLM complete.")
 
 messages = []
 

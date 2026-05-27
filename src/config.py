@@ -53,6 +53,9 @@ if len(sys.argv) > 1 and len(sys.argv[1]) > 0 and sys.argv[1][0] != "-":
     modelID = sys.argv[1]
     modelName = modelID[modelID.index("/") + 1:]
 
+print(modelID)
+print(modelName)
+
 # Possible Similarity Metrics
 cosineSimilarity        = "cosine"
 euclideanSimilarity     = "euclidean"
