@@ -26,36 +26,162 @@ startTime = time.time()
 # Load Human Phenotype Ontology (HPO) Data.
 # ------------------------------------------------------------------------------
 
-# Only proceed if formatted input data exists
-exitIfFileNotExist(inputFileClass)
+synonyms = None
 
-# Load the dataset from a pickle file
-gold    = readCSV(inputFileClass)
+# If already saved data is available.
+if isFile(outputFileClass):
+    synonyms = readCSV(outputFileClass)
+else:
+    # Only proceed if formatted input data exists
+    exitIfFileNotExist(inputFileClass)
 
-synonyms = gold[gold[classColumn].isin(synonymClasses)].copy().reset_index(
-    drop = True)
-hpoIDs   = getHPOIDs(synonyms)
-parents  = {}
-children = {}
+    # Load the dataset from a pickle file
+    gold    = readCSV(inputFileClass)
+
+    # Filter the synonyms.
+    synonyms = gold[gold[classColumn].isin(synonymClasses)].copy().reset_index(
+        drop = True)
+
+
+    hpoIDs   = getHPOIDs(synonyms)
+    parents  = {}
+    children = {}
+
+    # Collect parent's and children's labels for prompt creation. 
+    with newProgress() as progress:
+        
+        task = newTask(progress, len(hpoIDs), "Get Parents and Children")
+
+        for hpoID in hpoIDs:
+            children[hpoID] = getChildLabels (gold, hpoID)
+            parents[hpoID]  = getParentLabels(gold, hpoID)
+            
+            progress.update(task, advance = 1)
+        
+        progress.refresh()
+
+    # Reduce the data to only neccessary.
+    synonyms = synonyms[synonyms[hpoidColumn].isin(hpoIDs)].copy().reset_index(
+        drop = True)
+
+    with newProgress() as progress:
+
+        task = newTask(progress, len(synonyms.index), "Creating first Prompt")
+        messages = []
+
+        for index, row in synonyms.iterrows():
+            hpoID = row[hpoidColumn]
+
+            # For the Chain-Of-Thoughts approach there are several other prompts
+            # following after this. The Few-Shot approach is incorporated directly
+            # into the prompts.
+            if chainOfThoughts:
+                messages.append(semanticClassificationPrompt1(
+                    "".join(getElements(gold, hpoID, labelClass)),
+                    "".join(getElements(gold, hpoID, definitionClass)),
+                    "".join(getElements(gold, hpoID, commentClass)),
+                    parents[hpoID],
+                    children[hpoID]
+                ))
+            else:
+                messages.append(semanticClassificationPrompt(
+                    "".join(getElements(gold, hpoID, labelClass)),
+                    "".join(getElements(gold, hpoID, definitionClass)),
+                    "".join(getElements(gold, hpoID, commentClass)),
+                    parents[hpoID],
+                    children[hpoID],
+                    row[contentColumn]
+                ))
+
+            progress.update(task, advance = 1)
+
+        progress.refresh()
+
+        synonyms["{}{}".format(userRole, 1)]  = messages
+        synonyms["{}{}".format(modelRole, 1)] = [""] * len(synonyms.index)
+
+        # Here the other prompts for the Chain-Of-Thoughts approach are added.
+        # The Few-Shot approach is incorporated directl into the prompts.
+        if chainOfThoughts:
+            messages = []
+
+            task = newTask(progress, len(synonyms.index), "Creating following Prompts")
+
+            for index, row in synonyms.iterrows():
+                hpoID = row[hpoidColumn]
+
+                messages.append(semanticClassificationPrompt2(row[contentColumn]))
+                progress.update(task, advance = 1)
+
+            progress.refresh()
+
+            synonyms["{}{}".format(userRole, 2)]  = messages
+            synonyms["{}{}".format(modelRole, 2)] = [""] * len(synonyms.index)
+            synonyms["{}{}".format(userRole, 3)]  = [semanticClassificationPrompt3()] * len(synonyms.index)
+            synonyms[answerColumn]                = [""] * len(synonyms.index)
+
+        synonyms[systemColumn] = [modelName] * len(synonyms.index)
 
 log(f"Set up the LLM ({modelName})...")
 model = Model(model = modelID)
 log(f"Set up of LLM complete.")
 
-with newProgress() as progress:
+def structuredGeneration(data : pd.DataFrame = None, sourceColumn : str = "", 
+    previousSourceColumnPrompts : list = [], previousSourceColumnRoles : list = [],
+    targetColumn : str = "", file : str = "") -> pd.DataFrame:
+    ret = None
     
-    task = newTask(progress, len(hpoIDs), "Get Parents and Children")
+    if data is not None:
+        # Copy data.
+        ret = data.copy()
 
-    for hpoID in hpoIDs:
-        children[hpoID] = getChildLabels (gold, hpoID)
-        parents[hpoID]  = getParentLabels(gold, hpoID)
+        # Determining where to start generating. 
+        answers = ret[targetColumn].tolist()
+
         
-        progress.update(task, advance = 1)
-    
-    progress.refresh()
+        if (any(pd.isna(x) or x == "" or x is None for x in answers)):
+            
+            startIndex = next(
+                (i for i, x in enumerate(answers) if pd.isna(x) or x == "" or x is None), None
+            )
 
+            # Generate prompts
+            for i in range(startIndex, len(ret.index), chunkSizeAnswerGeneration):
 
+                # Reset model.
+                model.reset()
+                
+                # Determine endIndex.
+                endIndex = i + chunkSizeAnswerGeneration - 1
+                if endIndex > len(ret.index):
+                    endIndex = len(ret.index) - 1
 
+                # Setup prompt history.
+                for index in range(0, len(previousSourceColumnPrompts)):
+                    p = ret.loc[i:endIndex, previousSourceColumnPrompts[index]].tolist()
+                    model.addPrompt(previousSourceColumnRoles[index], p)
+
+                # Add current Prompt
+                p = ret.loc[i:endIndex, sourceColumn].tolist()
+                c = model.addPrompt(userRole, p)
+
+                log(f"{c} prompts added [Index: {i} - {endIndex}]. Start generating responses...")
+
+                # Generate. 
+                model.generate()
+
+                # Process generated answer. 
+                histories = model.getMessageHistories().copy()
+                for index, history in enumerate(histories):
+                    if (history is not None and isinstance(history, list) and history[-1][messageTextElement] is not None):
+                        ret.loc[i + index, targetColumn] = str(history[-1][messageTextElement]).strip()
+
+                # Save process. 
+                writeCSV(ret, file)
+        else:
+            log("Skipping Generation.")
+
+    return ret
 
 
 
@@ -63,95 +189,27 @@ with newProgress() as progress:
 # Classification of synonyms.
 # ------------------------------------------------------------------------------
 
-messages = []
-
-synonyms = synonyms[synonyms[hpoidColumn].isin(hpoIDs)].copy().reset_index(
-    drop = True)
-
-with newProgress() as progress:
-
-    task = newTask(progress, len(synonyms.index), "Set up first Prompt(s)")
-
-    for index, row in synonyms.iterrows():
-        hpoID = row[hpoidColumn]
-
-        # For the Chain-Of-Thoughts approach there are several other prompts
-        # following after this. The Few-Shot approach is incorporated directly
-        # into the prompts.
-        if chainOfThoughts:
-            messages.append(semanticClassificationPrompt1(
-                "".join(getElements(gold, hpoID, labelClass)),
-                "".join(getElements(gold, hpoID, definitionClass)),
-                "".join(getElements(gold, hpoID, commentClass)),
-                parents[hpoID],
-                children[hpoID]
-            ))
-        else:
-            messages.append(semanticClassificationPrompt(
-                "".join(getElements(gold, hpoID, labelClass)),
-                "".join(getElements(gold, hpoID, definitionClass)),
-                "".join(getElements(gold, hpoID, commentClass)),
-                parents[hpoID],
-                children[hpoID],
-                row[contentColumn]
-            ))
-
-        progress.update(task, advance = 1)
-
-    progress.refresh()
-
-addedPrompts = model.addPrompt(userRole, messages)
-log(f"{addedPrompts} prompts added. Start generating responses...")
-model.generate()
+log(f"(1) Generating.")
+synonyms = structuredGeneration(synonyms, "{}{}".format(userRole, 1), [], [], "{}{}".format(modelRole, 1), outputFileClass)
 
 # Here the other prompts for the Chain-Of-Thoughts approach are added.
 # The Few-Shot approach is incorporated directl into the prompts.
 if chainOfThoughts:
-    messages = []
-    with newProgress() as progress:
+    log(f"(2) Generating.")
+    synonyms = structuredGeneration(synonyms, "{}{}".format(userRole, 2), 
+        ["{}{}".format(userRole, 1), "{}{}".format(modelRole, 1)], 
+        [userRole, modelRole], 
+        "{}{}".format(modelRole, 2), outputFileClass)
 
-        task = newTask(progress, len(synonyms.index), "Set up second Prompt(s)")
-
-        for index, row in synonyms.iterrows():
-            hpoID = row[hpoidColumn]
-
-            messages.append(semanticClassificationPrompt2(row[contentColumn]))
-            progress.update(task, advance = 1)
-
-        progress.refresh()
-
-    addedPrompts = model.addPrompt(userRole, messages)
-    log(f"{addedPrompts} prompts added. Start generating responses...")
-    model.generate()
-
-    addedPrompts = model.addPrompt(userRole, [semanticClassificationPrompt3()])
-    log(f"{addedPrompts} prompts added. Start generating responses...")
-    model.generate()
+    log(f"(3) Generating.")
+    synonyms = structuredGeneration(synonyms, "{}{}".format(userRole, 3), 
+        ["{}{}".format(userRole, 1), "{}{}".format(modelRole, 1), "{}{}".format(userRole, 2), "{}{}".format(modelRole, 2)], 
+        [userRole, modelRole, userRole, modelRole], 
+        answerColumn, outputFileClass)
 
 log("Logging Prompts of Model...")
 model.logPrompts()
 log("Prompts of Model have been logged.")
-
-# ------------------------------------------------------------------------------
-# Clean data.
-# ------------------------------------------------------------------------------
-
-histories = model.getMessageHistories().copy()
-
-synonyms[answerColumn] = [""] * len(synonyms.index)
-for index, history in enumerate(histories):
-    if (history is not None and 
-        isinstance(history, list) and 
-        messageTextElement in history[-1].keys() and 
-        history[-1][messageTextElement] is not None):
-        synonyms.loc[index, answerColumn] = \
-            str(history[-1][messageTextElement]).strip()
-        synonyms.loc[index, systemColumn] = modelName
-
-
-
-
-
 
 # -----------------------------------------------------------------------------
 # Persist transformed data to disk.

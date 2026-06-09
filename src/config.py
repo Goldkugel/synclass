@@ -1,5 +1,6 @@
 import os
 import sys
+import torch
 
 # Prevent Python from generating .pyc files (compiled bytecode files)
 sys.dont_write_bytecode = True
@@ -18,6 +19,8 @@ if "chain-of-thoughts" in sys.argv:
     chainOfThoughts = True
 
 forceDrawAdditionalPlots = False
+
+chunkSizeAnswerGeneration = 100
 
 addDefinition   = False
 if "definition" in sys.argv:
@@ -52,9 +55,6 @@ modelName = ""
 if len(sys.argv) > 1 and len(sys.argv[1]) > 0 and sys.argv[1][0] != "-":
     modelID = sys.argv[1]
     modelName = modelID[modelID.index("/") + 1:]
-
-print(modelID)
-print(modelName)
 
 # Possible Similarity Metrics
 cosineSimilarity        = "cosine"
@@ -124,9 +124,10 @@ similarityEvaluationLowerBound = -4
 similarityEvaluationUperBound  = 4
 similarityEvaluationParts      = (similarityEvaluationUperBound - similarityEvaluationLowerBound) * 1000 + 1
 
-gpu_id = "0,1"
-if len(sys.argv) > 2:
-    gpu_id = sys.argv[2]
+gpus = int(torch.cuda.device_count())
+gpu_id = ""
+if gpus > 0:
+    gpu_id = ','.join(map(str, [i for i in range(0, gpus)]))
 
 # Float that controls the cumulative probability of the top tokens to consider.
 # Must be in (0, 1]. Set to 1 to consider all tokens.

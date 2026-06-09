@@ -23,7 +23,8 @@ os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["VLLM_TARGET_DEVICE"] = "cuda"
 
 # Restrict visible GPUs to those specified in config (e.g. "0,1")
-os.environ["CUDA_VISIBLE_DEVICES"] = gpu_id
+if len(gpu_id) > 0:
+    os.environ["CUDA_VISIBLE_DEVICES"] = gpu_id
 
 class Model:
     """
@@ -165,7 +166,7 @@ class Model:
             inputs.append(prompt)
 
         # Run inference  
-        generatedText = self.llm.generate(inputs, self.sampling_params)
+        generatedText = self.llm.generate(inputs, self.sampling_params, use_tqdm=False)
         outputs = []
 
         # Extract and clean generated text
