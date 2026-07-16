@@ -311,12 +311,25 @@ def writePickle(data: pd.DataFrame, file: str = "") -> None:
     pd.to_pickle(data, file)
     printWriteDone(file)
 
+def writeHugeCSV(data: pd.DataFrame, file: str = "") -> None:
+    tmpfile = file + ".tmp"
+    log("Writing in temporary file...")
+    writeCSV(data, tmpfile)
+    log("Writing in temporary file completed. Replacing old data with new data...")
+    os.replace(tmpfile, file)
+    log("Old data replaced with new data.")
+
+
 def writeCSV(data: pd.DataFrame, file: str = "") -> None:
     """
-    Write a DataFrame to disk as a pickle with logging.
+    Write a DataFrame to disk as a CSV file with logging.
     """
     printWrite(file)
-    data.to_csv(file, index = False)
+
+    with open(file, "w", newline="") as f:
+        data.to_csv(f, index = False)
+        f.flush()
+        
     printWriteDone(file)
 
 

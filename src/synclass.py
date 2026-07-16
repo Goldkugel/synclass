@@ -121,13 +121,15 @@ else:
             synonyms[answerColumn]                = [""] * len(synonyms.index)
 
         synonyms[systemColumn] = [modelName] * len(synonyms.index)
+        log("Write Prompts to file.")
+        writeHugeCSV(synonyms, outputFileClass)
 
 log(f"Set up the LLM ({modelName})...")
 model = Model(model = modelID)
 log(f"Set up of LLM complete.")
 
 def structuredGeneration(data : pd.DataFrame = None, sourceColumn : str = "", 
-    previousSourceColumnPrompts : list = [], previousSourceColumnRoles : list = [],
+    previousSourceColumnPrompts : list = [], previousSourceColumnRoless : list = [],
     targetColumn : str = "", file : str = "") -> pd.DataFrame:
     ret = None
     
@@ -177,7 +179,7 @@ def structuredGeneration(data : pd.DataFrame = None, sourceColumn : str = "",
                         ret.loc[i + index, targetColumn] = str(history[-1][messageTextElement]).strip()
 
                 # Save process. 
-                writeCSV(ret, file)
+                writeHugeCSV(ret, file)
         else:
             log("Skipping Generation.")
 
@@ -206,16 +208,8 @@ if chainOfThoughts:
         ["{}{}".format(userRole, 1), "{}{}".format(modelRole, 1), "{}{}".format(userRole, 2), "{}{}".format(modelRole, 2)], 
         [userRole, modelRole, userRole, modelRole], 
         answerColumn, outputFileClass)
-
-log("Logging Prompts of Model...")
-model.logPrompts()
-log("Prompts of Model have been logged.")
-
-# -----------------------------------------------------------------------------
-# Persist transformed data to disk.
-# -----------------------------------------------------------------------------
-
-writeCSV(synonyms, outputFileClass)
+else:
+    synonyms = synonyms.rename(columns={"{}{}".format(modelRole, 1): answerColumn})
 
 # For time tracking.
 minutes         = int((time.time() - startTime) // 60)

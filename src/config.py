@@ -20,7 +20,7 @@ if "chain-of-thoughts" in sys.argv:
 
 forceDrawAdditionalPlots = False
 
-chunkSizeAnswerGeneration = 100
+chunkSizeAnswerGeneration = 500
 
 addDefinition   = False
 if "definition" in sys.argv:

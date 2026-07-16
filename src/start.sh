@@ -1,7 +1,7 @@
 #!/bin/bash
 
-MODE="test" 
-#MODE=""
+#MODE="test" 
+MODE=""
 
 CoT="chain-of-thoughts" 
 #CoT=""
