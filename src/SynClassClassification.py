@@ -18,6 +18,7 @@ import shlex
 import json
 import logging
 import math
+import functools
 
 import numpy  as np
 import pandas as pd
@@ -27,7 +28,7 @@ sys.dont_write_bytecode = True
 from SynClassUtils import *
 from config     import *
 
-from logger     import Logger, lockedFile, writeJSON
+from logger     import Logger, lockedFile
 
 l = Logger(config = configFile)
 
@@ -338,13 +339,16 @@ def embedTerms(inputFile : str, outputFile : str, developmentSet : bool) -> None
                 classes).agg([m, s]).reindex(synonymClasses)
             means = grouped[m].tolist()
             stds  = grouped[s].tolist()
-            ssmd = (means[0] - means[1]) / math.sqrt(
-                math.pow(stds[0], 2) + math.pow(stds[1], 2))
+            # NaN if a class has no or only one distance (no std).
+            spread = math.sqrt(math.pow(stds[0], 2) + math.pow(stds[1], 2))
+            ssmd   = (means[0] - means[1]) / spread if spread > 0 else float("nan")
             l.log(f"Strictly standardized mean difference [{exactSynonymClass} - " \
                 f"{relatedSynonymClass}]: {ssmd:.4f}.")
             l.log(f"Difference of the means {means[0] - means[1]:.4f}, " \
                 f"of the stds {stds[0] - stds[1]:.4f}.")
 
+        # Released before the next model is loaded.
+        del embedder
 
     l.log("Embedding the synonyms and labels with all embedding models completed.")
 
@@ -354,6 +358,16 @@ def embedTerms(inputFile : str, outputFile : str, developmentSet : bool) -> None
 # ==============================================================================
 # Classification of the synonyms with the LLM -> the raw classification file.
 # ==============================================================================
+
+@functools.lru_cache(maxsize = 1)
+def readTask() -> pd.DataFrame:
+    """
+    The synonyms to classify and the information of their concepts
+    (inputFileClass), read once per run: all models of a run classify the
+    same synonyms. The callers must not change the returned data.
+    """
+    exitIfFileNotExist(inputFileClass)
+    return readTransformed(inputFileClass)
 
 def classifySynonyms(modelID : str) -> pd.DataFrame:
     """
@@ -373,12 +387,13 @@ def classifySynonyms(modelID : str) -> pd.DataFrame:
 
     l.printHeader(f"Classifying the Synonyms ({modelName})")
 
-    exitIfFileNotExist(inputFileClass)
-
-    gold     = readTransformed(inputFileClass)
+    gold     = readTask()
 
     # The synonyms of the evaluation set, or of the development set ("test").
     synonyms = synonymTable(gold)
+    if len(synonyms.index) == 0:
+        raise ValueError(f"{quote(os.path.basename(inputFileClass))} contains no " \
+            f"synonym of the classes {applyFormat(synonymClasses)}.")
 
     def elements(attribute : str, key : str = idColumn,
             value : str = valueColumn) -> dict:
@@ -473,15 +488,18 @@ def classifySynonyms(modelID : str) -> pd.DataFrame:
 
             synonyms[targetColumn] = [model.getAnswer(index, turn) for index in range(len(values))]
             writeHugeCSV(synonyms, rawFile)
+            # A prompt longer than llm.max_model_len gets no answer; its
+            # classification is undefined.
+            unanswered = (synonyms[targetColumn] == "").sum()
+            if unanswered > 0:
+                l.warning(f"Turn {turn + 1}/{len(turns)}: {unanswered} of {len(values)} " \
+                    "prompts have no answer (e.g. longer than llm.max_model_len).")
             l.log(f"{generating} completed.")
 
         # The final answers are JSON objects (classification, confidence,
         # rationale).
         l.log("Parsing the answers...")
-        parsed = [
-            parseClassification(model.toJSON(index))
-            for index in range(len(model.getMessageHistories()))
-        ]
+        parsed = [parseClassification(model.toJSON(index)) for index in range(len(values))]
         synonyms[classificationKey]     = [classification for classification, _, _ in parsed]
         synonyms[confidenceColumn] = [confidence for _, confidence, _ in parsed]
         synonyms[rationaleColumn]  = [rationale for _, _, rationale in parsed]
@@ -519,28 +537,25 @@ def formatAnswers(synonyms : pd.DataFrame, modelName : str) -> None:
 
     l.log("Logging the wrong classifications...")
 
-    # The wrong classifications in the log help to improve the prompts.
-    gold   = readTransformed(inputFileClass)
-    labels = gold[gold[attributeColumn] == labelClass].copy().reset_index(drop = True)
-    count  = 0
+    # The wrong classifications in the log help to improve the prompts. An
+    # undefined answer is never the gold class, so it is listed as well.
+    goldClasses = classesOf(classified)
+    wrong       = classified[answerColumn].astype(str).str.lower() != goldClasses
+    labels      = labelsByConcept(readTask())
 
     l.log("Wrong or undefined classifications, as synonym (label): gold -> " \
         "classified (confidence),", cmdline = False)
     l.log("with the rationale in the next row.", cmdline = False)
-    for (index, row), goldClass in zip(classified.iterrows(), classesOf(classified)):
-        # Undefined, or differing from the gold class.
-        if (str(row[answerColumn]).lower() == undefinedSynonymClass.lower() or
-            str(row[answerColumn]).lower() != goldClass):
-            # Shortened; the full texts are in the raw and formatted files.
-            label = ", ".join(getElements(labels, row[idColumn], labelClass))
-            l.log(f"{quote(shorten(row[valueColumn], 32))} " \
-                f"(label {quote(shorten(label, 28))}): {goldClass} -> " \
-                f"{row[answerColumn]} ({row[confidenceColumn]}).", cmdline = False)
-            l.log(f"    {quote(shorten(row[rationaleColumn], 90))}", cmdline = False)
-            count = count + 1
+    for (_, row), goldClass in zip(classified[wrong].iterrows(), goldClasses[wrong]):
+        # Shortened; the full texts are in the raw and formatted files.
+        label = labels.get(row[idColumn], "")
+        l.log(f"{quote(shorten(row[valueColumn], 32))} " \
+            f"(label {quote(shorten(label, 28))}): {goldClass} -> " \
+            f"{row[answerColumn]} ({row[confidenceColumn]}).", cmdline = False)
+        l.log(f"    {quote(shorten(row[rationaleColumn], 90))}", cmdline = False)
 
-    l.log(f"Wrong or undefined classifications: {count}.")
-    l.log(f"Correct classifications: {len(classified.index) - count}.")
+    l.log(f"Wrong or undefined classifications: {wrong.sum()}.")
+    l.log(f"Correct classifications: {(~wrong).sum()}.")
     l.log("Logging the wrong classifications completed.")
 
     logClassificationSummary(classified, modelName)
@@ -562,7 +577,7 @@ def logClassificationSummary(classified : pd.DataFrame, modelName : str) -> None
     answers = synonymClasses + [undefinedSynonymClass]
 
     l.log(f"Summary of {modelName}: {len(scored.index)} synonyms.")
-    l.log(f"Gold classes " + ", ".join(synonymClasses) + ", without the few-shot examples; " \
+    l.log("Gold classes " + ", ".join(synonymClasses) + ", without the few-shot examples; " \
         f"{(scored[answerColumn] == undefinedSynonymClass).sum()} answers undefined.")
     l.log(f"{'Gold / Classified':<20}" + "".join(f"{answer:>12}" for answer in answers))
     for goldClass in synonymClasses:
@@ -639,7 +654,7 @@ def main() -> None:
                     synonyms = classifySynonyms(modelID)
                 with l.step(f"Formatting the answers ({modelName})"):
                     formatAnswers(synonyms, modelName)
-            except (Exception, SystemExit) as e:
+            except (Exception, SystemExit):
                 # The step's rows give the reason; the traceback goes to the
                 # log file only.
                 l.exception(f"Classifying with {quote(modelID)} failed.", cmdline = False)
