@@ -1,151 +1,107 @@
+"""
+The configuration of synclass: reads config/config.yaml, picks the experiment
+and the models of a run from the command line, and defines the column and
+class names, the file names of every step and the Few-Shot examples.
+Imported by every script with `from config import *`.
+
+    python3 ./src/config.py   prints the number of experiments
+"""
+
 import os
 import sys
-import torch
+import yaml
 
-# Prevent Python from generating .pyc files (compiled bytecode files)
+from SynClassConfig import ExperimentConfig, SynclassConfig
+
+# The attributes and synonym classes of the transformed HPO, as the adapter
+# writes them.
+from adapter                  import labelClass, definitionClass, commentClass, childrenClass
+from adapter                  import exactSynonymClass, relatedSynonymClass
+
 sys.dont_write_bytecode = True
 
-reduceToTestIDs         = False
-if "test" in sys.argv:
-    reduceToTestIDs = True
+# =============================================================================
+# Configuration File
+# =============================================================================
 
-fewShot                 = False
-chainOfThoughts         = False
+# The settings of synclass ("synclass" section) and of the packages it uses
+# (adapter, embedder, llm, logger).
+configFile = "./config/config.yaml"
 
-if "few-shot" in sys.argv:
-    fewShot = True
+with open(configFile, "r", encoding = "utf-8") as f:
+    configurationFile = yaml.safe_load(f)
 
-if "chain-of-thoughts" in sys.argv:
-    chainOfThoughts = True
+synclassConfig = SynclassConfig.model_validate(configurationFile["synclass"])
 
-forceDrawAdditionalPlots = False
+# =============================================================================
+# Experiment and models of a run, given on the command line:
+#   (nothing)           the preparation run (SynClassClassification.py only);
+#   <index>             the experiment synclass.experiments[<index>], from 0,
+#                       with every model of llm.model_id;
+#   <index> <model ID>  SynClassClassification.py with only this model.
+# =============================================================================
 
-chunkSizeAnswerGeneration = 500
+experimentIndex = None
+if len(sys.argv) > 1:
+    experimentCount = len(synclassConfig.experiments)
+    if not sys.argv[1].isdigit() or int(sys.argv[1]) >= experimentCount:
+        sys.exit(f"The experiment '{sys.argv[1]}' does not exist: give its index in " \
+            f"synclass.experiments, 0 to {experimentCount - 1}.")
+    experimentIndex = int(sys.argv[1])
 
-addDefinition   = False
-if "definition" in sys.argv:
-    addDefinition = True
+# The preparation run classifies nothing, so it has no experiment.
+experiment = (ExperimentConfig() if experimentIndex is None
+    else synclassConfig.experiments[experimentIndex])
 
-addComment      = False
-if "comment" in sys.argv:
-    addComment = True
+reduceToTestIDs         = experiment.test
+fewShot                 = experiment.few_shot
+chainOfThoughts         = experiment.chain_of_thoughts
+addDefinition           = experiment.definition
+addComment              = experiment.comment
+addStructure            = experiment.structure
 
-addParents      = False
-if "parents" in sys.argv:
-    addParents = True
-
-addChildren     = False
-if "children" in sys.argv:
-    addChildren = True
+forceDrawAdditionalPlots = synclassConfig.force_draw_additional_plots
 
 testStr                 = "Test" if reduceToTestIDs else "NoTest"
-configStr               = "Definition" if addDefinition else "NoDefinition"
-configStr              += "_Comment" if addComment else "_NoComment"
-configStr              += "_Parents" if addParents else "_NoParents"
-configStr              += "_Children" if addChildren else "_NoChildren"
-fewShotStr              = "FewShot" if fewShot else "NoFewShot"
-chainOfThoughtsStr      = "ChainOfThoughts" if chainOfThoughts else "NoChainOfThoughts"
+configStr               = "Def" if addDefinition else "NoDef"
+configStr              += "_Com" if addComment else "_NoCom"
+configStr              += "_Str" if addStructure else "_NoStr"
+fewShotStr              = "FS" if fewShot else "NoFS"
+chainOfThoughtsStr      = "COT" if chainOfThoughts else "NoCOT"
 
 # =============================================================================
 # Model Configuration
 # =============================================================================
 
-modelID = ""
-modelName = ""
-if len(sys.argv) > 1 and len(sys.argv[1]) > 0 and sys.argv[1][0] != "-":
-    modelID = sys.argv[1]
-    modelName = modelID[modelID.index("/") + 1:]
+# None in the preparation run, the one given after the experiment, or all of
+# llm.model_id.
+modelIDs = []
+if experimentIndex is not None:
+    modelIDs = sys.argv[2:3] or list(configurationFile["llm"]["model_id"])
 
-# Possible Similarity Metrics
-cosineSimilarity        = "cosine"
-euclideanSimilarity     = "euclidean"
-scalarSimilarity        = "scalar"
-manhattanSimilarity     = "manhattan"
-angularSimilarity       = "angular"
-mahalanobisSimilarity   = "mahalanobis"
+def modelNameOf(modelID : str) -> str:
+    """
+    The name of a model in file names and the system column: its ID without
+    the organisation, e.g. "medgemma-4b-it" for "google/medgemma-4b-it".
+    """
+    return modelID[modelID.index("/") + 1:] if "/" in modelID else modelID
 
-# Similarity Metrics used. Scalar Similarity is not very useful. Additionally,
-# Mahalanobis Similarity is not necessary, if afterwards all metrics are
-# normalized. 
-similarityMetrics = [
-    cosineSimilarity,
-    euclideanSimilarity,
-    manhattanSimilarity,
-    angularSimilarity
-]
+# The distance columns, distance_<embedding model>_<metric>.
+distanceColumnPrePrefix   = "distance_"
+distanceColumnPrefix      = f"{distanceColumnPrePrefix}" + "{}_{}"
 
-# Model Names used to embed the synonyms and labels and to generate 
-# similarities.
-bioClinicalBERT = "BioClinicalBERT"
-bioBERT         = "BioBERT"
-clinicalBERT    = "ClinicalBERT"
-sapBERT         = "SapBERT"
-sciBERT         = "SciBERT"
-umlsBERT        = "UMLSBERT"
-sapUMLSBERT     = "SapUMLSBERT"
-medCPT          = "medCPT"
-pubmedBERT      = "PubMedBERT"
-bioLinkBERT     = "BioLinkBERT"
+distanceEvaluationLowerBound = synclassConfig.distance_evaluation_lower_bound
+distanceEvaluationUpperBound  = synclassConfig.distance_evaluation_upper_bound
+# The number of thresholds tried, one every 0.001 of the configured range.
+distanceEvaluationParts      = int((distanceEvaluationUpperBound - distanceEvaluationLowerBound) * 1000 + 1)
 
-# The model IDs for the embeddings.
-embeddingModels = {
-    bioClinicalBERT : "emilyalsentzer/Bio_ClinicalBERT",
-    sapBERT         : "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
-    clinicalBERT    : "medicalai/ClinicalBERT",
-    bioBERT         : "dmis-lab/biobert-v1.1",
-    umlsBERT        : "GanjinZero/UMLSBert_ENG",
-    sciBERT         : "allenai/scibert_scivocab_cased",
-    sapUMLSBERT     : "cambridgeltl/SapBERT-UMLS-2020AB-all-lang-from-XLMR",
-    medCPT          : "ncbi/MedCPT-Query-Encoder",
-    pubmedBERT      : "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext",
-    bioLinkBERT     : "michiyasunaga/BioLinkBERT-large"
-}
+# The thresholds of the distance models of the evaluation.
+distanceThresholds           = synclassConfig.distance_thresholds
 
-similarityColumnPrePrefix   = "similarity_"
-similarityColumnPrefix      = f"{similarityColumnPrePrefix}" + "{}_{}"
-
-# All listed similarity metrics are checked to be below the threshold such that 
-# the synonym is classified as related.
-# F1 Score > 0.9 for Related
-embeddingThresholdsRelated  = {
-    similarityColumnPrefix.format(bioClinicalBERT, cosineSimilarity)    : -2.537, #
-    similarityColumnPrefix.format(sapBERT,         manhattanSimilarity) : -0.851, #
-}
-
-# All listed similarity metrics are checked to be above the threshold such that 
-# the synonym is classified as exact.
-# F1 SCore > 0.85
-embeddingThresholdsExact  = {
-    similarityColumnPrefix.format(sapBERT,         euclideanSimilarity) : 2.425, #
-    similarityColumnPrefix.format(sapUMLSBERT,     manhattanSimilarity) : 2.957, #
-}
-
-similarityEvaluationLowerBound = -4
-similarityEvaluationUperBound  = 4
-similarityEvaluationParts      = (similarityEvaluationUperBound - similarityEvaluationLowerBound) * 1000 + 1
-
-gpus = int(torch.cuda.device_count())
-gpu_id = ""
-if gpus > 0:
-    gpu_id = ','.join(map(str, [i for i in range(0, gpus)]))
-
-# Float that controls the cumulative probability of the top tokens to consider.
-# Must be in (0, 1]. Set to 1 to consider all tokens.
-top_p=0.95
-
-max_model_len = 4 * 2048
-max_num_batched_tokens = 2 * max_model_len
-
-# Float that controls the randomness of the sampling. Lower values make the 
-# model more deterministic, while higher values make the model more random. 
-# Zero means greedy sampling.
-temperature = 0.01
-
-# Maximum number of tokens to generate per output sequence.
-max_tokens = 2048
-
-# Random seed to use for the generation
-seed = 2898231092
+# Mean and standard deviation of the cosine distance with which the distances
+# are normalised (None: computed from the data).
+cosineDistanceMean           = synclassConfig.cosine_distance_mean
+cosineDistanceStd            = synclassConfig.cosine_distance_std
 
 # =============================================================================
 # For Simplification
@@ -153,118 +109,34 @@ seed = 2898231092
 
 quotationCharacter = "\""
 
-systemRole = "system"
-userRole = "user"
-modelRole = "assistant"
-
-# For Gemma
-startTurnID = "start_of_turn"
-endTurnID = "end_of_turn"
-
-# For Llama
-startHeaderID = "start_header_id"
-endHeaderID = "end_header_id"
-endOfTextID = "eot_id"
-beginOfTextID = "begin_of_text"
-endOfTextID2 = "end_of_text"
-
-startTag = "<"
-endTag = ">"
-bar = "|"
-
-unusedTokens = "<unused95>"
-
-# For Gemma
-startTurn = f"{startTag}{startTurnID}{endTag}"
-endTurn = f"{startTag}{endTurnID}{endTag}"
-
-# For Llama
-startHeader = f"{startTag}{bar}{startHeaderID}{bar}{endTag}"
-endHeader = f"{startTag}{bar}{endHeaderID}{bar}{endTag}"
-endOfText = f"{startTag}{bar}{endOfTextID}{bar}{endTag}"
-beginOfText = f"{startTag}{bar}{beginOfTextID}{bar}{endTag}"
-endOfText2 = f"{startTag}{bar}{endOfTextID2}{bar}{endTag}"
-
-messageRoleElement = "role"
-messageTextElement = "message"
-
-headerChar = "="
-headerLen = 60
-headerSeparator = headerChar * headerLen
-
-progressBarColor = "cyan"
-progressBarTextLength = 40
-
 # =============================================================================
-# For Data Curation
+# Result columns of the classification files, after the columns of the
+# transformed HPO (id, attribute, value, additional)
 # =============================================================================
-sourceLanguageShort = "en"
-sourceLanguage      = "English"
-
-hpoidColumn                 = "hpoID"
-classColumn                 = "class"
-typeColumn                  = "type"
-contentColumn               = "content"
 systemColumn                = "system"
-roundColumn                 = "round"
 answerColumn                = "answer"
 confidenceColumn            = "confidence"
-
-embeddingColumn             = "embedding"
+# The short explanation of a classification in the LLM's answer.
+rationaleColumn             = "rationale"
 
 # =============================================================================
-# Data Classes of Concepts in HPO that are being processed
+# The answer key, and the synonym classes synclass classifies
 # =============================================================================
 
-labelClass                      = "label"
-definitionClass                 = "definition"
-commentClass                    = "comment"
-referenceClass                  = "reference"
+# The key of the classification in the LLM's JSON answer.
+classificationKey               = "classification"
 
-synonymClass                    = "classification"
-exactSynonymClass               = "exact"
-relatedSynonymClass             = "related"
-broadSynonymClass               = "broad"
-narrowSynonymClass              = "narrow"
+# The synonym classes synclass classifies, and the classes the LLM classifies
+# them into (see prompts/); broad and narrow synonyms name a broader or
+# narrower concept and are left out.
+synonymClasses = [exactSynonymClass, relatedSynonymClass]
 
-synonymClasses = [exactSynonymClass, relatedSynonymClass]#, broadSynonymClass, narrowSynonymClass]
+# An answer without a valid classification.
+undefinedSynonymClass           = "undefined"
 
-expertSynonymType               = "expert"
-laypersonSynonymType            = "layperson"
-abbreviationSynonymType         = "abbreviation"
-obsoleteSynonymType             = "obsolete"
-pluralFormSynonymType           = "plural"
-ukSpellingSynonymType           = "uk"
-allelicRequirementSynonymType   = "allelic"
-# In OWL Class Section, rather than in Axiom Section.
-directSynonymType               = "direct"
-
-undefinedSynonymType            = "undefined"
-
-synonymTypes = [expertSynonymType, laypersonSynonymType, directSynonymType]
-
-childrenClass                   = "child"
-
-enrichedSourceExactSynonymClass = "generatedSynonym"
-enrichedSourceDefinitionClass   = "generatedDefinition"
-
-goldStandardSystem              = "gold"
-
-owlSourceExactSynonym                   = "hasExactSynonym"
-owlSourceRelatedSynonym                 = "hasRelatedSynonym"
-owlSourceBoradSynonym                   = "hasBroadSynonym"
-owlSourceNarrowSynonym                  = "hasNarrowSynonym"
-
-owlSourceSynonymTypeLayperson           = "layperson"
-owlSourceSynonymTypeAbbreviation        = "abbreviation"
-owlSourceSynonymTypeObsolete            = "obsolete_synonym"
-owlSourceSynonymTypePlural              = "plural_form"
-owlSourceSynonymTypeUKSpelling          = "uk_spelling"
-owlSourceSynonymTypeAllelic             = "allelic_requirement"
-
+# The metrics of the precision, recall and F1 plot.
 precisionLabel  = "precision"
 recallLabel     = "recall"
-accuracyLabel   = "accuracy"
 f1ScoreLabel    = "f1"
 
 # =============================================================================
@@ -272,88 +144,73 @@ f1ScoreLabel    = "f1"
 # =============================================================================
 
 csvFileFormat = "csv"
-pickleFileFormat = "pkl"
-logFileFormat = "log"
 plotFileFormat = "png"
 
-# Basic Data Directory.
-dataDir = "../data"
+dataDir = synclassConfig.data_folder
 
-# Basic Data Subdirectories.
-inputFolderName                     = "input"
 outputFolderName                    = "output"
-logFolderName                       = "logs"
 
-# Basic Data Processing Directories.
-# First step.
-outputFolderNameTransformed         = "transform"
-# The second Step is the actual job e.g. generation or classification.
-# Third step.
-outputFolderNameFormatted           = "format"
-# Fourth step.
-outputFolderNameMerged              = "merge"
-# The gold standards are saved here, might not be necessary.
-outputFolderNameGold                = "gold"
-# Fifth step.
-outputFolderNameEvaluation          = "evaluate"
+# The folders of the formatting, merging and evaluation under data/output/;
+# the raw classifications are in outputFolderNameClass, the distances in
+# outputFolderNameEmbedded, the transformed HPO in adapter.hpo.output_folder.
+outputFolderNameFormatted           = "formatted"
+outputFolderNameMerged              = "merged"
+outputFolderNameEvaluation          = "evaluated"
 
-logFileName                         = f"synclass_{testStr}"
-if modelName != "":
-    logFileName                     += f"_{configStr}_{chainOfThoughtsStr}_{fewShotStr}_{modelName}"
-logFileName                         += f".{logFileFormat}"
 
-logFilePromptsName                  = f"prompts_{testStr}_{configStr}_{chainOfThoughtsStr}_{fewShotStr}_{modelName}.{logFileFormat}"
-
-logFile                     = os.path.join(
-    dataDir,
-    logFolderName,
-    logFileName
-)
-
-logFilePrompts              = os.path.join(
-    dataDir,
-    logFolderName,
-    logFilePromptsName
-)
-
-# The Input Folders of each Step
-inputFolderNameTransformed          = inputFolderName
-
-inputFileNameTransformed            = "hp.owl"
-
+# The HPO file read by the adapter (adapter.hpo section).
 inputFileTransformed        = os.path.join(
-    dataDir,
-    inputFolderName,
-    inputFileNameTransformed
+    configurationFile["adapter"]["hpo"]["input_folder"],
+    configurationFile["adapter"]["hpo"]["input_files"][0]
 )
 
-# Contains all Information of the hp.owl needed to Generate and Classify 
-# Synonyms and perform the Evaluation.
-outputFileNameTransformedFull       = f"transform.{csvFileFormat}"
+# hp.owl transformed by SynClassClassification.py, where adapter.hpo.output_folder
+# and output_file say: everything the classification and the evaluation need.
+# The development and evaluation set are named after it in the same folder,
+# e.g. hpo.development.csv and hpo.evaluation.csv.
+outputFileTransformedFull = os.path.join(
+    configurationFile["adapter"]["hpo"]["output_folder"],
+    configurationFile["adapter"]["hpo"]["output_file"]
+)
+transformedStem, transformedExtension = os.path.splitext(outputFileTransformedFull)
 
-outputFileTransformedFull                     = os.path.join(
+# The development set (synclass.development_set): the synonyms drawn at random
+# and the information of their concepts, classified by runs with "test".
+outputFileTransformedDevelopment = f"{transformedStem}.development{transformedExtension}"
+
+# The evaluation set: hpo.csv without the synonyms of the development set,
+# classified by runs without "test".
+outputFileTransformedEvaluation  = f"{transformedStem}.evaluation{transformedExtension}"
+
+inputFileTask = outputFileTransformedDevelopment if reduceToTestIDs else outputFileTransformedEvaluation
+
+# Distances of the synonyms to their label (the preparation run), in the
+# columns of hpo.csv: of the development set, for the evaluation of test runs
+# and to choose the distance threshold.
+outputFolderNameEmbedded             = "embedded"
+outputFileEmbeddedDevelopment        = os.path.join(
     dataDir,
     outputFolderName,
-    outputFolderNameTransformed,
-    outputFileNameTransformedFull
+    outputFolderNameEmbedded,
+    f"embed.development.{csvFileFormat}"
 )
 
-# Reduction to Test HPO IDs listed at the bottom for engineering purposes.
-outputFileNameTransformed           = f"transform.reduced.{csvFileFormat}"
-
-outputFileTransformed                        = os.path.join(
+# Of the evaluation set, for the evaluation of the other runs.
+outputFileEmbeddedEvaluation         = os.path.join(
     dataDir,
     outputFolderName,
-    outputFolderNameTransformed,
-    outputFileNameTransformed
+    outputFolderNameEmbedded,
+    f"embed.{csvFileFormat}"
 )
 
-inputFileTask = outputFileTransformed if reduceToTestIDs else outputFileTransformedFull
+inputFileDistances = outputFileEmbeddedDevelopment if reduceToTestIDs else outputFileEmbeddedEvaluation
 
 # =============================================================================
 # Files for Synonym Classification
 # =============================================================================
 
+# The short experiment name in every file name of a run, e.g.
+# class_Test_NoDef_NoCom_NoStr_NoCOT_FS.
 outputFolderNameClass    = "class"
 filesPrefixClass         = f"{outputFolderNameClass}_{testStr}_{configStr}"
 filesPrefixApproachClass = f"{filesPrefixClass}_{chainOfThoughtsStr}_{fewShotStr}"
@@ -362,33 +219,25 @@ filesPrefixApproachClass = f"{filesPrefixClass}_{chainOfThoughtsStr}_{fewShotStr
 
 inputFileClass                         = inputFileTask
 
-outputFileNameClass                    = f"{filesPrefixApproachClass}_raw_{modelName}.{csvFileFormat}"
-outputFileClass                        = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameClass,
-    outputFileNameClass
-)
-
-# Contains the formatted classified Synonyms of the Model. 
-inputFileClassFormatted                = outputFileClass
 outputFileNameClassFormattedPrefix     = f"{filesPrefixApproachClass}_formatted"
-outputFileNameClassFormatted           = f"{outputFileNameClassFormattedPrefix}_{modelName}.{csvFileFormat}"
-outputFileClassFormatted               = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameFormatted,
-    outputFileNameClassFormatted
-)
 
-inputFileNameClassMerged               = [
-    file
-    for file in os.listdir(os.path.join(dataDir, outputFolderName, outputFolderNameFormatted))
-    if file.startswith(outputFileNameClassFormattedPrefix) and file.endswith(csvFileFormat)
-]
-inputFileClassMerged                   = [
-    os.path.join(dataDir, outputFolderName, outputFolderNameFormatted, filename) for filename in inputFileNameClassMerged
-]
+def outputFileClass(modelName : str) -> str:
+    """
+    The raw classification of a model: prompts, answers and the parsed
+    classification.
+    """
+    return os.path.join(dataDir, outputFolderName, outputFolderNameClass,
+        f"{filesPrefixApproachClass}_raw_{modelName}.{csvFileFormat}")
+
+def outputFileClassFormatted(modelName : str) -> str:
+    """
+    The formatted classification of a model, merged by SynClassMerge.py.
+    """
+    return os.path.join(dataDir, outputFolderName, outputFolderNameFormatted,
+        f"{outputFileNameClassFormattedPrefix}_{modelName}.{csvFileFormat}")
+
+# Read by SynClassMerge.py.
+inputFolderClassMerged                 = os.path.join(dataDir, outputFolderName, outputFolderNameFormatted)
 
 outputFileNameClassMerged              = f"{filesPrefixApproachClass}_merged_classes.{csvFileFormat}"
 outputFileClassMerged                  = os.path.join(
@@ -424,343 +273,84 @@ outputFileClassAnswerCounts = os.path.join(
     outputFileNameClassAnswerCounts
 )
 
-outputFileNameClassEvaluationExact     = f"{filesPrefixApproachClass}_exact_evaluation.{plotFileFormat}"
-outputFileClassEvaluationExact         = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassEvaluationExact
-)
-
-outputFileNameClassEvaluationExactHPO     = f"{filesPrefixApproachClass}_exact_HPO_evaluation.{plotFileFormat}"
-outputFileClassEvaluationExactHPO         = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassEvaluationExactHPO
-)
-
-outputFileNameClassEvaluationExactUBERON     = f"{filesPrefixApproachClass}_exact_UBERON_evaluation.{plotFileFormat}"
-outputFileClassEvaluationExactUBERON         = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassEvaluationExactUBERON
-)
-outputFileNameClassEvaluationExactGO     = f"{filesPrefixApproachClass}_exact_GO_evaluation.{plotFileFormat}"
-outputFileClassEvaluationExactGO         = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassEvaluationExactGO
-)
-outputFileNameClassEvaluationExactCHEBI     = f"{filesPrefixApproachClass}_exact_CHEBI_evaluation.{plotFileFormat}"
-outputFileClassEvaluationExactCHEBI         = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassEvaluationExactCHEBI
-)
-
-outputFileNameClassAccuracyMacroMicro  = f"{filesPrefixApproachClass}_accuracy_threshold.{plotFileFormat}"
-outputFileClassAccuracyMacroMicro      = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassAccuracyMacroMicro
-)
-
-outputFileNameClassClassAccuracy       = f"{filesPrefixApproachClass}_class_accuracy.{plotFileFormat}"
-outputFileClassClassAccuracy           = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameClassClassAccuracy
-)
-
-outputFileNameCombinedEvaluationAbsolute       = f"{filesPrefixApproachClass}_combined_evaluation_absolute.{plotFileFormat}"
-outputFileCombinedEvaluationAbsolute           = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameCombinedEvaluationAbsolute
-)
-
-outputFileNameCombinedEvaluationAbsolute2      = f"{filesPrefixApproachClass}_combined_evaluation_absolute2.{plotFileFormat}"
-outputFileCombinedEvaluationAbsolute2          = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameCombinedEvaluationAbsolute2
-)
-
-outputFileNameCombinedEvaluationRelaxed       = f"{filesPrefixApproachClass}_combined_evaluation_relaxed.{plotFileFormat}"
-outputFileCombinedEvaluationRelaxed           = os.path.join(
-    dataDir,
-    outputFolderName,
-    outputFolderNameEvaluation,
-    outputFileNameCombinedEvaluationRelaxed
-)
-
+# The distance plots, one per distance column; named without the prompt
+# settings, which do not change the distances.
 outputFolderNameClassEmbedding = outputFolderNameEvaluation
 
 embeddingPrefix = f"{outputFolderNameClass}_{testStr}"
 
 outputFileNameClassEmbeddingEvaluation    = f"{embeddingPrefix}_embedding_evaluation_" + "{}" + f".{plotFileFormat}"
-outputFileNameClassSimilarityEvaluation   = f"{embeddingPrefix}_similarity_evaluation_" + "{}" + f".{plotFileFormat}"
+outputFileNameClassDistanceEvaluation   = f"{embeddingPrefix}_distance_evaluation_" + "{}" + f".{plotFileFormat}"
 
-outputFileNameClassEmbeddingSSMD          = f"{embeddingPrefix}_embedding_ssmd.{plotFileFormat}"
-outputFileClassEmbeddingSSMD              = os.path.join(
-    dataDir,        
-    outputFolderName,
-    outputFolderNameClassEmbedding,
-    outputFileNameClassEmbeddingSSMD
-)
+# The summary table of the models and baselines, and the confusion matrices,
+# ROC curves and confidence calibration of the models.
+def outputFileClassEvaluationOf(name : str, fileFormat : str = plotFileFormat) -> str:
+    """The path of an evaluation output of the experiment, e.g. ..._summary.csv."""
+    return os.path.join(dataDir, outputFolderName, outputFolderNameEvaluation,
+        f"{filesPrefixApproachClass}_{name}.{fileFormat}")
 
-outputFileNameClassEmbeddingOutcomeCounts = f"{embeddingPrefix}_embedding_outcome_counts.{plotFileFormat}"
-outputFileClassEmbeddingOutcomeCounts     = os.path.join(
-    dataDir,        
-    outputFolderName,
-    outputFolderNameClassEmbedding,
-    outputFileNameClassEmbeddingOutcomeCounts
-)
-
-outputFileNameClassEmbeddingDifference    = f"{embeddingPrefix}_embedding_diff_votes.{plotFileFormat}"
-outputFileClassEmbeddingDifference        = os.path.join(
-    dataDir,        
-    outputFolderName,
-    outputFolderNameClassEmbedding,
-    outputFileNameClassEmbeddingDifference
-)
-
-outputFileNameClassEmbeddingExactRelaxed    = f"{embeddingPrefix}_embedding_exact_votes_relaxed.{plotFileFormat}"
-outputFileClassEmbeddingExactRelaxed        = os.path.join(
-    dataDir,        
-    outputFolderName,
-    outputFolderNameClassEmbedding,
-    outputFileNameClassEmbeddingExactRelaxed
-)
-
-outputFileNameClassEmbeddingRelatedAbsolute    = f"{embeddingPrefix}_embedding_related_votes_absolute.{plotFileFormat}"
-outputFileClassEmbeddingRelatedAbsolute        = os.path.join(
-    dataDir,        
-    outputFolderName,
-    outputFolderNameClassEmbedding,
-    outputFileNameClassEmbeddingRelatedAbsolute
-)
-
-outputFileNameClassEmbeddingExactAbsolute    = f"{embeddingPrefix}_embedding_exact_votes_absolute.{plotFileFormat}"
-outputFileClassEmbeddingExactAbsolute        = os.path.join(
-    dataDir,        
-    outputFolderName,
-    outputFolderNameClassEmbedding,
-    outputFileNameClassEmbeddingExactAbsolute
-)
-
-outputFileNameClassEmbeddingRelatedRelaxed    = f"{embeddingPrefix}_embedding_related_votes_relaxed.{plotFileFormat}"
-outputFileClassEmbeddingRelatedRelaxed        = os.path.join(
-    dataDir,        
-    outputFolderName,
-    outputFolderNameClassEmbedding,
-    outputFileNameClassEmbeddingRelatedRelaxed
-)
-
-outputFileNameClassEmbeddingPerformance   = f"{embeddingPrefix}_embedding_performance.{plotFileFormat}"
-outputFileClassEmbeddingPerformance       = os.path.join(
-    dataDir,        
-    outputFolderName,
-    outputFolderNameClassEmbedding,
-    outputFileNameClassEmbeddingPerformance
-)
+outputFileClassSummary     = outputFileClassEvaluationOf("summary", csvFileFormat)
+outputFileClassConfusion   = outputFileClassEvaluationOf("confusion_matrices")
+outputFileClassROC         = outputFileClassEvaluationOf("roc")
+outputFileClassCalibration = outputFileClassEvaluationOf("calibration")
 
 
-# =============================================================================
+# The Few-Shot examples, alternately exact and related, with their answer
+# (classification, confidence from 1 to 5, rationale). Their synonyms are left
+# out of the evaluation also in runs without examples, so that all runs are
+# scored on the same synonyms.
+fewShotExamples = [
+    {
+        "id"        : "HP:0008984",
+        "label"     : "Neck muscle hypoplasia",
+        "definition": "Underdevelopment of muscles of the neck.",
+        "comment"   : "",
+        "parents"   : ["Hypoplasia of the musculature", "Abnormal neck morphology"],
+        "children"  : [],
+        "synonym"   : "Underdevelopment of neck muscle",
+        "class"     : exactSynonymClass,
+        "confidence": "5",
+        "rationale" : "'Underdevelopment' is the plain-language rendering of 'hypoplasia', and the synonym names the same structure. Both terms denote the same phenotype and can be used interchangeably."
+    },
+    {
+        "id"        : "CHEBI:16375",
+        "label"     : "D-cysteine",
+        "definition": "An optically active form of cysteine having D-configuration.",
+        "comment"   : "",
+        "parents"   : ["cysteine", "D-alpha-amino acid"],
+        "children"  : [],
+        "synonym"   : "DCY",
+        "class"     : relatedSynonymClass,
+        "confidence": "4",
+        "rationale" : "'DCY' is an abbreviation (a database code) of the compound, not a name of it; without context it is ambiguous. It refers to the concept but cannot replace the label."
+    },
+    {
+        "id"        : "UBERON:0000401",
+        "label"     : "mandibular ramus",
+        "definition": "The upturned perpendicular extremity of the mandible.",
+        "comment"   : "",
+        "parents"   : ["zone of bone organ"],
+        "children"  : [],
+        "synonym"   : "ramus of mandible",
+        "class"     : exactSynonymClass,
+        "confidence": "5",
+        "rationale" : "The synonym only rewords the label ('mandibular ramus' as 'ramus of mandible'), the anatomical structure is the same. Anatomists use both interchangeably."
+    },
+    {
+        "id"        : "HP:0001250",
+        "label"     : "Seizure",
+        "definition": "A seizure is an intermittent abnormality of nervous system physiology characterized by a transient occurrence of signs and/or symptoms due to abnormal excessive or synchronous neuronal activity in the brain.",
+        "comment"   : "A type of electrographic seizure has been proposed in neonates which does not have a clinical correlate, it is electrographic only. The term epilepsy is not used to describe recurrent febrile seizures. Epilepsy presumably reflects an abnormally reduced seizure threshold.",
+        "parents"   : ["Abnormal nervous system physiology"],
+        "children"  : ["Bilateral tonic-clonic seizure", "Status epilepticus", "Generalized-onset seizure", "Focal-onset seizure", "Symptomatic seizures", "Dialeptic seizure", "Reflex seizure", "Motor seizure", "Nocturnal seizures", "Neonatal seizure", "Infection-related seizure", "Non-motor seizure"],
+        "synonym"   : "Epilepsy",
+        "class"     : relatedSynonymClass,
+        "confidence": "5",
+        "rationale" : "Epilepsy is a disease of recurrent unprovoked seizures, whereas a seizure is a single event that also occurs without epilepsy. The terms are closely associated but not interchangeable."
+    }
+]
 
-testIDs_old = list(set([
-    'HP:0001756', 'HP:0003189', 'HP:0000708', 'HP:0008069', 'HP:0009778'
-    'HP:0008331', 'HP:0007165', 'HP:0002020', 'HP:0010759', 'HP:0002659',
-    'HP:0009891', 'HP:0007018', 'HP:0032514', 'HP:0000434', 'HP:0000692', 
-    'HP:0025675', 'HP:0001511', 'HP:0000286', 'HP:0000448', 'HP:0000691', 
-    'HP:0001092', 'HP:0001315', 'HP:0000683', 'HP:0000252', 'HP:0000239', 
-    'HP:0002460', 'HP:0008180', 'HP:0025190', 'HP:0000722', 'HP:0009588', 
-    'HP:0008368', 'HP:0001631', 'HP:0000689', 'HP:6000990', 'HP:0000260', 
-    'HP:0006334', 'HP:0002069', 'HP:0000363', 'HP:0009650', 'HP:0011468', 
-    'HP:0012407', 'HP:0000474', 'HP:0009611', 'HP:0003270', 'HP:0000637', 
-    'HP:0006347', 'HP:0008066', 'HP:0008070', 'HP:0000733', 'HP:0002745', 
-    'HP:0001357', 'HP:0008163', 'HP:0002395', 'HP:0009381', 'HP:0000496', 
-    'HP:0000347', 'HP:0002213', 'HP:0005484', 'HP:0001274', 'HP:0005772', 
-    'HP:0010808', 'HP:0006897', 'HP:0033010', 'HP:0002123', 'HP:0011160', 
-    'HP:0000766', 'HP:0007906', 'HP:0007479', 'HP:0000954', 'HP:0010628', 
-    'HP:0000455', 'HP:0011072', 'HP:0032662', 'HP:0005278', 'HP:0008127', 
-    'HP:0001047', 'HP:0000198', 'HP:0100832', 'HP:0000421', 'HP:0006487', 
-    'HP:0002788', 'HP:0002719', 'HP:0000550', 'HP:0000653', 'HP:0000494', 
-    'HP:0001999', 'HP:0000158', 'HP:0031354', 'HP:5200291', 'HP:0012210', 
-    'HP:0002683', 'HP:0030447', 'HP:0007628', 'HP:0034348', 'HP:0001520', 
-    'HP:0000215', 'HP:0000175', 'HP:0010674', 'HP:0000349', 'HP:0100490', 
-    'HP:0010650', 'HP:0000848', 'HP:0001566', 'HP:0012809', 'HP:0009931', 
-    'HP:0011332', 'HP:0004209', 'HP:0005285', 'HP:0033349', 'HP:0002376', 
-    'HP:0006682', 'HP:0007700', 'HP:0032152', 'HP:0001344', 'HP:0011451', 
-    'HP:0009836', 'HP:0006986', 'HP:0001964', 'HP:0007126', 'HP:0011169', 
-    'HP:0002495', 'HP:0000973', 'HP:0002119', 'HP:0002089', 'HP:0000275', 
-    'HP:0002121', 'HP:0000272', 'HP:0011120', 'HP:0006323', 'HP:0200039',
-    'HP:0001841', 'HP:0000444', 'HP:0000528', 'HP:0003812', 'HP:0009940', 
-    'HP:0000283', 'HP:0000736', 'HP:0010757', 'HP:0001141', 'HP:0006329', 
-    'HP:0008873', 'HP:0002936', 'HP:0006482', 'HP:0006262', 'HP:0002286', 
-    'HP:0010701', 'HP:0004315', 'HP:0003565', 'HP:0011832', 'HP:0005261', 
-    'HP:0002166', 'HP:0000179', 'HP:0001510', 'HP:0011831', 'HP:0020220', 
-    'HP:0000601', 'HP:0000551', 'HP:0000519', 'HP:0009237', 'HP:0004691', 
-    'HP:0001382', 'HP:0010885', 'HP:0010107', 'HP:0011675', 'HP:0000418', 
-    'HP:0003557', 'HP:0002349', 'HP:0010049', 'HP:0001106', 'HP:0011823', 
-    'HP:0000337', 'HP:0000882', 'HP:0031843', 'HP:0000745', 'HP:0012799', 
-    'HP:0012810', 'HP:0000384', 'HP:0010289', 'HP:0000270', 'HP:0001622', 
-    'HP:0003473', 'HP:0010055', 'HP:0008527', 'HP:0006721', 'HP:0410334', 
-    'HP:0002925', 'HP:0002061', 'HP:0100716', 'HP:0000256', 'HP:0000670', 
-    'HP:0001988', 'HP:0005914', 'HP:0001308', 'HP:0010669', 'HP:0000520', 
-    'HP:0011432', 'HP:0009612', 'HP:0003022', 'HP:0008672', 'HP:0000992', 
-    'HP:0005978', 'HP:0034984', 'HP:0009102', 'HP:0006297', 'HP:0000377', 
-    'HP:0000430', 'HP:0010702', 'HP:0002910', 'HP:0002283', 'HP:0000680', 
-    'HP:0001249', 'HP:0010813', 'HP:0005280', 'HP:0003710', 'HP:0002384', 
-    'HP:0008905', 'HP:0000292', 'HP:0430028', 'HP:0003301', 'HP:0011073', 
-    'HP:0006308', 'HP:0002705', 'HP:0100543', 'HP:0006288', 'HP:0011159', 
-    'HP:0010741', 'HP:0009085', 'HP:0011829', 'HP:0003083', 'HP:0400000', 
-    'HP:0000654', 'HP:0000975', 'HP:0012471', 'HP:0001840', 'HP:0010751', 
-    'HP:0000995', 'HP:0006349', 'HP:0000463', 'HP:0032795', 'HP:0002216', 
-    'HP:0002091', 'HP:0006321', 'HP:0004488', 'HP:0003781', 'HP:0004227', 
-    'HP:0009058', 'HP:0009939', 'HP:0001831', 'HP:0003141', 'HP:0003236', 
-    'HP:0000698', 'HP:0000278', 'HP:0006313', 'HP:0100851', 'HP:0100540', 
-    'HP:0007334', 'HP:0001162', 'HP:0003042', 'HP:0001263', 'HP:0000171', 
-    'HP:0030215', 'HP:0008151', 'HP:0033658', 'HP:0001000', 'HP:0003281', 
-    'HP:0000750', 'HP:0001900', 'HP:0001288', 'HP:0002711', 'HP:0000544', 
-    'HP:0002500', 'HP:0000940', 'HP:0000188', 'HP:0005819', 'HP:0011173', 
-    'HP:0002718', 'HP:0009933', 'HP:0100804', 'HP:0033757', 'HP:0100400', 
-    'HP:0003202', 'HP:0004467', 'HP:0003025', 'HP:0002684', 'HP:0000529', 
-    'HP:0000303', 'HP:0000402', 'HP:0008419', 'HP:0010755', 'HP:0003180', 
-    'HP:0033009', 'HP:0000408', 'HP:0008518', 'HP:0000972', 'HP:0004370', 
-    'HP:0009882', 'HP:0005989', 'HP:0010743', 'HP:0001290', 'HP:0001558', 
-    'HP:0001188', 'HP:0003100', 'HP:0003387', 'HP:0011800', 'HP:0004808', 
-    'HP:0001627', 'HP:0004220', 'HP:0010819', 'HP:0003693', 'HP:0000193', 
-    'HP:0003319', 'HP:0002953', 'HP:0002757', 'HP:0005465', 'HP:0011222', 
-    'HP:0007359', 'HP:0001133', 'HP:0001377', 'HP:0000358', 'HP:0400001', 
-    'HP:0030028', 'HP:0003375', 'HP:0010313', 'HP:0008921', 'HP:0005736', 
-    'HP:0430029', 'HP:0008209', 'HP:0001270', 'HP:0000403', 'HP:0000426', 
-    'HP:0003324', 'HP:0003700', 'HP:0000574', 'HP:0009177', 'HP:0002010', 
-    'HP:0001363', 'HP:0009930', 'HP:0000191', 'HP:0005323', 'HP:0005792', 
-    'HP:0000276', 'HP:0002209', 'HP:0000221', 'HP:0002197', 'HP:0001338', 
-    'HP:0009803', 'HP:0004319', 'HP:0000356', 'HP:0000431', 'HP:0005152', 
-    'HP:0012720', 'HP:0006380', 'HP:0011166', 'HP:0007814', 'HP:0005790', 
-    'HP:0002720', 'HP:0009019', 'HP:0003015', 'HP:0000119', 'HP:0003261', 
-    'HP:0002984', 'HP:0030318', 'HP:0002398', 'HP:0009835', 'HP:0010034', 
-    'HP:0000457', 'HP:0003774', 'HP:0009920', 'HP:0000445', 'HP:0010537', 
-    'HP:0005274', 'HP:0006498', 'HP:0001762', 'HP:0012292', 'HP:0002694', 
-    'HP:0000274', 'HP:0011167', 'HP:0030319', 'HP:0000327', 'HP:0000319', 
-    'HP:0100723', 'HP:0000490', 'HP:0040217', 'HP:0003762', 'HP:0034353', 
-    'HP:0011069', 'HP:0006532', 'HP:0010972', 'HP:0000324', 'HP:0002094', 
-    'HP:0000684', 'HP:0000582', 'HP:0001476', 'HP:0003200', 'HP:0001195', 
-    'HP:0006335', 'HP:0000010', 'HP:0030393', 'HP:0002282', 'HP:0006315', 
-    'HP:0009601', 'HP:0006336', 'HP:0002681', 'HP:0008551', 'HP:0009244', 
-    'HP:0011219', 'HP:0012811', 'HP:0000341', 'HP:0000762', 'HP:0002194', 
-    'HP:0002682', 'HP:0003687', 'HP:0410246', 'HP:0000687', 'HP:0000413', 
-    'HP:0000218', 'HP:0000316', 'HP:0001254', 'HP:0009746', 'HP:0002922', 
-    'HP:0004313', 'HP:0001635', 'HP:0002553', 'HP:0007378', 'HP:0002750', 
-    'HP:0001852', 'HP:0007968', 'HP:0000592', 'HP:0009843', 'HP:0005272',
-    'HP:0004331', 'HP:0011153', 'HP:0003155', 'HP:0000437'
-]))
 
-testIDs = list(set(['CHEBI:4167',       'UBERON:0006440',   'CHEBI:23449',
- 'UBERON:0005010',  'CHEBI:3892',       'CHEBI:50112',      'CHEBI:17883',
- 'HP:0100171',      'CHEBI:32612',      'CHEBI:18258',      'HP:0008067',
- 'UBERON:0004938',  'CHEBI:76871',      'UBERON:0000933',   'GO:1905155',
- 'CHEBI:33424',     'HP:0025780',       'UBERON:0002369',   'CHEBI:35366',
- 'UBERON:0002020',  'UBERON:0004998',   'HP:0100439',       'UBERON:0001489',
- 'UBERON:0006052',  'HP:0200153',       'PR:000001968',     'CHEBI:18257',
- 'UBERON:0004230',  'GO:1904747',       'UBERON:0003635',   'HP:0011117',
- 'UBERON:0010948',  'CHEBI:32563',      'CHEBI:17196',      'UBERON:0005019',
- 'UBERON:0002386',  'CHEBI:37024',      'CL:0000981',       'PR:000001006',
- 'UBERON:0006946',  'CHEBI:15681',      'UBERON:0004066',   'UBERON:0003625',
- 'UBERON:0005969',  'CHEBI:37848',      'CHEBI:16134',      'CHEBI:35219',
- 'GO:1904746',      'CHEBI:16113',      'UBERON:0006858',   'HP:0006505',
- 'UBERON:0009472',  'CHEBI:17933',      'HP:0000327',       'CHEBI:48376',
- 'CHEBI:133608',    'HP:0020059',       'UBERON:0002318',   'HP:0012490',
- 'CHEBI:28044',     'CHEBI:59549',      'UBERON:0007779',   'GO:1901731', 
- 'HP:0004401',      'UBERON:0006274',   'HP:0000723',       'CHEBI:134251', 
- 'UBERON:0001183',  'HP:6000451',       'HP:0002813',       'UBERON:0006652', 
- 'CHEBI:27311',     'CHEBI:73558',      'HP:0005609',       'HP:0000690', 
- 'HP:0012071',      'UBERON:0004316',   'CL:0000971',       'PR:000001318', 
- 'HP:0100121',      'CHEBI:26607',      'UBERON:0003837',   'CL:0002104', 
- 'CHEBI:35219',     'UBERON:0001601',   'HP:0012225',       'UBERON:0009984', 
- 'HP:0009931',      'UBERON:0004066',   'UBERON:0002352',   'UBERON:0008594',
- 'CHEBI:28616',     'HP:0000322',       'UBERON:0003663',   'HP:0025693', 
- 'CL:0000748',      'UBERON:0006075',   'HP:0100094',       'UBERON:0006810', 
- 'UBERON:0002326',  'CHEBI:23116',      'CHEBI:46662',      'HP:0100072', 
- 'UBERON:0004734',  'HP:0031353',       'CHEBI:35679',      'HP:0010077', 
- 'CHEBI:37808',     'UBERON:0003450',   'CHEBI:25235',      'HP:0010744',
- 'UBERON:0001534',  'HP:0100056',       'CHEBI:50315',      'HP:0002398',
- 'CHEBI:35137',     'UBERON:0005454',   'HP:0008724',       'CHEBI:48359',
- 'CHEBI:28600',     'UBERON:0000168',   'UBERON:0001543',   'HP:0001392',
- 'HP:0030835',      'UBERON:0006946',   'HP:0006611',       'CHEBI:9300',
- 'UBERON:0003533',  'CHEBI:38807',      'HP:0100192',       'CHEBI:27891',
- 'CHEBI:90318',     'UBERON:0012367',   'HP:0004370',       'UBERON:0004292',
- 'HP:0002571',      'CHEBI:15756',      'HP:0002846',       'CHEBI:58389',
- 'HP:0009182',      'UBERON:0006722',   'UBERON:0006858',   'CL:0000169',
- 'CHEBI:33250',     'PR:000001006',     'HP:0009554',       'CHEBI:50733',
- 'CHEBI:356416',    'GO:0004565',       'CHEBI:28842',      'CHEBI:33552',
- 'GO:0050769',      'UBERON:0007241',   'UBERON:0005010',   'CHEBI:37024', 
- 'HP:0030445',      'GO:0051130',       'HP:0002681',       'UBERON:0007567',
- 'HP:0000745',      'PR:000001255',     'CHEBI:35269',      'UBERON:0012072',
- 'CHEBI:48376',     'UBERON:0000015',   'GO:0003857',       'CHEBI:16113',
- 'CHEBI:46787',     'CHEBI:16831',      'CHEBI:36309',      'CHEBI:63624',
- 'CHEBI:15681',     'HP:0001991',       'UBERON:0002483',   'HP:0005280',
- 'GO:0004930',      'UBERON:0000998',   'UBERON:0018413',   'HP:6000643',
- 'UBERON:0001740',  'HP:0010109',       'CHEBI:58496',      'HP:0003191',
- 'UBERON:0019200',  'UBERON:0009472',   'HP:0002863',       'UBERON:0004122',
- 'CHEBI:78804',     'HP:6001162',       'HP:0011744',       'UBERON:0002059',
- 'UBERON:0001985',  'UBERON:0004470',   'UBERON:0009680',   'UBERON:0004941',
- 'HP:0006339',      'UBERON:0010952',   'HP:0025347',       'UBERON:0002240',
- 'HP:0020150',      'UBERON:0018415',   'HP:0003233',       'CHEBI:133608',
- 'UBERON:0003729',  'UBERON:0002453',   'CHEBI:27026',      'UBERON:0008785',
- 'CHEBI:33662',     'PR:000001308',     'UBERON:0006645',   'HP:0009521',
- 'UBERON:0006440',  'CHEBI:35821',      'UBERON:0012314',   'UBERON:0001567',
- 'UBERON:0000401',  'UBERON:0013757',   'UBERON:0000200',   'UBERON:0003066',
- 'HP:0002637',      'UBERON:0004148',   'CHEBI:76713',      'CHEBI:26078',
- 'CHEBI:23449',     'UBERON:0004175',   'HP:0000654',       'HP:0012537',
- 'GO:0065003',      'UBERON:0010948',   'CHEBI:140325',     'HP:0010750',
- 'CHEBI:16375',     'CHEBI:48560',      'CHEBI:59888',      'CHEBI:16199',
- 'UBERON:0004704',  'HP:0100742',       'UBERON:0008585',   'UBERON:0002125',
- 'GO:2000253',      'HP:0002239',       'HP:0001852',       'HP:0025321',
- 'HP:0000973',      'CHEBI:58080',      'UBERON:0005969',   'UBERON:0002382',
- 'GO:0045787',      'UBERON:0004367',   'UBERON:0005043',   'CHEBI:37257',
- 'UBERON:0003625',  'HP:0004936',       'HP:0005306',       'CHEBI:17368',
- 'GO:0009056',      'UBERON:0002529',   'UBERON:0003930',   'UBERON:0014454',
- 'GO:0006915',      'CHEBI:43474',      'CHEBI:26816',      'HP:0010956',
- 'HP:0000482',      'GO:0051726',       'HP:0025448',       'HP:0012576',
- 'CHEBI:30769',     'UBERON:0007617',   'CHEBI:17203',      'CHEBI:17033',
- 'HP:0001658',      'PR:000001968',     'CHEBI:83820',      'HP:0001989',
- 'CHEBI:11851',     'HP:0034581',       'UBERON:0035804',   'CHEBI:60065',
- 'UBERON:0004067',  'HP:0002206',       'UBERON:0009914',   'UBERON:0003301',
- 'UBERON:0006660',  'CHEBI:18258',      'UBERON:0004275',   'HP:0011072',
- 'UBERON:0003283',  'UBERON:0001304',   'UBERON:0007827',   'CHEBI:18259',
- 'UBERON:0013767',  'PR:000016401',     'HP:0010385',       'HP:0000327',
- 'CHEBI:16015',     'HP:0032360',       'UBERON:8410001',   'UBERON:0002076',
- 'HP:0025289',      'UBERON:0003846',   'UBERON:0002033',   'HP:0003029', 
- 'UBERON:0002094',  'HP:0007924',       'GO:0042101',       'HP:0012763',
- 'GO:0050801',      'UBERON:0004913',   'CHEBI:33568',      'HP:0045043',
- 'PATO:0002324',    'GO:1904746',       'CHEBI:38180',      'CHEBI:64570',
- 'HP:0410058',      'UBERON:0015789',   'UBERON:0003635',   'CHEBI:21547',
- 'CHEBI:17272',     'UBERON:0004223',   'CHEBI:30745',      'CHEBI:139589',
- 'HP:0001732',      'CHEBI:83925',      'UBERON:0001161',   'UBERON:0001125',
- 'UBERON:0001224',  'HP:0012878',       'HP:0009154',       'CHEBI:32507',
- 'GO:1903524',      'CHEBI:22653',      'CHEBI:65065',      'CHEBI:17634',
- 'HP:0005997',      'UBERON:0003481',   'HP:0009213',       'UBERON:0004997',
- 'HP:0012893',      'UBERON:0010273',   'GO:0030217',       'HP:0011093',
- 'CL:0000049',      'HP:0002538',       'HP:0009459',       'CHEBI:3892',
- 'CHEBI:24621',     'HP:0200154',       'UBERON:0013501',   'HP:6000414',
- 'UBERON:0004228',  'HP:0030140',       'HP:0034491',       'UBERON:0003553',
- 'HP:0000970',      'UBERON:0005185',   'UBERON:0001507',   'GO:1904099',
- 'UBERON:0002149',  'UBERON:0016526',   'CHEBI:33558',      'UBERON:0014872',
- 'UBERON:0011215',  'UBERON:0005028',   'HP:0031170',       'CHEBI:58001',
- 'UBERON:0002516',  'CHEBI:17053',      'CHEBI:60039',      'GO:0009057', 
- 'UBERON:0011132',  'HP:5200273',       'HP:0000653',       'GO:1904747',
- 'HP:0034079',      'CHEBI:3424',       'HP:0006155',       'HP:0033842',
- 'HP:0005550',      'UBERON:0002416',   'UBERON:0004445',   'CHEBI:35191',
- 'UBERON:0001562',  'GO:1903771',       'CHEBI:138675',     'CHEBI:28789',
- 'GO:1901657',      'PR:000001004',     'UBERON:0002400']))
+# The number of experiments, for the shell scripts (start.sh, finalize.sh).
+if __name__ == "__main__":
+    print(len(synclassConfig.experiments))
