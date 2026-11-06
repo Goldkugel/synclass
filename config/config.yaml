@@ -1,0 +1,133 @@
+# Paths are relative to the repository root, from where the scripts are run
+# (e.g. ./start.sh, python3 ./src/SynClassClassification.py).
+synclass:
+  # Picked by their index (from 0). Settings: test (the development set
+  # instead of the evaluation set), few_shot, chain_of_thoughts, definition,
+  # comment and structure (parents and children); a missing setting is off.
+  experiments:
+    - {test: True, few_shot: True}
+  # size_per_class exact and related synonyms each, drawn at random with the
+  # seed, classified by runs with "test"; the other runs classify the rest
+  # (hpo.evaluation.csv, the exact and related synonyms of hpo.csv).
+  development_set:
+    size_per_class: 500
+    seed: 2898231092
+  data_folder: "./data"
+  # Mean and std of the synonym-label cosine distance (SapBERT) of the
+  # development set, logged by the preparation run; all distances are
+  # normalised with them, (distance - mean) / std. 0 and 1 leave them as they
+  # are; null computes them from each file. Set them to the values the first
+  # preparation run logs. The plots and the thresholds tried span the
+  # normalised distances from distance_evaluation_lower_bound to _upper_bound.
+  cosine_distance_mean: 0
+  cosine_distance_std: 1
+  distance_evaluation_lower_bound: -4
+  distance_evaluation_upper_bound: 4
+  # Distance between two thresholds tried.
+  distance_evaluation_step: 0.001
+  # Per embedding model, evaluated as the model "<model> (distance)": a
+  # normalised distance at or above the threshold is related, below exact.
+  # SynClassEval.py logs the value maximising the macro-F1 on the development
+  # set ("Distance baseline"), e.g.
+  #   "SapBERT-from-PubMedBERT-fulltext": <threshold>
+  distance_thresholds: {}
+  # Bootstrap samples of the 95% intervals in the evaluation summary.
+  bootstrap_samples: 1000
+  # The distance plots also without "test", which draws them always.
+  force_draw_additional_plots: False
+adapter:
+  hpo:
+    input_folder: "./data/input/hpo/"
+    input_files:
+      - "hp.owl"
+    # The transformed HPO, which SynClassClassification.py writes; the
+    # development and evaluation set are named after it in the same folder
+    # (hpo.development.csv, hpo.evaluation.csv).
+    output_folder: "./data/output/transformed/"
+    output_file: "hpo.csv"
+    skip_if_present: False
+    prefix: ""
+logger:
+  folder: "./data/logs/"
+  # One log file per run, named after its start to the microsecond, so that
+  # runs started at the same time get their own file.
+  file_name: "synclass_{start:%Y%m%d_%H%M%S_%f}.log"
+  header_char: "="
+  header_length: 90
+  log_runtime: True
+  format: "%Y-%m-%d %H:%M:%S"
+  encoding: "utf-8"
+llm:
+  # Classifying one after the other; a model ID after the experiment index on
+  # the command line classifies with only that model.
+  model_id:
+    - "google/medgemma-4b-it"
+    - "Qwen/Qwen3-4B-Instruct-2507"
+    - "mistralai/Mistral-7B-Instruct-v0.2"
+    - "Qwen/Qwen3-30B-A3B-Instruct-2507-FP8"
+    - "google/medgemma-27b-text-it"
+    - "mistralai/Mistral-Small-3.1-24B-Instruct-2503"
+  # The Hugging Face commit per model ID, so that every run loads the same
+  # model version (e.g. "google/medgemma-4b-it": "<commit>"); a model without
+  # one loads the cached version. The commits of a run are recorded in
+  # data/logs/run_metadata.json ("model" -> "revision").
+  revision: {}
+  device: "cuda"
+  expert_parallel_models:
+    - "Qwen3-30B"
+  seed: 2898231092
+  temperature: 0.01
+  top_p: 0.95
+  max_model_len: 8192
+  max_num_batched_tokens: 16384
+  # CUDA graphs, as vLLM used them before the switch to the model package.
+  enforce_eager: false
+  gpu_memory_utilization: 0.9
+  dtype: "auto"
+  quantization: null
+  enable_prefix_caching: true
+  enable_thinking: null
+  reasoning_start_tag: "<think>"
+  reasoning_end_tag: "</think>"
+  max_tokens: 2048
+  chunk_size: 500
+  # Used by their index: 0 is the single prompt, 1 to 3 are the
+  # chain-of-thoughts prompts, one per turn.
+  prompt_folder: "./prompts/"
+  prompt_files: 
+    - "single_prompt.md"
+    - "multiple_prompt1.md"
+    - "multiple_prompt2.md"
+    - "multiple_prompt3.md"
+  # The answer store (checkpoint) and the prompt log; the model package adds
+  # the model name and the experiment to their names, e.g.
+  # synclass_medgemma-4b-it_Test_..._FS.json.
+  prompt_tmp_folder: "./data/tmp/"
+  prompt_tmp_file: "synclass.json"
+  prompt_log_folder: "./data/logs/"
+  prompt_log_file: "prompts.log"
+  metadata_folder: "./data/logs/"
+  metadata_file: "run_metadata.json"
+embedder:
+  # Named in the distance columns by synclass.embedding_model_names, or by the
+  # ID without the organisation.
+  model_id:
+    - "cambridgeltl/SapBERT-from-PubMedBERT-fulltext"
+  # Pinned Hugging Face commits (as of 2026-11-03), so that the cache never
+  # serves vectors of another model version; a new commit starts a new cache.
+  revision:
+    "cambridgeltl/SapBERT-from-PubMedBERT-fulltext": "090663c3ae57bf35ffe4d0d468a2a88d03051a4d"
+  # CLS pooling, as SapBERT was trained with, over at most 64 tokens; vectors
+  # not normalised.
+  pooling: "cls"
+  max_seq_length: 64
+  normalization: False
+  # Lowercases only for uncased models, whose tokenizer lowercases anyway.
+  lowercase: "auto"
+  device: "cpu"
+  backend: "torch"
+  batch_size: 128
+  # One file per model (about 0.6-0.8 GB): only new terms are encoded, and an
+  # interrupted run resumes from it.
+  cache_folder: "./data/output/embedded/"
+  dimensionality_reduction: False

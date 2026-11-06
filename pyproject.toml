@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "synclass"
+description = "Classifies the semantic class of Human Phenotype Ontology concepts' synonyms."
+readme = "README.md"
+version = "1.0.0"
+# model and embedder require Python 3.10.
+requires-python = ">=3.10"
+authors = [{ name = "Peter Pallaoro", email = "peter.pallaoro@tum.de" }]
+dependencies = [
+    "logger @ git+https://github.com/Goldkugel/logger.git@v1.7.0",
+    "adapter @ git+https://github.com/Goldkugel/adapter.git@v1.5.2",
+    "embedder @ git+https://github.com/Goldkugel/embedder.git@v2.3.1",
+    "model @ git+https://github.com/Goldkugel/model.git@v3.1.0",
+    # config.py reads and validates the configuration file itself.
+    "pydantic>=2",
+    "pyyaml",
+    "numpy",
+    "pandas",
+    # Progress bars and the data summary.
+    "rich",
+    # SynClassEval.py.
+    "matplotlib",
+    "scikit-learn",
+    "seaborn"
+]
+
+[project.urls]
+Repository = "https://github.com/Goldkugel/synclass"
+
+[tool.setuptools]
+packages = ["synclass"]
+
+[tool.setuptools.package-dir]
+"synclass" = "src"
