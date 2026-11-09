@@ -19,8 +19,8 @@ synclass:
   # are; null computes them from each file. Set them to the values the first
   # preparation run logs. The plots and the thresholds tried span the
   # normalised distances from distance_evaluation_lower_bound to _upper_bound.
-  cosine_distance_mean: 0
-  cosine_distance_std: 1
+  cosine_distance_mean: 0.1751
+  cosine_distance_std: 0.1499
   distance_evaluation_lower_bound: -4
   distance_evaluation_upper_bound: 4
   # Distance between two thresholds tried.
