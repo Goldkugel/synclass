@@ -70,12 +70,13 @@ def transformOutdated(log : bool = True) -> bool:
 
 def createJSONExample(cl : str = "", co : str = "5", ra : str = "") -> str:
     """
-    The answer of a Few-Shot example, in the output format of the prompts.
+    The answer of a Few-Shot example, in the output format of the prompts:
+    the rationale first, so that the classification follows from it.
     """
     ret = "{\n" \
+        f"\t{quote(rationaleColumn)}: {json.dumps(ra)},\n" \
         f"\t{quote(classificationKey)}: {quote(cl)},\n" \
-        f"\t{quote(confidenceColumn)}: {co},\n" \
-        f"\t{quote(rationaleColumn)}: {json.dumps(ra)}\n" \
+        f"\t{quote(confidenceColumn)}: {co}\n" \
         "}"
     
     return ret

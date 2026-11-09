@@ -39,9 +39,9 @@ Decision rule:
 Output Format (STRICT JSON)
 
 {{
+	"rationale": "<one to three sentences on how the meaning of the synonym relates to that of the label.>",
 	"classification": "'exact' or 'related'",
-	"confidence": <integer from 1 to 5>,
-	"rationale": "<one to three sentences on how the meaning of the synonym relates to that of the label.>"
+	"confidence": <integer from 1 to 5>
 }}
 
 Confidence guidelines:

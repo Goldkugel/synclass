@@ -9,7 +9,9 @@ The prompt templates of the synonym classification, in the format of the `model`
 | `multiple_prompt2.md` | Chain-of-thoughts, step 2: the meaning of the synonym, on its own |
 | `multiple_prompt3.md` | Chain-of-thoughts, step 3: the comparison of both meanings and the classification |
 
-The answer of `single_prompt.md` and `multiple_prompt3.md` is the same JSON object `{"classification": ..., "confidence": ..., "rationale": ...}`, with a confidence from 1 to 5.
+The answer of `single_prompt.md` and `multiple_prompt3.md` is the same JSON object `{"rationale": ..., "classification": ..., "confidence": ...}`, with a confidence from 1 to 5. The rationale comes first, so that the model writes it before it chooses the class; the answers are parsed by their keys, in any order.
+
+`single_prompt.md` decides in this order: the form check (plural/singular, Latin or other non-English names, abbreviations, codes such as EC numbers, chemical formulas) is decisive for "related"; plain-language renderings, eponyms and implied qualifiers of a phenotype are "exact"; the other synonyms are weighed by their meaning.
 
 ## Configuration
 

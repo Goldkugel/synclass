@@ -7,9 +7,27 @@ Your task is to classify the semantic relationship between the label of a Human 
 
 Core principle: choose the category that best reflects the semantic relationship. Do not default to "related" solely because of uncertainty; make a positive decision based on evidence.
 
-Decision process (evaluate both sides):
+Decision process (in this order):
 
-1. Semantic equivalence: does the synonym express the same concept as the label? Allow:
+1. Form check (decisive): does the synonym differ from the label in any of the following ways?
+
+    * only in grammatical number (plural/singular variants), e.g., "kidney cyst" vs "kidney cysts"
+    * a Latin or other non-English name, e.g., "radial artery" vs "arteria radialis" or "triglyceride" vs "Triglyzerid"
+    * abbreviations, acronyms or symbols, e.g., "obsessive compulsive disorder" vs "OCD"
+    * a code or number added or dropped (EC numbers, database identifiers), e.g., "EC 3.4.21.5 (thrombin) inhibitor" vs "thrombin inhibitor"
+    * chemical formulas or systematic names, e.g., "calcitriol" vs "1alpha,25-dihydroxyvitamin D3"
+
+   If yes, the synonym is "related", even if experts use both terms interchangeably; do not continue with the next steps. Differences only in spelling (British/American), hyphenation, punctuation or capitalisation do not count here.
+
+2. Phenotype descriptions: if the label names a phenotypic abnormality, the following are "exact":
+
+    * plain-language or descriptive renderings of the same phenotype, e.g., "Hypertelorism" vs "Eyes set far apart" or "Micrognathia" vs "Underdeveloped jaw"
+    * eponyms and older clinical names of the same phenotype
+    * qualifiers that the meaning of the label already implies, e.g., "Arachnodactyly" vs "Long, thin fingers"
+
+   A synonym is not broader or narrower only because it is less technical than the label.
+
+3. Semantic equivalence: does the synonym express the same concept as the label? Allow:
 
     * rewording or paraphrasing, e.g., "biliary system" vs "biliary apparatus"
     * word order changes, e.g., "delayed puberty" vs "pubertal delay"
@@ -18,22 +36,18 @@ Decision process (evaluate both sides):
 
    If yes, the synonym is a candidate for "exact".
 
-2. Meaning difference: does the synonym introduce any of the following?
+4. Meaning difference: does the synonym introduce any of the following?
 
-    * plural/singular variants, e.g., "kidney cyst" vs "kidney cysts"
     * broader or narrower scope, e.g., "cranial muscle" vs "adult head muscle organ"
     * loss or addition of specificity, e.g., "alveolus of lung" vs "alveolus" or "methanol" vs "wood alcohol"
     * different biological or clinical interpretation, e.g., "diabetes mellitus" vs "hyperglycemia"
     * ambiguity compared to the label
-    * abbreviations or symbols, e.g., "obsessive compulsive disorder" vs "OCD"
-    * different languages, e.g., "electron" vs "Elektron" or "triglyceride" vs "Triglyzerid"
-    * chemical formulas or systematic names, e.g., "calcitriol" vs "1alpha,25-dihydroxyvitamin D3"
     * different chemical forms (stereochemistry, salts, acid/base forms)
     * wording like "agent", "drug", "process" that may shift meaning
 
    If yes, the synonym is a candidate for "related".
 
-3. Interchangeability check (final decision): would experts use the two terms interchangeably in a biomedical context without changing the meaning?
+5. Interchangeability check (final decision of steps 3 and 4): do the two terms denote the same concept, so that experts would use them interchangeably in a biomedical context?
 
     * Clearly yes: "exact"
     * Clearly no: "related"
@@ -42,10 +56,12 @@ Decision process (evaluate both sides):
 Output Format (STRICT JSON)
 
 {{
+	"rationale": "<one to three sentences: first whether a form difference of step 1 applies, then how the meaning of the synonym relates to that of the label.>",
 	"classification": "'exact' or 'related'",
-	"confidence": <integer from 1 to 5>,
-	"rationale": "<one to three sentences on how the meaning of the synonym relates to that of the label.>"
+	"confidence": <integer from 1 to 5>
 }}
+
+Write the rationale first and choose the classification that follows from it.
 
 Confidence guidelines:
 
