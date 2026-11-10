@@ -2,47 +2,66 @@ Your last task:
 
 Compare the biomedical meaning of the label and the synonym using your analyses from the previous steps, and classify the synonym into one of two categories: "exact" or "related".
 
-Your goal is to determine whether the two terms represent:
+"exact": the synonym has the same meaning as the label and refers to the same concept; minor linguistic variation is allowed.
+"related": the synonym is not identical in meaning (broader, narrower, different, or partially overlapping).
 
-    * the same biomedical concept ("exact")
-    * or non-identical concepts ("related")
+Core principle: choose the category that best reflects the semantic relationship. Do not default to "related" solely because of uncertainty; make a positive decision based on evidence.
 
-Classification rules:
+Decision process (in this order):
 
-* "exact":
+1. Form check (decisive): compare the forms you recorded for the label and the synonym. Does the synonym differ from the label in any of the following ways?
+
+    * only in grammatical number (plural/singular variants), e.g., "kidney cyst" vs "kidney cysts"
+    * a Latin or other non-English name, e.g., "radial artery" vs "arteria radialis" or "triglyceride" vs "Triglyzerid"
+    * abbreviations, acronyms or symbols, e.g., "obsessive compulsive disorder" vs "OCD"
+    * a code or number added or dropped (EC numbers, database identifiers), e.g., "EC 3.4.21.5 (thrombin) inhibitor" vs "thrombin inhibitor"
+    * chemical formulas or systematic names, e.g., "calcitriol" vs "1alpha,25-dihydroxyvitamin D3"
+
+   If yes, the synonym is "related", even if both terms denote the same concept in your analyses and experts use them interchangeably; do not continue with the next steps. Differences only in spelling (British/American), hyphenation, punctuation or capitalisation do not count here.
+
+2. Phenotype descriptions: if the label names a phenotypic abnormality, the following are "exact":
+
+    * plain-language or descriptive renderings of the same phenotype, e.g., "Hypertelorism" vs "Eyes set far apart" or "Micrognathia" vs "Underdeveloped jaw"
+    * eponyms and older clinical names of the same phenotype
+    * qualifiers that the meaning of the label already implies, e.g., "Arachnodactyly" vs "Long, thin fingers"
+
+   A synonym is not broader or narrower only because it is less technical than the label.
+
+3. Semantic equivalence: do your analyses show that the synonym expresses the same concept as the label? Allow:
 
     * rewording or paraphrasing, e.g., "biliary system" vs "biliary apparatus"
     * word order changes, e.g., "delayed puberty" vs "pubertal delay"
     * grammatical variation, e.g., "abnormal X" vs "abnormality of X"
     * common linguistic variants used interchangeably in biomedical text
 
-* "related":
+   If yes, the synonym is a candidate for "exact".
 
-    * plural/singular variants, e.g., "kidney cyst" vs "kidney cysts"
+4. Meaning difference: do your analyses show that the synonym introduces any of the following?
+
     * broader or narrower scope, e.g., "cranial muscle" vs "adult head muscle organ"
     * loss or addition of specificity, e.g., "alveolus of lung" vs "alveolus" or "methanol" vs "wood alcohol"
     * different biological or clinical interpretation, e.g., "diabetes mellitus" vs "hyperglycemia"
     * ambiguity compared to the label
-    * abbreviations or symbols, e.g., "obsessive compulsive disorder" vs "OCD"
-    * different languages, e.g., "electron" vs "Elektron" or "triglyceride" vs "Triglyzerid"
-    * chemical formulas or systematic names, e.g., "calcitriol" vs "1alpha,25-dihydroxyvitamin D3"
     * different chemical forms (stereochemistry, salts, acid/base forms)
     * wording like "agent", "drug", "process" that may shift meaning
 
-Decision rule:
+   If yes, the synonym is a candidate for "related".
 
-* Compare the normalized concepts and semantic features from both analyses.
-* Determine whether biomedical experts would use the terms interchangeably without changing the meaning.
-* Make a positive semantic decision; do not default to "related" solely because of uncertainty.
-* If uncertain, choose the closer match and reduce the confidence.
+5. Interchangeability check (final decision of steps 3 and 4): do the two terms denote the same concept, so that experts would use them interchangeably in a biomedical context?
+
+    * Clearly yes: "exact"
+    * Clearly no: "related"
+    * Unclear: choose the closer match and express the doubt in the confidence
 
 Output Format (STRICT JSON)
 
 {{
-	"rationale": "<one to three sentences on how the meaning of the synonym relates to that of the label.>",
+	"rationale": "<one to three sentences: first whether a form difference of step 1 applies, then how the meaning of the synonym relates to that of the label.>",
 	"classification": "'exact' or 'related'",
 	"confidence": <integer from 1 to 5>
 }}
+
+Write the rationale first and choose the classification that follows from it.
 
 Confidence guidelines:
 

@@ -10,6 +10,7 @@ import pandas       as pd
 import numpy as np
 import ast
 import json
+import re
 import sys
 import os
 import textwrap
@@ -248,13 +249,18 @@ def parseConfidence(value) -> int | None:
         return None
     return int(number)
 
-def parseClassification(answer) -> tuple[str, int, str]:
+def parseClassification(answer, text : str = "") -> tuple[str, int, str]:
     """
     Classification, confidence and rationale of an answer parsed by
     model.toJSON(). Classification and confidence are undefinedSynonymClass
     and -1 unless the answer has one of synonymClasses and a confidence of
     confidenceLevels (see parseConfidence()); the rationale is "" if the
     answer has none.
+
+    If the parsed answer has no valid classification, they are taken from
+    the answer `text` itself (parseClassificationText()), e.g. of a JSON
+    object without its closing brace or with unescaped quotes in the
+    rationale.
     """
     classification, confidence = undefinedSynonymClass, -1
     rationale = ""
@@ -270,7 +276,43 @@ def parseClassification(answer) -> tuple[str, int, str]:
             if parsedClassification in synonymClasses and parsedConfidence is not None:
                 classification, confidence = parsedClassification, parsedConfidence
 
+    if classification == undefinedSynonymClass and text:
+        found = parseClassificationText(text)
+        if found is not None:
+            classification, confidence, foundRationale = found
+            rationale = rationale or foundRationale
+
     return classification, confidence, rationale
+
+def _lastMatch(pattern : str, text : str) -> re.Match | None:
+    """The last match of a pattern in a text, or None."""
+    matches = list(re.finditer(pattern, text, re.IGNORECASE | re.DOTALL))
+    return matches[-1] if len(matches) > 0 else None
+
+def parseClassificationText(text : str) -> tuple[str, int, str] | None:
+    """
+    Classification, confidence and rationale of an answer that is no valid
+    JSON, from its key-value pairs: the last "classification": "<class>"
+    followed by "confidence": <level> (quotes around the keys may be
+    missing, e.g. classification": "exact"), and the rationale before them,
+    "" if there is none. The last pair counts, as a model may first repeat
+    the input or an example. None if the text has no such pair or its class
+    or confidence is not valid.
+    """
+    pair = _lastMatch(r"\"?" + classificationKey + r"\"?\s*:\s*\"?\s*(\w+)\s*\"?\s*,\s*\"?" +
+        confidenceColumn + r"\"?\s*:\s*\"?\s*(-?[\d.]+)", text)
+    if pair is None:
+        return None
+    classification = pair.group(1).lower()
+    confidence     = parseConfidence(pair.group(2))
+    if classification not in synonymClasses or confidence is None:
+        return None
+    # The value of the last rationale key, up to the comma before the pair;
+    # it may contain unescaped quotes.
+    before    = text[:pair.start()]
+    key       = _lastMatch(r"\"?" + rationaleColumn + r"\"?\s*:\s*\"", before)
+    rationale = re.match(r"(.*?)\"\s*,\s*$", before[key.end():], re.DOTALL) if key else None
+    return classification, confidence, rationale.group(1).strip() if rationale else ""
 
 def quote(string : str) -> str:
     """
