@@ -1,0 +1,99 @@
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) Command: python3 ./src/SynClassEval.py 0
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) ==========================================================================================
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) =                    Evaluating the Results of Synonym Classification                    =
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) ==========================================================================================
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) Evaluating the classifications...
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) Reading file 'class_Test_NoDef_NoCom_NoStr_NoCOT_FS_merged_classes.csv'...
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) Reading file 'class_Test_NoDef_NoCom_NoStr_NoCOT_FS_merged_classes.csv' completed.
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) Reading file 'embed.development.csv'...
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) Reading file 'embed.development.csv' completed.
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) Synonyms per ontology (8):
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) - "UBERON": 332
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) - "HP": 331
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) - "CHEBI": 197
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) - "GO": 95
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) - "PR": 20
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) - "CL": 13
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) - "PATO": 11
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) - "MPATH": 1
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) Models (6):
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) - Mistral-7B-Instruct-v0.2
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) - Mistral-Small-3.1-24B-Instruct-2503
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) - Qwen3-30B-A3B-Instruct-2507-FP8
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) - Qwen3-4B-Instruct-2507
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) - medgemma-27b-text-it
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) - medgemma-4b-it
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) Classified synonyms: 6000 (about 1000 per model).
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) Evaluating the synonyms with gold class "exact", "related"; left out: none.
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) Leaving out the 4 synonyms of the few-shot examples (0 rows).
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) Distance baseline (SapBERT-from-PubMedBERT-fulltext):
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes)   related if the normalised cosine distance >= -0.060 (chosen on the development set).
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes)   macro-F1 0.605 on the development set.
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes)   F1 exact 0.640, related 0.570; 41.2% classified as related.
+[2026-11-10 17:24:17] [INFO   ] (0 Minutes) Plotting the cosine distance of SapBERT-from-PubMedBERT-fulltext...
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) Plotting the cosine distance of SapBERT-from-PubMedBERT-fulltext completed.
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) Summarising 6 models and 2 baselines...
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) 1000 synonyms; intervals from 1000 bootstrap samples.
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) Mistral-7B-Instruct-v0.2:
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   macro-F1 0.524 [0.494, 0.556], undefined 4.6%.
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   balanced accuracy 0.568 [0.546, 0.591], kappa 0.174 [0.134, 0.218].
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) Mistral-Small-3.1-24B-Instruct-2503:
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   macro-F1 0.663 [0.634, 0.691], undefined 0.0%.
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   balanced accuracy 0.663 [0.634, 0.691], kappa 0.326 [0.268, 0.382].
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) Qwen3-30B-A3B-Instruct-2507-FP8:
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   macro-F1 0.641 [0.613, 0.670], undefined 0.0%.
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   balanced accuracy 0.642 [0.614, 0.670], kappa 0.284 [0.229, 0.342].
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) Qwen3-4B-Instruct-2507:
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   macro-F1 0.589 [0.559, 0.620], undefined 0.0%.
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   balanced accuracy 0.589 [0.560, 0.620], kappa 0.178 [0.119, 0.239].
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) medgemma-27b-text-it:
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   macro-F1 0.648 [0.620, 0.678], undefined 0.0%.
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   balanced accuracy 0.652 [0.624, 0.681], kappa 0.304 [0.249, 0.362].
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) medgemma-4b-it:
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   macro-F1 0.646 [0.613, 0.675], undefined 0.4%.
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   balanced accuracy 0.646 [0.612, 0.675], kappa 0.295 [0.229, 0.352].
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) majority (exact):
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   macro-F1 0.333 [0.319, 0.346], undefined 0.0%.
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   balanced accuracy 0.500 [0.500, 0.500], kappa 0.000 [0.000, 0.000].
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) distance (SapBERT-from-PubMedBERT-fulltext):
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   macro-F1 0.605 [0.573, 0.636], undefined 0.0%.
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes)   balanced accuracy 0.608 [0.577, 0.639], kappa 0.216 [0.153, 0.279].
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) Writing to a temporary file first...
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) Writing file 'class_Test_NoDef_NoCom_NoStr_NoCOT_FS_summary.csv.3431436-135574750672704.tmp'...
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) Writing file 'class_Test_NoDef_NoCom_NoStr_NoCOT_FS_summary.csv.3431436-135574750672704.tmp' completed.
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) Writing to a temporary file first completed.
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) Replacing original data with temporary data...
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) Replacing original data with temporary data completed.
+[2026-11-10 17:24:18] [INFO   ] (0 Minutes) Summarising 6 models and 2 baselines completed.
+[2026-11-10 17:24:20] [INFO   ] (0 Minutes) Mistral-7B-Instruct-v0.2: ROC AUC 0.609 (related as positive).
+[2026-11-10 17:24:20] [INFO   ] (0 Minutes) Mistral-Small-3.1-24B-Instruct-2503: ROC AUC 0.688 (related as positive).
+[2026-11-10 17:24:20] [INFO   ] (0 Minutes) Qwen3-30B-A3B-Instruct-2507-FP8: ROC AUC 0.646 (related as positive).
+[2026-11-10 17:24:20] [INFO   ] (0 Minutes) Qwen3-4B-Instruct-2507: ROC AUC 0.604 (related as positive).
+[2026-11-10 17:24:20] [INFO   ] (0 Minutes) medgemma-27b-text-it: ROC AUC 0.664 (related as positive).
+[2026-11-10 17:24:20] [INFO   ] (0 Minutes) medgemma-4b-it: ROC AUC 0.649 (related as positive).
+[2026-11-10 17:24:20] [INFO   ] (0 Minutes) distance (SapBERT-from-PubMedBERT-fulltext): ROC AUC 0.656 (related as positive).
+[2026-11-10 17:24:20] [INFO   ] (0 Minutes) Mistral-7B-Instruct-v0.2: accuracy per confidence 1-5: -, -, 0.72, 0.65, 0.59.
+[2026-11-10 17:24:20] [INFO   ] (0 Minutes) Mistral-Small-3.1-24B-Instruct-2503: accuracy per confidence 1-5: -, -, 0.80, 0.51, 0.69.
+[2026-11-10 17:24:20] [INFO   ] (0 Minutes) Qwen3-30B-A3B-Instruct-2507-FP8: accuracy per confidence 1-5: -, -, 1.00, 0.58, 0.65.
+[2026-11-10 17:24:20] [INFO   ] (0 Minutes) Qwen3-4B-Instruct-2507: accuracy per confidence 1-5: -, -, -, 0.51, 0.61.
+[2026-11-10 17:24:20] [INFO   ] (0 Minutes) medgemma-27b-text-it: accuracy per confidence 1-5: -, -, 0.43, 0.63, 0.66.
+[2026-11-10 17:24:20] [INFO   ] (0 Minutes) medgemma-4b-it: accuracy per confidence 1-5: -, -, 0.60, 0.67, 0.63.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) Mistral-7B-Instruct-v0.2: 4.6% of 1000 answers undefined.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) Mistral-7B-Instruct-v0.2, "exact": precision 0.562, recall 0.906, F1 0.694.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) Mistral-7B-Instruct-v0.2, "related": precision 0.777, recall 0.230, F1 0.355.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) Mistral-Small-3.1-24B-Instruct-2503: 0.0% of 1000 answers undefined.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) Mistral-Small-3.1-24B-Instruct-2503, "exact": precision 0.656, recall 0.686, F1 0.671.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) Mistral-Small-3.1-24B-Instruct-2503, "related": precision 0.671, recall 0.640, F1 0.655.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) Qwen3-30B-A3B-Instruct-2507-FP8: 0.0% of 1000 answers undefined.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) Qwen3-30B-A3B-Instruct-2507-FP8, "exact": precision 0.631, recall 0.682, F1 0.656.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) Qwen3-30B-A3B-Instruct-2507-FP8, "related": precision 0.654, recall 0.602, F1 0.627.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) Qwen3-4B-Instruct-2507: 0.0% of 1000 answers undefined.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) Qwen3-4B-Instruct-2507, "exact": precision 0.590, recall 0.586, F1 0.588.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) Qwen3-4B-Instruct-2507, "related": precision 0.588, recall 0.592, F1 0.590.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) medgemma-27b-text-it: 0.0% of 1000 answers undefined.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) medgemma-27b-text-it, "exact": precision 0.626, recall 0.756, F1 0.685.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) medgemma-27b-text-it, "related": precision 0.692, recall 0.548, F1 0.612.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) medgemma-4b-it: 0.4% of 1000 answers undefined.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) medgemma-4b-it, "exact": precision 0.634, recall 0.694, F1 0.663.
+[2026-11-10 17:24:22] [INFO   ] (0 Minutes) medgemma-4b-it, "related": precision 0.666, recall 0.598, F1 0.630.
+[2026-11-10 17:24:23] [INFO   ] (0 Minutes) Evaluating the classifications took 00:00:05.95.
