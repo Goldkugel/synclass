@@ -31,7 +31,9 @@ synclass:
   # SynClassEval.py logs the value maximising the macro-F1 on the development
   # set ("Distance baseline"), e.g.
   #   "SapBERT-from-PubMedBERT-fulltext": <threshold>
-  distance_thresholds: {}
+  distance_thresholds: {
+    "SapBERT-from-PubMedBERT-fulltext": -0.06
+  }
   # Bootstrap samples of the 95% intervals in the evaluation summary.
   bootstrap_samples: 1000
   # The distance plots also without "test", which draws them always.
