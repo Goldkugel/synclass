@@ -22,12 +22,15 @@ Focus especially on:
     * anatomical scope
     * process vs entity distinctions
 
-Ignore superficial linguistic variation such as:
+Also record the form of the label exactly as written, without normalizing it away, as the last task depends on it:
 
-    * word order
-    * punctuation
-    * hyphenation
-    * grammatical variation
+    * grammatical number (singular or plural)
+    * language (English, Latin or another language)
+    * whether it is an abbreviation, acronym or symbol
+    * whether it contains a code or number (e.g., an EC number or a database identifier)
+    * whether it is a chemical formula or systematic name
+
+Word order, spelling variants (British/American), hyphenation, punctuation and capitalisation do not matter.
 
 Input:
 

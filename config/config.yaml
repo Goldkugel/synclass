@@ -5,7 +5,8 @@ synclass:
   # instead of the evaluation set), few_shot, chain_of_thoughts, definition,
   # comment and structure (parents and children); a missing setting is off.
   experiments:
-    - {test: True, few_shot: True}
+    - {test: True, few_shot: True, chain_of_thoughts: False}
+    - {test: True, few_shot: True, chain_of_thoughts: True}
   # size_per_class exact and related synonyms each, drawn at random with the
   # seed, classified by runs with "test"; the other runs classify the rest
   # (hpo.evaluation.csv, the exact and related synonyms of hpo.csv).
@@ -19,8 +20,8 @@ synclass:
   # are; null computes them from each file. Set them to the values the first
   # preparation run logs. The plots and the thresholds tried span the
   # normalised distances from distance_evaluation_lower_bound to _upper_bound.
-  cosine_distance_mean: 0
-  cosine_distance_std: 1
+  cosine_distance_mean: 0.1751
+  cosine_distance_std: 0.1499
   distance_evaluation_lower_bound: -4
   distance_evaluation_upper_bound: 4
   # Distance between two thresholds tried.
@@ -30,7 +31,9 @@ synclass:
   # SynClassEval.py logs the value maximising the macro-F1 on the development
   # set ("Distance baseline"), e.g.
   #   "SapBERT-from-PubMedBERT-fulltext": <threshold>
-  distance_thresholds: {}
+  distance_thresholds: {
+    "SapBERT-from-PubMedBERT-fulltext": -0.06
+  }
   # Bootstrap samples of the 95% intervals in the evaluation summary.
   bootstrap_samples: 1000
   # The distance plots also without "test", which draws them always.
@@ -78,7 +81,9 @@ llm:
   seed: 2898231092
   temperature: 0.01
   top_p: 0.95
-  max_model_len: 8192
+  # The three chain-of-thoughts turns with their answers (up to max_tokens
+  # each) must fit; a longer history is skipped and its answer undefined.
+  max_model_len: 16384
   max_num_batched_tokens: 16384
   # CUDA graphs, as vLLM used them before the switch to the model package.
   enforce_eager: false

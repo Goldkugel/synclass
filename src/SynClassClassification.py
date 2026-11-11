@@ -70,12 +70,13 @@ def transformOutdated(log : bool = True) -> bool:
 
 def createJSONExample(cl : str = "", co : str = "5", ra : str = "") -> str:
     """
-    The answer of a Few-Shot example, in the output format of the prompts.
+    The answer of a Few-Shot example, in the output format of the prompts:
+    the rationale first, so that the classification follows from it.
     """
     ret = "{\n" \
+        f"\t{quote(rationaleColumn)}: {json.dumps(ra)},\n" \
         f"\t{quote(classificationKey)}: {quote(cl)},\n" \
-        f"\t{quote(confidenceColumn)}: {co},\n" \
-        f"\t{quote(rationaleColumn)}: {json.dumps(ra)}\n" \
+        f"\t{quote(confidenceColumn)}: {co}\n" \
         "}"
     
     return ret
@@ -497,9 +498,17 @@ def classifySynonyms(modelID : str) -> pd.DataFrame:
             l.log(f"{generating} completed.")
 
         # The final answers are JSON objects (classification, confidence,
-        # rationale).
+        # rationale); one that is no valid JSON is read from its text.
         l.log("Parsing the answers...")
-        parsed = [parseClassification(model.toJSON(index)) for index in range(len(values))]
+        jsons  = [model.toJSON(index) for index in range(len(values))]
+        parsed = [parseClassification(answer, text)
+            for answer, text in zip(jsons, synonyms[answerColumn])]
+        fromText = sum(parseClassification(answer)[0] == undefinedSynonymClass and
+            classification != undefinedSynonymClass
+            for answer, (classification, _, _) in zip(jsons, parsed))
+        if fromText > 0:
+            l.log(f"{fromText} answers are no valid JSON; their classification is read " \
+                "from the text.")
         synonyms[classificationKey]     = [classification for classification, _, _ in parsed]
         synonyms[confidenceColumn] = [confidence for _, confidence, _ in parsed]
         synonyms[rationaleColumn]  = [rationale for _, _, rationale in parsed]
